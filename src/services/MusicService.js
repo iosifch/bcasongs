@@ -1,0 +1,118 @@
+// Chromatic scale using sharps
+const NOTES_SHARP = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+// Chromatic scale using flats (for display preference, though logic can use one)
+const NOTES_FLAT = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+// Map to normalize flats to sharps for calculation
+const FLAT_TO_SHARP = {
+  'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#'
+};
+
+export default {
+  // Fetch songs from local JSON
+  async getSongs() {
+    try {
+      const response = await fetch('/data/songs.json');
+      if (!response.ok) throw new Error('Failed to load songs');
+      return await response.json();
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  },
+
+  async getSong(id) {
+    const songs = await this.getSongs();
+    return songs.find(s => s.id === id);
+  },
+
+  // Parse ChordPro-like content into structured data
+  // Returns: Array of lines objects
+  // Line Object: { segments: Array, isChorus: Boolean, isSpacer: Boolean }
+  // Segment: { chord: string | null, text: string }
+  parse(content) {
+    if (!content) return [];
+    
+    const lines = content.split('\n');
+    let inChorus = false;
+    let inCoda = false;
+
+    return lines.map(line => {
+      // Check for chorus tags
+      if (line.includes('{soc}') || line.includes('{c: Chorus}')) {
+        inChorus = true;
+        line = line.replace('{soc}', '').replace('{c: Chorus}', '');
+      }
+      
+      // Check for coda tags
+      if (line.includes('{so_coda}') || line.includes('{c: Coda}')) {
+        inCoda = true;
+        line = line.replace('{so_coda}', '').replace('{c: Coda}', '');
+      }
+      
+      const currentLineIsChorus = inChorus;
+      const currentLineIsCoda = inCoda;
+
+      if (line.includes('{eoc}')) {
+        inChorus = false;
+        line = line.replace('{eoc}', '');
+      }
+      
+      if (line.includes('{eo_coda}')) {
+        inCoda = false;
+        line = line.replace('{eo_coda}', '');
+      }
+
+      // Check for empty line (spacer)
+      if (!line.trim()) {
+        return { segments: [], isChorus: false, isCoda: false, isSpacer: true };
+      }
+
+      const segments = [];
+      const regex = /\[([^\]]+)\]([^\[]*)/g;
+      
+      let lastIndex = 0;
+      let match;
+      
+      // Check for text at the start before any chord
+      const firstBracket = line.indexOf('[');
+      if (firstBracket > 0) {
+        segments.push({
+          chord: null,
+          text: line.substring(0, firstBracket)
+        });
+        lastIndex = firstBracket;
+      } else if (firstBracket === -1) {
+        // No chords in this line
+        return { segments: [{ chord: null, text: line }], isChorus: currentLineIsChorus, isCoda: currentLineIsCoda, isSpacer: false };
+      }
+
+      while ((match = regex.exec(line)) !== null) {
+        segments.push({
+          chord: match[1],
+          text: match[2]
+        });
+        lastIndex = regex.lastIndex;
+      }
+      
+      return { segments, isChorus: currentLineIsChorus, isCoda: currentLineIsCoda, isSpacer: false };
+    });
+  },
+
+  // Transpose parsed lines (which are now objects)
+  transposeParsedContent(parsedLines, semitones) {
+    if (semitones === 0) return parsedLines;
+    
+    return parsedLines.map(lineObj => {
+      if (lineObj.isSpacer) return lineObj;
+
+      return {
+        ...lineObj,
+        segments: lineObj.segments.map(segment => ({
+          ...segment,
+          chord: segment.chord ? this.transposeChord(segment.chord, semitones) : null
+        }))
+      };
+    });
+  }
+}

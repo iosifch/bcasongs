@@ -4,7 +4,7 @@ import vuetify from 'vite-plugin-vuetify'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/vuejs/', // Base URL for GitHub Pages
+  base: '/bcasongs/', // Base URL for GitHub Pages
   plugins: [
     vue(),
     vuetify({ autoImport: true }), // Enabled by default

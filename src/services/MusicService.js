@@ -12,7 +12,8 @@ export default {
   // Fetch songs from local JSON
   async getSongs() {
     try {
-      const response = await fetch('/data/songs.json');
+      const baseUrl = import.meta.env.BASE_URL;
+      const response = await fetch(`${baseUrl}data/songs.json`);
       if (!response.ok) throw new Error('Failed to load songs');
       return await response.json();
     } catch (e) {

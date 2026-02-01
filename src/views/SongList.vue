@@ -10,6 +10,7 @@
           hide-details
           clearable
           density="comfortable"
+          rounded="lg"
         ></v-text-field>
       </v-col>
     </v-row>
@@ -23,7 +24,7 @@
         <v-col cols="12" v-for="song in filteredSongs" :key="song.id">
           <v-card 
             :to="{ name: 'SongDetail', params: { id: song.id } }"
-            elevation="2"
+            elevation="10"
             class="rounded-lg"
           >
             <v-card-text class="d-flex align-center justify-space-between py-3">

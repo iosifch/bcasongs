@@ -21,25 +21,27 @@
 
     <div v-else>
       <v-row dense>
-        <v-col cols="12" v-for="song in filteredSongs" :key="song.id">
+        <v-col cols="12" v-for="song in filteredSongs" :key="song.id" class="py-2">
           <v-card 
             :to="{ name: 'SongDetail', params: { id: song.id } }"
-            elevation="10"
-            class="rounded-lg"
+            elevation="5"
+            class="rounded-lg transition-swing bg-info-lighten-1"
+            hover
           >
             <v-card-text class="d-flex align-center justify-space-between py-3">
-              <div class="font-weight-medium text-body-1 text-truncate mr-2">
+              <div class="font-weight-medium text-body-1 text-truncate mr-2 text-primary">
                 {{ song.title }}
               </div>
               
-              <v-sheet
-                color="grey-lighten-3"
-                class="d-flex align-center justify-center rounded flex-shrink-0"
-                height="28"
-                width="28"
+              <v-chip
+                color="accent-lighten-2"
+                variant="flat"
+                size="small"
+                class="font-weight-bold px-2 text-accent-darken-2"
+                label
               >
-                <span class="text-caption font-weight-bold">{{ song.originalKey }}</span>
-              </v-sheet>
+                {{ song.originalKey }}
+              </v-chip>
             </v-card-text>
           </v-card>
         </v-col>

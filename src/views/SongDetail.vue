@@ -73,9 +73,9 @@
                   class="song-segment"
                   :class="{ 'mr-1': showChords }"
                 >
-                  <div v-if="showChords" class="chord text-primary font-weight-bold">
-                    {{ segment.chord || '&nbsp;' }}
-                  </div>
+              <div v-if="showChords" class="chord text-secondary font-weight-bold">
+                {{ segment.chord || '&nbsp;' }}
+              </div>
                   <div class="lyrics" :class="fontSizeClass">
                     {{ segment.text }}
                   </div>
@@ -100,9 +100,9 @@
                   class="song-segment"
                   :class="{ 'mr-1': showChords }"
                 >
-                  <div v-if="showChords" class="chord text-primary font-weight-bold">
-                    {{ segment.chord || '&nbsp;' }}
-                  </div>
+              <div v-if="showChords" class="chord text-secondary font-weight-bold">
+                {{ segment.chord || '&nbsp;' }}
+              </div>
                   <div class="lyrics" :class="fontSizeClass">
                     {{ segment.text }}
                   </div>

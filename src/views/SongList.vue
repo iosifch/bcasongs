@@ -18,37 +18,38 @@
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
     </div>
 
-    <v-card v-else variant="flat" class="border">
-      <v-list lines="two" class="pa-0">
-        <template v-for="(song, index) in filteredSongs" :key="song.id">
-          <v-list-item
+    <div v-else>
+      <v-row dense>
+        <v-col cols="12" v-for="song in filteredSongs" :key="song.id">
+          <v-card 
             :to="{ name: 'SongDetail', params: { id: song.id } }"
+            elevation="2"
+            class="rounded-lg"
           >
-            <v-list-item-title class="font-weight-bold text-left">
-              {{ song.title }}
-            </v-list-item-title>
-            
-            <template v-slot:append>
+            <v-card-text class="d-flex align-center justify-space-between py-3">
+              <div class="font-weight-medium text-body-1 text-truncate mr-2">
+                {{ song.title }}
+              </div>
+              
               <v-sheet
                 color="grey-lighten-3"
-                class="d-flex align-center justify-center ml-3 rounded"
-                height="26"
-                width="26"
+                class="d-flex align-center justify-center rounded flex-shrink-0"
+                height="28"
+                width="28"
               >
-                <span class="text-caption">{{ song.originalKey }}</span>
+                <span class="text-caption font-weight-bold">{{ song.originalKey }}</span>
               </v-sheet>
-            </template>
-          </v-list-item>
-          <v-divider v-if="index < filteredSongs.length - 1"></v-divider>
-        </template>
+            </v-card-text>
+          </v-card>
+        </v-col>
 
-        <v-list-item v-if="filteredSongs.length === 0">
-          <v-list-item-title class="text-center text-grey">
+        <v-col v-if="filteredSongs.length === 0" cols="12">
+          <div class="text-center text-grey mt-4">
             No songs found.
-          </v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-card>
+          </div>
+        </v-col>
+      </v-row>
+    </div>
   </v-container>
 </template>
 

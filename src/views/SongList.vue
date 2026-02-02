@@ -23,30 +23,14 @@
     </div>
 
     <div v-else>
-      <v-row dense>
+      <!-- Main List -->
+      <v-row dense class="mb-16"> <!-- Add margin bottom to prevent overlap with fixed footer -->
         <v-col cols="12" v-for="song in filteredSongs" :key="song.id" class="py-2">
-          <v-card 
-            :to="{ name: 'SongDetail', params: { id: song.id } }"
-            color="surface"
-            class="rounded-lg transition-swing"
-            hover
-          >
-            <v-card-text class="d-flex align-center justify-space-between py-4">
-              <div class="font-weight-regular text-h6 text-truncate mr-2">
-                {{ song.title }}
-              </div>
-              
-              <v-chip
-                color="secondary-container"
-                variant="flat"
-                size="small"
-                class="font-weight-bold px-2"
-                label
-              >
-                {{ song.originalKey }}
-              </v-chip>
-            </v-card-text>
-          </v-card>
+          <SongCard 
+            :song="song" 
+            :is-shortlisted="isInShortlist(song.id)"
+            @toggle-shortlist="toggleShortlist"
+          />
         </v-col>
 
         <v-col v-if="filteredSongs.length === 0" cols="12">
@@ -55,6 +39,37 @@
           </div>
         </v-col>
       </v-row>
+
+      <!-- Sticky Bottom Shortlist -->
+      <div class="shortlist-bottom-container" v-if="shortlistedSongs.length > 0">
+        <v-expand-transition>
+          <div v-show="isShortlistExpanded" class="shortlist-content bg-secondary-container rounded-t-xl">
+            <v-container fluid class="pa-3" style="max-height: 50vh; overflow-y: auto;">
+              <v-row dense>
+                <v-col cols="12" v-for="song in shortlistedSongs" :key="song.id" class="py-2">
+                  <SongCard 
+                    :song="song" 
+                    :is-shortlisted="true"
+                    @toggle-shortlist="toggleShortlist"
+                  />
+                </v-col>
+              </v-row>
+            </v-container>
+          </div>
+        </v-expand-transition>
+
+        <v-sheet 
+          elevation="4" 
+          color="secondary-container" 
+          class="d-flex align-center px-4 py-3 cursor-pointer transition-swing"
+          :class="isShortlistExpanded ? 'rounded-0' : 'rounded-t-xl'"
+          @click="isShortlistExpanded = !isShortlistExpanded"
+        >
+          <v-icon :icon="isShortlistExpanded ? 'mdi-chevron-down' : 'mdi-chevron-up'" class="mr-2"></v-icon>
+          <v-icon icon="mdi-bookmark" class="mr-2"></v-icon>
+          <span class="font-weight-bold">Shortlist ({{ shortlistedSongs.length }})</span>
+        </v-sheet>
+      </div>
     </div>
   </v-container>
 </template>
@@ -62,10 +77,14 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import MusicService from '../services/MusicService';
+import { useShortlist } from '../composables/useShortlist';
+import SongCard from '../components/SongCard.vue';
 
 const songs = ref([]);
 const search = ref('');
 const loading = ref(true);
+const { shortlist, toggleShortlist, isInShortlist } = useShortlist();
+const isShortlistExpanded = ref(false);
 
 onMounted(async () => {
   try {
@@ -73,6 +92,10 @@ onMounted(async () => {
   } finally {
     loading.value = false;
   }
+});
+
+const shortlistedSongs = computed(() => {
+  return songs.value.filter(song => isInShortlist(song.id));
 });
 
 const filteredSongs = computed(() => {
@@ -84,3 +107,23 @@ const filteredSongs = computed(() => {
   );
 });
 </script>
+
+<style scoped>
+.shortlist-bottom-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.shortlist-content {
+  /* background-color removed here as it's handled by utility class */
+  /* border-top removed */
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+}
+
+/* shortlist-header class removed as it's handled dynamically */
+</style>

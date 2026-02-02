@@ -15,7 +15,7 @@
               <div class="d-flex align-center flex-grow-1 min-width-0 mr-2">
                 <v-btn 
                   icon="mdi-arrow-left" 
-                  variant="outlined" 
+                  variant="text" 
                   to="/" 
                   class="mr-4 flex-shrink-0"
                   density="compact"
@@ -27,7 +27,7 @@
               <div class="d-flex align-center flex-shrink-0">
                 <v-btn
                   :icon="showChords ? 'mdi-music-note' : 'mdi-music-note-off'"
-                  variant="outlined"
+                  variant="text"
                   @click="showChords = !showChords"
                   class="mr-2"
                   title="Toggle Chords"
@@ -36,7 +36,7 @@
                 ></v-btn>
                 <v-btn
                   icon="mdi-format-size"
-                  variant="outlined"
+                  variant="text"
                   @click="cycleFontSize"
                   title="Change Font Size"
                   density="compact"

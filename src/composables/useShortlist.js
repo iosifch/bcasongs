@@ -22,9 +22,14 @@ export function useShortlist() {
     return shortlist.value.includes(songId);
   };
 
+  const reorderShortlist = (newOrderIds) => {
+    shortlist.value = newOrderIds;
+  };
+
   return {
     shortlist,
     toggleShortlist,
-    isInShortlist
+    isInShortlist,
+    reorderShortlist
   };
 }

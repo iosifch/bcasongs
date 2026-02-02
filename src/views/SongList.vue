@@ -45,15 +45,29 @@
         <v-expand-transition>
           <div v-show="isShortlistExpanded" class="shortlist-content bg-secondary-container rounded-t-xl elevation-10">
             <v-container fluid class="pa-3" style="max-height: 50vh; overflow-y: auto;">
-              <v-row dense>
-                <v-col cols="12" v-for="song in shortlistedSongs" :key="song.id" class="py-2">
-                  <SongCard 
-                    :song="song" 
-                    :is-shortlisted="true"
-                    @toggle-shortlist="toggleShortlist"
-                  />
+              <VueDraggable
+                v-model="shortlistModel"
+                :animation="150"
+                handle=".drag-handle"
+                class="v-row v-row--dense"
+              >
+                <v-col 
+                  cols="12" 
+                  v-for="song in shortlistModel" 
+                  :key="song.id" 
+                  class="py-2"
+                >
+                  <div class="d-flex align-center">
+                    <v-icon class="drag-handle mr-2 cursor-move text-medium-emphasis">mdi-drag</v-icon>
+                    <SongCard 
+                      :song="song" 
+                      :is-shortlisted="true"
+                      @toggle-shortlist="toggleShortlist"
+                      class="flex-grow-1"
+                    />
+                  </div>
                 </v-col>
-              </v-row>
+              </VueDraggable>
             </v-container>
           </div>
         </v-expand-transition>
@@ -79,11 +93,12 @@ import { ref, computed, onMounted } from 'vue';
 import MusicService from '../services/MusicService';
 import { useShortlist } from '../composables/useShortlist';
 import SongCard from '../components/SongCard.vue';
+import { VueDraggable } from 'vue-draggable-plus';
 
 const songs = ref([]);
 const search = ref('');
 const loading = ref(true);
-const { shortlist, toggleShortlist, isInShortlist } = useShortlist();
+const { shortlist, toggleShortlist, isInShortlist, reorderShortlist } = useShortlist();
 const isShortlistExpanded = ref(false);
 
 onMounted(async () => {
@@ -94,8 +109,21 @@ onMounted(async () => {
   }
 });
 
+const shortlistModel = computed({
+  get: () => {
+    // Map IDs to song objects, maintaining order
+    return shortlist.value
+      .map(id => songs.value.find(s => s.id === id))
+      .filter(Boolean); // Filter out any undefined if ID not found
+  },
+  set: (val) => {
+    reorderShortlist(val.map(s => s.id));
+  }
+});
+
 const shortlistedSongs = computed(() => {
-  return songs.value.filter(song => isInShortlist(song.id));
+  // Keep this for read-only usage if needed, or replace usage with shortlistModel
+  return shortlistModel.value; 
 });
 
 const filteredSongs = computed(() => {

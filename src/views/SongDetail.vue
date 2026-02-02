@@ -21,7 +21,7 @@
                   density="compact"
                   rounded="lg"
                 ></v-btn>
-                <h1 class="text-h6 font-weight-medium mb-0 text-truncate">{{ song.title }}</h1>
+                <h1 class="text-h6 font-weight-regular mb-0 text-truncate">{{ song.title }}</h1>
               </div>
               
               <div class="d-flex align-center flex-shrink-0">

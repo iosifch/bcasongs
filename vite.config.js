@@ -16,7 +16,7 @@ export default defineConfig({
         name: 'BCA Songs',
         short_name: 'BCASongs',
         description: 'Songbook application for BCA',
-        theme_color: '#f1eee0',
+        theme_color: '#e7e4bf',
         background_color: '#f1eee0',
         display: 'standalone',
         icons: [

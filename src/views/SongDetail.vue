@@ -126,7 +126,7 @@ const rawParsedLines = ref([]);
 const showChords = ref(false);
 const fontSizeLevel = ref(0); // 0: Normal, 1: Large, 2: Extra Large
 
-const fontSizes = ['text-body-1', 'text-h6 font-weight-regular', 'text-h5 font-weight-regular'];
+const fontSizes = ['lyrics-text-1', 'lyrics-text-2', 'lyrics-text-3'];
 
 const fontSizeClass = computed(() => fontSizes[fontSizeLevel.value]);
 
@@ -169,6 +169,23 @@ const getCodaBlock = (allLines, startIndex) => {
 </script>
 
 <style scoped>
+.lyrics-text-1 {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.6;
+}
+
+.lyrics-text-2 {
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.lyrics-text-3 {
+  font-size: 1.375rem; /* 22px */
+  line-height: 1.6;
+  font-weight: 300;
+}
+
 .sticky-header {
   position: sticky;
   top: 0;

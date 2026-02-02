@@ -43,7 +43,7 @@
       <!-- Sticky Bottom Shortlist -->
       <div class="shortlist-bottom-container" v-if="shortlistedSongs.length > 0">
         <v-expand-transition>
-          <div v-show="isShortlistExpanded" class="shortlist-content bg-secondary-container rounded-t-xl">
+          <div v-show="isShortlistExpanded" class="shortlist-content bg-secondary-container rounded-t-xl elevation-10">
             <v-container fluid class="pa-3" style="max-height: 50vh; overflow-y: auto;">
               <v-row dense>
                 <v-col cols="12" v-for="song in shortlistedSongs" :key="song.id" class="py-2">
@@ -122,7 +122,7 @@ const filteredSongs = computed(() => {
 .shortlist-content {
   /* background-color removed here as it's handled by utility class */
   /* border-top removed */
-  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+  /* box-shadow removed, handled by elevation class */
 }
 
 /* shortlist-header class removed as it's handled dynamically */

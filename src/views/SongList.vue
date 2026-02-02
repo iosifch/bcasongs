@@ -48,37 +48,62 @@
   </v-navigation-drawer>
 
   <v-app-bar color="secondary-container" elevation="2" scroll-behavior="hide">
-    <v-container class="pa-0 fill-height d-flex align-center">
-      <v-text-field
-        v-model="search"
-        placeholder="Search songs..."
-        prepend-inner-icon="mdi-magnify"
-        variant="solo"
-        bg-color="surface"
-        hide-details
-        density="comfortable"
-        rounded="lg"
-        class="ml-3 mr-2"
-        single-line
-        flat
-      ></v-text-field>
+    <v-container class="pa-0 fill-height d-flex align-center px-3">
+      <template v-if="isSearchActive">
+        <v-btn 
+          icon="mdi-arrow-left" 
+          variant="text" 
+          density="comfortable" 
+          rounded="lg" 
+          class="mr-2" 
+          @click="closeSearch"
+        ></v-btn>
+        
+        <v-text-field
+          v-model="search"
+          placeholder="Search songs..."
+          variant="solo"
+          bg-color="surface"
+          hide-details
+          density="comfortable"
+          rounded="lg"
+          single-line
+          flat
+          autofocus
+          class="flex-grow-1"
+        ></v-text-field>
+      </template>
 
-      <v-btn 
-        icon 
-        variant="text" 
-        density="comfortable" 
-        rounded="lg" 
-        class="mr-3" 
-        @click="drawer = !drawer"
-      >
-        <v-badge
-          :content="shortlistedSongs.length"
-          :model-value="shortlistedSongs.length > 0"
-          color="primary"
+      <template v-else>
+        <img src="/icon.svg" alt="Logo" height="32" class="mr-3" />
+        
+        <v-spacer></v-spacer>
+
+        <v-btn 
+          icon="mdi-magnify" 
+          variant="text" 
+          density="comfortable" 
+          rounded="lg" 
+          class="mr-2" 
+          @click="isSearchActive = true"
+        ></v-btn>
+
+        <v-btn 
+          icon 
+          variant="text" 
+          density="comfortable" 
+          rounded="lg" 
+          @click="drawer = !drawer"
         >
-          <v-icon>mdi-bookmark-multiple</v-icon>
-        </v-badge>
-      </v-btn>
+          <v-badge
+            :content="shortlistedSongs.length"
+            :model-value="shortlistedSongs.length > 0"
+            color="primary"
+          >
+            <v-icon>mdi-bookmark-multiple</v-icon>
+          </v-badge>
+        </v-btn>
+      </template>
     </v-container>
   </v-app-bar>
 
@@ -120,6 +145,12 @@ const search = ref('');
 const loading = ref(true);
 const { shortlist, toggleShortlist, isInShortlist, reorderShortlist } = useShortlist();
 const drawer = ref(false);
+const isSearchActive = ref(false);
+
+const closeSearch = () => {
+  isSearchActive.value = false;
+  search.value = '';
+};
 
 onMounted(async () => {
   try {

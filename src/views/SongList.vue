@@ -31,8 +31,8 @@
             class="rounded-lg transition-swing"
             hover
           >
-            <v-card-text class="d-flex align-center justify-space-between py-3">
-              <div class="font-weight-medium text-body-1 text-truncate mr-2">
+            <v-card-text class="d-flex align-center justify-space-between py-4">
+              <div class="font-weight-regular text-h6 text-truncate mr-2">
                 {{ song.title }}
               </div>
               

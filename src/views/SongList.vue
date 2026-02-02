@@ -4,14 +4,20 @@
     location="right"
     temporary
     width="400"
-    class="bg-surface"
+    color="background"
   >
-    <div class="d-flex align-center justify-space-between px-4 py-3 bg-secondary-container">
-      <span class="text-h6 font-weight-bold">Your Shortlist</span>
-      <v-btn icon variant="text" density="comfortable" @click="drawer = false">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-    </div>
+    <v-toolbar color="secondary-container" elevation="2">
+      <v-toolbar-title class="text-h6 font-weight-bold">Your Shortlist</v-toolbar-title>
+      <template v-slot:append>
+        <v-btn 
+          icon="mdi-close" 
+          variant="text" 
+          density="comfortable" 
+          rounded="lg" 
+          @click="drawer = false"
+        ></v-btn>
+      </template>
+    </v-toolbar>
 
     <div class="pa-3">
       <div v-if="shortlistedSongs.length === 0" class="text-center mt-4 text-medium-emphasis">

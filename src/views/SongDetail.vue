@@ -8,7 +8,7 @@
     </v-row>
 
     <div v-else-if="song">
-      <v-app-bar density="comfortable" color="secondary-container" elevation="2" scroll-behavior="hide">
+      <v-app-bar color="secondary-container" elevation="2" scroll-behavior="hide">
         <v-container class="pa-0 fill-height">
           <v-row align="center" no-gutters>
             <v-col cols="12" class="d-flex align-center px-3">

@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="secondary-container" density="comfortable" elevation="2" scroll-behavior="hide">
+  <v-app-bar color="secondary-container" elevation="2" scroll-behavior="hide">
     <v-container class="pa-0 fill-height">
       <v-text-field
         v-model="search"
@@ -8,7 +8,7 @@
         variant="solo"
         bg-color="surface"
         hide-details
-        density="compact"
+        density="comfortable"
         rounded="lg"
         class="mx-3"
         single-line

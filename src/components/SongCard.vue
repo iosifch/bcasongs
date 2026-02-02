@@ -28,12 +28,13 @@
         </div>
       </div>
 
-      <v-btn
-        icon
-        variant="text"
-        density="comfortable"
-        @click.prevent="emit('toggle-shortlist', song.id)"
-      >
+        <v-btn
+          icon
+          variant="text"
+          density="comfortable"
+          rounded="lg"
+          @click.prevent="emit('toggle-shortlist', song.id)"
+        >
         <v-icon :color="isShortlisted ? 'primary' : 'grey-lighten-1'">
           {{ isShortlisted ? 'mdi-bookmark' : 'mdi-bookmark-outline' }}
         </v-icon>

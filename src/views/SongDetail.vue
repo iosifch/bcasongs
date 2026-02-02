@@ -9,42 +9,38 @@
 
     <div v-else-if="song">
       <v-app-bar color="secondary-container" elevation="2" scroll-behavior="hide">
-        <v-container class="pa-0 fill-height">
-          <v-row align="center" no-gutters>
-            <v-col cols="12" class="d-flex align-center px-3">
-              <div class="d-flex align-center flex-grow-1 min-width-0 mr-2">
-                <v-btn 
-                  icon="mdi-arrow-left" 
-                  variant="text" 
-                  to="/" 
-                  class="mr-4 flex-shrink-0"
-                  density="compact"
-                  rounded="lg"
-                ></v-btn>
-                <h1 class="text-h6 font-weight-regular mb-0 text-truncate">{{ song.title }}</h1>
-              </div>
-              
-              <div class="d-flex align-center flex-shrink-0">
-                <v-btn
-                  :icon="showChords ? 'mdi-music-note' : 'mdi-music-note-off'"
-                  variant="text"
-                  @click="showChords = !showChords"
-                  class="mr-2"
-                  title="Toggle Chords"
-                  density="compact"
-                  rounded="lg"
-                ></v-btn>
-                <v-btn
-                  icon="mdi-format-size"
-                  variant="text"
-                  @click="cycleFontSize"
-                  title="Change Font Size"
-                  density="compact"
-                  rounded="lg"
-                ></v-btn>
-              </div>
-            </v-col>
-          </v-row>
+        <v-container class="pa-0 fill-height d-flex align-center px-3">
+          <v-btn 
+            icon="mdi-arrow-left" 
+            variant="text" 
+            to="/" 
+            class="mr-2"
+            density="comfortable"
+            rounded="lg"
+          ></v-btn>
+          
+          <v-app-bar-title class="text-h6 font-weight-regular mr-2">
+            {{ song.title }}
+          </v-app-bar-title>
+          
+          <v-btn
+            :icon="showChords ? 'mdi-music-note' : 'mdi-music-note-off'"
+            variant="text"
+            @click="showChords = !showChords"
+            class="mr-2"
+            title="Toggle Chords"
+            density="comfortable"
+            rounded="lg"
+          ></v-btn>
+          
+          <v-btn
+            icon="mdi-format-size"
+            variant="text"
+            @click="cycleFontSize"
+            title="Change Font Size"
+            density="comfortable"
+            rounded="lg"
+          ></v-btn>
         </v-container>
       </v-app-bar>
 

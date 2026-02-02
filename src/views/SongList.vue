@@ -1,6 +1,48 @@
 <template>
+  <v-navigation-drawer
+    v-model="drawer"
+    location="right"
+    temporary
+    width="400"
+    class="bg-surface"
+  >
+    <div class="d-flex align-center justify-space-between px-4 py-3 bg-secondary-container">
+      <span class="text-h6 font-weight-bold">Your Shortlist</span>
+      <v-btn icon variant="text" density="comfortable" @click="drawer = false">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </div>
+
+    <div class="pa-3">
+      <div v-if="shortlistedSongs.length === 0" class="text-center mt-4 text-medium-emphasis">
+        No songs in shortlist.
+      </div>
+      
+      <VueDraggable
+        v-else
+        v-model="shortlistModel"
+        :animation="150"
+        handle=".drag-handle"
+      >
+        <div 
+          v-for="song in shortlistModel" 
+          :key="song.id" 
+          class="d-flex align-center mb-3"
+        >
+          <v-icon class="drag-handle mr-2 cursor-move text-medium-emphasis">mdi-drag</v-icon>
+          <SongCard 
+            :song="song" 
+            :is-shortlisted="true"
+            @toggle-shortlist="toggleShortlist"
+            class="flex-grow-1"
+          />
+        </div>
+      </VueDraggable>
+    </div>
+  </v-navigation-drawer>
+
   <v-app-bar color="secondary-container" elevation="2" scroll-behavior="hide">
-    <v-container class="pa-0 fill-height">
+    <v-container class="pa-0 fill-height d-flex align-center">
       <v-text-field
         v-model="search"
         placeholder="Search songs..."
@@ -10,10 +52,27 @@
         hide-details
         density="comfortable"
         rounded="lg"
-        class="mx-3"
+        class="ml-3 mr-2"
         single-line
         flat
       ></v-text-field>
+
+      <v-btn 
+        icon 
+        variant="text" 
+        density="comfortable" 
+        rounded="lg" 
+        class="mr-3" 
+        @click="drawer = !drawer"
+      >
+        <v-badge
+          :content="shortlistedSongs.length"
+          :model-value="shortlistedSongs.length > 0"
+          color="primary"
+        >
+          <v-icon>mdi-bookmark-multiple</v-icon>
+        </v-badge>
+      </v-btn>
     </v-container>
   </v-app-bar>
 
@@ -24,7 +83,7 @@
 
     <div v-else>
       <!-- Main List -->
-      <v-row dense class="mb-16"> <!-- Add margin bottom to prevent overlap with fixed footer -->
+      <v-row dense>
         <v-col cols="12" v-for="song in filteredSongs" :key="song.id" class="py-2">
           <SongCard 
             :song="song" 
@@ -39,51 +98,6 @@
           </div>
         </v-col>
       </v-row>
-
-      <!-- Sticky Bottom Shortlist -->
-      <div class="shortlist-bottom-container" v-if="shortlistedSongs.length > 0">
-        <v-expand-transition>
-          <div v-show="isShortlistExpanded" class="shortlist-content bg-secondary-container rounded-t-xl elevation-10">
-            <v-container fluid class="pa-3" style="max-height: 50vh; overflow-y: auto;">
-              <VueDraggable
-                v-model="shortlistModel"
-                :animation="150"
-                handle=".drag-handle"
-                class="v-row v-row--dense"
-              >
-                <v-col 
-                  cols="12" 
-                  v-for="song in shortlistModel" 
-                  :key="song.id" 
-                  class="py-2"
-                >
-                  <div class="d-flex align-center">
-                    <v-icon class="drag-handle mr-2 cursor-move text-medium-emphasis">mdi-drag</v-icon>
-                    <SongCard 
-                      :song="song" 
-                      :is-shortlisted="true"
-                      @toggle-shortlist="toggleShortlist"
-                      class="flex-grow-1"
-                    />
-                  </div>
-                </v-col>
-              </VueDraggable>
-            </v-container>
-          </div>
-        </v-expand-transition>
-
-        <v-sheet 
-          elevation="4" 
-          color="secondary-container" 
-          class="d-flex align-center px-4 py-3 cursor-pointer transition-swing"
-          :class="isShortlistExpanded ? 'rounded-0' : 'rounded-t-xl'"
-          @click="isShortlistExpanded = !isShortlistExpanded"
-        >
-          <v-icon :icon="isShortlistExpanded ? 'mdi-chevron-down' : 'mdi-chevron-up'" class="mr-2"></v-icon>
-          <v-icon icon="mdi-bookmark" class="mr-2"></v-icon>
-          <span class="font-weight-bold">Shortlist ({{ shortlistedSongs.length }})</span>
-        </v-sheet>
-      </div>
     </div>
   </v-container>
 </template>
@@ -99,7 +113,7 @@ const songs = ref([]);
 const search = ref('');
 const loading = ref(true);
 const { shortlist, toggleShortlist, isInShortlist, reorderShortlist } = useShortlist();
-const isShortlistExpanded = ref(false);
+const drawer = ref(false);
 
 onMounted(async () => {
   try {
@@ -137,21 +151,5 @@ const filteredSongs = computed(() => {
 </script>
 
 <style scoped>
-.shortlist-bottom-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-}
-
-.shortlist-content {
-  /* background-color removed here as it's handled by utility class */
-  /* border-top removed */
-  /* box-shadow removed, handled by elevation class */
-}
-
-/* shortlist-header class removed as it's handled dynamically */
+/* No custom styles needed for drawer */
 </style>

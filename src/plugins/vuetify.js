@@ -7,8 +7,55 @@ import { createVuetify } from 'vuetify'
 
 export default createVuetify({
   theme: {
-    defaultTheme: 'light',
+    defaultTheme: 'bcasongs',
     themes: {
+      bcasongs: {
+        dark: false,
+        colors: {
+          primary: '#626118',
+          'on-primary': '#ffffff',
+          'primary-container': '#e8e78f',
+          'on-primary-container': '#4a4900',
+          
+          secondary: '#616043',
+          'on-secondary': '#ffffff',
+          'secondary-container': '#e7e4bf',
+          'on-secondary-container': '#49482d',
+          
+          tertiary: '#3e6656',
+          'on-tertiary': '#ffffff',
+          'tertiary-container': '#c0ecd8',
+          'on-tertiary-container': '#254e3f',
+          
+          error: '#ba1a1a',
+          'on-error': '#ffffff',
+          'error-container': '#ffdad6',
+          'on-error-container': '#93000a',
+          
+          background: '#f1eee0', // Using surface color as background base if needed, or keeping default. User specified surface colors. Let's map background to surface or surface-container-lowest? Standard MD3 often uses surface. Let's stick to the list provided.
+          surface: '#fdf9ec',
+          'surface-bright': '#fdf9ec',
+          'surface-dim': '#dddacd',
+          'surface-container-lowest': '#ffffff',
+          'surface-container-low': '#f7f4e6',
+          'surface-container': '#f1eee0',
+          'surface-container-high': '#ece8db',
+          'surface-container-highest': `#e6e3d5`,
+          
+          'on-surface': '#1c1c14',
+          'on-surface-variant': '#48473a',
+          
+          outline: '#797869',
+          'outline-variant': '#cac7b6',
+          
+          'inverse-surface': '#313128',
+          'inverse-on-surface': '#f4f1e3',
+          'inverse-primary': '#cccb76',
+          
+          scrim: '#000000',
+          shadow: '#000000',
+        }
+      },
       light: {
         colors: {
           // Primary (Dark Navy)

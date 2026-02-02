@@ -8,41 +8,38 @@
     </v-row>
 
     <div v-else-if="song">
-      <v-app-bar flat color="white" density="comfortable" class="border-b">
+      <v-app-bar density="comfortable" color="secondary-container" elevation="2" scroll-behavior="hide">
         <v-container class="pa-0 fill-height">
           <v-row align="center" no-gutters>
-            <v-col cols="12" class="d-flex align-center justify-space-between px-3">
-              <div class="d-flex align-center">
+            <v-col cols="12" class="d-flex align-center px-3">
+              <div class="d-flex align-center flex-grow-1 min-width-0 mr-2">
                 <v-btn 
                   icon="mdi-arrow-left" 
                   variant="outlined" 
                   to="/" 
-                  class="mr-4"
-                  color="grey-darken-1"
-                  density="comfortable"
+                  class="mr-4 flex-shrink-0"
+                  density="compact"
                   rounded="lg"
                 ></v-btn>
-                <h1 class="text-h5 font-weight-medium mb-0 text-truncate">{{ song.title }}</h1>
+                <h1 class="text-h6 font-weight-medium mb-0 text-truncate">{{ song.title }}</h1>
               </div>
               
-              <div class="d-flex align-center">
+              <div class="d-flex align-center flex-shrink-0">
                 <v-btn
                   :icon="showChords ? 'mdi-music-note' : 'mdi-music-note-off'"
                   variant="outlined"
-                  color="grey-darken-1"
                   @click="showChords = !showChords"
                   class="mr-2"
                   title="Toggle Chords"
-                  density="comfortable"
+                  density="compact"
                   rounded="lg"
                 ></v-btn>
                 <v-btn
                   icon="mdi-format-size"
                   variant="outlined"
-                  color="grey-darken-1"
                   @click="cycleFontSize"
                   title="Change Font Size"
-                  density="comfortable"
+                  density="compact"
                   rounded="lg"
                 ></v-btn>
               </div>
@@ -51,8 +48,7 @@
         </v-container>
       </v-app-bar>
 
-      <v-card variant="flat" class="song-content pt-0">
-        <v-card-text>
+      <div class="song-content mt-4 px-3">
           <template v-for="(line, lineIndex) in parsedLines" :key="lineIndex">
             <!-- Normal Line or Chorus Line (rendered individually) -->
             <div 
@@ -73,7 +69,7 @@
                   class="song-segment"
                   :class="{ 'mr-1': showChords }"
                 >
-              <div v-if="showChords" class="chord text-secondary font-weight-bold">
+              <div v-if="showChords" class="chord font-weight-bold">
                 {{ segment.chord || '&nbsp;' }}
               </div>
                   <div class="lyrics" :class="fontSizeClass">
@@ -100,7 +96,7 @@
                   class="song-segment"
                   :class="{ 'mr-1': showChords }"
                 >
-              <div v-if="showChords" class="chord text-secondary font-weight-bold">
+              <div v-if="showChords" class="chord font-weight-bold">
                 {{ segment.chord || '&nbsp;' }}
               </div>
                   <div class="lyrics" :class="fontSizeClass">
@@ -110,8 +106,7 @@
               </div>
             </div>
           </template>
-        </v-card-text>
-      </v-card>
+      </div>
     </div>
 
     <v-row v-else>

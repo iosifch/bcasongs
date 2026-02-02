@@ -1,20 +1,23 @@
 <template>
-  <v-container fluid class="pa-3">
-    <v-row class="mb-2">
-      <v-col cols="12">
-        <v-text-field
-          v-model="search"
-          label="Search songs..."
-          prepend-inner-icon="mdi-magnify"
-          variant="outlined"
-          hide-details
-          clearable
-          density="comfortable"
-          rounded="lg"
-        ></v-text-field>
-      </v-col>
-    </v-row>
+  <v-app-bar color="secondary-container" density="comfortable" elevation="2" scroll-behavior="hide">
+    <v-container class="pa-0 fill-height">
+      <v-text-field
+        v-model="search"
+        placeholder="Search songs..."
+        prepend-inner-icon="mdi-magnify"
+        variant="solo"
+        bg-color="surface"
+        hide-details
+        density="compact"
+        rounded="lg"
+        class="mx-3"
+        single-line
+        flat
+      ></v-text-field>
+    </v-container>
+  </v-app-bar>
 
+  <v-container fluid class="pa-3">
     <div v-if="loading" class="d-flex justify-center my-4">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
     </div>
@@ -24,20 +27,20 @@
         <v-col cols="12" v-for="song in filteredSongs" :key="song.id" class="py-2">
           <v-card 
             :to="{ name: 'SongDetail', params: { id: song.id } }"
-            elevation="5"
-            class="rounded-lg transition-swing bg-info-lighten-1"
+            color="surface"
+            class="rounded-lg transition-swing"
             hover
           >
             <v-card-text class="d-flex align-center justify-space-between py-3">
-              <div class="font-weight-medium text-body-1 text-truncate mr-2 text-primary">
+              <div class="font-weight-medium text-body-1 text-truncate mr-2">
                 {{ song.title }}
               </div>
               
               <v-chip
-                color="accent-lighten-2"
+                color="secondary-container"
                 variant="flat"
                 size="small"
-                class="font-weight-bold px-2 text-accent-darken-2"
+                class="font-weight-bold px-2"
                 label
               >
                 {{ song.originalKey }}
@@ -47,7 +50,7 @@
         </v-col>
 
         <v-col v-if="filteredSongs.length === 0" cols="12">
-          <div class="text-center text-grey mt-4">
+          <div class="text-center mt-4">
             No songs found.
           </div>
         </v-col>

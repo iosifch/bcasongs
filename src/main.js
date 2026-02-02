@@ -3,6 +3,18 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import router from './router'
 import './style.css'
+import { registerSW } from 'virtual:pwa-register'
+
+// Register Service Worker
+const updateSW = registerSW({
+  onNeedRefresh() {
+    // Handle refresh logic here if needed (e.g., show a toast)
+    console.log('New content available, click on reload button to update.')
+  },
+  onOfflineReady() {
+    console.log('App is ready to work offline.')
+  },
+})
 
 // Roboto Font
 import '@fontsource/roboto/100.css';

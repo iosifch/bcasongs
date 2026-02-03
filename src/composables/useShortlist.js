@@ -26,10 +26,15 @@ export function useShortlist() {
     shortlist.value = newOrderIds;
   };
 
+  const replaceShortlist = (newIds) => {
+    shortlist.value = newIds;
+  };
+
   return {
     shortlist,
     toggleShortlist,
     isInShortlist,
-    reorderShortlist
+    reorderShortlist,
+    replaceShortlist
   };
 }

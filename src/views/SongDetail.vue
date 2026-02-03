@@ -135,6 +135,8 @@ import { ref, computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import MusicService from '../services/MusicService';
 
+import { useShare } from '../composables/useShare';
+
 const route = useRoute();
 const song = ref(null);
 const loading = ref(true);
@@ -144,6 +146,7 @@ const showChords = ref(false);
 const fontSizeLevel = ref(0); // 0: Normal, 1: Large, 2: Extra Large
 const snackbar = ref(false);
 const snackbarText = ref('');
+const { share } = useShare();
 
 const fontSizes = ['lyrics-text-1', 'lyrics-text-2', 'lyrics-text-3'];
 
@@ -156,22 +159,11 @@ const cycleFontSize = () => {
 const shareSong = async () => {
   if (!song.value) return;
 
-  const shareData = {
-    title: song.value.title,
-    text: `Check out "${song.value.title}" on BCA Songs`,
-    url: window.location.href,
-  };
-
-  try {
-    if (navigator.share) {
-      await navigator.share(shareData);
-    } else {
-      await navigator.clipboard.writeText(window.location.href);
-      snackbarText.value = 'Link copied to clipboard';
-      snackbar.value = true;
-    }
-  } catch (err) {
-    console.error('Error sharing:', err);
+  const result = await share(song.value.title, window.location.href);
+  
+  if (result.copied) {
+    snackbarText.value = 'Link copied to clipboard';
+    snackbar.value = true;
   }
 };
 

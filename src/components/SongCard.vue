@@ -28,6 +28,7 @@
         </div>
       </div>
 
+      <div class="d-flex align-center">
         <v-btn
           icon
           variant="text"
@@ -35,10 +36,21 @@
           rounded="lg"
           @click.prevent="emit('toggle-shortlist', song.id)"
         >
-        <v-icon :color="isShortlisted ? 'primary' : 'grey-lighten-1'">
-          {{ isShortlisted ? 'mdi-bookmark' : 'mdi-bookmark-outline' }}
-        </v-icon>
-      </v-btn>
+          <v-icon :color="isShortlisted ? 'primary' : 'grey-lighten-1'">
+            {{ isShortlisted ? 'mdi-bookmark' : 'mdi-bookmark-outline' }}
+          </v-icon>
+        </v-btn>
+
+        <v-btn
+          icon
+          variant="text"
+          density="comfortable"
+          rounded="lg"
+          @click.prevent="emit('share', song)"
+        >
+          <v-icon color="grey-lighten-1">mdi-share-variant</v-icon>
+        </v-btn>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -55,5 +67,5 @@ defineProps({
   }
 });
 
-const emit = defineEmits(['toggle-shortlist']);
+const emit = defineEmits(['toggle-shortlist', 'share']);
 </script>

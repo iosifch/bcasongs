@@ -13,6 +13,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'data/songs.json'],
       manifest: {
+        id: '/',
         name: 'BCA Songs',
         short_name: 'BCASongs',
         description: 'Songbook application for BCA',

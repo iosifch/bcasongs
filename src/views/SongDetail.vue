@@ -56,16 +56,14 @@
 
       <div class="song-content mt-4 px-3">
           <template v-for="(line, lineIndex) in parsedLines" :key="lineIndex">
-            <!-- Normal Line or Chorus Line (rendered individually) -->
+            <!-- Normal Line or Spacer -->
             <div 
-              v-if="!line.isCoda"
+              v-if="!line.isChorus && !line.isBridge && !line.isCoda"
               class="song-line"
               :class="{ 
                 'lyrics-mode': !showChords,
-                'mb-1': !line.isSpacer && !line.isChorus,
-                'mb-2': line.isChorus,
-                'py-2': line.isSpacer,
-                'font-italic pl-4': line.isChorus
+                'mb-1': !line.isSpacer,
+                'py-2': line.isSpacer
               }"
             >
               <template v-if="!line.isSpacer">
@@ -85,26 +83,31 @@
               </template>
             </div>
 
-            <!-- Coda Block (rendered only once at the start of a coda sequence) -->
+            <!-- Section Block (Chorus, Bridge, Coda) -->
             <div 
-              v-else-if="line.isCoda && (lineIndex === 0 || !parsedLines[lineIndex - 1].isCoda)"
-              class="coda-block pl-4 border-s-md border-grey-lighten-1 mb-2"
+              v-else-if="shouldStartSection(parsedLines, lineIndex)"
+              class="section-block pl-4 mb-2"
+              :class="{ 
+                'chorus-style font-italic': line.isChorus,
+                'bridge-style border-s-md border-primary-lighten-2': line.isBridge,
+                'coda-style border-s-md border-grey-lighten-1': line.isCoda
+              }"
             >
               <div 
-                v-for="(codaLine, codaIndex) in getCodaBlock(parsedLines, lineIndex)" 
-                :key="codaIndex"
+                v-for="(sectionLine, sectionLineIndex) in getSectionBlock(parsedLines, lineIndex)" 
+                :key="sectionLineIndex"
                 class="song-line mb-1"
                 :class="{ 'lyrics-mode': !showChords }"
               >
                 <div 
-                  v-for="(segment, segIndex) in codaLine.segments" 
+                  v-for="(segment, segIndex) in sectionLine.segments" 
                   :key="segIndex" 
                   class="song-segment"
                   :class="{ 'mr-1': showChords }"
                 >
-              <div v-if="showChords" class="chord font-weight-bold">
-                {{ segment.chord || '&nbsp;' }}
-              </div>
+                  <div v-if="showChords" class="chord font-weight-bold">
+                    {{ segment.chord || '&nbsp;' }}
+                  </div>
                   <div class="lyrics" :class="fontSizeClass">
                     {{ segment.text }}
                   </div>
@@ -188,10 +191,27 @@ const parsedLines = computed(() => {
   return MusicService.transposeParsedContent(rawParsedLines.value, transposeAmount.value);
 });
 
-const getCodaBlock = (allLines, startIndex) => {
+const shouldStartSection = (allLines, index) => {
+  const line = allLines[index];
+  if (!line.isChorus && !line.isBridge && !line.isCoda) return false;
+  
+  if (index === 0) return true;
+  
+  const prevLine = allLines[index - 1];
+  if (line.isChorus && !prevLine.isChorus) return true;
+  if (line.isBridge && !prevLine.isBridge) return true;
+  if (line.isCoda && !prevLine.isCoda) return true;
+  
+  return false;
+};
+
+const getSectionBlock = (allLines, startIndex) => {
+  const line = allLines[startIndex];
   const block = [];
+  const type = line.isChorus ? 'isChorus' : (line.isBridge ? 'isBridge' : 'isCoda');
+  
   for (let i = startIndex; i < allLines.length; i++) {
-    if (allLines[i].isCoda) {
+    if (allLines[i][type]) {
       block.push(allLines[i]);
     } else {
       break;

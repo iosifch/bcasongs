@@ -33,48 +33,61 @@ export default {
   // Segment: { chord: string | null, text: string }
   parse(content) {
     if (!content) return [];
-    
+
     const lines = content.split('\n');
     let inChorus = false;
+    let inBridge = false;
     let inCoda = false;
 
     return lines.map(line => {
       // Check for chorus tags
-      if (line.includes('{soc}') || line.includes('{c: Chorus}')) {
+      if (line.includes('{start_of_chorus}') || line.includes('{soc}') || line.includes('{c: Chorus}')) {
         inChorus = true;
-        line = line.replace('{soc}', '').replace('{c: Chorus}', '');
+        line = line.replace('{start_of_chorus}', '').replace('{soc}', '').replace('{c: Chorus}', '');
       }
-      
+
+      // Check for bridge tags
+      if (line.includes('{start_of_bridge}') || line.includes('{sob}') || line.includes('{c: Bridge}')) {
+        inBridge = true;
+        line = line.replace('{start_of_bridge}', '').replace('{sob}', '').replace('{c: Bridge}', '');
+      }
+
       // Check for coda tags
-      if (line.includes('{so_coda}') || line.includes('{c: Coda}')) {
+      if (line.includes('{start_of_coda}') || line.includes('{so_coda}') || line.includes('{c: Coda}')) {
         inCoda = true;
-        line = line.replace('{so_coda}', '').replace('{c: Coda}', '');
+        line = line.replace('{start_of_coda}', '').replace('{so_coda}', '').replace('{c: Coda}', '');
       }
-      
+
       const currentLineIsChorus = inChorus;
+      const currentLineIsBridge = inBridge;
       const currentLineIsCoda = inCoda;
 
-      if (line.includes('{eoc}')) {
+      if (line.includes('{end_of_chorus}') || line.includes('{eoc}')) {
         inChorus = false;
-        line = line.replace('{eoc}', '');
+        line = line.replace('{end_of_chorus}', '').replace('{eoc}', '');
       }
-      
-      if (line.includes('{eo_coda}')) {
+
+      if (line.includes('{end_of_bridge}') || line.includes('{eob}')) {
+        inBridge = false;
+        line = line.replace('{end_of_bridge}', '').replace('{eob}', '');
+      }
+
+      if (line.includes('{end_of_coda}') || line.includes('{eo_coda}')) {
         inCoda = false;
-        line = line.replace('{eo_coda}', '');
+        line = line.replace('{end_of_coda}', '').replace('{eo_coda}', '');
       }
 
       // Check for empty line (spacer)
       if (!line.trim()) {
-        return { segments: [], isChorus: false, isCoda: false, isSpacer: true };
+        return { segments: [], isChorus: false, isBridge: false, isCoda: false, isSpacer: true };
       }
 
       const segments = [];
       const regex = /\[([^\]]+)\]([^\[]*)/g;
-      
+
       let lastIndex = 0;
       let match;
-      
+
       // Check for text at the start before any chord
       const firstBracket = line.indexOf('[');
       if (firstBracket > 0) {
@@ -85,7 +98,13 @@ export default {
         lastIndex = firstBracket;
       } else if (firstBracket === -1) {
         // No chords in this line
-        return { segments: [{ chord: null, text: line }], isChorus: currentLineIsChorus, isCoda: currentLineIsCoda, isSpacer: false };
+        return {
+          segments: [{ chord: null, text: line }],
+          isChorus: currentLineIsChorus,
+          isBridge: currentLineIsBridge,
+          isCoda: currentLineIsCoda,
+          isSpacer: false
+        };
       }
 
       while ((match = regex.exec(line)) !== null) {
@@ -95,15 +114,21 @@ export default {
         });
         lastIndex = regex.lastIndex;
       }
-      
-      return { segments, isChorus: currentLineIsChorus, isCoda: currentLineIsCoda, isSpacer: false };
+
+      return {
+        segments,
+        isChorus: currentLineIsChorus,
+        isBridge: currentLineIsBridge,
+        isCoda: currentLineIsCoda,
+        isSpacer: false
+      };
     });
   },
 
   // Transpose parsed lines (which are now objects)
   transposeParsedContent(parsedLines, semitones) {
     if (semitones === 0) return parsedLines;
-    
+
     return parsedLines.map(lineObj => {
       if (lineObj.isSpacer) return lineObj;
 

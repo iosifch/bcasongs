@@ -38,6 +38,16 @@
             variant="text"
             @click="cycleFontSize"
             title="Change Font Size"
+            class="mr-2"
+            density="comfortable"
+            rounded="lg"
+          ></v-btn>
+
+          <v-btn
+            icon="mdi-share-variant"
+            variant="text"
+            @click="shareSong"
+            title="Share Song"
             density="comfortable"
             rounded="lg"
           ></v-btn>
@@ -110,6 +120,13 @@
         <v-alert type="error" text="Song not found"></v-alert>
       </v-col>
     </v-row>
+
+    <v-snackbar v-model="snackbar" :timeout="2000" color="inverse-surface">
+      {{ snackbarText }}
+      <template v-slot:actions>
+        <v-btn color="inverse-primary" variant="text" @click="snackbar = false">Close</v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -125,6 +142,8 @@ const transposeAmount = ref(0);
 const rawParsedLines = ref([]);
 const showChords = ref(false);
 const fontSizeLevel = ref(0); // 0: Normal, 1: Large, 2: Extra Large
+const snackbar = ref(false);
+const snackbarText = ref('');
 
 const fontSizes = ['lyrics-text-1', 'lyrics-text-2', 'lyrics-text-3'];
 
@@ -132,6 +151,28 @@ const fontSizeClass = computed(() => fontSizes[fontSizeLevel.value]);
 
 const cycleFontSize = () => {
   fontSizeLevel.value = (fontSizeLevel.value + 1) % fontSizes.length;
+};
+
+const shareSong = async () => {
+  if (!song.value) return;
+
+  const shareData = {
+    title: song.value.title,
+    text: `Check out "${song.value.title}" on BCA Songs`,
+    url: window.location.href,
+  };
+
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      await navigator.clipboard.writeText(window.location.href);
+      snackbarText.value = 'Link copied to clipboard';
+      snackbar.value = true;
+    }
+  } catch (err) {
+    console.error('Error sharing:', err);
+  }
 };
 
 onMounted(async () => {

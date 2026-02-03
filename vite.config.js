@@ -11,7 +11,7 @@ export default defineConfig({
     vuetify({ autoImport: true }), // Enabled by default
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg'],
+      includeAssets: ['icon.svg', 'icons/icon-192.png', 'icons/icon-512.png'],
       manifest: {
         name: 'BCA Songs',
         short_name: 'BCASongs',
@@ -23,6 +23,16 @@ export default defineConfig({
         scope: '/',
         handle_links: 'preferred',
         icons: [
+          {
+            src: 'icons/icon-192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'icons/icon-512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          },
           {
             src: 'icon.svg',
             sizes: '192x192',

@@ -7,48 +7,48 @@
     color="background"
   >
     <v-toolbar color="secondary-container" elevation="2">
-      <v-toolbar-title class="text-h6 font-weight-bold">Your Shortlist</v-toolbar-title>
+      <v-toolbar-title class="text-h6 font-weight-bold">Your Playlist</v-toolbar-title>
       <template v-slot:append>
-        <v-btn 
-          icon="mdi-share-variant" 
-          variant="text" 
-          density="comfortable" 
-          rounded="lg" 
+        <v-btn
+          icon="mdi-share-variant"
+          variant="text"
+          density="comfortable"
+          rounded="lg"
           class="mr-2"
-          @click="shareShortlist"
-          title="Share Shortlist"
+          @click="sharePlaylist"
+          title="Share Playlist"
         ></v-btn>
-        <v-btn 
-          icon="mdi-close" 
-          variant="text" 
-          density="comfortable" 
-          rounded="lg" 
+        <v-btn
+          icon="mdi-close"
+          variant="text"
+          density="comfortable"
+          rounded="lg"
           @click="drawer = false"
         ></v-btn>
       </template>
     </v-toolbar>
 
     <div class="pa-3">
-      <div v-if="shortlistedSongs.length === 0" class="text-center mt-4 text-medium-emphasis">
-        No songs in shortlist.
+      <div v-if="playlistSongs.length === 0" class="text-center mt-4 text-medium-emphasis">
+        No songs in playlist.
       </div>
-      
+
       <VueDraggable
         v-else
-        v-model="shortlistModel"
+        v-model="playlistModel"
         :animation="150"
         handle=".drag-handle"
       >
-        <div 
-          v-for="song in shortlistModel" 
-          :key="song.id" 
+        <div
+          v-for="song in playlistModel"
+          :key="song.id"
           class="d-flex align-center mb-3"
         >
           <v-icon class="drag-handle mr-2 cursor-move text-medium-emphasis">mdi-drag</v-icon>
-          <SongCard 
-            :song="song" 
-            :is-shortlisted="true"
-            @toggle-shortlist="toggleShortlist"
+          <SongCard
+            :song="song"
+            :is-in-playlist="true"
+            @toggle-playlist="handleTogglePlaylist"
             @share="handleShare"
             class="flex-grow-1"
           />
@@ -60,15 +60,15 @@
   <v-app-bar color="secondary-container" elevation="2" scroll-behavior="hide">
     <v-container class="pa-0 fill-height d-flex align-center px-3">
       <template v-if="isSearchActive">
-        <v-btn 
-          icon="mdi-arrow-left" 
-          variant="text" 
-          density="comfortable" 
-          rounded="lg" 
-          class="mr-2" 
+        <v-btn
+          icon="mdi-arrow-left"
+          variant="text"
+          density="comfortable"
+          rounded="lg"
+          class="mr-2"
           @click="closeSearch"
         ></v-btn>
-        
+
         <v-text-field
           v-model="search"
           placeholder="Search songs..."
@@ -86,28 +86,28 @@
 
       <template v-else>
         <img src="/icon.svg" alt="Logo" height="32" class="mr-3" />
-        
+
         <v-spacer></v-spacer>
 
-        <v-btn 
-          icon="mdi-magnify" 
-          variant="text" 
-          density="comfortable" 
-          rounded="lg" 
-          class="mr-2" 
+        <v-btn
+          icon="mdi-magnify"
+          variant="text"
+          density="comfortable"
+          rounded="lg"
+          class="mr-2"
           @click="isSearchActive = true"
         ></v-btn>
 
-        <v-btn 
-          icon 
-          variant="text" 
-          density="comfortable" 
-          rounded="lg" 
+        <v-btn
+          icon
+          variant="text"
+          density="comfortable"
+          rounded="lg"
           @click="drawer = !drawer"
         >
           <v-badge
-            :content="shortlistedSongs.length"
-            :model-value="shortlistedSongs.length > 0"
+            :content="playlistSongs.length"
+            :model-value="playlistSongs.length > 0"
             color="primary"
           >
             <v-icon>mdi-bookmark-multiple</v-icon>
@@ -126,10 +126,10 @@
       <!-- Main List -->
       <v-row dense>
         <v-col cols="12" v-for="song in filteredSongs" :key="song.id" class="py-2">
-          <SongCard 
-            :song="song" 
-            :is-shortlisted="isInShortlist(song.id)"
-            @toggle-shortlist="toggleShortlist"
+          <SongCard
+            :song="song"
+            :is-in-playlist="isInPlaylist(song.id)"
+            @toggle-playlist="handleTogglePlaylist"
             @share="handleShare"
           />
         </v-col>
@@ -150,9 +150,9 @@
 
     <v-dialog v-model="importDialog" max-width="400">
       <v-card>
-        <v-card-title class="text-h6">Import Shortlist</v-card-title>
+        <v-card-title class="text-h6">Import Playlist</v-card-title>
         <v-card-text>
-          Do you want to replace your current shortlist with the shared one?
+          Do you want to replace your current playlist with the shared one?
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -168,7 +168,7 @@
 import { ref, computed, onMounted, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import MusicService from '../services/MusicService';
-import { useShortlist } from '../composables/useShortlist';
+import { usePlaylist } from '../composables/usePlaylist';
 import { useShare } from '../composables/useShare';
 import SongCard from '../components/SongCard.vue';
 import { VueDraggable } from 'vue-draggable-plus';
@@ -176,7 +176,7 @@ import { VueDraggable } from 'vue-draggable-plus';
 const songs = ref([]);
 const search = ref('');
 const loading = ref(true);
-const { shortlist, toggleShortlist, isInShortlist, reorderShortlist, replaceShortlist } = useShortlist();
+const { playlist, togglePlaylist, isInPlaylist, reorderPlaylist, replacePlaylist } = usePlaylist();
 const { share } = useShare();
 const route = useRoute();
 const router = useRouter();
@@ -185,52 +185,58 @@ const isSearchActive = ref(false);
 const snackbar = ref(false);
 const snackbarText = ref('');
 const importDialog = ref(false);
-const pendingShortlist = ref([]);
+const pendingPlaylist = ref([]);
 
 const closeSearch = () => {
   isSearchActive.value = false;
   search.value = '';
 };
 
+const handleTogglePlaylist = (songId) => {
+  togglePlaylist(songId);
+  const added = isInPlaylist(songId);
+  snackbarText.value = added ? 'Added to playlist' : 'Removed from playlist';
+  snackbar.value = true;
+};
+
 const handleShare = async (song) => {
-  // Construct the URL for the song detail page
   const url = `${window.location.origin}/song/${song.id}`;
   const result = await share(song.title, url);
-  
+
   if (result.copied) {
     snackbarText.value = 'Link copied to clipboard';
     snackbar.value = true;
   }
 };
 
-const shareShortlist = async () => {
-  if (shortlist.value.length === 0) {
-    snackbarText.value = 'Shortlist is empty';
+const sharePlaylist = async () => {
+  if (playlist.value.length === 0) {
+    snackbarText.value = 'Playlist is empty';
     snackbar.value = true;
     return;
   }
-  
-  const url = `${window.location.origin}/?shortlist=${shortlist.value.join(',')}`;
-  const result = await share('My Song Shortlist', url);
-  
+
+  const url = `${window.location.origin}/?playlist=${playlist.value.join(',')}`;
+  const result = await share('My Playlist', url);
+
   if (result.copied) {
-    snackbarText.value = 'Shortlist link copied to clipboard';
+    snackbarText.value = 'Playlist link copied to clipboard';
     snackbar.value = true;
   }
 };
 
 const confirmImport = async () => {
-  replaceShortlist(pendingShortlist.value);
+  replacePlaylist(pendingPlaylist.value);
   importDialog.value = false;
-  
-  // Clear the shortlist query parameter from URL
+
+  // Clear the playlist query parameter from URL
   const query = { ...route.query };
-  delete query.shortlist;
+  delete query.playlist;
   router.replace({ query });
-  
-  snackbarText.value = 'Shortlist imported successfully';
+
+  snackbarText.value = 'Playlist imported successfully';
   snackbar.value = true;
-  
+
   // Open drawer after dialog has closed (nextTick + short delay for dialog transition)
   await nextTick();
   setTimeout(() => { drawer.value = true; }, 150);
@@ -239,12 +245,12 @@ const confirmImport = async () => {
 onMounted(async () => {
   try {
     songs.value = await MusicService.getSongs();
-    
-    // Check for shortlist in query params (IDs are strings to match song.id from JSON)
-    if (route.query.shortlist) {
-      const ids = route.query.shortlist.split(',').map(id => id.trim()).filter(Boolean);
+
+    // Check for playlist in query params (IDs are strings to match song.id from JSON)
+    if (route.query.playlist) {
+      const ids = route.query.playlist.split(',').map(id => id.trim()).filter(Boolean);
       if (ids.length > 0) {
-        pendingShortlist.value = ids;
+        pendingPlaylist.value = ids;
         importDialog.value = true;
       }
     }
@@ -253,28 +259,27 @@ onMounted(async () => {
   }
 });
 
-const shortlistModel = computed({
+const playlistModel = computed({
   get: () => {
     // Map IDs to song objects, maintaining order
-    return shortlist.value
+    return playlist.value
       .map(id => songs.value.find(s => s.id === id))
       .filter(Boolean); // Filter out any undefined if ID not found
   },
   set: (val) => {
-    reorderShortlist(val.map(s => s.id));
+    reorderPlaylist(val.map(s => s.id));
   }
 });
 
-const shortlistedSongs = computed(() => {
-  // Keep this for read-only usage if needed, or replace usage with shortlistModel
-  return shortlistModel.value; 
+const playlistSongs = computed(() => {
+  return playlistModel.value;
 });
 
 const filteredSongs = computed(() => {
   if (!search.value) return songs.value;
   const term = search.value.toLowerCase();
-  return songs.value.filter(song => 
-    song.title.toLowerCase().includes(term) || 
+  return songs.value.filter(song =>
+    song.title.toLowerCase().includes(term) ||
     song.content.toLowerCase().includes(term)
   );
 });

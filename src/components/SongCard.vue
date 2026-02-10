@@ -1,5 +1,5 @@
 <template>
-  <v-card 
+  <v-card
     :to="{ name: 'SongDetail', params: { id: song.id } }"
     color="surface"
     class="rounded-lg transition-swing"
@@ -10,7 +10,7 @@
         <div class="font-weight-regular text-h6 text-truncate">
           {{ song.title }}
         </div>
-        
+
         <div class="d-flex align-center mt-1">
           <v-chip
             color="secondary"
@@ -34,10 +34,10 @@
           variant="text"
           density="comfortable"
           rounded="lg"
-          @click.prevent="emit('toggle-shortlist', song.id)"
+          @click.prevent="emit('toggle-playlist', song.id)"
         >
-          <v-icon :color="isShortlisted ? 'primary' : 'grey-lighten-1'">
-            {{ isShortlisted ? 'mdi-bookmark' : 'mdi-bookmark-outline' }}
+          <v-icon :color="isInPlaylist ? 'primary' : 'grey-lighten-1'">
+            {{ isInPlaylist ? 'mdi-bookmark' : 'mdi-bookmark-outline' }}
           </v-icon>
         </v-btn>
 
@@ -61,11 +61,11 @@ defineProps({
     type: Object,
     required: true
   },
-  isShortlisted: {
+  isInPlaylist: {
     type: Boolean,
     default: false
   }
 });
 
-const emit = defineEmits(['toggle-shortlist', 'share']);
+const emit = defineEmits(['toggle-playlist', 'share']);
 </script>

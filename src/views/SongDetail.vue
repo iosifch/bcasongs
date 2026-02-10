@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
 
     <v-row v-if="loading">
       <v-col cols="12" class="text-center">
@@ -10,47 +10,18 @@
     <div v-else-if="song">
       <v-app-bar color="secondary-container" elevation="2" scroll-behavior="hide">
         <v-container class="pa-0 fill-height d-flex align-center px-3">
-          <v-btn 
-            icon="mdi-arrow-left" 
-            variant="text" 
-            to="/" 
-            class="mr-2"
-            density="comfortable"
-            rounded="lg"
-          ></v-btn>
-          
-          <v-app-bar-title class="text-h6 font-weight-regular mr-2">
-            {{ song.title }}
-          </v-app-bar-title>
-          
           <v-btn
-            :icon="showChords ? 'mdi-music-note' : 'mdi-music-note-off'"
+            icon="mdi-arrow-left"
             variant="text"
-            @click="showChords = !showChords"
-            class="mr-2"
-            title="Toggle Chords"
-            density="comfortable"
-            rounded="lg"
-          ></v-btn>
-          
-          <v-btn
-            icon="mdi-format-size"
-            variant="text"
-            @click="cycleFontSize"
-            title="Change Font Size"
+            to="/"
             class="mr-2"
             density="comfortable"
             rounded="lg"
           ></v-btn>
 
-          <v-btn
-            icon="mdi-share-variant"
-            variant="text"
-            @click="shareSong"
-            title="Share Song"
-            density="comfortable"
-            rounded="lg"
-          ></v-btn>
+          <v-app-bar-title class="text-h6 font-weight-regular">
+            {{ song.title }}
+          </v-app-bar-title>
         </v-container>
       </v-app-bar>
 
@@ -124,13 +95,31 @@
       </v-col>
     </v-row>
 
+    <v-speed-dial location="bottom right" transition="scale-transition" :close-on-content-click="false">
+      <template v-slot:activator="{ props: activatorProps }">
+        <v-fab v-bind="activatorProps" app location="bottom right" color="primary" icon="mdi-dots-vertical"></v-fab>
+      </template>
+
+      <v-btn icon @click="showChords = !showChords" :title="showChords ? 'Hide Chords' : 'Show Chords'">
+        <v-icon>{{ showChords ? 'mdi-music-note' : 'mdi-music-note-off' }}</v-icon>
+      </v-btn>
+
+      <v-btn icon @click="cycleFontSize" title="Change Font Size">
+        <v-icon>mdi-format-size</v-icon>
+      </v-btn>
+
+      <v-btn icon @click="shareSong" title="Share Song">
+        <v-icon>mdi-share-variant</v-icon>
+      </v-btn>
+    </v-speed-dial>
+
     <v-snackbar v-model="snackbar" :timeout="2000" color="inverse-surface">
       {{ snackbarText }}
       <template v-slot:actions>
         <v-btn color="inverse-primary" variant="text" @click="snackbar = false">Close</v-btn>
       </template>
     </v-snackbar>
-  </v-container>
+  </div>
 </template>
 
 <script setup>

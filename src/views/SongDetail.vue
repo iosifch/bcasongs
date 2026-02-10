@@ -100,15 +100,15 @@
         <v-fab v-bind="activatorProps" app location="bottom right" color="primary" icon="mdi-dots-vertical"></v-fab>
       </template>
 
-      <v-btn icon @click="showChords = !showChords" :title="showChords ? 'Hide Chords' : 'Show Chords'">
+      <v-btn key="chords" icon @click="showChords = !showChords" :title="showChords ? 'Hide Chords' : 'Show Chords'">
         <v-icon>{{ showChords ? 'mdi-music-note' : 'mdi-music-note-off' }}</v-icon>
       </v-btn>
 
-      <v-btn icon @click="cycleFontSize" title="Change Font Size">
+      <v-btn key="font-size" icon @click="cycleFontSize" title="Change Font Size">
         <v-icon>mdi-format-size</v-icon>
       </v-btn>
 
-      <v-btn icon @click="shareSong" title="Share Song">
+      <v-btn key="share" icon @click="shareSong" title="Share Song">
         <v-icon>mdi-share-variant</v-icon>
       </v-btn>
     </v-speed-dial>

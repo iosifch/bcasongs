@@ -143,8 +143,7 @@ import { useShare } from '../composables/useShare';
 const route = useRoute();
 const song = ref(null);
 const loading = ref(true);
-const transposeAmount = ref(0);
-const rawParsedLines = ref([]);
+const parsedLines = ref([]);
 const showChords = ref(false);
 const fontSizeLevel = ref(0); // 0: Normal, 1: Large, 2: Extra Large
 const snackbar = ref(false);
@@ -175,20 +174,11 @@ onMounted(async () => {
     const id = route.params.id;
     song.value = await MusicService.getSong(id);
     if (song.value) {
-      rawParsedLines.value = MusicService.parse(song.value.content);
+      parsedLines.value = MusicService.parse(song.value.content);
     }
   } finally {
     loading.value = false;
   }
-});
-
-const transpose = (amount) => {
-  transposeAmount.value += amount;
-};
-
-const parsedLines = computed(() => {
-  if (!rawParsedLines.value.length) return [];
-  return MusicService.transposeParsedContent(rawParsedLines.value, transposeAmount.value);
 });
 
 const shouldStartSection = (allLines, index) => {

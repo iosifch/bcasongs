@@ -1,13 +1,3 @@
-// Chromatic scale using sharps
-const NOTES_SHARP = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-// Chromatic scale using flats (for display preference, though logic can use one)
-const NOTES_FLAT = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
-
-// Map to normalize flats to sharps for calculation
-const FLAT_TO_SHARP = {
-  'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#'
-};
-
 export default {
   // Fetch songs from local JSON
   async getSongs() {
@@ -121,23 +111,6 @@ export default {
         isBridge: currentLineIsBridge,
         isCoda: currentLineIsCoda,
         isSpacer: false
-      };
-    });
-  },
-
-  // Transpose parsed lines (which are now objects)
-  transposeParsedContent(parsedLines, semitones) {
-    if (semitones === 0) return parsedLines;
-
-    return parsedLines.map(lineObj => {
-      if (lineObj.isSpacer) return lineObj;
-
-      return {
-        ...lineObj,
-        segments: lineObj.segments.map(segment => ({
-          ...segment,
-          chord: segment.chord ? this.transposeChord(segment.chord, semitones) : null
-        }))
       };
     });
   }

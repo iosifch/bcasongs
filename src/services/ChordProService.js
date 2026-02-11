@@ -3,8 +3,7 @@ export default {
   parseToParagraphs(content) {
     if (!content) return [];
     
-    const lines = content.split('
-');
+    const lines = content.split('\n');
     const paragraphs = [];
     let currentParagraph = null;
 
@@ -100,26 +99,19 @@ export default {
   serialize(paragraphs) {
     return paragraphs.map(p => {
       let content = "";
-      if (p.type === 'chorus') content += "{start_of_chorus}
-";
-      if (p.type === 'coda') content += "{start_of_coda}
-";
+      if (p.type === 'chorus') content += "{start_of_chorus}\n";
+      if (p.type === 'coda') content += "{start_of_coda}\n";
       
       content += p.lines.map(l => {
         return l.segments.map(s => {
           return (s.chord ? `[${s.chord}]` : "") + s.text;
         }).join("");
-      }).join("
-");
+      }).join("\n");
 
-      if (p.type === 'chorus') content += "
-{end_of_chorus}";
-      if (p.type === 'coda') content += "
-{end_of_coda}";
+      if (p.type === 'chorus') content += "\n{end_of_chorus}";
+      if (p.type === 'coda') content += "\n{end_of_coda}";
       
       return content;
-    }).join("
-
-");
+    }).join("\n\n");
   }
 };

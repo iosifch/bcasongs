@@ -126,7 +126,7 @@
 import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import SongsRepository from '../services/SongsRepository';
-import MusicService from '../services/MusicService';
+import ChordProService from '../services/ChordProService';
 
 import { useShare } from '../composables/useShare';
 
@@ -162,7 +162,7 @@ const shareSong = async () => {
 
 watch(isEditMode, async (newValue) => {
   if (!newValue && song.value && paragraphs.value.length > 0) {
-    const newContent = MusicService.serialize(paragraphs.value);
+    const newContent = ChordProService.serialize(paragraphs.value);
     await SongsRepository.save(song.value.id, newContent);
     snackbarText.value = 'Changes saved locally';
     snackbar.value = true;
@@ -174,7 +174,7 @@ onMounted(async () => {
     const id = route.params.id;
     song.value = SongsRepository.getSong(id);
     if (song.value) {
-      paragraphs.value = MusicService.parseToParagraphs(song.value.content);
+      paragraphs.value = ChordProService.parseToParagraphs(song.value.content);
     }
   } finally {
     loading.value = false;

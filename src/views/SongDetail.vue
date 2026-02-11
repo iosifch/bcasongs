@@ -19,59 +19,35 @@
             rounded="lg"
           ></v-btn>
 
-          <v-app-bar-title class="text-h6 font-weight-regular">
+          <v-app-bar-title class="text-h6 font-weight-regular ml-0">
             {{ song.title }}
           </v-app-bar-title>
+
+          <v-btn
+            :color="isEditMode ? 'primary' : 'default'"
+            variant="text"
+            density="comfortable"
+            rounded="lg"
+            :icon="isEditMode ? 'mdi-check' : 'mdi-file-document-edit'"
+            @click="isEditMode = !isEditMode"
+            class="mr-2"
+            title="Edit Mode"
+          ></v-btn>
         </v-container>
       </v-app-bar>
 
       <div class="song-content mt-4 px-3">
-          <template v-for="(line, lineIndex) in parsedLines" :key="lineIndex">
-            <!-- Normal Line or Spacer -->
-            <div 
-              v-if="!line.isChorus && !line.isBridge && !line.isCoda"
-              class="song-line"
-              :class="{ 
-                'lyrics-mode': !showChords,
-                'mb-1': !line.isSpacer,
-                'py-2': line.isSpacer
-              }"
-            >
-              <template v-if="!line.isSpacer">
-                <div 
-                  v-for="(segment, segIndex) in line.segments" 
-                  :key="segIndex" 
-                  class="song-segment"
-                  :class="{ 'mr-1': showChords }"
-                >
-              <div v-if="showChords" class="chord font-weight-bold">
-                {{ segment.chord || '&nbsp;' }}
-              </div>
-                  <div class="lyrics" :class="fontSizeClass">
-                    {{ segment.text }}
-                  </div>
-                </div>
-              </template>
-            </div>
-
-            <!-- Section Block (Chorus, Bridge, Coda) -->
-            <div 
-              v-else-if="shouldStartSection(parsedLines, lineIndex)"
-              class="section-block pl-4 mb-2"
-              :class="{ 
-                'chorus-style font-italic': line.isChorus,
-                'bridge-style border-s-md border-primary-lighten-2': line.isBridge,
-                'coda-style border-s-md border-grey-lighten-1': line.isCoda
-              }"
-            >
+        <div v-for="(paragraph, pIndex) in paragraphs" :key="paragraph.id" class="mb-4">
+          <v-card :variant="isEditMode ? 'elevated' : 'text'">
+            <v-card-text class="pa-3">
               <div 
-                v-for="(sectionLine, sectionLineIndex) in getSectionBlock(parsedLines, lineIndex)" 
-                :key="sectionLineIndex"
+                v-for="(line, lineIndex) in paragraph.lines" 
+                :key="lineIndex"
                 class="song-line mb-1"
                 :class="{ 'lyrics-mode': !showChords }"
               >
                 <div 
-                  v-for="(segment, segIndex) in sectionLine.segments" 
+                  v-for="(segment, segIndex) in line.segments" 
                   :key="segIndex" 
                   class="song-segment"
                   :class="{ 'mr-1': showChords }"
@@ -84,8 +60,23 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </template>
+            </v-card-text>
+
+            <v-card-actions v-if="isEditMode" class="pt-0">
+              <v-btn-toggle
+                v-model="paragraph.type"
+                mandatory
+                color="primary"
+                variant="text"
+                density="comfortable"
+              >
+                <v-btn value="verse" size="small">Strofă</v-btn>
+                <v-btn value="chorus" size="small">Refren</v-btn>
+                <v-btn value="coda" size="small">Coda</v-btn>
+              </v-btn-toggle>
+            </v-card-actions>
+          </v-card>
+        </div>
       </div>
     </div>
 
@@ -123,7 +114,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import MusicService from '../services/MusicService';
 
@@ -132,7 +123,8 @@ import { useShare } from '../composables/useShare';
 const route = useRoute();
 const song = ref(null);
 const loading = ref(true);
-const parsedLines = ref([]);
+const paragraphs = ref([]);
+const isEditMode = ref(false);
 const showChords = ref(false);
 const fontSizeLevel = ref(0); // 0: Normal, 1: Large, 2: Extra Large
 const snackbar = ref(false);
@@ -158,46 +150,26 @@ const shareSong = async () => {
   }
 };
 
+watch(isEditMode, (newValue) => {
+  if (!newValue && song.value && paragraphs.value.length > 0) {
+    song.value.content = MusicService.serialize(paragraphs.value);
+    // Optional: add a snackbar message that changes were saved locally
+    snackbarText.value = 'Changes saved locally';
+    snackbar.value = true;
+  }
+});
+
 onMounted(async () => {
   try {
     const id = route.params.id;
     song.value = await MusicService.getSong(id);
     if (song.value) {
-      parsedLines.value = MusicService.parse(song.value.content);
+      paragraphs.value = MusicService.parseToParagraphs(song.value.content);
     }
   } finally {
     loading.value = false;
   }
 });
-
-const shouldStartSection = (allLines, index) => {
-  const line = allLines[index];
-  if (!line.isChorus && !line.isBridge && !line.isCoda) return false;
-  
-  if (index === 0) return true;
-  
-  const prevLine = allLines[index - 1];
-  if (line.isChorus && !prevLine.isChorus) return true;
-  if (line.isBridge && !prevLine.isBridge) return true;
-  if (line.isCoda && !prevLine.isCoda) return true;
-  
-  return false;
-};
-
-const getSectionBlock = (allLines, startIndex) => {
-  const line = allLines[startIndex];
-  const block = [];
-  const type = line.isChorus ? 'isChorus' : (line.isBridge ? 'isBridge' : 'isCoda');
-  
-  for (let i = startIndex; i < allLines.length; i++) {
-    if (allLines[i][type]) {
-      block.push(allLines[i]);
-    } else {
-      break;
-    }
-  }
-  return block;
-};
 </script>
 
 <style scoped>

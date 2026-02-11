@@ -118,7 +118,7 @@
   </v-app-bar>
 
   <v-container fluid class="pa-3">
-    <div v-if="loading" class="d-flex justify-center my-4">
+    <div v-if="SongsRepository.isSyncing.value && songs.length === 0" class="d-flex justify-center my-4">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
     </div>
 
@@ -167,15 +167,14 @@
 <script setup>
 import { ref, computed, onMounted, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import MusicService from '../services/MusicService';
+import SongsRepository from '../services/SongsRepository';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useShare } from '../composables/useShare';
 import SongCard from '../components/SongCard.vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
-const songs = ref([]);
+const songs = SongsRepository.songs;
 const search = ref('');
-const loading = ref(true);
 const { playlist, togglePlaylist, isInPlaylist, reorderPlaylist, replacePlaylist } = usePlaylist();
 const { share } = useShare();
 const route = useRoute();
@@ -243,19 +242,13 @@ const confirmImport = async () => {
 };
 
 onMounted(async () => {
-  try {
-    songs.value = await MusicService.getSongs();
-
-    // Check for playlist in query params (IDs are strings to match song.id from JSON)
-    if (route.query.playlist) {
-      const ids = route.query.playlist.split(',').map(id => id.trim()).filter(Boolean);
-      if (ids.length > 0) {
-        pendingPlaylist.value = ids;
-        importDialog.value = true;
-      }
+  // Check for playlist in query params (IDs are strings to match song.id from JSON)
+  if (route.query.playlist) {
+    const ids = route.query.playlist.split(',').map(id => id.trim()).filter(Boolean);
+    if (ids.length > 0) {
+      pendingPlaylist.value = ids;
+      importDialog.value = true;
     }
-  } finally {
-    loading.value = false;
   }
 });
 

@@ -7,4 +7,10 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
+import SongsRepository from './services/SongsRepository';
+
+onMounted(() => {
+  SongsRepository.initialize();
+});
 </script>

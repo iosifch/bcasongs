@@ -116,6 +116,7 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import SongsRepository from '../services/SongsRepository';
 import MusicService from '../services/MusicService';
 
 import { useShare } from '../composables/useShare';
@@ -150,10 +151,10 @@ const shareSong = async () => {
   }
 };
 
-watch(isEditMode, (newValue) => {
+watch(isEditMode, async (newValue) => {
   if (!newValue && song.value && paragraphs.value.length > 0) {
-    song.value.content = MusicService.serialize(paragraphs.value);
-    // Optional: add a snackbar message that changes were saved locally
+    const newContent = MusicService.serialize(paragraphs.value);
+    await SongsRepository.save(song.value.id, newContent);
     snackbarText.value = 'Changes saved locally';
     snackbar.value = true;
   }
@@ -162,7 +163,12 @@ watch(isEditMode, (newValue) => {
 onMounted(async () => {
   try {
     const id = route.params.id;
-    song.value = await MusicService.getSong(id);
+    // Wait for repository initialization if it's the first page load
+    if (SongsRepository.songs.value.length === 0) {
+        await SongsRepository.initialize();
+    }
+    
+    song.value = SongsRepository.getSong(id);
     if (song.value) {
       paragraphs.value = MusicService.parseToParagraphs(song.value.content);
     }

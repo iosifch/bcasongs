@@ -172,11 +172,6 @@ watch(isEditMode, async (newValue) => {
 onMounted(async () => {
   try {
     const id = route.params.id;
-    // Wait for repository initialization if it's the first page load
-    if (SongsRepository.songs.value.length === 0) {
-        await SongsRepository.initialize();
-    }
-    
     song.value = SongsRepository.getSong(id);
     if (song.value) {
       paragraphs.value = MusicService.parseToParagraphs(song.value.content);

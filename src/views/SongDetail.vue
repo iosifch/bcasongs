@@ -38,8 +38,17 @@
 
       <div class="song-content mt-4 px-3">
         <div v-for="(paragraph, pIndex) in paragraphs" :key="paragraph.id" class="mb-4">
-          <v-card :variant="isEditMode ? 'elevated' : 'text'">
-            <v-card-text class="pa-3">
+          <v-card 
+            :variant="isEditMode ? 'elevated' : 'text'"
+            density="compact"
+            :class="[
+              { 
+                'chorus-style': !isEditMode && paragraph.type === 'chorus',
+                'coda-style': !isEditMode && paragraph.type === 'coda'
+              }
+            ]"
+          >
+            <v-card-text :class="{ 'py-0': !isEditMode }">
               <div 
                 v-for="(line, lineIndex) in paragraph.lines" 
                 :key="lineIndex"
@@ -234,5 +243,16 @@ onMounted(async () => {
 }
 .song-line.lyrics-mode .lyrics {
   display: inline;
+}
+
+.chorus-style {
+  font-style: italic;
+  padding-left: 16px !important;
+}
+
+.coda-style {
+  border-left: 2px solid #9E9E9E !important;
+  border-radius: 0 !important;
+  padding-left: 0 !important;
 }
 </style>

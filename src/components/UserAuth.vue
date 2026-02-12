@@ -73,7 +73,7 @@ onMounted(() => {
         if (settingsSnap.exists()) {
           const allowedEmails = settingsSnap.data().allowedEmails || [];
           if (!allowedEmails.includes(currentUser.email)) {
-            errorMsg.value = 'Nu ai acces.';
+            errorMsg.value = 'Access Denied.';
             snackbar.value = true;
             await signOut(auth);
             return;

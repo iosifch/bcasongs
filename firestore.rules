@@ -13,7 +13,7 @@ service cloud.firestore {
     // Allow public read for settings/auth so UI can check valid users
     // Write restricted to no one (or manual admin only)
     match /settings/auth {
-      allow read: if true;
+      allow read: if request.auth != null;
       allow write: if false; 
     }
   }

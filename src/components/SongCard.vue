@@ -39,7 +39,7 @@
               @click.prevent="emit('toggle-playlist', song.id)"
             >
               <v-icon :color="isInPlaylist ? 'primary' : 'grey-lighten-1'">
-                {{ isInPlaylist ? 'mdi-bookmark' : 'mdi-bookmark-outline' }}
+                {{ isInPlaylist ? 'mdi-playlist-minus' : 'mdi-playlist-plus' }}
               </v-icon>
             </v-btn>
 

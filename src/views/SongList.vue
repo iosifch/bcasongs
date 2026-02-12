@@ -110,7 +110,7 @@
             :model-value="playlistSongs.length > 0"
             color="primary"
           >
-            <v-icon>mdi-bookmark-multiple</v-icon>
+            <v-icon>mdi-playlist-music</v-icon>
           </v-badge>
         </v-btn>
 

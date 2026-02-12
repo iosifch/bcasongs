@@ -3,10 +3,10 @@
     <div v-if="user" class="d-flex align-center">
       <v-menu min-width="200px" rounded>
         <template v-slot:activator="{ props }">
-          <v-btn icon v-bind="props">
-            <v-avatar color="secondary" size="36">
+          <v-btn icon variant="text" density="comfortable" rounded="lg" v-bind="props">
+            <v-avatar color="secondary" size="26">
               <v-img v-if="user.photoURL" :src="user.photoURL" alt="Avatar"></v-img>
-              <span v-else class="text-h6">{{ user.displayName?.charAt(0) || 'U' }}</span>
+              <span v-else class="text-caption font-weight-bold">{{ user.displayName?.charAt(0) || 'U' }}</span>
             </v-avatar>
           </v-btn>
         </template>

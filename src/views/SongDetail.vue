@@ -180,15 +180,32 @@ watch(isEditMode, async (newValue) => {
   }
 });
 
-onMounted(async () => {
-  try {
-    const id = route.params.id;
-    song.value = SongsRepository.getSong(id);
-    if (song.value) {
-      paragraphs.value = ChordProService.parseToParagraphs(song.value.content);
-    }
-  } finally {
-    loading.value = false;
+const resolveSong = () => {
+  const id = route.params.id;
+  song.value = SongsRepository.getSong(id);
+  if (song.value) {
+    paragraphs.value = ChordProService.parseToParagraphs(song.value.content);
+  }
+  loading.value = false;
+};
+
+onMounted(() => {
+  SongsRepository.initialize();
+
+  // If songs are already loaded, resolve immediately
+  if (!SongsRepository.loading.value) {
+    resolveSong();
+  } else {
+    // Wait for songs to finish loading
+    const stopWatch = watch(
+      () => SongsRepository.loading.value,
+      (isLoading) => {
+        if (!isLoading) {
+          resolveSong();
+          stopWatch();
+        }
+      }
+    );
   }
 });
 </script>

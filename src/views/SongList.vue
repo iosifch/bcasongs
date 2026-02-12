@@ -118,7 +118,7 @@
   </v-app-bar>
 
   <v-container fluid class="pa-3">
-    <div v-if="SongsRepository.isSyncing.value && songs.length === 0" class="d-flex justify-center my-4">
+    <div v-if="SongsRepository.loading.value && songs.length === 0" class="d-flex justify-center my-4">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
     </div>
 

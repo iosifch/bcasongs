@@ -1,54 +1,49 @@
 import { ref, readonly } from 'vue';
-import Cache from './Cache';
-import Database from './Database';
+import { db } from '../firebaseConfig';
+import { collection, onSnapshot, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
 
 const _songs = ref([]);
-const _version = ref(0);
-const _isSyncing = ref(false);
+const _loading = ref(true);
+const _error = ref(null);
+
+// Subscription unsubscriber function
+let _unsubscribe = null;
 
 export default {
   songs: readonly(_songs),
-  version: readonly(_version),
-  isSyncing: readonly(_isSyncing),
+  loading: readonly(_loading),
+  error: readonly(_error),
 
-  async initialize() {
-    // 1. Load from cache first for instant UI
-    const cachedData = Cache.get();
-    if (cachedData) {
-      _songs.value = cachedData.songs || [];
-      _version.value = cachedData.version || 0;
-    }
+  initialize() {
+    if (_unsubscribe) return; // Already initialized
 
-    // 2. Start background sync
-    this.sync();
+    _loading.value = true;
+
+    // Subscribe to the "songs" collection
+    const songsCollection = collection(db, 'songs');
+
+    _unsubscribe = onSnapshot(songsCollection,
+      (snapshot) => {
+        _songs.value = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        _loading.value = false;
+        _error.value = null;
+        console.log(`Songs updated from Firestore: ${_songs.value.length} songs.`);
+      },
+      (err) => {
+        console.error("Firestore Error:", err);
+        _error.value = err.message;
+        _loading.value = false;
+      }
+    );
   },
 
-  async sync() {
-    if (_isSyncing.value) return;
-    _isSyncing.value = true;
-
-    try {
-      // 1. Fetch only the version first
-      const remoteVersion = await Database.fetchVersion();
-      
-      // 2. Compare versions
-      if (remoteVersion > _version.value) {
-        console.log(`Syncing: New version detected (${remoteVersion}). Fetching full data...`);
-        
-        // 3. Fetch full data only if needed
-        const remoteData = await Database.fetchData();
-        
-        Cache.set(remoteData);
-        _songs.value = remoteData.songs;
-        _version.value = remoteData.version;
-        console.log(`Syncing: Updated to version ${remoteVersion} successfully.`);
-      } else {
-        console.log('Syncing: Already up to date (version ' + _version.value + ')');
-      }
-    } catch (e) {
-      console.error('Sync failed:', e);
-    } finally {
-      _isSyncing.value = false;
+  stop() {
+    if (_unsubscribe) {
+      _unsubscribe();
+      _unsubscribe = null;
     }
   },
 
@@ -56,19 +51,48 @@ export default {
     return _songs.value.find(s => s.id === id);
   },
 
-  async save(id, content) {
-    const songIndex = _songs.value.findIndex(s => s.id === id);
-    if (songIndex !== -1) {
-      // Update local state
-      _songs.value[songIndex].content = content;
-      
-      // Update cache
-      Cache.set({
-        version: _version.value,
-        songs: _songs.value
+  // --- Write Operations ---
+
+  async addSong(title, content, key = '', artist = '') {
+    try {
+      await addDoc(collection(db, 'songs'), {
+        title,
+        content,
+        key,
+        artist,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
       });
-      
-      // In the future, this is where we would also call Database.update(id, content)
+    } catch (e) {
+      console.error("Error adding song:", e);
+      throw e;
+    }
+  },
+
+  async save(id, content, title = null) {
+    // Determine what to update
+    const updateData = {
+      content,
+      updatedAt: serverTimestamp()
+    };
+
+    if (title) updateData.title = title;
+
+    try {
+      const songRef = doc(db, 'songs', id);
+      await updateDoc(songRef, updateData);
+    } catch (e) {
+      console.error("Error updating song:", e);
+      throw e;
+    }
+  },
+
+  async deleteSong(id) {
+    try {
+      await deleteDoc(doc(db, 'songs', id));
+    } catch (e) {
+      console.error("Error deleting song:", e);
+      throw e;
     }
   }
 };

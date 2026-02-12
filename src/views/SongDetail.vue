@@ -23,22 +23,11 @@
             {{ song.title }}
           </v-app-bar-title>
 
-          <v-btn
-            :color="isEditMode ? 'primary' : 'default'"
-            variant="text"
-            density="comfortable"
-            rounded="lg"
-            :icon="isEditMode ? 'mdi-check' : 'mdi-file-document-edit'"
-            @click="isEditMode = !isEditMode"
-            class="mr-2"
-            title="Edit Mode"
-          ></v-btn>
-
           <UserAuth />
         </v-container>
       </v-app-bar>
 
-      <div class="song-content mt-4 px-3">
+      <div class="song-content px-2 mt-4">
         <div v-for="(paragraph, pIndex) in paragraphs" :key="paragraph.id" class="mb-4">
           <v-card 
             :variant="isEditMode ? 'elevated' : 'text'"
@@ -50,7 +39,7 @@
               }
             ]"
           >
-            <v-card-text :class="{ 'py-0': !isEditMode }">
+            <v-card-text :class="{ 'py-0': !isEditMode, 'px-2': true }">
               <div 
                 v-for="(line, lineIndex) in paragraph.lines" 
                 :key="lineIndex"
@@ -97,23 +86,29 @@
       </v-col>
     </v-row>
 
-    <v-speed-dial location="bottom right" transition="scale-transition" :close-on-content-click="false">
-      <template v-slot:activator="{ props: activatorProps }">
-        <v-fab v-bind="activatorProps" app location="bottom right" color="primary" icon="mdi-dots-vertical"></v-fab>
-      </template>
+    <div class="bottom-actions d-flex justify-center pa-2">
+      <v-btn-group variant="outlined" density="comfortable" rounded="lg" divided>
+        <v-btn @click="showChords = !showChords" :title="showChords ? 'Hide Chords' : 'Show Chords'">
+          <v-icon>{{ showChords ? 'mdi-music-note' : 'mdi-music-note-off' }}</v-icon>
+        </v-btn>
 
-      <v-btn key="chords" icon @click="showChords = !showChords" :title="showChords ? 'Hide Chords' : 'Show Chords'">
-        <v-icon>{{ showChords ? 'mdi-music-note' : 'mdi-music-note-off' }}</v-icon>
-      </v-btn>
+        <v-btn @click="cycleFontSize" title="Change Font Size">
+          <v-icon>mdi-format-size</v-icon>
+        </v-btn>
 
-      <v-btn key="font-size" icon @click="cycleFontSize" title="Change Font Size">
-        <v-icon>mdi-format-size</v-icon>
-      </v-btn>
+        <v-btn @click="isEditMode = !isEditMode" :color="isEditMode ? 'primary' : undefined" title="Edit Mode">
+          <v-icon>{{ isEditMode ? 'mdi-check' : 'mdi-file-document-edit' }}</v-icon>
+        </v-btn>
 
-      <v-btn key="share" icon @click="shareSong" title="Share Song">
-        <v-icon>mdi-share-variant</v-icon>
-      </v-btn>
-    </v-speed-dial>
+        <v-btn @click="shareSong" title="Share Song">
+          <v-icon>mdi-share-variant</v-icon>
+        </v-btn>
+
+        <v-btn @click="handleTogglePlaylist" :color="songInPlaylist ? 'primary' : undefined" title="Toggle Playlist">
+          <v-icon>{{ songInPlaylist ? 'mdi-playlist-minus' : 'mdi-playlist-plus' }}</v-icon>
+        </v-btn>
+      </v-btn-group>
+    </div>
 
     <v-snackbar v-model="snackbar" :timeout="2000" color="inverse-surface">
       {{ snackbarText }}
@@ -132,9 +127,12 @@ import ChordProService from '../services/ChordProService';
 import UserAuth from '../components/UserAuth.vue';
 
 import { useShare } from '../composables/useShare';
+import { usePlaylist } from '../composables/usePlaylist';
 
 const route = useRoute();
 const song = ref(null);
+const { togglePlaylist, isInPlaylist } = usePlaylist();
+const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
 const loading = ref(true);
 const paragraphs = ref([]);
 const isEditMode = ref(false);
@@ -163,6 +161,13 @@ const shareSong = async () => {
   }
 };
 
+const handleTogglePlaylist = () => {
+  if (!song.value) return;
+  togglePlaylist(song.value.id);
+  const added = isInPlaylist(song.value.id);
+  snackbarText.value = added ? 'Added to playlist' : 'Removed from playlist';
+  snackbar.value = true;
+};
 watch(isEditMode, async (newValue) => {
   if (!newValue && song.value && paragraphs.value.length > 0) {
     try {
@@ -219,13 +224,13 @@ onMounted(() => {
 .lyrics-text-2 {
   font-size: 1.25rem; /* 20px */
   line-height: 1.6;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .lyrics-text-3 {
   font-size: 1.375rem; /* 22px */
   line-height: 1.6;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .sticky-header {
@@ -277,5 +282,23 @@ onMounted(() => {
   border-left: 2px solid #9E9E9E !important;
   border-radius: 0 !important;
   padding-left: 0 !important;
+}
+
+.action-buttons :deep(.v-btn) {
+  padding: 0 4px;
+  min-width: 32px;
+}
+
+.bottom-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: rgb(var(--v-theme-background));
+}
+
+.song-content {
+  padding-bottom: 64px;
 }
 </style>

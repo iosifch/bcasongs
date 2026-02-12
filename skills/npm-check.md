@@ -1,7 +1,19 @@
+---
+name: NPM Check
+description: Audit and verify npm packages for security vulnerabilities, outdated dependencies, and integrity issues
+tags: [npm, security, dependencies, audit]
+---
+
 # NPM Check — Verify npm packages health
 
 ## Purpose
 Audit and verify the health, security, and freshness of npm packages installed in the project.
+
+## Triggers
+Invoke this skill when the user:
+- Asks to "check packages", "audit dependencies", or "check for updates"
+- Encounters dependency-related errors
+- Before starting a major refactor or feature implementation
 
 ## Execution environment
 All npm commands **must be run inside the Docker container** using `docker compose exec`:
@@ -66,3 +78,7 @@ After running all checks, provide a summary:
 - **Outdated packages**: list with current vs latest version
 - **Dependency issues**: any unmet or missing dependencies
 - **Recommended actions**: prioritized list of suggested fixes
+
+## Related skills
+- [dev-server.md](dev-server.md) — needed if container is not running
+- [unit-tests.md](unit-tests.md) — verify code after updates

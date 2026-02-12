@@ -1,7 +1,19 @@
+---
+name: Unit Tests
+description: Run unit tests with Vitest and report results
+tags: [test, vitest, quality, coverage]
+---
+
 # Unit Tests — Run unit tests with Vitest
 
 ## Purpose
 Run the project's unit test suite using Vitest and report results.
+
+## Triggers
+Invoke this skill when the user:
+- Asks to "run tests", "test the app", or "check code quality"
+- After modifying logic or refactoring
+- Needs to verify if the application is stable
 
 ## Execution environment
 All commands **must be run inside the Docker container** using `docker compose exec`:
@@ -57,6 +69,12 @@ Replace the path with the relevant test file.
 docker compose exec app npx vitest run --reporter=verbose -t "test name pattern"
 ```
 
+### 5. Run tests with coverage
+```bash
+docker compose exec app npx vitest run --coverage
+```
+Use this to check which parts of the codebase are covered by tests.
+
 ## Interpreting results
 - **✓ (green)**: test passed
 - **✗ (red)**: test failed — read the assertion error and diff to understand the failure
@@ -72,3 +90,6 @@ docker compose exec app npx vitest run --reporter=verbose -t "test name pattern"
 - Always use `docker compose exec app npm run test:run` (single run) unless the user explicitly asks for watch mode
 - Do **not** modify test files to make them pass unless explicitly asked
 - Report test results clearly: number of tests passed/failed and which ones failed
+
+## Related skills
+- [dev-server.md](dev-server.md) — needed if container is not running

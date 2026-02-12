@@ -113,6 +113,8 @@
             <v-icon>mdi-bookmark-multiple</v-icon>
           </v-badge>
         </v-btn>
+
+        <UserAuth class="ml-2" />
       </template>
     </v-container>
   </v-app-bar>
@@ -171,6 +173,7 @@ import SongsRepository from '../services/SongsRepository';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useShare } from '../composables/useShare';
 import SongCard from '../components/SongCard.vue';
+import UserAuth from '../components/UserAuth.vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 const songs = SongsRepository.songs;

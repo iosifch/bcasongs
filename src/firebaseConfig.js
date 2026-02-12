@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 // Helper to safely access env vars in both Vite (browser) and Node (scripts)
 const getEnv = (key) => {
@@ -62,4 +63,7 @@ if (typeof window === 'undefined') {
   // The signature is initializeFirestore(app, settings, databaseId). Let's assume standard usage.
 }
 
-export { db, app };
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+
+export { db, app, auth, googleProvider };

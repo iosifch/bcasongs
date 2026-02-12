@@ -33,6 +33,8 @@
             class="mr-2"
             title="Edit Mode"
           ></v-btn>
+
+          <UserAuth />
         </v-container>
       </v-app-bar>
 
@@ -127,6 +129,7 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import SongsRepository from '../services/SongsRepository';
 import ChordProService from '../services/ChordProService';
+import UserAuth from '../components/UserAuth.vue';
 
 import { useShare } from '../composables/useShare';
 
@@ -162,10 +165,18 @@ const shareSong = async () => {
 
 watch(isEditMode, async (newValue) => {
   if (!newValue && song.value && paragraphs.value.length > 0) {
-    const newContent = ChordProService.serialize(paragraphs.value);
-    await SongsRepository.save(song.value.id, newContent);
-    snackbarText.value = 'Changes saved locally';
-    snackbar.value = true;
+    try {
+      const newContent = ChordProService.serialize(paragraphs.value);
+      await SongsRepository.save(song.value.id, newContent);
+      snackbarText.value = 'Changes saved to cloud';
+      snackbar.value = true;
+    } catch (error) {
+      console.error('Save failed:', error);
+      snackbarText.value = 'Error saving: ' + (error.code === 'permission-denied' ? 'Permission Denied' : error.message);
+      snackbar.value = true;
+      // Optional: Revert to edit mode or keep user in view mode but warn them
+      // keeping them in view mode allows them to copy text if needed, but they are unsaved.
+    }
   }
 });
 

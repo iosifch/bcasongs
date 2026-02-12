@@ -1,14 +1,30 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from 'firebase/firestore';
 
-const firebaseConfig = {
-  apiKey: import.meta.env?.VITE_FIREBASE_API_KEY || process.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env?.VITE_FIREBASE_AUTH_DOMAIN || process.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env?.VITE_FIREBASE_PROJECT_ID || process.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env?.VITE_FIREBASE_STORAGE_BUCKET || process.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env?.VITE_FIREBASE_MESSAGING_SENDER_ID || process.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env?.VITE_FIREBASE_APP_ID || process.env.VITE_FIREBASE_APP_ID
+// Helper to safely access env vars in both Vite (browser) and Node (scripts)
+const getEnv = (key) => {
+  if (import.meta.env && import.meta.env[key]) {
+    return import.meta.env[key];
+  }
+  if (typeof process !== 'undefined' && process.env && process.env[key]) {
+    return process.env[key];
+  }
+  return undefined;
 };
+
+const firebaseConfig = {
+  apiKey: getEnv('VITE_FIREBASE_API_KEY'),
+  authDomain: getEnv('VITE_FIREBASE_AUTH_DOMAIN'),
+  projectId: getEnv('VITE_FIREBASE_PROJECT_ID'),
+  storageBucket: getEnv('VITE_FIREBASE_STORAGE_BUCKET'),
+  messagingSenderId: getEnv('VITE_FIREBASE_MESSAGING_SENDER_ID'),
+  appId: getEnv('VITE_FIREBASE_APP_ID')
+};
+
+// Start in test mode warning
+if (!firebaseConfig.projectId) {
+  console.error('Firebase Project ID is missing. Check .env.local or build secrets.');
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

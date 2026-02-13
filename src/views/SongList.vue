@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat color="transparent" :elevation="0">
+  <v-app-bar flat color="background" :elevation="0" scroll-behavior="hide">
     <v-container class="pa-0 fill-height d-flex align-center px-3">
       <img src="/icon.svg" alt="Logo" height="36" class="mr-3" />
 
@@ -12,6 +12,7 @@
         density="comfortable"
         rounded="xl"
         single-line
+        prepend-inner-icon="search"
         class="flex-grow-1 mr-2"
       ></v-text-field>
 

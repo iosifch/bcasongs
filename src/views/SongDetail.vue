@@ -128,7 +128,7 @@
                 size="small"
                 :color="paragraph.type === 'verse' ? 'primary' : 'surface-variant'"
                 variant="tonal"
-                class="font-weight-bold text-uppercase mr-1"
+                class="text-uppercase mr-1"
                 @click="paragraph.type = 'verse'"
               >
                 Strofă
@@ -137,7 +137,7 @@
                 size="small"
                 :color="paragraph.type === 'chorus' ? 'primary' : 'surface-variant'"
                 variant="tonal"
-                class="font-weight-bold text-uppercase mr-1"
+                class="text-uppercase mr-1"
                 @click="paragraph.type = 'chorus'"
               >
                 Refren
@@ -146,7 +146,7 @@
                 size="small"
                 :color="paragraph.type === 'coda' ? 'primary' : 'surface-variant'"
                 variant="tonal"
-                class="font-weight-bold text-uppercase"
+                class="text-uppercase"
                 @click="paragraph.type = 'coda'"
               >
                 Coda
@@ -158,7 +158,7 @@
                 size="small"
                 color="surface-variant"
                 variant="tonal"
-                class="font-weight-bold text-uppercase"
+                class="text-uppercase"
                 style="letter-spacing: 0.5px; opacity: 0.8;"
               >
                 Refren
@@ -168,7 +168,7 @@
                 size="small"
                 color="surface-variant"
                 variant="tonal"
-                class="font-weight-bold text-uppercase"
+                class="text-uppercase"
                 style="letter-spacing: 0.5px; opacity: 0.8;"
               >
                 Coda
@@ -178,7 +178,7 @@
                 size="small"
                 color="surface-variant"
                 variant="tonal"
-                class="font-weight-bold text-uppercase"
+                class="text-uppercase"
                 style="letter-spacing: 0.5px; opacity: 0.8;"
               >
                 Strofă

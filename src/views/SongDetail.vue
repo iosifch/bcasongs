@@ -23,6 +23,23 @@
             {{ song.title }}
           </v-app-bar-title>
 
+          <v-btn
+            icon
+            variant="text"
+            density="comfortable"
+            rounded="lg"
+            to="/playlist"
+            class="mr-1"
+          >
+            <v-badge
+              :content="playlistCount"
+              :model-value="playlistCount > 0"
+              color="primary"
+            >
+              <v-icon>mdi-playlist-music</v-icon>
+            </v-badge>
+          </v-btn>
+
           <UserAuth />
         </v-container>
       </v-app-bar>
@@ -131,7 +148,8 @@ import { usePlaylist } from '../composables/usePlaylist';
 
 const route = useRoute();
 const song = ref(null);
-const { togglePlaylist, isInPlaylist } = usePlaylist();
+const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
+const playlistCount = computed(() => playlist.value.length);
 const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
 const loading = ref(true);
 const paragraphs = ref([]);

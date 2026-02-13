@@ -24,39 +24,33 @@ This application serves as a digital songbook. It allows users to manage, view, 
 - **Backend/Persistence**: Firebase (Firestore)
 - **Runtime Environment**: Node.js (via Docker)
 
-### Environment Configuration
-- **Docker**: The project is containerized using `Dockerfile` (node:lts-alpine) and `docker-compose.yml`.
-- **Environment Variables**: Managed via `.env` files.
-
-## 4. Testing & Development
-
-### Strict Development Rule
+### Environment Configuration & Rules
 > [!IMPORTANT]
 > **ALL development commands must be executed within the running Docker container.**
 > Do not run `npm` commands directly on the host machine. Instead, use `docker compose exec`.
 > It is assumed that the container is already running.
+- **Docker**: The project is containerized using `Dockerfile` (node:lts-alpine) and `docker-compose.yml`.
+- **Environment Variables**: Managed via `.env` files.
+- **Start Development Server**: `docker compose up -d`
+- **Install Dependencies**: `docker compose exec app npm install`
 
-### Commands
-- **Run Development Server (Detached)**:
-  ```bash
-  docker compose up -d
-  ```
-- **Install Dependencies**:
-  ```bash
-  docker compose exec app npm install
-  ```
-- **Run Tests (Watch Mode)**:
-  ```bash
-  docker compose exec app npm test
-  ```
-- **Run Tests (Single Run)**:
-  ```bash
-  docker compose exec app npm run test:run
-  ```
+### Package Management
+All package management commands must be run inside the container:
+- **Install Package**: `docker compose exec app npm install <package_name>`
+- **Uninstall Package**: `docker compose exec app npm uninstall <package_name>`
+- **Audit Dependencies**: `docker compose exec app npm audit`
 
-### Testing Framework
+## 4. Testing & Development
+
+
+
+
+
+### Testing Instructions
 - **Vitest** is used for unit and component testing.
 - Tests are located alongside source files (e.g., `src/services/SongsRepository.spec.js`).
+- **Run Tests (Watch Mode)**: `docker compose exec app npm test`
+- **Run Tests (Single Run)**: `docker compose exec app npm run test:run`
 
 ## 5. Development Guidelines
 

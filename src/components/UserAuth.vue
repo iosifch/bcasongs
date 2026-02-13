@@ -33,7 +33,7 @@
 
     <div v-else>
       <v-btn
-        icon="account_circle"
+        icon
         variant="text"
         :size="size"
         rounded="xl"

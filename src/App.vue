@@ -42,7 +42,7 @@
         <!-- SongDetail View Header -->
         <template v-else-if="route.name === 'SongDetail'">
           <v-btn
-            icon="arrow_back"
+            icon
             variant="text"
             to="/"
             class="mr-2"
@@ -79,7 +79,7 @@
         <!-- Playlist View Header -->
         <template v-else-if="route.name === 'Playlist'">
           <v-btn
-            icon="arrow_back"
+            icon
             variant="text"
             to="/"
             class="mr-2"
@@ -98,7 +98,7 @@
         <!-- Fallback/Default Header -->
         <template v-else>
            <v-btn
-            icon="arrow_back"
+            icon
             variant="text"
             to="/"
             class="mr-2"

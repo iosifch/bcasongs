@@ -1,4 +1,42 @@
 <template>
+  <v-app-bar flat color="transparent" :elevation="0">
+    <v-container class="pa-0 fill-height d-flex align-center px-3">
+      <img src="/icon.svg" alt="Logo" height="36" class="mr-3" />
+
+      <v-text-field
+        v-model="search"
+        placeholder="Search songs..."
+        variant="solo"
+        bg-color="surface"
+        hide-details
+        density="comfortable"
+        rounded="xl"
+        single-line
+        class="flex-grow-1 mr-2"
+      ></v-text-field>
+
+      <v-btn
+        v-if="isAuthenticated"
+        icon
+        variant="text"
+        rounded="xl"
+        to="/playlist"
+        class="mr-2"
+        size="large"
+      >
+        <v-badge
+          :content="playlistCount"
+          :model-value="playlistCount > 0"
+          color="primary"
+        >
+          <v-icon size="large">queue_music</v-icon>
+        </v-badge>
+      </v-btn>
+
+      <UserAuth size="large" :avatar-size="32" />
+    </v-container>
+  </v-app-bar>
+
   <v-container fluid class="pa-3">
     <div v-if="SongsRepository.loading.value && songs.length === 0" class="d-flex justify-center my-4">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -40,6 +78,7 @@ import { useAuth } from '../composables/useAuth';
 import { useShare } from '../composables/useShare';
 import { useSearch } from '../composables/useSearch';
 import SongCard from '../components/SongCard.vue';
+import UserAuth from '../components/UserAuth.vue';
 
 const { isAuthenticated } = useAuth();
 const songs = SongsRepository.songs;

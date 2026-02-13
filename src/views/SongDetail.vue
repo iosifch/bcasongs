@@ -1,4 +1,92 @@
 <template>
+  <v-app-bar flat color="transparent" :elevation="0">
+    <v-container class="pa-0 fill-height d-flex align-center px-3">
+      <v-btn
+        icon
+        variant="text"
+        to="/"
+        class="mr-2"
+        density="comfortable"
+        rounded="xl"
+        size="large"
+      >
+        <v-icon size="large">arrow_back</v-icon>
+      </v-btn>
+
+      <v-spacer></v-spacer>
+      
+      <v-btn
+        variant="tonal"
+        color="surface-variant"
+        @click="cycleFontSize"
+        title="Change Font Size"
+        class="mr-1"
+        density="comfortable"
+        min-width="40"
+        width="40"
+        height="40"
+        rounded="lg"
+        :ripple="false"
+        style="padding: 0;"
+      >
+        <v-icon>format_size</v-icon>
+      </v-btn>
+
+      <v-btn
+        variant="tonal"
+        color="surface-variant"
+        @click="handleShare"
+        title="Share Song"
+        class="mr-1"
+        density="comfortable"
+        min-width="40"
+        width="40"
+        height="40"
+        rounded="lg"
+        :ripple="false"
+        style="padding: 0;"
+      >
+        <v-icon>share</v-icon>
+      </v-btn>
+
+      <v-btn
+        v-if="isAuthenticated"
+        variant="tonal"
+        :color="isEditMode ? 'primary' : 'surface-variant'"
+        @click="toggleEditMode"
+        title="Edit Mode"
+        class="mr-1"
+        density="comfortable"
+        min-width="40"
+        width="40"
+        height="40"
+        rounded="lg"
+        :ripple="false"
+        style="padding: 0;"
+      >
+        <v-icon>{{ isEditMode ? 'check' : 'edit_document' }}</v-icon>
+      </v-btn>
+
+      <v-btn
+        v-if="isAuthenticated"
+        variant="tonal"
+        :color="songInPlaylist ? 'primary' : 'surface-variant'"
+        @click="handleTogglePlaylist"
+        class="mr-2"
+        title="Toggle Playlist"
+        density="comfortable"
+        min-width="40"
+        width="40"
+        height="40"
+        rounded="lg"
+        :ripple="false"
+        style="padding: 0;"
+      >
+        <v-icon>{{ songInPlaylist ? 'playlist_remove' : 'playlist_add' }}</v-icon>
+      </v-btn>
+    </v-container>
+  </v-app-bar>
+
   <div>
 
     <v-row v-if="loading">
@@ -87,14 +175,16 @@ import ChordProService from '../services/ChordProService';
 
 import { useShare } from '../composables/useShare';
 import { usePlaylist } from '../composables/usePlaylist';
+import { useAuth } from '../composables/useAuth';
 import { useSongSettings } from '../composables/useSongSettings';
 import { useCurrentSong } from '../composables/useCurrentSong';
 
 const route = useRoute();
 const song = ref(null);
 const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
-const { fontSizeClass } = useSongSettings();
-const { setCurrentSong, clearCurrentSong, isEditMode } = useCurrentSong();
+const { isAuthenticated } = useAuth();
+const { fontSizeClass, cycleFontSize } = useSongSettings();
+const { setCurrentSong, clearCurrentSong, isEditMode, toggleEditMode } = useCurrentSong();
 
 const playlistCount = computed(() => playlist.value.length);
 const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
@@ -103,7 +193,25 @@ const paragraphs = ref([]);
 const showChords = ref(false); // Can be removed if completely unused, or kept for future
 const snackbar = ref(false);
 const snackbarText = ref('');
-const { share } = useShare(); // share logic might move to App.vue entirely? Or App.vue calls useShare with currentSong data.
+const { share } = useShare(); 
+
+const handleTogglePlaylist = () => {
+  if (!song.value) return;
+  const wasInPlaylist = isInPlaylist(song.value.id);
+  togglePlaylist(song.value.id);
+  snackbarText.value = wasInPlaylist ? 'Removed from playlist' : 'Added to playlist';
+  snackbar.value = true;
+};
+
+const handleShare = async () => {
+  if (!song.value) return;
+  const url = window.location.href;
+  const result = await share(song.value.title, url);
+  if (result.copied) {
+    snackbarText.value = 'Link copied to clipboard';
+    snackbar.value = true;
+  }
+};
 
 // Watch edit mode changes to save
 watch(isEditMode, async (newValue) => {

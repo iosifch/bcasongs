@@ -1,4 +1,22 @@
 <template>
+  <v-app-bar flat color="transparent" :elevation="0">
+    <v-container class="pa-0 fill-height d-flex align-center px-3">
+      <v-btn
+        icon
+        variant="text"
+        to="/"
+        class="mr-2"
+        density="comfortable"
+        rounded="xl"
+        size="large"
+      >
+        <v-icon size="large">arrow_back</v-icon>
+      </v-btn>
+      <v-toolbar-title class="text-h6 font-weight-bold">Playlist</v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-container>
+  </v-app-bar>
+
   <div>
     <v-container fluid class="pa-3">
       <div v-if="SongsRepository.loading.value && playlistSongs.length === 0" class="d-flex justify-center my-4">

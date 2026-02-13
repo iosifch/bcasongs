@@ -68,27 +68,7 @@
       </v-col>
     </v-row>
 
-    <div class="bottom-actions d-flex justify-center pa-2">
-      <v-btn-group variant="outlined" density="comfortable" rounded="lg" divided>
 
-
-        <v-btn @click="cycleFontSize" title="Change Font Size">
-          <v-icon>format_size</v-icon>
-        </v-btn>
-
-        <v-btn @click="isEditMode = !isEditMode" :color="isEditMode ? 'primary' : undefined" title="Edit Mode">
-          <v-icon>{{ isEditMode ? 'check' : 'edit_document' }}</v-icon>
-        </v-btn>
-
-        <v-btn @click="shareSong" title="Share Song">
-          <v-icon>share</v-icon>
-        </v-btn>
-
-        <v-btn v-if="isAuthenticated" @click="handleTogglePlaylist" :color="songInPlaylist ? 'primary' : undefined" title="Toggle Playlist">
-          <v-icon>{{ songInPlaylist ? 'playlist_remove' : 'playlist_add' }}</v-icon>
-        </v-btn>
-      </v-btn-group>
-    </div>
 
     <v-snackbar v-model="snackbar" :timeout="2000" color="inverse-surface">
       {{ snackbarText }}
@@ -100,50 +80,32 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue';
+import { ref, computed, onMounted, watch, onUnmounted } from 'vue';
 import { useRoute } from 'vue-router';
 import SongsRepository from '../services/SongsRepository';
 import ChordProService from '../services/ChordProService';
 
 import { useShare } from '../composables/useShare';
 import { usePlaylist } from '../composables/usePlaylist';
-import { useAuth } from '../composables/useAuth';
 import { useSongSettings } from '../composables/useSongSettings';
+import { useCurrentSong } from '../composables/useCurrentSong';
 
 const route = useRoute();
 const song = ref(null);
 const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
-const { isAuthenticated } = useAuth();
-const { fontSizeClass, cycleFontSize } = useSongSettings();
+const { fontSizeClass } = useSongSettings();
+const { setCurrentSong, clearCurrentSong, isEditMode } = useCurrentSong();
 
 const playlistCount = computed(() => playlist.value.length);
 const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
 const loading = ref(true);
 const paragraphs = ref([]);
-const isEditMode = ref(false);
-const showChords = ref(false);
+const showChords = ref(false); // Can be removed if completely unused, or kept for future
 const snackbar = ref(false);
 const snackbarText = ref('');
-const { share } = useShare();
+const { share } = useShare(); // share logic might move to App.vue entirely? Or App.vue calls useShare with currentSong data.
 
-const shareSong = async () => {
-  if (!song.value) return;
-
-  const result = await share(song.value.title, window.location.href);
-  
-  if (result.copied) {
-    snackbarText.value = 'Link copied to clipboard';
-    snackbar.value = true;
-  }
-};
-
-const handleTogglePlaylist = () => {
-  if (!song.value) return;
-  const wasInPlaylist = isInPlaylist(song.value.id);
-  togglePlaylist(song.value.id);
-  snackbarText.value = wasInPlaylist ? 'Removed from playlist' : 'Added to playlist';
-  snackbar.value = true;
-};
+// Watch edit mode changes to save
 watch(isEditMode, async (newValue) => {
   if (!newValue && song.value && paragraphs.value.length > 0) {
     try {
@@ -155,8 +117,6 @@ watch(isEditMode, async (newValue) => {
       console.error('Save failed:', error);
       snackbarText.value = 'Error saving: ' + (error.code === 'permission-denied' ? 'Permission Denied' : error.message);
       snackbar.value = true;
-      // Optional: Revert to edit mode or keep user in view mode but warn them
-      // keeping them in view mode allows them to copy text if needed, but they are unsaved.
     }
   }
 });
@@ -165,17 +125,16 @@ const resolveSong = () => {
   const id = route.params.id;
   song.value = SongsRepository.getSong(id);
   if (song.value) {
+    setCurrentSong(song.value);
     paragraphs.value = ChordProService.parseToParagraphs(song.value.content);
   }
   loading.value = false;
 };
 
 onMounted(() => {
-  // If songs are already loaded, resolve immediately
   if (!SongsRepository.loading.value) {
     resolveSong();
   } else {
-    // Wait for songs to finish loading
     const stopWatch = watch(
       () => SongsRepository.loading.value,
       (isLoading) => {
@@ -186,6 +145,10 @@ onMounted(() => {
       }
     );
   }
+});
+
+onUnmounted(() => {
+    clearCurrentSong();
 });
 </script>
 

@@ -54,26 +54,76 @@
           </v-btn>
 
           <v-spacer></v-spacer>
+          
+          <v-btn
+            variant="tonal"
+            color="surface-variant"
+            @click="cycleFontSize"
+            title="Change Font Size"
+            class="mr-1"
+            density="comfortable"
+            min-width="40"
+            width="40"
+            height="40"
+            rounded="lg"
+            :ripple="false"
+            style="padding: 0;"
+          >
+            <v-icon>format_size</v-icon>
+          </v-btn>
+
+          <v-btn
+            variant="tonal"
+            color="surface-variant"
+            @click="shareSong"
+            title="Share Song"
+            class="mr-1"
+            density="comfortable"
+            min-width="40"
+            width="40"
+            height="40"
+            rounded="lg"
+            :ripple="false"
+            style="padding: 0;"
+          >
+            <v-icon>share</v-icon>
+          </v-btn>
 
           <v-btn
             v-if="isAuthenticated"
-            icon
-            variant="text"
-            to="/playlist"
-            class="mr-2"
-            size="large"
-            rounded="xl"
+            variant="tonal"
+            :color="isEditMode ? 'primary' : 'surface-variant'"
+            @click="toggleEditMode"
+            title="Edit Mode"
+            class="mr-1"
+            density="comfortable"
+            min-width="40"
+            width="40"
+            height="40"
+            rounded="lg"
+            :ripple="false"
+            style="padding: 0;"
           >
-            <v-badge
-              :content="playlistCount"
-              :model-value="playlistCount > 0"
-              color="primary"
-            >
-              <v-icon size="large">queue_music</v-icon>
-            </v-badge>
+             <v-icon>{{ isEditMode ? 'check' : 'edit_document' }}</v-icon>
           </v-btn>
 
-          <UserAuth size="large" :avatar-size="32" />
+          <v-btn
+            v-if="isAuthenticated"
+            variant="tonal"
+            :color="songInPlaylist ? 'primary' : 'surface-variant'"
+            @click="handleTogglePlaylist"
+            class="mr-2"
+            title="Toggle Playlist"
+            density="comfortable"
+            min-width="40"
+            width="40"
+            height="40"
+            rounded="lg"
+            :ripple="false"
+            style="padding: 0;"
+          >
+             <v-icon>{{ songInPlaylist ? 'playlist_remove' : 'playlist_add' }}</v-icon>
+          </v-btn>
         </template>
 
         <!-- Playlist View Header -->
@@ -91,8 +141,6 @@
           </v-btn>
 
           <v-spacer></v-spacer>
-
-          <UserAuth size="large" :avatar-size="32" />
         </template>
 
         <!-- Fallback/Default Header -->
@@ -109,7 +157,6 @@
              <v-icon size="large">arrow_back</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
-          <UserAuth size="large" :avatar-size="32" />
         </template>
       </v-container>
     </v-app-bar>
@@ -129,13 +176,30 @@ import UserAuth from './components/UserAuth.vue';
 import { useSearch } from './composables/useSearch';
 import { usePlaylist } from './composables/usePlaylist';
 import { useAuth } from './composables/useAuth';
+import { useSongSettings } from './composables/useSongSettings';
+import { useCurrentSong } from './composables/useCurrentSong';
+import { useShare } from './composables/useShare';
 
 const route = useRoute();
 const { search } = useSearch();
-const { playlist } = usePlaylist();
+const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
 const { isAuthenticated } = useAuth();
+const { cycleFontSize } = useSongSettings();
+const { currentSong, isEditMode, toggleEditMode } = useCurrentSong();
+const { share } = useShare();
 
 const playlistCount = computed(() => playlist.value.length);
+const songInPlaylist = computed(() => currentSong.value ? isInPlaylist(currentSong.value.id) : false);
+
+const handleTogglePlaylist = () => {
+  if (!currentSong.value) return;
+  togglePlaylist(currentSong.value.id);
+};
+
+const shareSong = async () => {
+    if (!currentSong.value) return;
+    await share(currentSong.value.title, window.location.href);
+};
 
 onMounted(() => {
   SongsRepository.initialize();

@@ -1,16 +1,17 @@
 <template>
-  <v-app-bar flat color="background" :elevation="0" scroll-behavior="hide">
-    <v-container class="pa-0 fill-height d-flex align-center ps-1 pe-3">
+  <v-app-bar flat color="background" :elevation="0" scroll-behavior="hide" scroll-threshold="50">
+    <v-container class="pa-0 fill-height d-flex align-center px-3">
       <v-btn
         icon
-        variant="text"
+        variant="tonal"
+        color="surface-variant"
         @click="goBack"
         class="mr-2"
         density="comfortable"
         rounded="lg"
-        size="large"
+        style="width: 40px; height: 40px; min-width: 40px;"
       >
-        <v-icon size="large">arrow_back</v-icon>
+        <v-icon size="25">arrow_back</v-icon>
       </v-btn>
       <v-toolbar-title class="text-h6 font-weight-bold">Playlist</v-toolbar-title>
       <v-spacer></v-spacer>

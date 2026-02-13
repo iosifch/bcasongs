@@ -1,67 +1,4 @@
 <template>
-  <v-app-bar color="secondary-container" elevation="2" scroll-behavior="hide">
-    <v-container class="pa-0 fill-height d-flex align-center px-3">
-      <template v-if="isSearchActive">
-        <v-btn
-          icon="mdi-arrow-left"
-          variant="text"
-          density="comfortable"
-          rounded="lg"
-          class="mr-2"
-          @click="closeSearch"
-        ></v-btn>
-
-        <v-text-field
-          v-model="search"
-          placeholder="Search songs..."
-          variant="solo"
-          bg-color="surface"
-          hide-details
-          density="comfortable"
-          rounded="lg"
-          single-line
-          flat
-          autofocus
-          class="flex-grow-1"
-        ></v-text-field>
-      </template>
-
-      <template v-else>
-        <img src="/icon.svg" alt="Logo" height="32" class="mr-3" />
-
-        <v-spacer></v-spacer>
-
-        <v-btn
-          icon="mdi-magnify"
-          variant="text"
-          density="comfortable"
-          rounded="lg"
-          class="mr-2"
-          @click="isSearchActive = true"
-        ></v-btn>
-
-        <v-btn
-          v-if="isAuthenticated"
-          icon
-          variant="text"
-          density="comfortable"
-          rounded="lg"
-          to="/playlist"
-        >
-          <v-badge
-            :content="playlistCount"
-            :model-value="playlistCount > 0"
-            color="primary"
-          >
-            <v-icon>mdi-playlist-music</v-icon>
-          </v-badge>
-        </v-btn>
-
-        <UserAuth class="ml-2" />
-      </template>
-    </v-container>
-  </v-app-bar>
-
   <v-container fluid class="pa-3">
     <div v-if="SongsRepository.loading.value && songs.length === 0" class="d-flex justify-center my-4">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -101,24 +38,18 @@ import SongsRepository from '../services/SongsRepository';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useAuth } from '../composables/useAuth';
 import { useShare } from '../composables/useShare';
+import { useSearch } from '../composables/useSearch';
 import SongCard from '../components/SongCard.vue';
-import UserAuth from '../components/UserAuth.vue';
 
 const { isAuthenticated } = useAuth();
 const songs = SongsRepository.songs;
-const search = ref('');
+const { search } = useSearch();
 const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
 const { share } = useShare();
-const isSearchActive = ref(false);
 const snackbar = ref(false);
 const snackbarText = ref('');
 
 const playlistCount = computed(() => playlist.value.length);
-
-const closeSearch = () => {
-  isSearchActive.value = false;
-  search.value = '';
-};
 
 const handleTogglePlaylist = (songId) => {
   const wasInPlaylist = isInPlaylist(songId);

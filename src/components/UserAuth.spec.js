@@ -4,6 +4,8 @@ import UserAuth from './UserAuth.vue';
 import { auth, googleProvider, db } from '../firebaseConfig';
 import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 import { getDoc } from 'firebase/firestore';
+import { ref, computed } from 'vue';
+import { useAuth } from '../composables/useAuth';
 
 // Mock Vuetify components
 const global = {
@@ -11,7 +13,7 @@ const global = {
     'v-btn': { template: '<button><slot /></button>' },
     'v-avatar': { template: '<div><slot /></div>' },
     'v-img': { template: '<img />' },
-    'v-menu': { template: '<div><slot name="activator" :props="{}"></slot><slot></slot></div>' },
+    'v-menu': { name: 'v-menu', template: '<div><slot name="activator" :props="{}"></slot><slot></slot></div>' },
     'v-card': { template: '<div><slot /></div>' },
     'v-card-text': { template: '<div><slot /></div>' },
     'v-divider': { template: '<hr />' },
@@ -33,39 +35,34 @@ vi.mock('firebase/auth', () => ({
   onAuthStateChanged: vi.fn()
 }));
 
+vi.mock('../composables/useAuth', () => ({
+  useAuth: vi.fn()
+}));
+
 vi.mock('firebase/firestore', () => ({
   doc: vi.fn(),
   getDoc: vi.fn()
 }));
 
-describe.skip('UserAuth.vue', () => {
+import { useAuth } from '../composables/useAuth';
+
+describe('UserAuth.vue', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('shows login button when user is null', async () => {
-    // Mock onAuthStateChanged to return null immediately
-    onAuthStateChanged.mockImplementation((auth, callback) => {
-      callback(null);
-      return () => { }; // unsubscribe
+    useAuth.mockReturnValue({
+      user: ref(null),
+      isAuthenticated: computed(() => false),
+      initializeAuth: vi.fn()
     });
 
     const wrapper = mount(UserAuth, { global });
     await flushPromises();
 
-    // Check for login button icon or text
-    const buttons = wrapper.findAll('button');
-    // We expect the button that triggers handleLogin
-    // Based on template: v-btn icon="mdi-account-circle"
-    // Our stub renders <button><i>mdi-account-circle</i></button> roughly
-
-    // Simplest check: The "else" block should be rendered
-    // The "if user" block has v-menu
     expect(wrapper.findComponent({ name: 'v-menu' }).exists()).toBe(false);
-
-    // Find the login button - it's the one in the v-else block
-    // It has @click="handleLogin"
-    // Since we stubbed v-btn, we can find the button
+    const buttons = wrapper.findAll('button');
     expect(buttons.length).toBeGreaterThan(0);
   });
 
@@ -76,7 +73,24 @@ describe.skip('UserAuth.vue', () => {
       photoURL: 'http://example.com/photo.jpg'
     };
 
-    // Mock Auth State
+    useAuth.mockReturnValue({
+      user: ref(mockUser),
+      isAuthenticated: computed(() => true),
+      initializeAuth: vi.fn()
+    });
+
+    // We still need onAuthStateChanged for the whitelist check in onMounted if we want to test that logic
+    // But wait, the component calls onAuthStateChanged in onMounted too...
+    // The component calls:
+    // onMounted(() => {
+    //   initializeAuth();
+    //   onAuthStateChanged(auth, async (currentUser) => { ... })
+    // })
+
+    // So we assume useAuth handles global auth state, but the component has its own listener for whitelist checking?
+    // Yes on lines 68-91 of UserAuth.vue.
+
+    // So we ALSO need to mock onAuthStateChanged to trigger that callback.
     onAuthStateChanged.mockImplementation((auth, callback) => {
       callback(mockUser);
       return () => { };
@@ -98,6 +112,12 @@ describe.skip('UserAuth.vue', () => {
   it('signs out if email is not in whitelist', async () => {
     const mockUser = { email: 'hacker@example.com' };
 
+    useAuth.mockReturnValue({
+      user: ref(mockUser),
+      isAuthenticated: computed(() => true),
+      initializeAuth: vi.fn()
+    });
+
     onAuthStateChanged.mockImplementation((auth, callback) => {
       callback(mockUser);
       return () => { };
@@ -106,7 +126,7 @@ describe.skip('UserAuth.vue', () => {
     // Mock Firestore Whitelist Check (Deny access)
     getDoc.mockResolvedValue({
       exists: () => true,
-      data: () => ({ allowedEmails: ['admin@example.com'] }) // Not including hacker
+      data: () => ({ allowedEmails: ['admin@example.com'] })
     });
 
     const wrapper = mount(UserAuth, { global });
@@ -120,23 +140,15 @@ describe.skip('UserAuth.vue', () => {
   });
 
   it('calls signInWithPopup when login button is clicked', async () => {
-    onAuthStateChanged.mockImplementation((auth, callback) => {
-      callback(null);
-      return () => { };
+    useAuth.mockReturnValue({
+      user: ref(null),
+      isAuthenticated: computed(() => false),
+      initializeAuth: vi.fn()
     });
 
     const wrapper = mount(UserAuth, { global });
     await flushPromises();
 
-    // Find the login button. In our stubs/template structure:
-    // v-else block has a v-btn.
-    const loginBtn = wrapper.findAll('button').at(-1); // Assuming last button or only button
-    // It's safer to find by other means, but let's try triggering the method directly if button finding is tricky?
-    // No, better to simulate click.
-    // The login button is the one WITHOUT v-menu activator wrapping it.
-    // In our template, the login button is in the v-else div.
-
-    // Let's rely on the method binding
     await wrapper.vm.handleLogin();
 
     expect(signInWithPopup).toHaveBeenCalledWith(auth, googleProvider);

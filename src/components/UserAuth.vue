@@ -3,8 +3,8 @@
     <div v-if="user" class="d-flex align-center">
       <v-menu min-width="200px" rounded>
         <template v-slot:activator="{ props }">
-          <v-btn icon variant="text" density="comfortable" rounded="lg" v-bind="props">
-            <v-avatar color="secondary" size="26">
+          <v-btn icon variant="text" :size="size" rounded="xl" v-bind="props">
+            <v-avatar color="secondary" :size="avatarSize">
               <v-img v-if="user.photoURL" :src="user.photoURL" alt="Avatar"></v-img>
               <span v-else class="text-caption font-weight-bold">{{ user.displayName?.charAt(0) || 'U' }}</span>
             </v-avatar>
@@ -33,13 +33,15 @@
 
     <div v-else>
       <v-btn
-        icon="mdi-account-circle"
+        icon="mdi-account-circle-outline"
         variant="text"
-        density="comfortable"
-        rounded="lg"
+        :size="size"
+        rounded="xl"
         @click="handleLogin"
         title="Login with Google"
-      ></v-btn>
+      >
+        <v-icon :size="avatarSize + 4">mdi-account-circle-outline</v-icon>
+      </v-btn>
     </div>
     
     <v-snackbar v-model="snackbar" :timeout="3000" color="error">
@@ -58,9 +60,21 @@ import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useAuth } from '../composables/useAuth';
 
+const { isAuthenticated } = useAuth();
 const { user, initializeAuth } = useAuth();
 const snackbar = ref(false);
 const errorMsg = ref('');
+
+defineProps({
+  size: {
+    type: String,
+    default: undefined
+  },
+  avatarSize: {
+    type: Number,
+    default: 26
+  }
+});
 
 onMounted(() => {
   initializeAuth();

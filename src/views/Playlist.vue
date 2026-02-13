@@ -1,24 +1,5 @@
 <template>
   <div>
-    <v-app-bar color="secondary-container" elevation="2">
-      <v-container class="pa-0 fill-height d-flex align-center px-3">
-        <v-btn
-          icon="mdi-arrow-left"
-          variant="text"
-          to="/"
-          class="mr-2"
-          density="comfortable"
-          rounded="lg"
-        ></v-btn>
-
-        <v-app-bar-title class="text-h6 font-weight-bold ml-0">
-          Your Playlist
-        </v-app-bar-title>
-
-        <UserAuth />
-      </v-container>
-    </v-app-bar>
-
     <v-container fluid class="pa-3">
       <div v-if="SongsRepository.loading.value && playlistSongs.length === 0" class="d-flex justify-center my-4">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
@@ -66,7 +47,6 @@ import SongsRepository from '../services/SongsRepository';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useShare } from '../composables/useShare';
 import SongCard from '../components/SongCard.vue';
-import UserAuth from '../components/UserAuth.vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
 const songs = SongsRepository.songs;

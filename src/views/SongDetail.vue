@@ -8,42 +8,6 @@
     </v-row>
 
     <div v-else-if="song">
-      <v-app-bar color="secondary-container" elevation="2" scroll-behavior="hide">
-        <v-container class="pa-0 fill-height d-flex align-center px-3">
-          <v-btn
-            icon="mdi-arrow-left"
-            variant="text"
-            to="/"
-            class="mr-2"
-            density="comfortable"
-            rounded="lg"
-          ></v-btn>
-
-          <v-app-bar-title class="text-h6 font-weight-regular ml-0">
-            {{ song.title }}
-          </v-app-bar-title>
-
-          <v-btn
-            v-if="isAuthenticated"
-            icon
-            variant="text"
-            density="comfortable"
-            rounded="lg"
-            to="/playlist"
-            class="mr-1"
-          >
-            <v-badge
-              :content="playlistCount"
-              :model-value="playlistCount > 0"
-              color="primary"
-            >
-              <v-icon>mdi-playlist-music</v-icon>
-            </v-badge>
-          </v-btn>
-
-          <UserAuth />
-        </v-container>
-      </v-app-bar>
 
       <div class="song-content px-2 mt-4">
         <div v-for="(paragraph, pIndex) in paragraphs" :key="paragraph.id" class="mb-4">
@@ -142,7 +106,6 @@ import { ref, computed, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import SongsRepository from '../services/SongsRepository';
 import ChordProService from '../services/ChordProService';
-import UserAuth from '../components/UserAuth.vue';
 
 import { useShare } from '../composables/useShare';
 import { usePlaylist } from '../composables/usePlaylist';

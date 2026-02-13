@@ -147,7 +147,6 @@ import UserAuth from '../components/UserAuth.vue';
 import { useShare } from '../composables/useShare';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useAuth } from '../composables/useAuth';
-import PlaylistRepository from '../services/PlaylistRepository';
 
 const route = useRoute();
 const song = ref(null);
@@ -217,9 +216,6 @@ const resolveSong = () => {
 };
 
 onMounted(() => {
-  SongsRepository.initialize();
-  PlaylistRepository.initialize();
-
   // If songs are already loaded, resolve immediately
   if (!SongsRepository.loading.value) {
     resolveSong();

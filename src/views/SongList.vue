@@ -96,9 +96,8 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import SongsRepository from '../services/SongsRepository';
-import PlaylistRepository from '../services/PlaylistRepository';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useAuth } from '../composables/useAuth';
 import { useShare } from '../composables/useShare';
@@ -145,9 +144,5 @@ const filteredSongs = computed(() => {
     song.title.toLowerCase().includes(term) ||
     song.content.toLowerCase().includes(term)
   );
-});
-
-onMounted(() => {
-  PlaylistRepository.initialize();
 });
 </script>

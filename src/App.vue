@@ -9,8 +9,10 @@
 <script setup>
 import { onMounted } from 'vue';
 import SongsRepository from './services/SongsRepository';
+import PlaylistRepository from './services/PlaylistRepository';
 
 onMounted(() => {
   SongsRepository.initialize();
+  PlaylistRepository.initialize();
 });
 </script>

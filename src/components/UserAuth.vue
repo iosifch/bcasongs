@@ -109,7 +109,13 @@ onMounted(() => {
            console.warn('Auth settings document not found.');
         }
       } catch (e) {
-        console.error('Error checking auth whitelist:', e);
+        if (e.code === 'permission-denied') {
+          errorMsg.value = 'Access Denied: You are not on the authorized list.';
+          snackbar.value = true;
+          await signOut(auth);
+        } else {
+          console.error('Error checking auth whitelist:', e);
+        }
       }
     }
   });

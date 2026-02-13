@@ -10,10 +10,19 @@ service cloud.firestore {
                    request.auth.token.email in get(/databases/$(database)/documents/settings/auth).data.allowedEmails;
     }
 
-    // Allow public read for settings/auth so UI can check valid users
-    // Write restricted to no one (or manual admin only)
-    match /settings/auth {
+    match /playlists/{playlist} {
+      // Only authenticated users can read playlists
       allow read: if request.auth != null;
+      
+      // Only whitelisted users can write to playlists
+      allow write: if request.auth != null && 
+                   request.auth.token.email in get(/databases/$(database)/documents/settings/auth).data.allowedEmails;
+    }
+
+    // Only whitelisted users can read the auth settings to see the list
+    match /settings/auth {
+      allow read: if request.auth != null && 
+                   request.auth.token.email in resource.data.allowedEmails;
       allow write: if false; 
     }
   }

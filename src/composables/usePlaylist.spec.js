@@ -1,45 +1,64 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+
+const mockSongIds = vi.hoisted(() => ({ value: [] }));
+
+vi.mock('../services/PlaylistRepository', () => ({
+  default: {
+    songIds: mockSongIds,
+    loading: { value: false },
+    error: { value: null },
+    containsSong: (id) => mockSongIds.value.includes(id),
+    addSongToPlaylist: vi.fn(),
+    removeSongFromPlaylist: vi.fn(),
+    reorderSongsInPlaylist: vi.fn(),
+    replaceAllSongsInPlaylist: vi.fn()
+  }
+}));
+
 import { usePlaylist } from './usePlaylist';
-
-// Mock localStorage
-const localStorageMock = (() => {
-  let store = {};
-  return {
-    getItem: (key) => store[key] || null,
-    setItem: (key, value) => { store[key] = value.toString(); },
-    removeItem: (key) => { delete store[key]; },
-    clear: () => { store = {}; }
-  };
-})();
-
-vi.stubGlobal('localStorage', localStorageMock);
+import PlaylistRepository from '../services/PlaylistRepository';
 
 describe('usePlaylist', () => {
   beforeEach(() => {
-    localStorage.clear();
+    vi.clearAllMocks();
+    mockSongIds.value = [];
+  });
+
+  it('should expose playlist as a computed from PlaylistRepository.songIds', () => {
+    mockSongIds.value = ['song1', 'song2'];
     const { playlist } = usePlaylist();
-    playlist.value = [];
+    expect(playlist.value).toEqual(['song1', 'song2']);
   });
 
-  it('should add a song to the playlist', () => {
-    const { togglePlaylist, isInPlaylist } = usePlaylist();
-    
-    togglePlaylist('1');
-    expect(isInPlaylist('1')).toBe(true);
+  it('should call addSongToPlaylist when toggling a song not in playlist', async () => {
+    const { togglePlaylist } = usePlaylist();
+    await togglePlaylist('song1');
+    expect(PlaylistRepository.addSongToPlaylist).toHaveBeenCalledWith('song1');
   });
 
-  it('should remove a song from the playlist if it already exists', () => {
-    const { togglePlaylist, isInPlaylist } = usePlaylist();
-    
-    togglePlaylist('1'); // add
-    togglePlaylist('1'); // remove
-    expect(isInPlaylist('1')).toBe(false);
+  it('should call removeSongFromPlaylist when toggling a song already in playlist', async () => {
+    mockSongIds.value = ['song1'];
+    const { togglePlaylist } = usePlaylist();
+    await togglePlaylist('song1');
+    expect(PlaylistRepository.removeSongFromPlaylist).toHaveBeenCalledWith('song1');
   });
 
-  it('should replace the entire playlist', () => {
-    const { playlist, replacePlaylist } = usePlaylist();
-    
-    replacePlaylist(['1', '2', '3']);
-    expect(playlist.value).toEqual(['1', '2', '3']);
+  it('isInPlaylist should check PlaylistRepository.containsSong', () => {
+    mockSongIds.value = ['song1'];
+    const { isInPlaylist } = usePlaylist();
+    expect(isInPlaylist('song1')).toBe(true);
+    expect(isInPlaylist('song2')).toBe(false);
+  });
+
+  it('replacePlaylist should call replaceAllSongsInPlaylist', async () => {
+    const { replacePlaylist } = usePlaylist();
+    await replacePlaylist(['song3', 'song4']);
+    expect(PlaylistRepository.replaceAllSongsInPlaylist).toHaveBeenCalledWith(['song3', 'song4']);
+  });
+
+  it('reorderPlaylist should call reorderSongsInPlaylist', async () => {
+    const { reorderPlaylist } = usePlaylist();
+    await reorderPlaylist(['song2', 'song1']);
+    expect(PlaylistRepository.reorderSongsInPlaylist).toHaveBeenCalledWith(['song2', 'song1']);
   });
 });

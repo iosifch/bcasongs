@@ -88,6 +88,7 @@
 import { ref, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import SongsRepository from '../services/SongsRepository';
+import PlaylistRepository from '../services/PlaylistRepository';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useShare } from '../composables/useShare';
 import SongCard from '../components/SongCard.vue';
@@ -105,9 +106,9 @@ const importDialog = ref(false);
 const pendingPlaylist = ref([]);
 
 const handleTogglePlaylist = (songId) => {
+  const wasInPlaylist = isInPlaylist(songId);
   togglePlaylist(songId);
-  const added = isInPlaylist(songId);
-  snackbarText.value = added ? 'Added to playlist' : 'Removed from playlist';
+  snackbarText.value = wasInPlaylist ? 'Removed from playlist' : 'Added to playlist';
   snackbar.value = true;
 };
 
@@ -151,6 +152,7 @@ const confirmImport = async () => {
 
 onMounted(() => {
   SongsRepository.initialize();
+  PlaylistRepository.initialize();
 
   if (route.query.import) {
     const ids = route.query.import.split(',').map(id => id.trim()).filter(Boolean);

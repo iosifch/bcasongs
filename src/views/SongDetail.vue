@@ -24,6 +24,7 @@
           </v-app-bar-title>
 
           <v-btn
+            v-if="isAuthenticated"
             icon
             variant="text"
             density="comfortable"
@@ -121,8 +122,8 @@
           <v-icon>mdi-share-variant</v-icon>
         </v-btn>
 
-        <v-btn @click="handleTogglePlaylist" :color="songInPlaylist ? 'primary' : undefined" title="Toggle Playlist">
-          <v-icon>{{ songInPlaylist ? 'mdi-playlist-minus' : 'mdi-playlist-plus' }}</v-icon>
+        <v-btn v-if="isAuthenticated" @click="handleTogglePlaylist" :color="songInPlaylist ? 'primary' : undefined" title="Toggle Playlist">
+          <v-icon>{{ songInPlaylist ? 'mdi-playlist-remove' : 'mdi-playlist-plus' }}</v-icon>
         </v-btn>
       </v-btn-group>
     </div>
@@ -145,10 +146,13 @@ import UserAuth from '../components/UserAuth.vue';
 
 import { useShare } from '../composables/useShare';
 import { usePlaylist } from '../composables/usePlaylist';
+import { useAuth } from '../composables/useAuth';
+import PlaylistRepository from '../services/PlaylistRepository';
 
 const route = useRoute();
 const song = ref(null);
 const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
+const { isAuthenticated } = useAuth();
 const playlistCount = computed(() => playlist.value.length);
 const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
 const loading = ref(true);
@@ -181,9 +185,9 @@ const shareSong = async () => {
 
 const handleTogglePlaylist = () => {
   if (!song.value) return;
+  const wasInPlaylist = isInPlaylist(song.value.id);
   togglePlaylist(song.value.id);
-  const added = isInPlaylist(song.value.id);
-  snackbarText.value = added ? 'Added to playlist' : 'Removed from playlist';
+  snackbarText.value = wasInPlaylist ? 'Removed from playlist' : 'Added to playlist';
   snackbar.value = true;
 };
 watch(isEditMode, async (newValue) => {
@@ -214,6 +218,7 @@ const resolveSong = () => {
 
 onMounted(() => {
   SongsRepository.initialize();
+  PlaylistRepository.initialize();
 
   // If songs are already loaded, resolve immediately
   if (!SongsRepository.loading.value) {

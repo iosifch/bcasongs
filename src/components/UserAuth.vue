@@ -56,12 +56,15 @@ import { ref, onMounted } from 'vue';
 import { auth, googleProvider, db } from '../firebaseConfig';
 import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
+import { useAuth } from '../composables/useAuth';
 
-const user = ref(null);
+const { user, initializeAuth } = useAuth();
 const snackbar = ref(false);
 const errorMsg = ref('');
 
 onMounted(() => {
+  initializeAuth();
+
   onAuthStateChanged(auth, async (currentUser) => {
     if (currentUser) {
       // Security Check: Verify if email is allowed (Frontend Check)
@@ -79,19 +82,11 @@ onMounted(() => {
             return;
           }
         } else {
-           // Allow if settings doc doesn't exist? Or block?
-           // Assuming if not configured, maybe just warn or block.
-           // For now, let's just log in, and writes will fail if not verified.
            console.warn('Auth settings document not found.');
         }
       } catch (e) {
         console.error('Error checking auth whitelist:', e);
-        // Fallback: If we can't read the whitelist, we might be offline or it might be restricted
       }
-      
-      user.value = currentUser;
-    } else {
-      user.value = null;
     }
   });
 });

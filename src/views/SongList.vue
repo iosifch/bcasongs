@@ -41,6 +41,7 @@
         ></v-btn>
 
         <v-btn
+          v-if="isAuthenticated"
           icon
           variant="text"
           density="comfortable"
@@ -95,13 +96,16 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import SongsRepository from '../services/SongsRepository';
+import PlaylistRepository from '../services/PlaylistRepository';
 import { usePlaylist } from '../composables/usePlaylist';
+import { useAuth } from '../composables/useAuth';
 import { useShare } from '../composables/useShare';
 import SongCard from '../components/SongCard.vue';
 import UserAuth from '../components/UserAuth.vue';
 
+const { isAuthenticated } = useAuth();
 const songs = SongsRepository.songs;
 const search = ref('');
 const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
@@ -118,9 +122,9 @@ const closeSearch = () => {
 };
 
 const handleTogglePlaylist = (songId) => {
+  const wasInPlaylist = isInPlaylist(songId);
   togglePlaylist(songId);
-  const added = isInPlaylist(songId);
-  snackbarText.value = added ? 'Added to playlist' : 'Removed from playlist';
+  snackbarText.value = wasInPlaylist ? 'Removed from playlist' : 'Added to playlist';
   snackbar.value = true;
 };
 
@@ -141,5 +145,9 @@ const filteredSongs = computed(() => {
     song.title.toLowerCase().includes(term) ||
     song.content.toLowerCase().includes(term)
   );
+});
+
+onMounted(() => {
+  PlaylistRepository.initialize();
 });
 </script>

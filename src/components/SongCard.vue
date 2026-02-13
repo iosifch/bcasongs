@@ -32,6 +32,7 @@
         <v-col cols="auto">
           <div class="d-flex align-center">
             <v-btn
+              v-if="isAuthenticated"
               icon
               variant="text"
               density="comfortable"
@@ -39,7 +40,7 @@
               @click.prevent="emit('toggle-playlist', song.id)"
             >
               <v-icon :color="isInPlaylist ? 'primary' : 'grey-lighten-1'">
-                {{ isInPlaylist ? 'mdi-playlist-minus' : 'mdi-playlist-plus' }}
+                {{ isInPlaylist ? 'mdi-playlist-remove' : 'mdi-playlist-plus' }}
               </v-icon>
             </v-btn>
 
@@ -60,6 +61,10 @@
 </template>
 
 <script setup>
+import { useAuth } from '../composables/useAuth';
+
+const { isAuthenticated } = useAuth();
+
 defineProps({
   song: {
     type: Object,

@@ -71,23 +71,23 @@
     <div class="bottom-actions d-flex justify-center pa-2">
       <v-btn-group variant="outlined" density="comfortable" rounded="lg" divided>
         <v-btn @click="showChords = !showChords" :title="showChords ? 'Hide Chords' : 'Show Chords'">
-          <v-icon>{{ showChords ? 'mdi-music-note' : 'mdi-music-note-off' }}</v-icon>
+          <v-icon>{{ showChords ? 'music_note' : 'music_off' }}</v-icon>
         </v-btn>
 
         <v-btn @click="cycleFontSize" title="Change Font Size">
-          <v-icon>mdi-format-size</v-icon>
+          <v-icon>format_size</v-icon>
         </v-btn>
 
         <v-btn @click="isEditMode = !isEditMode" :color="isEditMode ? 'primary' : undefined" title="Edit Mode">
-          <v-icon>{{ isEditMode ? 'mdi-check' : 'mdi-file-document-edit' }}</v-icon>
+          <v-icon>{{ isEditMode ? 'check' : 'edit_document' }}</v-icon>
         </v-btn>
 
         <v-btn @click="shareSong" title="Share Song">
-          <v-icon>mdi-share-variant</v-icon>
+          <v-icon>share</v-icon>
         </v-btn>
 
         <v-btn v-if="isAuthenticated" @click="handleTogglePlaylist" :color="songInPlaylist ? 'primary' : undefined" title="Toggle Playlist">
-          <v-icon>{{ songInPlaylist ? 'mdi-playlist-remove' : 'mdi-playlist-plus' }}</v-icon>
+          <v-icon>{{ songInPlaylist ? 'playlist_remove' : 'playlist_add' }}</v-icon>
         </v-btn>
       </v-btn-group>
     </div>

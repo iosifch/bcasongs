@@ -4,7 +4,7 @@
       <v-container class="pa-0 fill-height d-flex align-center px-3">
         <!-- SongList View Header -->
         <template v-if="route.name === 'SongList' || route.path === '/'">
-          <img src="/icon.svg" alt="Logo" height="42" class="mr-3" />
+          <img src="/icon.svg" alt="Logo" height="36" class="mr-3" />
 
           <v-text-field
             v-model="search"
@@ -32,7 +32,7 @@
               :model-value="playlistCount > 0"
               color="primary"
             >
-              <v-icon size="large">mdi-playlist-music</v-icon>
+              <v-icon size="large">queue_music</v-icon>
             </v-badge>
           </v-btn>
 
@@ -42,7 +42,7 @@
         <!-- SongDetail View Header -->
         <template v-else-if="route.name === 'SongDetail'">
           <v-btn
-            icon="mdi-arrow-left"
+            icon="arrow_back"
             variant="text"
             to="/"
             class="mr-2"
@@ -50,7 +50,7 @@
             rounded="xl"
             size="large"
           >
-             <v-icon size="large">mdi-arrow-left</v-icon>
+             <v-icon size="large">arrow_back</v-icon>
           </v-btn>
 
           <v-spacer></v-spacer>
@@ -69,7 +69,7 @@
               :model-value="playlistCount > 0"
               color="primary"
             >
-              <v-icon size="large">mdi-playlist-music</v-icon>
+              <v-icon size="large">queue_music</v-icon>
             </v-badge>
           </v-btn>
 
@@ -79,7 +79,7 @@
         <!-- Playlist View Header -->
         <template v-else-if="route.name === 'Playlist'">
           <v-btn
-            icon="mdi-arrow-left"
+            icon="arrow_back"
             variant="text"
             to="/"
             class="mr-2"
@@ -87,7 +87,7 @@
             rounded="xl"
             size="large"
           >
-            <v-icon size="large">mdi-arrow-left</v-icon>
+            <v-icon size="large">arrow_back</v-icon>
           </v-btn>
 
           <v-spacer></v-spacer>
@@ -98,7 +98,7 @@
         <!-- Fallback/Default Header -->
         <template v-else>
            <v-btn
-            icon="mdi-arrow-left"
+            icon="arrow_back"
             variant="text"
             to="/"
             class="mr-2"
@@ -106,7 +106,7 @@
             rounded="xl"
             size="large"
           >
-             <v-icon size="large">mdi-arrow-left</v-icon>
+             <v-icon size="large">arrow_back</v-icon>
           </v-btn>
           <v-spacer></v-spacer>
           <UserAuth size="large" :avatar-size="32" />

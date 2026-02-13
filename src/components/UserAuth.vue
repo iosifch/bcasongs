@@ -33,14 +33,14 @@
 
     <div v-else>
       <v-btn
-        icon="mdi-account-circle-outline"
+        icon="account_circle"
         variant="text"
         :size="size"
         rounded="xl"
         @click="handleLogin"
         title="Login with Google"
       >
-        <v-icon :size="avatarSize + 4">mdi-account-circle-outline</v-icon>
+        <v-icon :size="avatarSize + 4">account_circle</v-icon>
       </v-btn>
     </div>
     

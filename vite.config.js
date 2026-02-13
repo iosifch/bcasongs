@@ -50,14 +50,14 @@ export default defineConfig({
           }
         ],
         screenshots: [
-           {
+          {
             src: 'icons/icon-512.png',
             sizes: '512x512',
             type: 'image/png',
             form_factor: 'wide',
             label: 'Application'
           },
-           {
+          {
             src: 'icons/icon-512.png',
             sizes: '512x512',
             type: 'image/png',

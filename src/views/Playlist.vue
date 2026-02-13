@@ -20,7 +20,7 @@
           :key="song.id"
           class="d-flex align-center mb-3"
         >
-          <v-icon class="drag-handle mr-2 cursor-move text-medium-emphasis">mdi-drag</v-icon>
+          <v-icon class="drag-handle mr-2 cursor-move text-medium-emphasis">drag_indicator</v-icon>
           <SongCard
             :song="song"
             :is-in-playlist="true"

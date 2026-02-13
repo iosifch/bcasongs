@@ -40,7 +40,7 @@
               @click.prevent="emit('toggle-playlist', song.id)"
             >
               <v-icon :color="isInPlaylist ? 'primary' : 'grey-lighten-1'">
-                {{ isInPlaylist ? 'mdi-playlist-remove' : 'mdi-playlist-plus' }}
+                {{ isInPlaylist ? 'playlist_remove' : 'playlist_add' }}
               </v-icon>
             </v-btn>
 
@@ -51,7 +51,7 @@
               rounded="lg"
               @click.prevent="emit('share', song)"
             >
-              <v-icon color="grey-lighten-1">mdi-share-variant</v-icon>
+              <v-icon color="grey-lighten-1">share</v-icon>
             </v-btn>
           </div>
         </v-col>

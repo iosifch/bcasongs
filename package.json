@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@fontsource/roboto": "^5.2.9",
-    "@mdi/font": "^7.4.47",
     "dotenv": "^17.2.4",
     "firebase": "^12.9.0",
+    "material-symbols": "^0.40.2",
     "vue": "^3.5.24",
     "vue-draggable-plus": "^0.6.1",
     "vue-router": "^5.0.1",

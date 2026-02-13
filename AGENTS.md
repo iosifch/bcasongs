@@ -40,19 +40,16 @@ All package management commands must be run inside the container:
 - **Uninstall Package**: `docker compose exec app npm uninstall <package_name>`
 - **Audit Dependencies**: `docker compose exec app npm audit`
 
-## 4. Testing & Development
-
-
-
-
-
 ### Testing Instructions
 - **Vitest** is used for unit and component testing.
 - Tests are located alongside source files (e.g., `src/services/SongsRepository.spec.js`).
 - **Run Tests (Watch Mode)**: `docker compose exec app npm test`
 - **Run Tests (Single Run)**: `docker compose exec app npm run test:run`
 
-## 5. Development Guidelines
+### Git Workflow & Version Control
+- **Commit Messages**: Must be descriptive and follow Conventional Commits (e.g., `feat: ...`, `fix: ...`, `docs: ...`, `chore: ...`).
+- **Push Policy**: Commits and pushes to the repository are **ONLY** performed upon explicit request by the programmer.
+- **Branch Specification**: Always specify the target branch in the push command. Use the branch requested by the programmer or, if unspecified, the current branch.
 
 ### Code Style & Best Practices
 - **Vue.js**:

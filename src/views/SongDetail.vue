@@ -125,7 +125,7 @@
           <div class="mb-2">
             <template v-if="isEditMode">
               <v-chip
-                size="x-small"
+                size="small"
                 :color="paragraph.type === 'verse' ? 'primary' : 'surface-variant'"
                 variant="tonal"
                 class="font-weight-bold text-uppercase mr-1"
@@ -134,7 +134,7 @@
                 Strofă
               </v-chip>
               <v-chip
-                size="x-small"
+                size="small"
                 :color="paragraph.type === 'chorus' ? 'primary' : 'surface-variant'"
                 variant="tonal"
                 class="font-weight-bold text-uppercase mr-1"
@@ -143,7 +143,7 @@
                 Refren
               </v-chip>
               <v-chip
-                size="x-small"
+                size="small"
                 :color="paragraph.type === 'coda' ? 'primary' : 'surface-variant'"
                 variant="tonal"
                 class="font-weight-bold text-uppercase"
@@ -155,7 +155,7 @@
             <template v-else>
               <v-chip
                 v-if="paragraph.type === 'chorus'"
-                size="x-small"
+                size="small"
                 color="surface-variant"
                 variant="tonal"
                 class="font-weight-bold text-uppercase"
@@ -165,7 +165,7 @@
               </v-chip>
               <v-chip
                 v-else-if="paragraph.type === 'coda'"
-                size="x-small"
+                size="small"
                 color="surface-variant"
                 variant="tonal"
                 class="font-weight-bold text-uppercase"
@@ -175,7 +175,7 @@
               </v-chip>
               <v-chip
                 v-else
-                size="x-small"
+                size="small"
                 color="surface-variant"
                 variant="tonal"
                 class="font-weight-bold text-uppercase"

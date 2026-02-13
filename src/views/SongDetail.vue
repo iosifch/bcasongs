@@ -13,6 +13,26 @@
         <v-icon size="large">arrow_back</v-icon>
       </v-btn>
 
+      <v-chip
+        v-if="song?.originalKey"
+        color="outline"
+        variant="outlined"
+        size="small"
+        class="ml-1 font-weight-bold text-on-surface-variant"
+      >
+        {{ song.originalKey }}
+      </v-chip>
+
+      <v-chip
+        v-if="song?.bookNumber"
+        color="outline"
+        variant="outlined"
+        size="small"
+        class="ml-2 font-weight-bold text-on-surface-variant"
+      >
+        #{{ song.bookNumber }}
+      </v-chip>
+
       <v-spacer></v-spacer>
       
       <v-btn

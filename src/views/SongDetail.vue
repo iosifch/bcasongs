@@ -118,55 +118,98 @@
 
     <div v-else-if="song">
 
-      <div class="song-content px-2 mt-4">
-        <div v-for="(paragraph, pIndex) in paragraphs" :key="paragraph.id" class="mb-4">
-          <v-card 
-            :variant="isEditMode ? 'elevated' : 'text'"
-            density="compact"
-            :class="[
-              { 
-                'chorus-style': !isEditMode && paragraph.type === 'chorus',
-                'coda-style': !isEditMode && paragraph.type === 'coda'
-              }
-            ]"
-          >
-            <v-card-text :class="{ 'py-0': !isEditMode, 'px-2': true }">
-              <div 
-                v-for="(line, lineIndex) in paragraph.lines" 
-                :key="lineIndex"
-                class="song-line mb-1"
-                :class="{ 'lyrics-mode': !showChords }"
+      <div class="song-content px-3 mt-4">
+        <div v-for="(paragraph, pIndex) in paragraphs" :key="paragraph.id" class="mb-6">
+          
+          <!-- Section Label Chips (Selection in Edit Mode, Label in View Mode) -->
+          <div class="mb-2">
+            <template v-if="isEditMode">
+              <v-chip
+                size="x-small"
+                :color="paragraph.type === 'verse' ? 'primary' : 'surface-variant'"
+                variant="tonal"
+                class="font-weight-bold text-uppercase mr-1"
+                @click="paragraph.type = 'verse'"
               >
-                <div 
-                  v-for="(segment, segIndex) in line.segments" 
-                  :key="segIndex" 
-                  class="song-segment"
-                  :class="{ 'mr-1': showChords }"
-                >
-                  <div v-if="showChords" class="chord font-weight-bold">
-                    {{ segment.chord || '&nbsp;' }}
-                  </div>
-                  <div class="lyrics" :class="fontSizeClass">
-                    {{ segment.text }}
-                  </div>
+                Strofă
+              </v-chip>
+              <v-chip
+                size="x-small"
+                :color="paragraph.type === 'chorus' ? 'primary' : 'surface-variant'"
+                variant="tonal"
+                class="font-weight-bold text-uppercase mr-1"
+                @click="paragraph.type = 'chorus'"
+              >
+                Refren
+              </v-chip>
+              <v-chip
+                size="x-small"
+                :color="paragraph.type === 'coda' ? 'primary' : 'surface-variant'"
+                variant="tonal"
+                class="font-weight-bold text-uppercase"
+                @click="paragraph.type = 'coda'"
+              >
+                Coda
+              </v-chip>
+            </template>
+            <template v-else>
+              <v-chip
+                v-if="paragraph.type === 'chorus'"
+                size="x-small"
+                color="surface-variant"
+                variant="tonal"
+                class="font-weight-bold text-uppercase"
+                style="letter-spacing: 0.5px; opacity: 0.8;"
+              >
+                Refren
+              </v-chip>
+              <v-chip
+                v-else-if="paragraph.type === 'coda'"
+                size="x-small"
+                color="surface-variant"
+                variant="tonal"
+                class="font-weight-bold text-uppercase"
+                style="letter-spacing: 0.5px; opacity: 0.8;"
+              >
+                Coda
+              </v-chip>
+              <v-chip
+                v-else
+                size="x-small"
+                color="surface-variant"
+                variant="tonal"
+                class="font-weight-bold text-uppercase"
+                style="letter-spacing: 0.5px; opacity: 0.8;"
+              >
+                Strofă
+              </v-chip>
+            </template>
+          </div>
+
+          <v-sheet 
+            color="transparent"
+          >
+            <div 
+              v-for="(line, lineIndex) in paragraph.lines" 
+              :key="lineIndex"
+              class="song-line mb-1"
+              :class="{ 'lyrics-mode': !showChords }"
+            >
+              <div 
+                v-for="(segment, segIndex) in line.segments" 
+                :key="segIndex" 
+                class="song-segment"
+                :class="{ 'mr-1': showChords }"
+              >
+                <div v-if="showChords" class="chord font-weight-bold">
+                  {{ segment.chord || '&nbsp;' }}
+                </div>
+                <div class="lyrics" :class="fontSizeClass">
+                  {{ segment.text }}
                 </div>
               </div>
-            </v-card-text>
-
-            <v-card-actions v-if="isEditMode" class="pt-0">
-              <v-btn-toggle
-                v-model="paragraph.type"
-                mandatory
-                color="primary"
-                variant="text"
-                density="comfortable"
-              >
-                <v-btn value="verse" size="small">Strofă</v-btn>
-                <v-btn value="chorus" size="small">Refren</v-btn>
-                <v-btn value="coda" size="small">Coda</v-btn>
-              </v-btn-toggle>
-            </v-card-actions>
-          </v-card>
+            </div>
+          </v-sheet>
         </div>
       </div>
     </div>
@@ -346,17 +389,6 @@ onUnmounted(() => {
 }
 .song-line.lyrics-mode .lyrics {
   display: inline;
-}
-
-.chorus-style {
-  font-style: italic;
-  padding-left: 16px !important;
-}
-
-.coda-style {
-  border-left: 2px solid #9E9E9E !important;
-  border-radius: 0 !important;
-  padding-left: 0 !important;
 }
 
 .action-buttons :deep(.v-btn) {

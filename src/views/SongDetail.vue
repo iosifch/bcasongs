@@ -70,9 +70,7 @@
 
     <div class="bottom-actions d-flex justify-center pa-2">
       <v-btn-group variant="outlined" density="comfortable" rounded="lg" divided>
-        <v-btn @click="showChords = !showChords" :title="showChords ? 'Hide Chords' : 'Show Chords'">
-          <v-icon>{{ showChords ? 'music_note' : 'music_off' }}</v-icon>
-        </v-btn>
+
 
         <v-btn @click="cycleFontSize" title="Change Font Size">
           <v-icon>format_size</v-icon>
@@ -110,29 +108,23 @@ import ChordProService from '../services/ChordProService';
 import { useShare } from '../composables/useShare';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useAuth } from '../composables/useAuth';
+import { useSongSettings } from '../composables/useSongSettings';
 
 const route = useRoute();
 const song = ref(null);
 const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
 const { isAuthenticated } = useAuth();
+const { fontSizeClass, cycleFontSize } = useSongSettings();
+
 const playlistCount = computed(() => playlist.value.length);
 const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
 const loading = ref(true);
 const paragraphs = ref([]);
 const isEditMode = ref(false);
 const showChords = ref(false);
-const fontSizeLevel = ref(0); // 0: Normal, 1: Large, 2: Extra Large
 const snackbar = ref(false);
 const snackbarText = ref('');
 const { share } = useShare();
-
-const fontSizes = ['lyrics-text-1', 'lyrics-text-2', 'lyrics-text-3'];
-
-const fontSizeClass = computed(() => fontSizes[fontSizeLevel.value]);
-
-const cycleFontSize = () => {
-  fontSizeLevel.value = (fontSizeLevel.value + 1) % fontSizes.length;
-};
 
 const shareSong = async () => {
   if (!song.value) return;

@@ -4,8 +4,8 @@
       <v-btn
         icon
         variant="text"
-        to="/"
-        class=""
+        @click="goBack"
+        class="mr-2"
         density="comfortable"
         rounded="lg"
         size="large"
@@ -49,7 +49,7 @@
         :ripple="false"
         style="padding: 0;"
       >
-        <v-icon>format_size</v-icon>
+        <v-icon size="25">format_size</v-icon>
       </v-btn>
 
       <v-btn
@@ -66,7 +66,7 @@
         :ripple="false"
         style="padding: 0;"
       >
-        <v-icon>share</v-icon>
+        <v-icon size="25">share</v-icon>
       </v-btn>
 
       <v-btn
@@ -84,7 +84,7 @@
         :ripple="false"
         style="padding: 0;"
       >
-        <v-icon>{{ isEditMode ? 'check' : 'edit_document' }}</v-icon>
+        <v-icon size="25">{{ isEditMode ? 'check' : 'edit_document' }}</v-icon>
       </v-btn>
 
       <v-btn
@@ -102,7 +102,7 @@
         :ripple="false"
         style="padding: 0;"
       >
-        <v-icon>{{ songInPlaylist ? 'playlist_remove' : 'playlist_add' }}</v-icon>
+        <v-icon size="25">{{ songInPlaylist ? 'playlist_remove' : 'playlist_add' }}</v-icon>
       </v-btn>
     </v-container>
   </v-app-bar>
@@ -189,7 +189,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch, onUnmounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import SongsRepository from '../services/SongsRepository';
 import ChordProService from '../services/ChordProService';
 
@@ -200,6 +200,7 @@ import { useSongSettings } from '../composables/useSongSettings';
 import { useCurrentSong } from '../composables/useCurrentSong';
 
 const route = useRoute();
+const router = useRouter();
 const song = ref(null);
 const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
 const { isAuthenticated } = useAuth();
@@ -230,6 +231,14 @@ const handleShare = async () => {
   if (result.copied) {
     snackbarText.value = 'Link copied to clipboard';
     snackbar.value = true;
+  }
+};
+
+const goBack = () => {
+  if (window.history.length > 2) {
+    router.back();
+  } else {
+    router.push('/');
   }
 };
 

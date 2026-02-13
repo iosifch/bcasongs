@@ -4,8 +4,8 @@
       <v-btn
         icon
         variant="text"
-        to="/"
-        class=""
+        @click="goBack"
+        class="mr-2"
         density="comfortable"
         rounded="lg"
         size="large"
@@ -61,17 +61,27 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import SongsRepository from '../services/SongsRepository';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useShare } from '../composables/useShare';
 import SongCard from '../components/SongCard.vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
+const router = useRouter();
 const songs = SongsRepository.songs;
 const { playlist, togglePlaylist, isInPlaylist, reorderPlaylist } = usePlaylist();
 const { share } = useShare();
 const snackbar = ref(false);
 const snackbarText = ref('');
+
+const goBack = () => {
+  if (window.history.length > 2) {
+    router.back();
+  } else {
+    router.push('/');
+  }
+};
 
 const handleTogglePlaylist = (songId) => {
   const wasInPlaylist = isInPlaylist(songId);

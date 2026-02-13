@@ -3,12 +3,16 @@
     <div v-if="user" class="d-flex align-center">
       <v-menu min-width="200px" rounded>
         <template v-slot:activator="{ props }">
-          <v-btn icon variant="text" :size="size" rounded="xl" v-bind="props">
-            <v-avatar color="secondary" :size="avatarSize">
-              <v-img v-if="user.photoURL" :src="user.photoURL" alt="Avatar"></v-img>
-              <span v-else class="text-caption font-weight-bold">{{ user.displayName?.charAt(0) || 'U' }}</span>
-            </v-avatar>
-          </v-btn>
+          <v-avatar 
+            v-bind="props"
+            v-ripple
+            color="secondary" 
+            :size="avatarSize + 8" 
+            class="cursor-pointer"
+          >
+            <v-img v-if="user.photoURL" :src="user.photoURL" alt="Avatar"></v-img>
+            <span v-else class="text-caption font-weight-bold">{{ user.displayName?.charAt(0) || 'U' }}</span>
+          </v-avatar>
         </template>
         <v-card>
           <v-card-text>
@@ -123,3 +127,9 @@ const handleSignOut = async () => {
   }
 };
 </script>
+
+<style scoped>
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>

@@ -1,13 +1,13 @@
 <template>
   <v-app-bar flat color="transparent" :elevation="0">
-    <v-container class="pa-0 fill-height d-flex align-center px-3">
+    <v-container class="pa-0 fill-height d-flex align-center ps-1 pe-3">
       <v-btn
         icon
         variant="text"
         to="/"
-        class="mr-2"
+        class=""
         density="comfortable"
-        rounded="xl"
+        rounded="lg"
         size="large"
       >
         <v-icon size="large">arrow_back</v-icon>
@@ -20,7 +20,7 @@
         color="surface-variant"
         @click="cycleFontSize"
         title="Change Font Size"
-        class="mr-1"
+        class="ml-2"
         density="comfortable"
         min-width="40"
         width="40"
@@ -37,7 +37,7 @@
         color="surface-variant"
         @click="handleShare"
         title="Share Song"
-        class="mr-1"
+        class="ml-2"
         density="comfortable"
         min-width="40"
         width="40"
@@ -55,7 +55,7 @@
         :color="isEditMode ? 'primary' : 'surface-variant'"
         @click="toggleEditMode"
         title="Edit Mode"
-        class="mr-1"
+        class="ml-2"
         density="comfortable"
         min-width="40"
         width="40"
@@ -72,7 +72,7 @@
         variant="tonal"
         :color="songInPlaylist ? 'primary' : 'surface-variant'"
         @click="handleTogglePlaylist"
-        class="mr-2"
+        class="ml-2"
         title="Toggle Playlist"
         density="comfortable"
         min-width="40"

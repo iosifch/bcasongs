@@ -1,13 +1,13 @@
 <template>
   <v-app-bar flat color="transparent" :elevation="0">
-    <v-container class="pa-0 fill-height d-flex align-center px-3">
+    <v-container class="pa-0 fill-height d-flex align-center ps-1 pe-3">
       <v-btn
         icon
         variant="text"
         to="/"
-        class="mr-2"
+        class=""
         density="comfortable"
-        rounded="xl"
+        rounded="lg"
         size="large"
       >
         <v-icon size="large">arrow_back</v-icon>

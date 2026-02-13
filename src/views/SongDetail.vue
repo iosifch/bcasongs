@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat color="background" :elevation="0" scroll-behavior="hide" scroll-threshold="50">
+  <v-app-bar flat color="background" :elevation="0" scroll-behavior="hide" scroll-threshold="150">
     <v-container class="pa-0 fill-height d-flex align-center px-3">
       <v-btn
         icon

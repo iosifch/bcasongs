@@ -3,16 +3,19 @@
     <div v-if="user" class="d-flex align-center">
       <v-menu min-width="200px" rounded>
         <template v-slot:activator="{ props }">
-          <v-avatar 
+          <v-btn
             v-bind="props"
-            v-ripple
-            color="secondary" 
-            :size="avatarSize + 8" 
-            class="cursor-pointer"
+            variant="tonal"
+            color="surface-variant"
+            rounded="lg"
+            density="comfortable"
+            style="width: 40px; height: 40px; min-width: 40px; padding: 0;"
           >
-            <v-img v-if="user.photoURL" :src="user.photoURL" alt="Avatar"></v-img>
-            <span v-else class="text-caption font-weight-bold">{{ user.displayName?.charAt(0) || 'U' }}</span>
-          </v-avatar>
+            <v-avatar :size="28">
+              <v-img v-if="user.photoURL" :src="user.photoURL" alt="Avatar"></v-img>
+              <span v-else class="text-caption font-weight-bold">{{ user.displayName?.charAt(0) || 'U' }}</span>
+            </v-avatar>
+          </v-btn>
         </template>
         <v-card>
           <v-card-text>
@@ -38,13 +41,16 @@
     <div v-else>
       <v-btn
         icon
-        variant="text"
+        variant="tonal"
+        color="surface-variant"
         :size="size"
-        rounded="xl"
+        rounded="lg"
         @click="handleLogin"
         title="Login with Google"
+        density="comfortable"
+        style="width: 40px; height: 40px; min-width: 40px;"
       >
-        <v-icon :size="avatarSize + 4">account_circle</v-icon>
+        <v-icon size="25">account_circle</v-icon>
       </v-btn>
     </div>
     
@@ -129,7 +135,4 @@ const handleSignOut = async () => {
 </script>
 
 <style scoped>
-.cursor-pointer {
-  cursor: pointer;
-}
 </style>

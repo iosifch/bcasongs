@@ -17,22 +17,25 @@
       <v-btn
         v-if="isAuthenticated"
         icon
-        variant="text"
-        rounded="xl"
+        variant="tonal"
+        color="surface-variant"
+        rounded="lg"
         to="/playlist"
-        class="mr-2"
+        class="ml-2"
         size="large"
+        density="comfortable"
+        style="width: 40px; height: 40px; min-width: 40px;"
       >
         <v-badge
           :content="playlistCount"
           :model-value="playlistCount > 0"
           color="primary"
         >
-          <v-icon size="large">queue_music</v-icon>
+          <v-icon size="25">queue_music</v-icon>
         </v-badge>
       </v-btn>
 
-      <UserAuth size="large" :avatar-size="32" />
+      <UserAuth size="large" :avatar-size="32" class="ml-2" />
     </v-container>
   </v-app-bar>
 

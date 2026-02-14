@@ -1,11 +1,11 @@
 # AGENTS.md
 
 ## 1. Business Needs
-This application serves as a digital songbook. It allows users to manage, view, and organize song lyrics and chords, facilitating smooth live performances and rehearsals while handling setlists efficiently.
+This application serves as a digital songbook. It allows users to manage, view, and organize song lyrics and setlists, facilitating smooth live performances and rehearsals while handling musical keys efficiently.
 
 ## 2. Features
 - **Song Library**: Browse and search a comprehensive collection of songs.
-- **Song Details**: View lyrics and chords rendered from ChordPro format.
+- **Song Details**: View lyrics and manage musical keys.
 - **Playlists/Setlists**: Create, manage, and share lists of songs.
 - **User Authentication**: Logged-in users can **edit songs** and **create/manage playlists**.
 
@@ -14,7 +14,7 @@ This application serves as a digital songbook. It allows users to manage, view, 
 ### Structure
 - **Views**: Located in `src/views`, representing main pages (SongList, SongDetail, Playlist).
 - **Components**: Reusable UI elements in `src/components`.
-- **Services**: Business logic and data access (e.g., `SongsRepository`, `ChordProService`) in `src/services`.
+- **Services**: Business logic and data access (e.g., `SongsRepository`, `LyricsService`) in `src/services`.
 - **Router**: Navigation logic defined in `src/router/index.js`.
 
 ### Technology Stack

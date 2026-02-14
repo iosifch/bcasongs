@@ -1,5 +1,5 @@
 export default {
-  // Parse ChordPro-like content into structured data (Paragraphs)
+  // Parse content into structured data (Paragraphs)
   parseToParagraphs(content) {
     if (!content) return [];
     
@@ -66,34 +66,15 @@ export default {
 
   // Helper for parsing a single line
   parseLine(line) {
-    // Strip tags just in case they are inline
+    // Strip tags and chords [C] from lyrics
     let cleanLine = line.replace(/\{start_of_chorus\}|\{end_of_chorus\}|\{start_of_coda\}|\{end_of_coda\}/g, '');
+    cleanLine = cleanLine.replace(/\[[^\]]+\]/g, ''); // Remove chords
     
-    if (!cleanLine.trim() && !cleanLine.includes('[')) {
-        return { segments: [], isSpacer: true };
+    if (!cleanLine.trim()) {
+        return { text: '', isSpacer: true };
     }
 
-    const segments = [];
-    const regex = /\[([^\]]+)\]([^\[]*)/g;
-
-    const firstBracket = cleanLine.indexOf('[');
-    if (firstBracket > 0) {
-      segments.push({ chord: null, text: cleanLine.substring(0, firstBracket) });
-    } else if (firstBracket === -1) {
-      return { segments: [{ chord: null, text: cleanLine }], isSpacer: false };
-    }
-
-    let match;
-    let lastIndex = 0;
-    
-    // Reset regex index
-    regex.lastIndex = 0;
-    while ((match = regex.exec(cleanLine)) !== null) {
-      segments.push({ chord: match[1], text: match[2] });
-      lastIndex = regex.lastIndex;
-    }
-
-    return { segments, isSpacer: false };
+    return { text: cleanLine, isSpacer: false };
   },
 
   serialize(paragraphs) {
@@ -102,11 +83,7 @@ export default {
       if (p.type === 'chorus') content += "{start_of_chorus}\n";
       if (p.type === 'coda') content += "{start_of_coda}\n";
       
-      content += p.lines.map(l => {
-        return l.segments.map(s => {
-          return (s.chord ? `[${s.chord}]` : "") + s.text;
-        }).join("");
-      }).join("\n");
+      content += p.lines.map(l => l.text).join("\n");
 
       if (p.type === 'chorus') content += "\n{end_of_chorus}";
       if (p.type === 'coda') content += "\n{end_of_coda}";

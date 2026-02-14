@@ -50,7 +50,7 @@ vi.mock('../services/SongsRepository', () => ({
   }
 }));
 
-vi.mock('../services/ChordProService', () => ({
+vi.mock('../services/LyricsService', () => ({
   default: {
     parseToParagraphs: vi.fn(() => []),
     serialize: vi.fn(() => '')

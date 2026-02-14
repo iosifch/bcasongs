@@ -209,20 +209,9 @@
               v-for="(line, lineIndex) in paragraph.lines" 
               :key="lineIndex"
               class="song-line mb-1"
-              :class="{ 'lyrics-mode': !showChords }"
             >
-              <div 
-                v-for="(segment, segIndex) in line.segments" 
-                :key="segIndex" 
-                class="song-segment"
-                :class="{ 'mr-1': showChords }"
-              >
-                <div v-if="showChords" class="chord font-weight-bold">
-                  {{ segment.chord || '&nbsp;' }}
-                </div>
-                <div class="lyrics" :class="fontSizeClass">
-                  {{ segment.text }}
-                </div>
+              <div class="lyrics" :class="fontSizeClass">
+                {{ line.text }}
               </div>
             </div>
           </v-sheet>
@@ -309,7 +298,7 @@
 import { ref, computed, onMounted, watch, onUnmounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import SongsRepository from '../services/SongsRepository';
-import ChordProService from '../services/ChordProService';
+import LyricsService from '../services/LyricsService';
 
 import { useShare } from '../composables/useShare';
 import { usePlaylist } from '../composables/usePlaylist';
@@ -329,7 +318,6 @@ const playlistCount = computed(() => playlist.value.length);
 const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
 const loading = ref(true);
 const paragraphs = ref([]);
-const showChords = ref(false); // Can be removed if completely unused, or kept for future
 const snackbar = ref(false);
 const snackbarText = ref('');
 const { share } = useShare(); 
@@ -400,7 +388,7 @@ const goBack = () => {
 watch(isEditMode, async (newValue) => {
   if (!newValue && song.value && paragraphs.value.length > 0) {
     try {
-      const newContent = ChordProService.serialize(paragraphs.value);
+      const newContent = LyricsService.serialize(paragraphs.value);
       await SongsRepository.save(song.value.id, newContent);
       snackbarText.value = 'Changes saved to cloud';
       snackbar.value = true;
@@ -417,7 +405,7 @@ const resolveSong = () => {
   song.value = SongsRepository.getSong(id);
   if (song.value) {
     setCurrentSong(song.value);
-    paragraphs.value = ChordProService.parseToParagraphs(song.value.content);
+    paragraphs.value = LyricsService.parseToParagraphs(song.value.content);
   }
   loading.value = false;
 };
@@ -469,36 +457,12 @@ onUnmounted(() => {
 }
 
 .song-line {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end; /* Align text to bottom so chords float above */
-}
-
-.song-line.lyrics-mode {
   display: block;
-}
-
-.song-segment {
-  display: flex;
-  flex-direction: column;
-  /* Ensure chords stay above their text */
-}
-
-.song-line.lyrics-mode .song-segment {
-  display: inline;
-}
-
-.chord {
-  min-height: 1.5em; /* Reserve space for chords even if empty (handled by &nbsp;) */
-  line-height: 1.5;
 }
 
 .lyrics {
   white-space: pre-wrap; /* Preserve spaces in lyrics */
   line-height: 1.5;
-}
-.song-line.lyrics-mode .lyrics {
-  display: inline;
 }
 
 .action-buttons :deep(.v-btn) {

@@ -1,59 +1,57 @@
-import ChordProService from './ChordProService';
+import LyricsService from './LyricsService';
 
-describe('ChordProService', () => {
+describe('LyricsService', () => {
   describe('parseToParagraphs', () => {
     it('should parse a simple line as a verse paragraph', () => {
       const content = 'Simple lyrics';
-      const paragraphs = ChordProService.parseToParagraphs(content);
+      const paragraphs = LyricsService.parseToParagraphs(content);
 
       expect(paragraphs).toHaveLength(1);
       expect(paragraphs[0].type).toBe('verse');
-      expect(paragraphs[0].lines[0].segments[0].text).toBe('Simple lyrics');
+      expect(paragraphs[0].lines[0].text).toBe('Simple lyrics');
     });
 
     it('should identify chorus tags correctly', () => {
       const content = '{start_of_chorus}\nChorus line\n{end_of_chorus}';
-      const paragraphs = ChordProService.parseToParagraphs(content);
+      const paragraphs = LyricsService.parseToParagraphs(content);
 
       expect(paragraphs).toHaveLength(1);
       expect(paragraphs[0].type).toBe('chorus');
-      expect(paragraphs[0].lines[0].segments[0].text).toBe('Chorus line');
+      expect(paragraphs[0].lines[0].text).toBe('Chorus line');
     });
 
     it('should split paragraphs by empty lines', () => {
       const content = 'Verse 1\n\nVerse 2';
-      const paragraphs = ChordProService.parseToParagraphs(content);
+      const paragraphs = LyricsService.parseToParagraphs(content);
 
       expect(paragraphs).toHaveLength(2);
       expect(paragraphs[0].type).toBe('verse');
       expect(paragraphs[1].type).toBe('verse');
     });
 
-    it('should parse chords and text segments correctly', () => {
+    it('should strip chords from text', () => {
       const content = '[A]Amazing [D]Grace';
-      const paragraphs = ChordProService.parseToParagraphs(content);
-      const segments = paragraphs[0].lines[0].segments;
+      const paragraphs = LyricsService.parseToParagraphs(content);
+      const lineText = paragraphs[0].lines[0].text;
 
-      expect(segments).toHaveLength(2);
-      expect(segments[0]).toEqual({ chord: 'A', text: 'Amazing ' });
-      expect(segments[1]).toEqual({ chord: 'D', text: 'Grace' });
+      expect(lineText).toBe('Amazing Grace');
     });
   });
 
   describe('serialize', () => {
-    it('should convert paragraphs back to ChordPro text', () => {
+    it('should convert paragraphs back to text with tags', () => {
       const paragraphs = [
         {
           type: 'chorus',
           lines: [
-            { segments: [{ chord: 'G', text: 'Gloria' }], isSpacer: false }
+            { text: 'Gloria', isSpacer: false }
           ]
         }
       ];
 
-      const result = ChordProService.serialize(paragraphs);
+      const result = LyricsService.serialize(paragraphs);
       expect(result).toContain('{start_of_chorus}');
-      expect(result).toContain('[G]Gloria');
+      expect(result).toContain('Gloria');
       expect(result).toContain('{end_of_chorus}');
     });
 
@@ -62,34 +60,34 @@ describe('ChordProService', () => {
         {
           type: 'verse',
           lines: [
-            { segments: [{ chord: 'D', text: 'Verse line' }], isSpacer: false }
+            { text: 'Verse line', isSpacer: false }
           ]
         }
       ];
 
-      const result = ChordProService.serialize(paragraphs);
+      const result = LyricsService.serialize(paragraphs);
       expect(result).not.toContain('{start_of_chorus}');
       expect(result).not.toContain('{end_of_chorus}');
-      expect(result).toContain('[D]Verse line');
+      expect(result).toBe('Verse line');
     });
 
     it('should handle multiple paragraphs with mixed types', () => {
       const paragraphs = [
         {
           type: 'verse',
-          lines: [{ segments: [{ text: 'Verse 1' }], isSpacer: false }]
+          lines: [{ text: 'Verse 1', isSpacer: false }]
         },
         {
           type: 'chorus',
-          lines: [{ segments: [{ text: 'Chorus' }], isSpacer: false }]
+          lines: [{ text: 'Chorus', isSpacer: false }]
         },
         {
           type: 'coda',
-          lines: [{ segments: [{ text: 'Coda' }], isSpacer: false }]
+          lines: [{ text: 'Coda', isSpacer: false }]
         }
       ];
 
-      const result = ChordProService.serialize(paragraphs);
+      const result = LyricsService.serialize(paragraphs);
 
       // Check sequence
       const parts = result.split('\n\n');

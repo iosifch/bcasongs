@@ -15,7 +15,7 @@
       ></v-text-field>
 
       <v-btn
-        v-if="isAuthenticated"
+        v-if="!isAuthenticating && isAuthenticated"
         icon
         variant="tonal"
         color="surface-variant"
@@ -82,7 +82,7 @@ import { useSearch } from '../composables/useSearch';
 import SongCard from '../components/SongCard.vue';
 import UserAuth from '../components/UserAuth.vue';
 
-const { isAuthenticated } = useAuth();
+const { isAuthenticated, isAuthenticating } = useAuth();
 const songs = SongsRepository.songs;
 const { search } = useSearch();
 const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();

@@ -88,37 +88,6 @@ defineProps({
 
 onMounted(() => {
   initializeAuth();
-
-  onAuthStateChanged(auth, async (currentUser) => {
-    if (currentUser) {
-      // Security Check: Verify if email is allowed (Frontend Check)
-      // Note: Backend Rules are the real enforcer, this is for UX
-      try {
-        const settingsRef = doc(db, 'settings', 'auth');
-        const settingsSnap = await getDoc(settingsRef);
-        
-        if (settingsSnap.exists()) {
-          const allowedEmails = settingsSnap.data().allowedEmails || [];
-          if (!allowedEmails.includes(currentUser.email)) {
-            errorMsg.value = 'Access Denied.';
-            snackbar.value = true;
-            await signOut(auth);
-            return;
-          }
-        } else {
-           console.warn('Auth settings document not found.');
-        }
-      } catch (e) {
-        if (e.code === 'permission-denied') {
-          errorMsg.value = 'Access Denied: You are not on the authorized list.';
-          snackbar.value = true;
-          await signOut(auth);
-        } else {
-          console.error('Error checking auth whitelist:', e);
-        }
-      }
-    }
-  });
 });
 
 const handleLogin = async () => {

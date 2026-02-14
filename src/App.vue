@@ -10,8 +10,12 @@
 import { onMounted } from 'vue';
 import SongsRepository from './services/SongsRepository';
 import PlaylistRepository from './services/PlaylistRepository';
+import { useAuth } from './composables/useAuth';
+
+const { initializeAuth } = useAuth();
 
 onMounted(() => {
+  initializeAuth();
   SongsRepository.initialize();
   PlaylistRepository.initialize();
 });

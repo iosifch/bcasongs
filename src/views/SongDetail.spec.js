@@ -4,7 +4,11 @@ import { ref, computed } from 'vue';
 
 // 1. Mock Composables
 vi.mock('../composables/useAuth', () => ({
-  useAuth: vi.fn()
+  useAuth: vi.fn(() => ({
+    isAuthenticated: ref(false),
+    isAuthenticating: ref(false),
+    initializeAuth: vi.fn()
+  }))
 }));
 
 vi.mock('../composables/usePlaylist', () => ({
@@ -103,7 +107,8 @@ describe('SongDetail.vue - Key Change', () => {
 
   it('shows key as a chip when not authenticated', async () => {
     useAuth.mockReturnValue({
-      isAuthenticated: computed(() => false)
+      isAuthenticated: computed(() => false),
+      isAuthenticating: ref(false)
     });
 
     const wrapper = mount(SongDetail, { global });
@@ -124,7 +129,8 @@ describe('SongDetail.vue - Key Change', () => {
 
   it('shows key as a button when authenticated', async () => {
     useAuth.mockReturnValue({
-      isAuthenticated: computed(() => true)
+      isAuthenticated: computed(() => true),
+      isAuthenticating: ref(false)
     });
 
     const wrapper = mount(SongDetail, { global });
@@ -137,7 +143,8 @@ describe('SongDetail.vue - Key Change', () => {
 
   it('opens dialog when key button is clicked', async () => {
     useAuth.mockReturnValue({
-      isAuthenticated: computed(() => true)
+      isAuthenticated: computed(() => true),
+      isAuthenticating: ref(false)
     });
 
     const wrapper = mount(SongDetail, { global });
@@ -158,7 +165,8 @@ describe('SongDetail.vue - Key Change', () => {
   it('parses complex key correctly when opening dialog', async () => {
     SongsRepository.getSong.mockReturnValue({ ...mockSong, originalKey: 'C#m' });
     useAuth.mockReturnValue({
-      isAuthenticated: computed(() => true)
+      isAuthenticated: computed(() => true),
+      isAuthenticating: ref(false)
     });
 
     const wrapper = mount(SongDetail, { global });
@@ -173,7 +181,8 @@ describe('SongDetail.vue - Key Change', () => {
 
   it('saves new key and updates UI', async () => {
     useAuth.mockReturnValue({
-      isAuthenticated: computed(() => true)
+      isAuthenticated: computed(() => true),
+      isAuthenticating: ref(false)
     });
     SongsRepository.save.mockResolvedValue();
 

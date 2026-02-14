@@ -55,6 +55,7 @@ describe('UserAuth.vue', () => {
     useAuth.mockReturnValue({
       user: ref(null),
       isAuthenticated: computed(() => false),
+      isAuthenticating: ref(false),
       initializeAuth: vi.fn()
     });
 
@@ -76,6 +77,7 @@ describe('UserAuth.vue', () => {
     useAuth.mockReturnValue({
       user: ref(mockUser),
       isAuthenticated: computed(() => true),
+      isAuthenticating: ref(false),
       initializeAuth: vi.fn()
     });
 
@@ -109,40 +111,11 @@ describe('UserAuth.vue', () => {
     expect(wrapper.text()).toContain('Test User');
   });
 
-  it('signs out if email is not in whitelist', async () => {
-    const mockUser = { email: 'hacker@example.com' };
-
-    useAuth.mockReturnValue({
-      user: ref(mockUser),
-      isAuthenticated: computed(() => true),
-      initializeAuth: vi.fn()
-    });
-
-    onAuthStateChanged.mockImplementation((auth, callback) => {
-      callback(mockUser);
-      return () => { };
-    });
-
-    // Mock Firestore Whitelist Check (Deny access)
-    getDoc.mockResolvedValue({
-      exists: () => true,
-      data: () => ({ allowedEmails: ['admin@example.com'] })
-    });
-
-    const wrapper = mount(UserAuth, { global });
-    await flushPromises();
-
-    // Expect signOut to be called
-    expect(signOut).toHaveBeenCalledWith(auth);
-    // Expect error message
-    expect(wrapper.vm.snackbar).toBe(true);
-    expect(wrapper.vm.errorMsg).toContain('Access Denied');
-  });
-
   it('calls signInWithPopup when login button is clicked', async () => {
     useAuth.mockReturnValue({
       user: ref(null),
       isAuthenticated: computed(() => false),
+      isAuthenticating: ref(false),
       initializeAuth: vi.fn()
     });
 

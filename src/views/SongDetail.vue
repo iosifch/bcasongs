@@ -24,29 +24,31 @@
         #{{ song.bookNumber }}
       </v-chip>
 
-      <v-chip
-        v-if="song?.originalKey && !isAuthenticated"
-        color="outline"
-        variant="outlined"
-        size="small"
-        class="ml-2 font-weight-bold text-on-surface-variant"
-      >
-        {{ song.originalKey }}
-      </v-chip>
+      <template v-if="!isAuthenticating">
+        <v-chip
+          v-if="song?.originalKey && !isAuthenticated"
+          color="outline"
+          variant="outlined"
+          size="small"
+          class="ml-2 font-weight-bold text-on-surface-variant"
+        >
+          {{ song.originalKey }}
+        </v-chip>
 
-      <v-btn
-        v-else-if="song?.originalKey && isAuthenticated"
-        variant="tonal"
-        color="surface-variant"
-        class="ml-2 font-weight-bold"
-        density="comfortable"
-        min-width="40"
-        height="40"
-        rounded="lg"
-        @click="openKeyDialog"
-      >
-        {{ song.originalKey }}
-      </v-btn>
+        <v-btn
+          v-else-if="song?.originalKey && isAuthenticated"
+          variant="tonal"
+          color="surface-variant"
+          class="ml-2 font-weight-bold"
+          density="comfortable"
+          min-width="40"
+          height="40"
+          rounded="lg"
+          @click="openKeyDialog"
+        >
+          {{ song.originalKey }}
+        </v-btn>
+      </template>
 
       <v-spacer></v-spacer>
       
@@ -319,7 +321,7 @@ const route = useRoute();
 const router = useRouter();
 const song = ref(null);
 const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
-const { isAuthenticated } = useAuth();
+const { isAuthenticated, isAuthenticating } = useAuth();
 const { fontSizeClass, cycleFontSize } = useSongSettings();
 const { setCurrentSong, clearCurrentSong, isEditMode, toggleEditMode } = useCurrentSong();
 

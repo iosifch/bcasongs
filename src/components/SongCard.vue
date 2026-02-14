@@ -16,7 +16,7 @@
           color="outline"
           variant="outlined"
           size="small"
-          class="font-weight-bold text-on-surface-variant"
+          class="font-weight-bold text-on-surface-variant text-none"
         >
           {{ song.originalKey }}
         </v-chip>

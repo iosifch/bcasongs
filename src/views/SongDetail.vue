@@ -30,7 +30,7 @@
           color="outline"
           variant="outlined"
           size="small"
-          class="ml-2 font-weight-bold text-on-surface-variant"
+          class="ml-2 font-weight-bold text-on-surface-variant text-none"
         >
           {{ song.originalKey }}
         </v-chip>
@@ -39,7 +39,7 @@
           v-else-if="song?.originalKey && isAuthenticated"
           variant="tonal"
           color="surface-variant"
-          class="ml-2 font-weight-bold"
+          class="ml-2 font-weight-bold text-none"
           density="comfortable"
           min-width="40"
           height="40"

@@ -15,24 +15,38 @@
       </v-btn>
 
       <v-chip
-        v-if="song?.originalKey"
+        v-if="song?.bookNumber"
         color="outline"
         variant="outlined"
         size="small"
         class="ml-1 font-weight-bold text-on-surface-variant"
       >
-        {{ song.originalKey }}
+        #{{ song.bookNumber }}
       </v-chip>
 
       <v-chip
-        v-if="song?.bookNumber"
+        v-if="song?.originalKey && !isAuthenticated"
         color="outline"
         variant="outlined"
         size="small"
         class="ml-2 font-weight-bold text-on-surface-variant"
       >
-        #{{ song.bookNumber }}
+        {{ song.originalKey }}
       </v-chip>
+
+      <v-btn
+        v-else-if="song?.originalKey && isAuthenticated"
+        variant="tonal"
+        color="surface-variant"
+        class="ml-2 font-weight-bold"
+        density="comfortable"
+        min-width="40"
+        height="40"
+        rounded="lg"
+        @click="openKeyDialog"
+      >
+        {{ song.originalKey }}
+      </v-btn>
 
       <v-spacer></v-spacer>
       
@@ -131,7 +145,7 @@
                 class="text-uppercase mr-1"
                 @click="paragraph.type = 'verse'"
               >
-                Strofă
+                Verse
               </v-chip>
               <v-chip
                 size="small"
@@ -140,7 +154,7 @@
                 class="text-uppercase mr-1"
                 @click="paragraph.type = 'chorus'"
               >
-                Refren
+                Chorus
               </v-chip>
               <v-chip
                 size="small"
@@ -161,7 +175,7 @@
                 class="text-uppercase"
                 style="letter-spacing: 0.5px; opacity: 0.8;"
               >
-                Refren
+                Chorus
               </v-chip>
               <v-chip
                 v-else-if="paragraph.type === 'coda'"
@@ -181,7 +195,7 @@
                 class="text-uppercase"
                 style="letter-spacing: 0.5px; opacity: 0.8;"
               >
-                Strofă
+                Verse
               </v-chip>
             </template>
           </div>
@@ -228,6 +242,64 @@
         <v-btn color="inverse-primary" variant="text" @click="snackbar = false">Close</v-btn>
       </template>
     </v-snackbar>
+
+    <!-- Key Selection Dialog -->
+    <v-dialog v-model="keyDialog" max-width="320">
+      <v-card rounded="xl" class="pa-4">
+        <v-card-text class="pt-4">
+          <div class="text-center text-h4 mb-6">
+            {{ selectedRoot }}{{ selectedAccidental }}{{ selectedQuality }}
+          </div>
+
+          <v-row>
+            <v-col cols="12">
+              <v-select
+                v-model="selectedRoot"
+                :items="['C', 'D', 'E', 'F', 'G', 'A', 'B']"
+                label="Note"
+                variant="outlined"
+                rounded="lg"
+                density="comfortable"
+                menu-icon="arrow_drop_down"
+              ></v-select>
+            </v-col>
+            <v-col cols="12">
+              <v-select
+                v-model="selectedAccidental"
+                :items="[
+                  { title: '♮ (Natural)', value: '' },
+                  { title: '♭ (Flat)', value: 'b' },
+                  { title: '♯ (Sharp)', value: '#' }
+                ]"
+                label="Accidental"
+                variant="outlined"
+                rounded="lg"
+                density="comfortable"
+                menu-icon="arrow_drop_down"
+              ></v-select>
+            </v-col>
+            <v-col cols="12">
+              <v-select
+                v-model="selectedQuality"
+                :items="[
+                  { title: 'Major', value: '' },
+                  { title: 'Minor', value: 'm' }
+                ]"
+                label="Type"
+                variant="outlined"
+                rounded="lg"
+                density="comfortable"
+                menu-icon="arrow_drop_down"
+              ></v-select>
+            </v-col>
+          </v-row>
+        </v-card-text>
+        <v-card-actions class="justify-space-between px-2 pb-2">
+          <v-btn variant="text" @click="keyDialog = false" rounded="lg">Cancel</v-btn>
+          <v-btn color="primary" variant="flat" @click="saveKeyChange" rounded="lg">Change</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -259,6 +331,42 @@ const showChords = ref(false); // Can be removed if completely unused, or kept f
 const snackbar = ref(false);
 const snackbarText = ref('');
 const { share } = useShare(); 
+
+// Key Change Dialog Logic
+const keyDialog = ref(false);
+const selectedRoot = ref('C');
+const selectedAccidental = ref('');
+const selectedQuality = ref('');
+
+const openKeyDialog = () => {
+  if (!song.value || !song.value.originalKey) return;
+  
+  // Parse current key: e.g., "C#m" -> root: "C", accidental: "#", quality: "m"
+  const match = song.value.originalKey.match(/^([A-G])([#b]?)(m?)$/);
+  if (match) {
+    selectedRoot.value = match[1];
+    selectedAccidental.value = match[2];
+    selectedQuality.value = match[3];
+  }
+  
+  keyDialog.value = true;
+};
+
+const saveKeyChange = async () => {
+  const newKey = `${selectedRoot.value}${selectedAccidental.value}${selectedQuality.value}`;
+  
+  try {
+    await SongsRepository.save(song.value.id, song.value.content, null, newKey);
+    song.value.originalKey = newKey;
+    keyDialog.value = false;
+    snackbarText.value = 'Key changed successfully';
+    snackbar.value = true;
+  } catch (error) {
+    console.error('Failed to change key:', error);
+    snackbarText.value = 'Error changing key';
+    snackbar.value = true;
+  }
+};
 
 const handleTogglePlaylist = () => {
   if (!song.value) return;

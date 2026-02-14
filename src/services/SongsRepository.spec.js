@@ -68,6 +68,13 @@ describe('SongsRepository', () => {
       expect(mockUpdateDoc).toHaveBeenCalled();
     });
 
+    it('save (update) should include originalKey if provided', async () => {
+      await SongsRepository.save('123', 'Lyrics', null, 'C#m');
+      expect(mockUpdateDoc).toHaveBeenCalledWith(undefined, expect.objectContaining({
+        originalKey: 'C#m'
+      }));
+    });
+
     it('deleteSong should call deleteDoc', async () => {
       await SongsRepository.deleteSong('123');
       expect(mockDoc).toHaveBeenCalled();

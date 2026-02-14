@@ -69,7 +69,7 @@ export default {
     }
   },
 
-  async save(id, content, title = null) {
+  async save(id, content, title = null, originalKey = null) {
     // Determine what to update
     const updateData = {
       content,
@@ -77,6 +77,7 @@ export default {
     };
 
     if (title) updateData.title = title;
+    if (originalKey !== null) updateData.originalKey = originalKey;
 
     try {
       const songRef = doc(db, 'songs', id);

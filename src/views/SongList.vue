@@ -39,7 +39,7 @@
     </v-container>
   </v-app-bar>
 
-  <v-container fluid class="pa-3">
+  <v-container fluid class="py-1 px-2">
     <div v-if="SongsRepository.loading.value && songs.length === 0" class="d-flex justify-center my-4">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
     </div>
@@ -47,7 +47,7 @@
     <div v-else>
       <!-- Main List -->
       <v-row dense>
-        <v-col cols="12" v-for="song in filteredSongs" :key="song.id" class="py-2">
+        <v-col cols="12" v-for="song in filteredSongs" :key="song.id" class="pb-2">
           <SongCard
             :song="song"
             :is-in-playlist="isInPlaylist(song.id)"

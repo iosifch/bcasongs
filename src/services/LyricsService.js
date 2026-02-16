@@ -1,4 +1,29 @@
 export default {
+  // Create a new empty paragraph object
+  createParagraph(type) {
+    return {
+      id: Math.random().toString(36).substr(2, 9),
+      type: type || 'verse',
+      lines: []
+    };
+  },
+
+  // Sync a paragraph's lines from a raw text string
+  syncParagraphLines(paragraph, text) {
+    paragraph.lines = text.split('\n').map(lineText => ({
+      text: lineText,
+      isSpacer: lineText.trim() === ''
+    }));
+  },
+
+  // Filter out paragraphs that have no content (all lines are empty)
+  filterEmptyParagraphs(paragraphs) {
+    return paragraphs.filter(p => {
+      const text = (p.editText !== undefined) ? p.editText : p.lines.map(l => l.text).join('');
+      return text.trim().length > 0;
+    });
+  },
+
   // Parse content into structured data (Paragraphs)
   parseToParagraphs(content) {
     if (!content) return [];
@@ -7,26 +32,18 @@ export default {
     const paragraphs = [];
     let currentParagraph = null;
 
-    const createParagraph = (type) => {
-      return {
-        id: Math.random().toString(36).substr(2, 9),
-        type: type || 'verse',
-        lines: []
-      };
-    };
-
     lines.forEach(line => {
       const trimmedLine = line.trim();
 
       // Check for explicit start tags
       if (trimmedLine.includes('{start_of_chorus}')) {
         if (currentParagraph && currentParagraph.lines.length > 0) paragraphs.push(currentParagraph);
-        currentParagraph = createParagraph('chorus');
+        currentParagraph = this.createParagraph('chorus');
         return;
       }
       if (trimmedLine.includes('{start_of_coda}')) {
         if (currentParagraph && currentParagraph.lines.length > 0) paragraphs.push(currentParagraph);
-        currentParagraph = createParagraph('coda');
+        currentParagraph = this.createParagraph('coda');
         return;
       }
 
@@ -50,7 +67,7 @@ export default {
 
       // Regular content line
       if (!currentParagraph) {
-        currentParagraph = createParagraph('verse');
+        currentParagraph = this.createParagraph('verse');
       }
 
       const parsedLine = this.parseLine(line);

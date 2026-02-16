@@ -107,4 +107,44 @@ describe('LyricsService', () => {
       expect(parts[2]).toContain('{end_of_coda}');
     });
   });
+
+  describe('syncParagraphLines', () => {
+    it('should split text into lines and set isSpacer correctly', () => {
+      const p = { lines: [] };
+      const text = 'Line 1\n\nLine 2';
+      LyricsService.syncParagraphLines(p, text);
+
+      expect(p.lines).toHaveLength(3);
+      expect(p.lines[0]).toEqual({ text: 'Line 1', isSpacer: false });
+      expect(p.lines[1]).toEqual({ text: '', isSpacer: true });
+      expect(p.lines[2]).toEqual({ text: 'Line 2', isSpacer: false });
+    });
+  });
+
+  describe('filterEmptyParagraphs', () => {
+    it('should remove paragraphs that have no content', () => {
+      const paragraphs = [
+        { editText: 'Content' },
+        { editText: '   ' }, // empty after trim
+        { editText: '\n\n' }, // only newlines
+        { editText: 'Valid' }
+      ];
+
+      const filtered = LyricsService.filterEmptyParagraphs(paragraphs);
+      expect(filtered).toHaveLength(2);
+      expect(filtered[0].editText).toBe('Content');
+      expect(filtered[1].editText).toBe('Valid');
+    });
+
+    it('should use lines if editText is not present', () => {
+      const paragraphs = [
+        { lines: [{ text: 'L1', isSpacer: false }] },
+        { lines: [{ text: '', isSpacer: true }] }
+      ];
+
+      const filtered = LyricsService.filterEmptyParagraphs(paragraphs);
+      expect(filtered).toHaveLength(1);
+      expect(filtered[0].lines[0].text).toBe('L1');
+    });
+  });
 });

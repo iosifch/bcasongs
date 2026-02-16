@@ -140,26 +140,60 @@
     </v-row>
 
     <div v-else-if="song">
-
       <div class="song-content px-3 mt-4">
         <div v-for="(paragraph, pIndex) in paragraphs" :key="paragraph.id" class="mb-6">
-          
-          <!-- Section Label Chips (Selection in Edit Mode, Label in View Mode) -->
-          <div class="mb-2">
-            <v-btn-toggle
-              v-if="isEditMode"
-              v-model="paragraph.type"
-              mandatory
-              density="compact"
-              color="primary"
-              variant="outlined"
-              divided
-              rounded="lg"
-            >
-              <v-btn value="verse" size="small" class="text-uppercase">Verse</v-btn>
-              <v-btn value="chorus" size="small" class="text-uppercase">Chorus</v-btn>
-              <v-btn value="coda" size="small" class="text-uppercase">Coda</v-btn>
-            </v-btn-toggle>
+          <div class="mb-2 d-flex align-center">
+            <template v-if="isEditMode">
+              <v-btn-toggle
+                v-model="paragraph.type"
+                mandatory
+                density="compact"
+                color="primary"
+                variant="outlined"
+                divided
+                rounded="lg"
+              >
+                <v-btn value="verse" size="small" class="text-uppercase">Verse</v-btn>
+                <v-btn value="chorus" size="small" class="text-uppercase">Chorus</v-btn>
+                <v-btn value="coda" size="small" class="text-uppercase">Coda</v-btn>
+              </v-btn-toggle>
+
+              <v-spacer></v-spacer>
+
+              <v-btn-group
+                variant="outlined"
+                density="compact"
+                divided
+                rounded="lg"
+                class="ml-2"
+              >
+                <v-btn
+                  size="small"
+                  title="Add Above"
+                  @click="addParagraph(pIndex, 'above')"
+                  data-testid="add-above-btn"
+                >
+                  <v-icon>add_row_above</v-icon>
+                </v-btn>
+                <v-btn
+                  size="small"
+                  title="Add Below"
+                  @click="addParagraph(pIndex, 'below')"
+                  data-testid="add-below-btn"
+                >
+                  <v-icon>add_row_below</v-icon>
+                </v-btn>
+                <v-btn
+                  size="small"
+                  title="Delete Paragraph"
+                  :disabled="paragraphs.length <= 1"
+                  @click="removeParagraph(pIndex)"
+                  data-testid="delete-paragraph-btn"
+                >
+                  <v-icon>delete</v-icon>
+                </v-btn>
+              </v-btn-group>
+            </template>
             <template v-else>
               <v-chip
                 v-if="paragraph.type === 'chorus'"
@@ -196,7 +230,8 @@
 
           <v-textarea
             v-if="isEditMode"
-            v-model="editTexts[pIndex]"
+            v-model="paragraph.editText"
+            :ref="el => setTextareaRef(el, paragraph.id)"
             auto-grow
             hide-details
             rows="2"
@@ -223,8 +258,6 @@
       </v-col>
     </v-row>
 
-
-
     <v-snackbar v-model="snackbar" :timeout="2000" color="inverse-surface">
       {{ snackbarText }}
       <template v-slot:actions>
@@ -232,7 +265,6 @@
       </template>
     </v-snackbar>
 
-    <!-- Key Selection Dialog -->
     <v-dialog v-model="keyDialog" max-width="320">
       <v-card rounded="xl" class="pa-4">
         <v-card-text class="pt-4">
@@ -293,7 +325,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, onUnmounted } from 'vue';
+import { ref, computed, onMounted, watch, onUnmounted, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import SongsRepository from '../services/SongsRepository';
 import LyricsService from '../services/LyricsService';
@@ -316,10 +348,18 @@ const isSaving = ref(false);
 const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
 const loading = ref(true);
 const paragraphs = ref([]);
-const editTexts = ref({});
 const snackbar = ref(false);
 const snackbarText = ref('');
 const { share } = useShare(); 
+
+const textareaRefs = new Map();
+const setTextareaRef = (el, id) => {
+  if (el) {
+    textareaRefs.set(id, el);
+  } else {
+    textareaRefs.delete(id);
+  }
+};
 
 // Key Change Dialog Logic
 const keyDialog = ref(false);
@@ -383,19 +423,52 @@ const goBack = () => {
   }
 };
 
+const addParagraph = (index, position) => {
+  const newP = LyricsService.createParagraph('verse');
+  newP.editText = '';
+  const insertAt = position === 'above' ? index : index + 1;
+  paragraphs.value.splice(insertAt, 0, newP);
+
+  nextTick(() => {
+    const component = textareaRefs.get(newP.id);
+    if (component) {
+      const target = component.$el?.querySelector('textarea') || component;
+      target.focus?.();
+    }
+  });
+};
+
+const removeParagraph = (index) => {
+  if (paragraphs.value.length > 1) {
+    paragraphs.value.splice(index, 1);
+  }
+};
+
 const toggleEditMode = async () => {
   if (isEditMode.value) {
-    // Exiting edit mode — sync textarea content, then save
+    // Exiting edit mode — cleanup, sync, then save
     if (song.value && paragraphs.value.length > 0) {
+      // 1. Validation: At least one paragraph must have 3+ characters
+      const validParagraphs = paragraphs.value.filter(p => {
+        const text = (p.editText || '').replace(/\s/g, '');
+        return text.length >= 3;
+      });
+
+      if (validParagraphs.length === 0) {
+        snackbarText.value = 'Each paragraph must have at least 3 characters';
+        snackbar.value = true;
+        return;
+      }
+
       isSaving.value = true;
       try {
-        // Sync editTexts back into paragraph lines
-        paragraphs.value.forEach((p, i) => {
-          if (editTexts.value[i] !== undefined) {
-            p.lines = editTexts.value[i].split('\n').map(text => ({
-              text,
-              isSpacer: text.trim() === ''
-            }));
+        // 2. Cleanup: Remove paragraphs that are too short (less than 3 chars)
+        paragraphs.value = validParagraphs;
+
+        // 3. Sync editText back into structured lines
+        paragraphs.value.forEach((p) => {
+          if (p.editText !== undefined) {
+            LyricsService.syncParagraphLines(p, p.editText);
           }
         });
 
@@ -408,7 +481,6 @@ const toggleEditMode = async () => {
         console.error('Save failed:', error);
         snackbarText.value = 'Error saving: ' + (error.code === 'permission-denied' ? 'Permission Denied' : error.message);
         snackbar.value = true;
-        // Stay in edit mode on failure
       } finally {
         isSaving.value = false;
       }
@@ -416,12 +488,10 @@ const toggleEditMode = async () => {
       isEditMode.value = false;
     }
   } else {
-    // Entering edit mode — populate editTexts from current paragraphs
-    const texts = {};
-    paragraphs.value.forEach((p, i) => {
-      texts[i] = p.lines.map(l => l.text).join('\n');
+    // Entering edit mode — populate editText from current paragraphs
+    paragraphs.value.forEach((p) => {
+      p.editText = p.lines.map(l => l.text).join('\n');
     });
-    editTexts.value = texts;
     isEditMode.value = true;
   }
 };

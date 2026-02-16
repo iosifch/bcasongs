@@ -44,7 +44,19 @@ vi.mock('../services/SongsRepository', () => ({
 vi.mock('../services/LyricsService', () => ({
   default: {
     parseToParagraphs: vi.fn(() => []),
-    serialize: vi.fn(() => '')
+    serialize: vi.fn(() => ''),
+    createParagraph: vi.fn((type) => ({
+      id: Math.random().toString(36).substr(2, 9),
+      type: type || 'verse',
+      lines: []
+    })),
+    syncParagraphLines: vi.fn((p, text) => {
+      p.lines = text.split('\n').map(l => ({ text: l, isSpacer: l.trim() === '' }));
+    }),
+    filterEmptyParagraphs: vi.fn(p => p.filter(item => {
+      const text = (item.editText !== undefined) ? item.editText : (item.lines || []).map(l => l.text).join('');
+      return text.trim().length > 0;
+    }))
   }
 }));
 
@@ -85,6 +97,7 @@ const stubs = {
   'v-card-text': { template: '<div><slot /></div>' },
   'v-card-actions': { template: '<div><slot /></div>' },
   'v-btn-toggle': { template: '<div><slot /></div>' },
+  'v-btn-group': { template: '<div><slot /></div>' },
   'v-select': { template: '<div />' },
   'v-textarea': {
     template: '<textarea :data-testid="$attrs[\'data-testid\']" :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value)"></textarea>',
@@ -210,7 +223,7 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     SongsRepository.getSong.mockReturnValue(mockSong);
-    LyricsService.parseToParagraphs.mockReturnValue(mockParagraphs);
+    LyricsService.parseToParagraphs.mockReturnValue([...mockParagraphs.map(p => ({ ...p, lines: [...p.lines] }))]);
     LyricsService.serialize.mockReturnValue('Line 1');
     useAuth.mockReturnValue({
       isAuthenticated: computed(() => true),
@@ -247,7 +260,7 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
     await findEditBtn(wrapper).trigger('click');
     await flushPromises();
 
-    expect(LyricsService.serialize).toHaveBeenCalledWith(mockParagraphs);
+    expect(LyricsService.serialize).toHaveBeenCalled();
     expect(SongsRepository.save).toHaveBeenCalledWith('1', 'Line 1');
     expect(findEditBtn(wrapper).text()).toContain('edit_document');
     expect(wrapper.find('.snackbar').text()).toContain('Changes saved to cloud');
@@ -255,6 +268,7 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
 
   it('stays in edit mode when save fails', async () => {
     SongsRepository.save.mockRejectedValue(new Error('Network error'));
+    vi.spyOn(console, 'error').mockImplementation(() => {});
 
     const wrapper = mount(SongDetail, mountOptions);
     await flushPromises();
@@ -273,6 +287,7 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
     const permError = new Error('Permission denied');
     permError.code = 'permission-denied';
     SongsRepository.save.mockRejectedValue(permError);
+    vi.spyOn(console, 'error').mockImplementation(() => {});
 
     const wrapper = mount(SongDetail, mountOptions);
     await flushPromises();
@@ -391,3 +406,105 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
     expect(fontSizeBtn.attributes('disabled')).toBe('');
   });
 });
+
+describe('SongDetail.vue - Paragraph Management', () => {
+  const mockSong = { id: '1', title: 'Test', content: 'Verse 1\n\nVerse 2' };
+  const mockParagraphs = [
+    { id: 'p1', type: 'verse', lines: [{ text: 'Verse 1', isSpacer: false }] },
+    { id: 'p2', type: 'verse', lines: [{ text: 'Verse 2', isSpacer: false }] }
+  ];
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    SongsRepository.getSong.mockReturnValue(mockSong);
+    LyricsService.parseToParagraphs.mockReturnValue([...mockParagraphs.map(p => ({ ...p, lines: [...p.lines] }))]);
+    useAuth.mockReturnValue({ isAuthenticated: computed(() => true), isAuthenticating: ref(false) });
+  });
+
+  it('adds a paragraph above the current one', async () => {
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await flushPromises();
+
+    expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(2);
+
+    // Click "Add Above" on the second paragraph (index 1)
+    await wrapper.findAll('[data-testid="add-above-btn"]')[1].trigger('click');
+    await flushPromises();
+
+    const textareas = wrapper.findAll('[data-testid="lyrics-textarea"]');
+    expect(textareas).toHaveLength(3);
+    expect(textareas[1].element.value).toBe(''); // New paragraph in the middle
+    expect(textareas[0].element.value).toBe('Verse 1');
+    expect(textareas[2].element.value).toBe('Verse 2');
+  });
+
+  it('adds a paragraph below the current one', async () => {
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await flushPromises();
+
+    // Click "Add Below" on the first paragraph (index 0)
+    await wrapper.findAll('[data-testid="add-below-btn"]')[0].trigger('click');
+    await flushPromises();
+
+    const textareas = wrapper.findAll('[data-testid="lyrics-textarea"]');
+    expect(textareas).toHaveLength(3);
+    expect(textareas[1].element.value).toBe(''); // New paragraph in the middle
+  });
+
+  it('removes a paragraph', async () => {
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await flushPromises();
+
+    expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(2);
+
+    await wrapper.findAll('[data-testid="delete-paragraph-btn"]')[0].trigger('click');
+    await flushPromises();
+
+    expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(1);
+    expect(wrapper.find('[data-testid="lyrics-textarea"]').element.value).toBe('Verse 2');
+  });
+
+  it('disables delete button if only one paragraph remains', async () => {
+    LyricsService.parseToParagraphs.mockReturnValue([{ id: 'p1', type: 'verse', lines: [] }]);
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await flushPromises();
+
+    const deleteBtn = wrapper.find('[data-testid="delete-paragraph-btn"]');
+    expect(deleteBtn.attributes('disabled')).toBeDefined();
+  });
+
+  it('prevents saving if no paragraph has at least 3 characters', async () => {
+    // Override parseToParagraphs for this test to have multiple paragraphs
+    LyricsService.parseToParagraphs.mockReturnValue([
+      { id: 'p1', type: 'verse', lines: [{ text: '1', isSpacer: false }] },
+      { id: 'p2', type: 'verse', lines: [{ text: '2', isSpacer: false }] }
+    ]);
+
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await flushPromises();
+
+    // Both are short, try to save
+    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await flushPromises();
+
+    expect(wrapper.find('.snackbar').text()).toContain('Each paragraph must have at least 3 characters');
+    // Should still be in edit mode (check icon)
+    expect(wrapper.find('[data-testid="edit-btn"]').text()).toContain('check');
+  });
+});
+

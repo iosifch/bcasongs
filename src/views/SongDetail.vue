@@ -1,6 +1,5 @@
 <template>
-  <v-app-bar flat color="background" :elevation="0" scroll-behavior="hide" scroll-threshold="150">
-    <v-container class="pa-0 fill-height d-flex align-center px-3">
+  <v-app-bar flat color="background" scroll-behavior="hide" scroll-threshold="150" class="px-2">
       <v-btn
         icon
         variant="tonal"
@@ -51,87 +50,89 @@
           {{ song.originalKey }}
         </v-btn>
       </template>
-
-      <v-spacer></v-spacer>
-      
-      <v-btn
-        variant="tonal"
-        color="surface-variant"
-        @click="cycleFontSize"
-        title="Change Font Size"
-        class="ml-2"
-        density="comfortable"
-        min-width="40"
-        width="40"
-        height="40"
-        rounded="lg"
-        :ripple="false"
-        :disabled="isEditMode"
-        data-testid="font-size-btn"
-        style="padding: 0;"
-      >
-        <v-icon size="25">format_size</v-icon>
-      </v-btn>
-
-      <v-btn
-        variant="tonal"
-        color="surface-variant"
-        @click="handleShare"
-        title="Share Song"
-        class="ml-2"
-        density="comfortable"
-        min-width="40"
-        width="40"
-        height="40"
-        rounded="lg"
-        :ripple="false"
-        style="padding: 0;"
-      >
-        <v-icon size="25">share</v-icon>
-      </v-btn>
-
-      <v-btn
-        v-if="isAuthenticated"
-        data-testid="edit-btn"
-        variant="tonal"
-        :color="isEditMode ? 'primary' : 'surface-variant'"
-        @click="toggleEditMode"
-        :disabled="isSaving"
-        :loading="isSaving"
-        title="Edit Mode"
-        class="ml-2"
-        density="comfortable"
-        min-width="40"
-        width="40"
-        height="40"
-        rounded="lg"
-        :ripple="false"
-        style="padding: 0;"
-      >
-        <v-icon size="25">{{ isEditMode ? 'check' : 'edit_document' }}</v-icon>
-      </v-btn>
-
-      <v-btn
-        v-if="isAuthenticated"
-        variant="tonal"
-        :color="songInPlaylist ? 'primary' : 'surface-variant'"
-        @click="handleTogglePlaylist"
-        class="ml-2"
-        title="Toggle Playlist"
-        density="comfortable"
-        min-width="40"
-        width="40"
-        height="40"
-        rounded="lg"
-        :ripple="false"
-        style="padding: 0;"
-      >
-        <v-icon size="25">{{ songInPlaylist ? 'playlist_remove' : 'playlist_add' }}</v-icon>
-      </v-btn>
-    </v-container>
   </v-app-bar>
 
-  <div>
+  <v-app-bar location="bottom" flat color="background" class="px-2" scroll-behavior="hide" scroll-threshold="150">
+    <v-spacer></v-spacer>
+    
+    <v-btn
+      variant="tonal"
+      color="surface-variant"
+      @click="cycleFontSize"
+      title="Change Font Size"
+      class="ml-2"
+      density="comfortable"
+      min-width="40"
+      width="40"
+      height="40"
+      rounded="lg"
+      :ripple="false"
+      :disabled="isEditMode"
+      data-testid="font-size-btn"
+      style="padding: 0;"
+    >
+      <v-icon size="25">format_size</v-icon>
+    </v-btn>
+
+    <v-btn
+      variant="tonal"
+      color="surface-variant"
+      @click="handleShare"
+      title="Share Song"
+      class="ml-2"
+      density="comfortable"
+      min-width="40"
+      width="40"
+      height="40"
+      rounded="lg"
+      :ripple="false"
+      :disabled="isEditMode"
+      style="padding: 0;"
+    >
+      <v-icon size="25">share</v-icon>
+    </v-btn>
+
+    <v-btn
+      v-if="isAuthenticated"
+      data-testid="edit-btn"
+      variant="tonal"
+      :color="isEditMode ? 'primary' : 'surface-variant'"
+      @click="toggleEditMode"
+      :disabled="isSaving"
+      :loading="isSaving"
+      title="Edit Mode"
+      class="ml-2"
+      density="comfortable"
+      min-width="40"
+      width="40"
+      height="40"
+      rounded="lg"
+      :ripple="false"
+      style="padding: 0;"
+    >
+      <v-icon size="25">{{ isEditMode ? 'check' : 'edit_document' }}</v-icon>
+    </v-btn>
+
+    <v-btn
+      v-if="isAuthenticated"
+      variant="tonal"
+      :color="songInPlaylist ? 'primary' : 'surface-variant'"
+      @click="handleTogglePlaylist"
+      class="ml-2"
+      title="Toggle Playlist"
+      density="comfortable"
+      min-width="40"
+      width="40"
+      height="40"
+      rounded="lg"
+      :ripple="false"
+      :disabled="isEditMode"
+      style="padding: 0;"
+    >
+      <v-icon size="25">{{ songInPlaylist ? 'playlist_remove' : 'playlist_add' }}</v-icon>
+    </v-btn>
+  </v-app-bar>
+
 
     <v-row v-if="loading">
       <v-col cols="12" class="text-center">
@@ -140,7 +141,7 @@
     </v-row>
 
     <div v-else-if="song">
-      <div class="song-content px-3 mt-4">
+      <div class="song-content px-3">
         <v-text-field
           v-if="isEditMode"
           v-model="editTitle"
@@ -210,7 +211,6 @@
                 color="surface-variant"
                 variant="tonal"
                 class="text-uppercase"
-                style="letter-spacing: 0.5px; opacity: 0.8;"
               >
                 Chorus
               </v-chip>
@@ -220,7 +220,6 @@
                 color="surface-variant"
                 variant="tonal"
                 class="text-uppercase"
-                style="letter-spacing: 0.5px; opacity: 0.8;"
               >
                 Coda
               </v-chip>
@@ -230,7 +229,6 @@
                 color="surface-variant"
                 variant="tonal"
                 class="text-uppercase"
-                style="letter-spacing: 0.5px; opacity: 0.8;"
               >
                 Verse
               </v-chip>
@@ -330,7 +328,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </div>
+
 </template>
 
 <script setup>
@@ -591,33 +589,9 @@ onUnmounted(() => {
   font-weight: 400;
 }
 
-.sticky-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: white;
-}
-
 .lyrics {
   white-space: pre-wrap; /* Preserve spaces in lyrics */
   line-height: 1.5;
 }
 
-.action-buttons :deep(.v-btn) {
-  padding: 0 4px;
-  min-width: 32px;
-}
-
-.bottom-actions {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  background-color: rgb(var(--v-theme-background));
-}
-
-.song-content {
-  padding-bottom: 64px;
-}
 </style>

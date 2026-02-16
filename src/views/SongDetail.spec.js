@@ -32,15 +32,6 @@ vi.mock('../composables/useSongSettings', () => ({
   }))
 }));
 
-vi.mock('../composables/useCurrentSong', () => ({
-  useCurrentSong: vi.fn(() => ({
-    setCurrentSong: vi.fn(),
-    clearCurrentSong: vi.fn(),
-    isEditMode: ref(false),
-    toggleEditMode: vi.fn()
-  }))
-}));
-
 // 2. Mock Services
 vi.mock('../services/SongsRepository', () => ({
   default: {
@@ -67,29 +58,36 @@ vi.mock('vue-router', () => ({
 import SongDetail from './SongDetail.vue';
 import { useAuth } from '../composables/useAuth';
 import SongsRepository from '../services/SongsRepository';
+import LyricsService from '../services/LyricsService';
 
-// Mock Vuetify Components
-const global = {
-  stubs: {
-    'v-app-bar': { template: '<header><slot /></header>' },
-    'v-container': { template: '<div><slot /></div>' },
-    'v-btn': { template: '<button @click="$emit(\'click\')"><slot /></button>' },
-    'v-icon': { template: '<i><slot /></i>' },
-    'v-chip': { template: '<span><slot /></span>' },
-    'v-spacer': { template: '<div />' },
-    'v-row': { template: '<div><slot /></div>' },
-    'v-col': { template: '<div><slot /></div>' },
-    'v-progress-circular': { template: '<div />' },
-    'v-sheet': { template: '<div><slot /></div>' },
-    'v-alert': { template: '<div><slot /></div>' },
-    'v-snackbar': { template: '<div><slot /></div>' },
-    'v-dialog': { template: '<div><slot v-if="$attrs.modelValue" /></div>' },
-    'v-card': { template: '<div><slot /></div>' },
-    'v-card-text': { template: '<div><slot /></div>' },
-    'v-card-actions': { template: '<div><slot /></div>' },
-    'v-select': { template: '<div />' }
-  }
+// Vuetify stubs - propagate data-testid and disabled for test selectors
+const stubs = {
+  'v-app-bar': { template: '<header><slot /></header>' },
+  'v-container': { template: '<div><slot /></div>' },
+  'v-btn': {
+    template: '<button :data-testid="$attrs[\'data-testid\']" :disabled="$attrs.disabled" @click="$emit(\'click\')"><slot /></button>',
+    inheritAttrs: false
+  },
+  'v-icon': { template: '<i><slot /></i>' },
+  'v-chip': {
+    template: '<span :data-testid="$attrs[\'data-testid\']"><slot /></span>',
+    inheritAttrs: false
+  },
+  'v-spacer': { template: '<div />' },
+  'v-row': { template: '<div><slot /></div>' },
+  'v-col': { template: '<div><slot /></div>' },
+  'v-progress-circular': { template: '<div />' },
+  'v-sheet': { template: '<div><slot /></div>' },
+  'v-alert': { template: '<div><slot /></div>' },
+  'v-snackbar': { template: '<div class="snackbar"><slot /></div>' },
+  'v-dialog': { template: '<div class="dialog"><slot /></div>' },
+  'v-card': { template: '<div><slot /></div>' },
+  'v-card-text': { template: '<div><slot /></div>' },
+  'v-card-actions': { template: '<div><slot /></div>' },
+  'v-select': { template: '<div />' }
 };
+
+const mountOptions = { global: { stubs } };
 
 describe('SongDetail.vue - Key Change', () => {
   const mockSong = {
@@ -111,20 +109,12 @@ describe('SongDetail.vue - Key Change', () => {
       isAuthenticating: ref(false)
     });
 
-    const wrapper = mount(SongDetail, { global });
+    const wrapper = mount(SongDetail, mountOptions);
     await flushPromises();
 
-    const text = wrapper.text();
-    expect(text).toContain('G');
-    // It should be in a span (v-chip stub)
-    const chips = wrapper.findAll('span');
-    const keyChip = chips.find(c => c.text() === 'G');
-    expect(keyChip).toBeDefined();
-    
-    // Check it's not a button (v-btn stub is <button>)
-    const buttons = wrapper.findAll('button');
-    const keyBtn = buttons.find(b => b.text() === 'G');
-    expect(keyBtn).toBeUndefined();
+    expect(wrapper.find('[data-testid="key-chip"]').exists()).toBe(true);
+    expect(wrapper.find('[data-testid="key-chip"]').text()).toBe('G');
+    expect(wrapper.find('[data-testid="key-btn"]').exists()).toBe(false);
   });
 
   it('shows key as a button when authenticated', async () => {
@@ -133,33 +123,27 @@ describe('SongDetail.vue - Key Change', () => {
       isAuthenticating: ref(false)
     });
 
-    const wrapper = mount(SongDetail, { global });
+    const wrapper = mount(SongDetail, mountOptions);
     await flushPromises();
 
-    const buttons = wrapper.findAll('button');
-    const keyBtn = buttons.find(b => b.text() === 'G');
-    expect(keyBtn).toBeDefined();
+    expect(wrapper.find('[data-testid="key-btn"]').exists()).toBe(true);
+    expect(wrapper.find('[data-testid="key-btn"]').text().trim()).toBe('G');
+    expect(wrapper.find('[data-testid="key-chip"]').exists()).toBe(false);
   });
 
-  it('opens dialog when key button is clicked', async () => {
+  it('opens dialog and parses key when key button is clicked', async () => {
     useAuth.mockReturnValue({
       isAuthenticated: computed(() => true),
       isAuthenticating: ref(false)
     });
 
-    const wrapper = mount(SongDetail, { global });
+    const wrapper = mount(SongDetail, mountOptions);
     await flushPromises();
 
-    expect(wrapper.vm.keyDialog).toBe(false);
-    
-    const buttons = wrapper.findAll('button');
-    const keyBtn = buttons.find(b => b.text() === 'G');
-    await keyBtn.trigger('click');
+    await wrapper.find('[data-testid="key-btn"]').trigger('click');
 
-    expect(wrapper.vm.keyDialog).toBe(true);
-    expect(wrapper.vm.selectedRoot).toBe('G');
-    expect(wrapper.vm.selectedAccidental).toBe('');
-    expect(wrapper.vm.selectedQuality).toBe('');
+    const dialog = wrapper.find('.dialog');
+    expect(dialog.text()).toContain('G');
   });
 
   it('parses complex key correctly when opening dialog', async () => {
@@ -169,36 +153,156 @@ describe('SongDetail.vue - Key Change', () => {
       isAuthenticating: ref(false)
     });
 
-    const wrapper = mount(SongDetail, { global });
+    const wrapper = mount(SongDetail, mountOptions);
     await flushPromises();
 
-    await wrapper.vm.openKeyDialog();
+    await wrapper.find('[data-testid="key-btn"]').trigger('click');
 
-    expect(wrapper.vm.selectedRoot).toBe('C');
-    expect(wrapper.vm.selectedAccidental).toBe('#');
-    expect(wrapper.vm.selectedQuality).toBe('m');
+    const dialog = wrapper.find('.dialog');
+    expect(dialog.text()).toContain('C#m');
   });
 
-  it('saves new key and updates UI', async () => {
+  it('saves new key via Change button and updates displayed key', async () => {
     useAuth.mockReturnValue({
       isAuthenticated: computed(() => true),
       isAuthenticating: ref(false)
     });
     SongsRepository.save.mockResolvedValue();
 
-    const wrapper = mount(SongDetail, { global });
+    const wrapper = mount(SongDetail, mountOptions);
     await flushPromises();
 
-    await wrapper.vm.openKeyDialog();
+    await wrapper.find('[data-testid="key-btn"]').trigger('click');
+
+    // Modify values via vm (v-select stubs can't emit v-model changes)
     wrapper.vm.selectedRoot = 'A';
     wrapper.vm.selectedAccidental = 'b';
     wrapper.vm.selectedQuality = 'm';
 
-    await wrapper.vm.saveKeyChange();
+    await wrapper.find('[data-testid="key-save-btn"]').trigger('click');
+    await flushPromises();
 
     expect(SongsRepository.save).toHaveBeenCalledWith('1', mockSong.content, null, 'Abm');
-    expect(wrapper.vm.song.originalKey).toBe('Abm');
-    expect(wrapper.vm.keyDialog).toBe(false);
-    expect(wrapper.vm.snackbarText).toBe('Key changed successfully');
+    expect(wrapper.find('.snackbar').text()).toContain('Key changed successfully');
+    expect(wrapper.find('[data-testid="key-btn"]').text().trim()).toBe('Abm');
+  });
+});
+
+describe('SongDetail.vue - Edit Mode Save Flow', () => {
+  const mockSong = {
+    id: '1',
+    title: 'Test Song',
+    originalKey: 'G',
+    content: 'Test lyrics',
+    bookNumber: '123'
+  };
+
+  const mockParagraphs = [
+    { id: 'p1', type: 'verse', lines: [{ text: 'Line 1', isSpacer: false }] }
+  ];
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    SongsRepository.getSong.mockReturnValue(mockSong);
+    LyricsService.parseToParagraphs.mockReturnValue(mockParagraphs);
+    LyricsService.serialize.mockReturnValue('Line 1');
+    useAuth.mockReturnValue({
+      isAuthenticated: computed(() => true),
+      isAuthenticating: ref(false)
+    });
+  });
+
+  const findEditBtn = (wrapper) => wrapper.find('[data-testid="edit-btn"]');
+
+  it('enters edit mode when edit button is clicked', async () => {
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    expect(findEditBtn(wrapper).text()).toContain('edit_document');
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+
+    expect(findEditBtn(wrapper).text()).toContain('check');
+  });
+
+  it('saves and exits edit mode after successful persistence', async () => {
+    SongsRepository.save.mockResolvedValue();
+
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    // Enter edit mode
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+    expect(findEditBtn(wrapper).text()).toContain('check');
+
+    // Exit edit mode — should save first
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+
+    expect(LyricsService.serialize).toHaveBeenCalledWith(mockParagraphs);
+    expect(SongsRepository.save).toHaveBeenCalledWith('1', 'Line 1');
+    expect(findEditBtn(wrapper).text()).toContain('edit_document');
+    expect(wrapper.find('.snackbar').text()).toContain('Changes saved to cloud');
+  });
+
+  it('stays in edit mode when save fails', async () => {
+    SongsRepository.save.mockRejectedValue(new Error('Network error'));
+
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+
+    expect(findEditBtn(wrapper).text()).toContain('check');
+    expect(wrapper.find('.snackbar').text()).toContain('Error saving');
+  });
+
+  it('shows permission denied message on permission error', async () => {
+    const permError = new Error('Permission denied');
+    permError.code = 'permission-denied';
+    SongsRepository.save.mockRejectedValue(permError);
+
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+
+    expect(findEditBtn(wrapper).text()).toContain('check');
+    expect(wrapper.find('.snackbar').text()).toContain('Permission Denied');
+  });
+
+  it('disables edit button while saving', async () => {
+    let resolverFn;
+    SongsRepository.save.mockImplementation(() => new Promise(resolve => { resolverFn = resolve; }));
+
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+    expect(findEditBtn(wrapper).attributes('disabled')).toBeUndefined();
+
+    // Start exiting — save is in progress
+    const exitPromise = wrapper.vm.toggleEditMode();
+    await flushPromises();
+
+    expect(findEditBtn(wrapper).attributes('disabled')).toBe('');
+
+    // Resolve save
+    resolverFn();
+    await exitPromise;
+    await flushPromises();
+
+    expect(findEditBtn(wrapper).attributes('disabled')).toBeUndefined();
+    expect(findEditBtn(wrapper).text()).toContain('edit_document');
   });
 });

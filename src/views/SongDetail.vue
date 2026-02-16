@@ -27,6 +27,7 @@
       <template v-if="!isAuthenticating">
         <v-chip
           v-if="song?.originalKey && !isAuthenticated"
+          data-testid="key-chip"
           color="outline"
           variant="outlined"
           size="small"
@@ -37,6 +38,7 @@
 
         <v-btn
           v-else-if="song?.originalKey && isAuthenticated"
+          data-testid="key-btn"
           variant="tonal"
           color="surface-variant"
           class="ml-2 font-weight-bold text-none"
@@ -88,9 +90,12 @@
 
       <v-btn
         v-if="isAuthenticated"
+        data-testid="edit-btn"
         variant="tonal"
         :color="isEditMode ? 'primary' : 'surface-variant'"
         @click="toggleEditMode"
+        :disabled="isSaving"
+        :loading="isSaving"
         title="Edit Mode"
         class="ml-2"
         density="comfortable"
@@ -286,8 +291,8 @@
           </v-row>
         </v-card-text>
         <v-card-actions class="justify-space-between px-2 pb-2">
-          <v-btn variant="text" @click="keyDialog = false" rounded="lg">Cancel</v-btn>
-          <v-btn color="primary" variant="flat" @click="saveKeyChange" rounded="lg">Change</v-btn>
+          <v-btn data-testid="key-cancel-btn" variant="text" @click="keyDialog = false" rounded="lg">Cancel</v-btn>
+          <v-btn data-testid="key-save-btn" color="primary" variant="flat" @click="saveKeyChange" rounded="lg">Change</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -304,7 +309,6 @@ import { useShare } from '../composables/useShare';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useAuth } from '../composables/useAuth';
 import { useSongSettings } from '../composables/useSongSettings';
-import { useCurrentSong } from '../composables/useCurrentSong';
 
 const route = useRoute();
 const router = useRouter();
@@ -312,9 +316,10 @@ const song = ref(null);
 const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
 const { isAuthenticated, isAuthenticating } = useAuth();
 const { fontSizeClass, cycleFontSize } = useSongSettings();
-const { setCurrentSong, clearCurrentSong, isEditMode, toggleEditMode } = useCurrentSong();
 
-const playlistCount = computed(() => playlist.value.length);
+const isEditMode = ref(false);
+const isSaving = ref(false);
+
 const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
 const loading = ref(true);
 const paragraphs = ref([]);
@@ -384,27 +389,38 @@ const goBack = () => {
   }
 };
 
-// Watch edit mode changes to save
-watch(isEditMode, async (newValue) => {
-  if (!newValue && song.value && paragraphs.value.length > 0) {
-    try {
-      const newContent = LyricsService.serialize(paragraphs.value);
-      await SongsRepository.save(song.value.id, newContent);
-      snackbarText.value = 'Changes saved to cloud';
-      snackbar.value = true;
-    } catch (error) {
-      console.error('Save failed:', error);
-      snackbarText.value = 'Error saving: ' + (error.code === 'permission-denied' ? 'Permission Denied' : error.message);
-      snackbar.value = true;
+const toggleEditMode = async () => {
+  if (isEditMode.value) {
+    // Exiting edit mode — save first, then exit
+    if (song.value && paragraphs.value.length > 0) {
+      isSaving.value = true;
+      try {
+        const newContent = LyricsService.serialize(paragraphs.value);
+        await SongsRepository.save(song.value.id, newContent);
+        snackbarText.value = 'Changes saved to cloud';
+        snackbar.value = true;
+        isEditMode.value = false;
+      } catch (error) {
+        console.error('Save failed:', error);
+        snackbarText.value = 'Error saving: ' + (error.code === 'permission-denied' ? 'Permission Denied' : error.message);
+        snackbar.value = true;
+        // Stay in edit mode on failure
+      } finally {
+        isSaving.value = false;
+      }
+    } else {
+      isEditMode.value = false;
     }
+  } else {
+    isEditMode.value = true;
   }
-});
+};
 
 const resolveSong = () => {
   const id = route.params.id;
   song.value = SongsRepository.getSong(id);
   if (song.value) {
-    setCurrentSong(song.value);
+    isEditMode.value = false;
     paragraphs.value = LyricsService.parseToParagraphs(song.value.content);
   }
   loading.value = false;
@@ -427,7 +443,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    clearCurrentSong();
+    isEditMode.value = false;
 });
 </script>
 

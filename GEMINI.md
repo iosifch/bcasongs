@@ -1,4 +1,4 @@
-# AGENTS.md
+# GEMINI.md
 
 ## 1. Business Needs
 This application serves as a digital songbook. It allows users to manage, view, and organize song lyrics and setlists, facilitating smooth live performances and rehearsals while handling musical keys efficiently.

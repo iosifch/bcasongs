@@ -84,7 +84,13 @@ const stubs = {
   'v-card': { template: '<div><slot /></div>' },
   'v-card-text': { template: '<div><slot /></div>' },
   'v-card-actions': { template: '<div><slot /></div>' },
-  'v-select': { template: '<div />' }
+  'v-btn-toggle': { template: '<div><slot /></div>' },
+  'v-select': { template: '<div />' },
+  'v-textarea': {
+    template: '<textarea :data-testid="$attrs[\'data-testid\']" :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value)"></textarea>',
+    props: ['modelValue'],
+    inheritAttrs: false
+  }
 };
 
 const mountOptions = { global: { stubs } };
@@ -304,5 +310,84 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
 
     expect(findEditBtn(wrapper).attributes('disabled')).toBeUndefined();
     expect(findEditBtn(wrapper).text()).toContain('edit_document');
+  });
+
+  it('shows textareas when edit mode is active', async () => {
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(0);
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+
+    expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(1);
+  });
+
+  it('textarea contains paragraph text when entering edit mode', async () => {
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+
+    const textarea = wrapper.find('[data-testid="lyrics-textarea"]');
+    expect(textarea.element.value).toBe('Line 1');
+  });
+
+  it('saves modified textarea content', async () => {
+    SongsRepository.save.mockResolvedValue();
+
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+
+    const textarea = wrapper.find('[data-testid="lyrics-textarea"]');
+    await textarea.setValue('Modified Line 1\nNew Line 2');
+    await flushPromises();
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+
+    expect(LyricsService.serialize).toHaveBeenCalledWith([
+      expect.objectContaining({
+        id: 'p1',
+        type: 'verse',
+        lines: [
+          { text: 'Modified Line 1', isSpacer: false },
+          { text: 'New Line 2', isSpacer: false }
+        ]
+      })
+    ]);
+  });
+
+  it('hides textareas after exiting edit mode', async () => {
+    SongsRepository.save.mockResolvedValue();
+
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+    expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(1);
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+    expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(0);
+  });
+
+  it('disables font size button in edit mode', async () => {
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    const fontSizeBtn = wrapper.find('[data-testid="font-size-btn"]');
+    expect(fontSizeBtn.attributes('disabled')).toBeUndefined();
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+
+    expect(fontSizeBtn.attributes('disabled')).toBe('');
   });
 });

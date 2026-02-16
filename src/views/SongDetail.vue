@@ -66,6 +66,8 @@
         height="40"
         rounded="lg"
         :ripple="false"
+        :disabled="isEditMode"
+        data-testid="font-size-btn"
         style="padding: 0;"
       >
         <v-icon size="25">format_size</v-icon>
@@ -144,35 +146,20 @@
           
           <!-- Section Label Chips (Selection in Edit Mode, Label in View Mode) -->
           <div class="mb-2">
-            <template v-if="isEditMode">
-              <v-chip
-                size="small"
-                :color="paragraph.type === 'verse' ? 'primary' : 'surface-variant'"
-                variant="tonal"
-                class="text-uppercase mr-1"
-                @click="paragraph.type = 'verse'"
-              >
-                Verse
-              </v-chip>
-              <v-chip
-                size="small"
-                :color="paragraph.type === 'chorus' ? 'primary' : 'surface-variant'"
-                variant="tonal"
-                class="text-uppercase mr-1"
-                @click="paragraph.type = 'chorus'"
-              >
-                Chorus
-              </v-chip>
-              <v-chip
-                size="small"
-                :color="paragraph.type === 'coda' ? 'primary' : 'surface-variant'"
-                variant="tonal"
-                class="text-uppercase"
-                @click="paragraph.type = 'coda'"
-              >
-                Coda
-              </v-chip>
-            </template>
+            <v-btn-toggle
+              v-if="isEditMode"
+              v-model="paragraph.type"
+              mandatory
+              density="compact"
+              color="primary"
+              variant="outlined"
+              divided
+              rounded="lg"
+            >
+              <v-btn value="verse" size="small" class="text-uppercase">Verse</v-btn>
+              <v-btn value="chorus" size="small" class="text-uppercase">Chorus</v-btn>
+              <v-btn value="coda" size="small" class="text-uppercase">Coda</v-btn>
+            </v-btn-toggle>
             <template v-else>
               <v-chip
                 v-if="paragraph.type === 'chorus'"
@@ -207,17 +194,23 @@
             </template>
           </div>
 
-          <v-sheet 
-            color="transparent"
-          >
-            <div 
-              v-for="(line, lineIndex) in paragraph.lines" 
+          <v-textarea
+            v-if="isEditMode"
+            v-model="editTexts[pIndex]"
+            auto-grow
+            hide-details
+            rows="2"
+            density="compact"
+            data-testid="lyrics-textarea"
+          ></v-textarea>
+          <v-sheet v-else color="transparent">
+            <div
+              v-for="(line, lineIndex) in paragraph.lines"
               :key="lineIndex"
-              class="song-line mb-1"
+              class="lyrics mb-1"
+              :class="fontSizeClass"
             >
-              <div class="lyrics" :class="fontSizeClass">
-                {{ line.text }}
-              </div>
+              {{ line.text }}
             </div>
           </v-sheet>
         </div>
@@ -323,6 +316,7 @@ const isSaving = ref(false);
 const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
 const loading = ref(true);
 const paragraphs = ref([]);
+const editTexts = ref({});
 const snackbar = ref(false);
 const snackbarText = ref('');
 const { share } = useShare(); 
@@ -391,10 +385,20 @@ const goBack = () => {
 
 const toggleEditMode = async () => {
   if (isEditMode.value) {
-    // Exiting edit mode — save first, then exit
+    // Exiting edit mode — sync textarea content, then save
     if (song.value && paragraphs.value.length > 0) {
       isSaving.value = true;
       try {
+        // Sync editTexts back into paragraph lines
+        paragraphs.value.forEach((p, i) => {
+          if (editTexts.value[i] !== undefined) {
+            p.lines = editTexts.value[i].split('\n').map(text => ({
+              text,
+              isSpacer: text.trim() === ''
+            }));
+          }
+        });
+
         const newContent = LyricsService.serialize(paragraphs.value);
         await SongsRepository.save(song.value.id, newContent);
         snackbarText.value = 'Changes saved to cloud';
@@ -412,6 +416,12 @@ const toggleEditMode = async () => {
       isEditMode.value = false;
     }
   } else {
+    // Entering edit mode — populate editTexts from current paragraphs
+    const texts = {};
+    paragraphs.value.forEach((p, i) => {
+      texts[i] = p.lines.map(l => l.text).join('\n');
+    });
+    editTexts.value = texts;
     isEditMode.value = true;
   }
 };
@@ -470,10 +480,6 @@ onUnmounted(() => {
   top: 0;
   z-index: 100;
   background-color: white;
-}
-
-.song-line {
-  display: block;
 }
 
 .lyrics {

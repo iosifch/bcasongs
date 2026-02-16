@@ -99,6 +99,11 @@ const stubs = {
   'v-btn-toggle': { template: '<div><slot /></div>' },
   'v-btn-group': { template: '<div><slot /></div>' },
   'v-select': { template: '<div />' },
+  'v-text-field': {
+    template: '<input :data-testid="$attrs[\'data-testid\']" :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value)" />',
+    props: ['modelValue'],
+    inheritAttrs: false
+  },
   'v-textarea': {
     template: '<textarea :data-testid="$attrs[\'data-testid\']" :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value)"></textarea>',
     props: ['modelValue'],
@@ -261,7 +266,7 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
     await flushPromises();
 
     expect(LyricsService.serialize).toHaveBeenCalled();
-    expect(SongsRepository.save).toHaveBeenCalledWith('1', 'Line 1');
+    expect(SongsRepository.save).toHaveBeenCalledWith('1', 'Line 1', 'Test Song');
     expect(findEditBtn(wrapper).text()).toContain('edit_document');
     expect(wrapper.find('.snackbar').text()).toContain('Changes saved to cloud');
   });
@@ -483,6 +488,47 @@ describe('SongDetail.vue - Paragraph Management', () => {
 
     const deleteBtn = wrapper.find('[data-testid="delete-paragraph-btn"]');
     expect(deleteBtn.attributes('disabled')).toBeDefined();
+  });
+
+  it('allows editing and saving the song title', async () => {
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await flushPromises();
+
+    const titleInput = wrapper.find('[data-testid="title-input"]');
+    expect(titleInput.exists()).toBe(true);
+    
+    await titleInput.setValue('New Updated Title');
+    await flushPromises();
+
+    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await flushPromises();
+
+    expect(SongsRepository.save).toHaveBeenCalledWith(
+      expect.any(String),
+      expect.any(String),
+      'New Updated Title'
+    );
+  });
+
+  it('prevents saving if title is too short', async () => {
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await flushPromises();
+
+    const titleInput = wrapper.find('[data-testid="title-input"]');
+    await titleInput.setValue('Ab'); // 2 chars
+    await flushPromises();
+
+    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await flushPromises();
+
+    expect(wrapper.find('.snackbar').text()).toContain('Title must have at least 3 characters');
+    expect(wrapper.find('[data-testid="edit-btn"]').text()).toContain('check');
   });
 
   it('prevents saving if no paragraph has at least 3 characters', async () => {

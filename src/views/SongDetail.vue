@@ -141,6 +141,15 @@
 
     <div v-else-if="song">
       <div class="song-content px-3 mt-4">
+        <v-text-field
+          v-if="isEditMode"
+          v-model="editTitle"
+          hide-details
+          density="compact"
+          class="mb-4"
+          data-testid="title-input"
+        ></v-text-field>
+
         <div v-for="(paragraph, pIndex) in paragraphs" :key="paragraph.id" class="mb-6">
           <div class="mb-2 d-flex align-center">
             <template v-if="isEditMode">
@@ -344,12 +353,12 @@ const { fontSizeClass, cycleFontSize } = useSongSettings();
 
 const isEditMode = ref(false);
 const isSaving = ref(false);
-
 const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
 const loading = ref(true);
 const paragraphs = ref([]);
 const snackbar = ref(false);
 const snackbarText = ref('');
+const editTitle = ref('');
 const { share } = useShare(); 
 
 const textareaRefs = new Map();
@@ -448,7 +457,14 @@ const toggleEditMode = async () => {
   if (isEditMode.value) {
     // Exiting edit mode — cleanup, sync, then save
     if (song.value && paragraphs.value.length > 0) {
-      // 1. Validation: At least one paragraph must have 3+ characters
+      // 1. Validation: Title
+      if (!editTitle.value || editTitle.value.trim().length < 3) {
+        snackbarText.value = 'Title must have at least 3 characters';
+        snackbar.value = true;
+        return;
+      }
+
+      // 2. Validation: At least one paragraph must have 3+ characters
       const validParagraphs = paragraphs.value.filter(p => {
         const text = (p.editText || '').replace(/\s/g, '');
         return text.length >= 3;
@@ -462,10 +478,10 @@ const toggleEditMode = async () => {
 
       isSaving.value = true;
       try {
-        // 2. Cleanup: Remove paragraphs that are too short (less than 3 chars)
+        // 3. Cleanup: Remove paragraphs that are too short (less than 3 chars)
         paragraphs.value = validParagraphs;
 
-        // 3. Sync editText back into structured lines
+        // 4. Sync editText back into structured lines
         paragraphs.value.forEach((p) => {
           if (p.editText !== undefined) {
             LyricsService.syncParagraphLines(p, p.editText);
@@ -473,7 +489,9 @@ const toggleEditMode = async () => {
         });
 
         const newContent = LyricsService.serialize(paragraphs.value);
-        await SongsRepository.save(song.value.id, newContent);
+        await SongsRepository.save(song.value.id, newContent, editTitle.value);
+        
+        song.value.title = editTitle.value;
         snackbarText.value = 'Changes saved to cloud';
         snackbar.value = true;
         isEditMode.value = false;
@@ -488,7 +506,8 @@ const toggleEditMode = async () => {
       isEditMode.value = false;
     }
   } else {
-    // Entering edit mode — populate editText from current paragraphs
+    // Entering edit mode — populate editText and title
+    editTitle.value = song.value.title;
     paragraphs.value.forEach((p) => {
       p.editText = p.lines.map(l => l.text).join('\n');
     });

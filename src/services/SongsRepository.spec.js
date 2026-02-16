@@ -58,8 +58,14 @@ describe('SongsRepository', () => {
 
   describe('CRUD Operations', () => {
     it('addSong should call addDoc', async () => {
-      await SongsRepository.addSong('New Song', 'Lyrics');
-      expect(mockAddDoc).toHaveBeenCalled();
+      mockAddDoc.mockResolvedValue({ id: 'new-id-123' });
+      const id = await SongsRepository.addSong('New Song', 'Lyrics', 'G');
+      expect(mockAddDoc).toHaveBeenCalledWith(undefined, expect.objectContaining({
+        title: 'New Song',
+        content: 'Lyrics',
+        originalKey: 'G'
+      }));
+      expect(id).toBe('new-id-123');
     });
 
     it('save (update) should call updateDoc', async () => {

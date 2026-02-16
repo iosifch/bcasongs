@@ -37,6 +37,8 @@ vi.mock('../services/SongsRepository', () => ({
   default: {
     getSong: vi.fn(),
     save: vi.fn(),
+    addSong: vi.fn(),
+    initialize: vi.fn(),
     loading: ref(false)
   }
 }));
@@ -61,9 +63,12 @@ vi.mock('../services/LyricsService', () => ({
 }));
 
 // 3. Mock Vue Router
+const mockRoute = { params: { id: '1' } };
+const mockRouter = { back: vi.fn(), push: vi.fn(), replace: vi.fn() };
+import { useRoute, useRouter } from 'vue-router';
 vi.mock('vue-router', () => ({
-  useRoute: vi.fn(() => ({ params: { id: '1' } })),
-  useRouter: vi.fn(() => ({ back: vi.fn(), push: vi.fn() }))
+  useRoute: vi.fn(() => mockRoute),
+  useRouter: vi.fn(() => mockRouter)
 }));
 
 // 4. Imports after mocks
@@ -551,6 +556,45 @@ describe('SongDetail.vue - Paragraph Management', () => {
     expect(wrapper.find('.snackbar').text()).toContain('Each paragraph must have at least 3 characters');
     // Should still be in edit mode (check icon)
     expect(wrapper.find('[data-testid="edit-btn"]').text()).toContain('check');
+  });
+});
+
+describe('SongDetail.vue - Add New Song Flow', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    useAuth.mockReturnValue({
+      isAuthenticated: computed(() => true),
+      isAuthenticating: ref(false)
+    });
+    // Default mock for route.params.id is 'new' for this suite
+    vi.mocked(useRoute).mockReturnValue({ params: { id: 'new' } });
+  });
+
+  it('initializes with empty state and edit mode active for new songs', async () => {
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    expect(wrapper.find('[data-testid="title-input"]').exists()).toBe(true);
+    expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(1);
+    expect(wrapper.find('[data-testid="edit-btn"]').text()).toContain('check');
+  });
+
+  it('saves new song and redirects to its detail page', async () => {
+    SongsRepository.addSong.mockResolvedValue('new-id-123');
+    LyricsService.serialize.mockReturnValue('Line 1\nLine 2');
+    
+    const wrapper = mount(SongDetail, mountOptions);
+    await flushPromises();
+
+    await wrapper.find('[data-testid="title-input"]').setValue('Brand New Song');
+    await wrapper.find('[data-testid="lyrics-textarea"]').setValue('Line 1\nLine 2');
+    await flushPromises();
+
+    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await flushPromises();
+
+    expect(SongsRepository.addSong).toHaveBeenCalledWith('Brand New Song', 'Line 1\nLine 2', null);
+    expect(mockRouter.replace).toHaveBeenCalledWith('/song/new-id-123');
   });
 });
 

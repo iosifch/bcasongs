@@ -53,16 +53,16 @@ export default {
 
   // --- Write Operations ---
 
-  async addSong(title, content, key = '', artist = '') {
+  async addSong(title, content, key = null) {
     try {
-      await addDoc(collection(db, 'songs'), {
+      const docRef = await addDoc(collection(db, 'songs'), {
         title,
         content,
-        key,
-        artist,
+        originalKey: key || null,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
+      return docRef.id;
     } catch (e) {
       console.error("Error adding song:", e);
       throw e;

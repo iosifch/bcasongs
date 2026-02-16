@@ -353,7 +353,7 @@ const { fontSizeClass, cycleFontSize } = useSongSettings();
 
 const isEditMode = ref(false);
 const isSaving = ref(false);
-const songInPlaylist = computed(() => song.value ? isInPlaylist(song.value.id) : false);
+const songInPlaylist = computed(() => (song.value && song.value.id) ? isInPlaylist(song.value.id) : false);
 const loading = ref(true);
 const paragraphs = ref([]);
 const snackbar = ref(false);
@@ -377,10 +377,11 @@ const selectedAccidental = ref('');
 const selectedQuality = ref('');
 
 const openKeyDialog = () => {
-  if (!song.value || !song.value.originalKey) return;
+  if (!song.value) return;
   
   // Parse current key: e.g., "C#m" -> root: "C", accidental: "#", quality: "m"
-  const match = song.value.originalKey.match(/^([A-G])([#b]?)(m?)$/);
+  const currentKey = song.value.originalKey || 'C';
+  const match = currentKey.match(/^([A-G])([#b]?)(m?)$/);
   if (match) {
     selectedRoot.value = match[1];
     selectedAccidental.value = match[2];
@@ -394,7 +395,9 @@ const saveKeyChange = async () => {
   const newKey = `${selectedRoot.value}${selectedAccidental.value}${selectedQuality.value}`;
   
   try {
-    await SongsRepository.save(song.value.id, song.value.content, null, newKey);
+    if (route.params.id !== 'new' && song.value.id) {
+      await SongsRepository.save(song.value.id, song.value.content, null, newKey);
+    }
     song.value.originalKey = newKey;
     keyDialog.value = false;
     snackbarText.value = 'Key changed successfully';
@@ -407,7 +410,7 @@ const saveKeyChange = async () => {
 };
 
 const handleTogglePlaylist = () => {
-  if (!song.value) return;
+  if (!song.value || !song.value.id) return;
   const wasInPlaylist = isInPlaylist(song.value.id);
   togglePlaylist(song.value.id);
   snackbarText.value = wasInPlaylist ? 'Removed from playlist' : 'Added to playlist';
@@ -415,8 +418,8 @@ const handleTogglePlaylist = () => {
 };
 
 const handleShare = async () => {
-  if (!song.value) return;
-  const url = window.location.href;
+  if (!song.value || !song.value.id) return;
+  const url = window.location.origin + `/song/${song.value.id}`;
   const result = await share(song.value.title, url);
   if (result.copied) {
     snackbarText.value = 'Link copied to clipboard';
@@ -489,12 +492,21 @@ const toggleEditMode = async () => {
         });
 
         const newContent = LyricsService.serialize(paragraphs.value);
-        await SongsRepository.save(song.value.id, newContent, editTitle.value);
         
-        song.value.title = editTitle.value;
-        snackbarText.value = 'Changes saved to cloud';
-        snackbar.value = true;
-        isEditMode.value = false;
+        if (route.params.id === 'new') {
+          // Add new song
+          const newId = await SongsRepository.addSong(editTitle.value, newContent, song.value.originalKey);
+          snackbarText.value = 'Song created successfully';
+          snackbar.value = true;
+          router.replace(`/song/${newId}`);
+        } else {
+          // Save existing song
+          await SongsRepository.save(song.value.id, newContent, editTitle.value);
+          song.value.title = editTitle.value;
+          snackbarText.value = 'Changes saved to cloud';
+          snackbar.value = true;
+          isEditMode.value = false;
+        }
       } catch (error) {
         console.error('Save failed:', error);
         snackbarText.value = 'Error saving: ' + (error.code === 'permission-denied' ? 'Permission Denied' : error.message);
@@ -517,6 +529,20 @@ const toggleEditMode = async () => {
 
 const resolveSong = () => {
   const id = route.params.id;
+  if (id === 'new') {
+    song.value = {
+      title: '',
+      content: '',
+      originalKey: null
+    };
+    editTitle.value = '';
+    paragraphs.value = [LyricsService.createParagraph('verse')];
+    paragraphs.value[0].editText = '';
+    isEditMode.value = true;
+    loading.value = false;
+    return;
+  }
+
   song.value = SongsRepository.getSong(id);
   if (song.value) {
     isEditMode.value = false;
@@ -526,6 +552,7 @@ const resolveSong = () => {
 };
 
 onMounted(() => {
+  SongsRepository.initialize();
   if (!SongsRepository.loading.value) {
     resolveSong();
   } else {

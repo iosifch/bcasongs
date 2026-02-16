@@ -63,6 +63,19 @@
         </v-col>
       </v-row>
     </div>
+
+    <v-btn
+      v-if="isAuthenticated"
+      color="primary"
+      icon="add"
+      size="large"
+      position="fixed"
+      location="bottom right"
+      class="ma-4 mb-8"
+      to="/song/new"
+      elevation="4"
+    ></v-btn>
+
     <v-snackbar v-model="snackbar" :timeout="2000" color="inverse-surface">
       {{ snackbarText }}
       <template v-slot:actions>

@@ -65,13 +65,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { auth, googleProvider, db } from '../firebaseConfig';
-import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 import { useAuth } from '../composables/useAuth';
 
-const { isAuthenticated } = useAuth();
-const { user, initializeAuth } = useAuth();
+const { user, initializeAuth, signInWithGoogle, logout, loginError } = useAuth();
 const snackbar = ref(false);
 const errorMsg = ref('');
 
@@ -92,20 +88,15 @@ onMounted(() => {
 
 const handleLogin = async () => {
   try {
-    await signInWithPopup(auth, googleProvider);
-  } catch (error) {
-    console.error('Login Failed', error);
-    errorMsg.value = 'Login Failed: ' + error.message;
+    await signInWithGoogle();
+  } catch {
+    errorMsg.value = loginError.value;
     snackbar.value = true;
   }
 };
 
 const handleSignOut = async () => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    console.error('Logout Failed', error);
-  }
+  await logout();
 };
 </script>
 

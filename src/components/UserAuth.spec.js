@@ -1,41 +1,27 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { flushPromises } from '@vue/test-utils';
 import UserAuth from './UserAuth.vue';
-import { auth, googleProvider } from '../firebaseConfig';
-import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
-import { getDoc } from 'firebase/firestore';
 import { ref, computed } from 'vue';
 import { useAuth } from '../composables/useAuth';
 import { mountWithLayout, getSnackbarText } from '../test-utils';
-
-vi.mock('../firebaseConfig', () => ({
-  auth: {},
-  googleProvider: {},
-  db: {}
-}));
-
-vi.mock('firebase/auth', () => ({
-  signInWithPopup: vi.fn(),
-  signOut: vi.fn(),
-  onAuthStateChanged: vi.fn()
-}));
 
 vi.mock('../composables/useAuth', () => ({
   useAuth: vi.fn()
 }));
 
-vi.mock('firebase/firestore', () => ({
-  doc: vi.fn(),
-  getDoc: vi.fn()
-}));
-
 // -- Helpers --
+const mockSignInWithGoogle = vi.fn();
+const mockLogout = vi.fn();
+
 const setupUnauthenticated = () => {
   useAuth.mockReturnValue({
     user: ref(null),
     isAuthenticated: computed(() => false),
     isAuthenticating: ref(false),
-    initializeAuth: vi.fn()
+    initializeAuth: vi.fn(),
+    signInWithGoogle: mockSignInWithGoogle,
+    logout: mockLogout,
+    loginError: ref('')
   });
 };
 
@@ -51,17 +37,10 @@ const setupAuthenticated = (userOverrides = {}) => {
     user: ref(mockUser),
     isAuthenticated: computed(() => true),
     isAuthenticating: ref(false),
-    initializeAuth: vi.fn()
-  });
-
-  onAuthStateChanged.mockImplementation((auth, callback) => {
-    callback(mockUser);
-    return () => {};
-  });
-
-  getDoc.mockResolvedValue({
-    exists: () => true,
-    data: () => ({ allowedEmails: [mockUser.email] })
+    initializeAuth: vi.fn(),
+    signInWithGoogle: mockSignInWithGoogle,
+    logout: mockLogout,
+    loginError: ref('')
   });
 
   return mockUser;
@@ -108,21 +87,34 @@ describe('UserAuth.vue', () => {
     expect(menuContent?.textContent).toContain('John Doe');
   });
 
-  it('calls signInWithPopup when login button is clicked', async () => {
+  it('calls signInWithGoogle when login button is clicked', async () => {
     setupUnauthenticated();
 
     const wrapper = mountWithLayout(UserAuth);
     await flushPromises();
 
     await wrapper.find('button').trigger('click');
+    await flushPromises();
 
-    expect(signInWithPopup).toHaveBeenCalledWith(auth, googleProvider);
+    expect(mockSignInWithGoogle).toHaveBeenCalled();
   });
 
   it('shows error snackbar when login fails', async () => {
-    setupUnauthenticated();
-    signInWithPopup.mockRejectedValue(new Error('Popup closed'));
-    vi.spyOn(console, 'error').mockImplementation(() => {});
+    const loginError = ref('');
+    mockSignInWithGoogle.mockImplementation(async () => {
+      loginError.value = 'Login Failed: Popup closed';
+      throw new Error('Popup closed');
+    });
+
+    useAuth.mockReturnValue({
+      user: ref(null),
+      isAuthenticated: computed(() => false),
+      isAuthenticating: ref(false),
+      initializeAuth: vi.fn(),
+      signInWithGoogle: mockSignInWithGoogle,
+      logout: mockLogout,
+      loginError
+    });
 
     const wrapper = mountWithLayout(UserAuth);
     await flushPromises();
@@ -134,7 +126,7 @@ describe('UserAuth.vue', () => {
     expect(getSnackbarText()).toContain('Popup closed');
   });
 
-  it('calls signOut when logout button is clicked', async () => {
+  it('calls logout when logout button is clicked', async () => {
     setupAuthenticated();
 
     const wrapper = mountWithLayout(UserAuth);
@@ -149,6 +141,6 @@ describe('UserAuth.vue', () => {
     logoutBtn.click();
     await flushPromises();
 
-    expect(signOut).toHaveBeenCalledWith(auth);
+    expect(mockLogout).toHaveBeenCalled();
   });
 });

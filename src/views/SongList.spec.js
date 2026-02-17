@@ -10,12 +10,6 @@ import { useSongFiltering } from '../composables/useSongFiltering';
 
 // --- Mocks ---
 
-vi.mock('../firebaseConfig', () => ({
-    auth: {},
-    googleProvider: {},
-    db: {}
-}));
-
 vi.mock('../composables/useAuth', () => ({
     useAuth: vi.fn(() => ({
         isAuthenticated: ref(true),

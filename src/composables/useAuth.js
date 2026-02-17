@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue';
 import { auth, db } from '../firebaseConfig';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 
 const user = ref(null);
@@ -11,7 +11,9 @@ const authReady = new Promise((resolve) => {
     _resolveAuthReady = resolve;
 });
 
+const loginError = ref('');
 const isAuthenticated = computed(() => !!user.value);
+const googleProvider = new GoogleAuthProvider();
 
 function initializeAuth() {
     if (_initialized) return;
@@ -49,12 +51,35 @@ function initializeAuth() {
     });
 }
 
+async function signInWithGoogle() {
+    loginError.value = '';
+    try {
+        await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+        console.error('Login Failed', error);
+        loginError.value = 'Login Failed: ' + error.message;
+        throw error;
+    }
+}
+
+async function logout() {
+    try {
+        await signOut(auth);
+    } catch (error) {
+        console.error('Logout Failed', error);
+        throw error;
+    }
+}
+
 export function useAuth() {
     return {
         user,
         isAuthenticated,
         isAuthenticating,
         initializeAuth,
-        authReady
+        authReady,
+        signInWithGoogle,
+        logout,
+        loginError
     };
 }

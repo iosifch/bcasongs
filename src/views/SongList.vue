@@ -2,7 +2,7 @@
   <v-app-bar flat color="background" :elevation="0" scroll-behavior="hide" scroll-threshold="150">
     <v-container class="pa-0 fill-height d-flex align-center px-3">
       <v-text-field
-        v-model="search"
+        v-model="localSearch"
         placeholder="Search songs..."
         variant="solo"
         bg-color="surface"
@@ -12,6 +12,7 @@
         single-line
         prepend-inner-icon="search"
         class="flex-grow-1"
+        @update:model-value="debouncedUpdateSearch"
       ></v-text-field>
 
       <v-btn
@@ -39,28 +40,33 @@
     </v-container>
   </v-app-bar>
 
-  <v-container fluid class="py-1 px-2">
+  <v-container fluid class="py-1 px-2 h-100 d-flex flex-column">
     <div v-if="SongsRepository.loading.value && songs.length === 0" class="d-flex justify-center my-4">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
     </div>
 
-    <div v-else>
-      <v-row dense>
-        <v-col cols="12" v-for="song in filteredSongs" :key="song.id" class="pb-2">
-          <SongCard
-            :song="song"
-            :is-in-playlist="isInPlaylist(song.id)"
-            @toggle-playlist="handleTogglePlaylist"
-            @share="handleShare"
-          />
-        </v-col>
-
-        <v-col v-if="filteredSongs.length === 0" cols="12">
-          <div class="text-center mt-4">
-            No songs found.
+    <div v-else class="flex-grow-1" style="min-height: 0;">
+      <v-virtual-scroll
+        v-if="filteredSongs.length > 0"
+        :items="filteredSongs"
+        height="100%"
+        item-height="100"
+      >
+        <template v-slot:default="{ item }">
+          <div class="pb-2 px-1">
+            <SongCard
+              :song="item"
+              :is-in-playlist="isInPlaylist(item.id)"
+              @toggle-playlist="handleTogglePlaylist"
+              @share="handleShare"
+            />
           </div>
-        </v-col>
-      </v-row>
+        </template>
+      </v-virtual-scroll>
+
+      <div v-else class="text-center mt-4 text-medium-emphasis">
+        No songs found.
+      </div>
     </div>
 
     <v-btn
@@ -73,6 +79,7 @@
       class="ma-4 mb-8"
       to="/song/new"
       elevation="4"
+      style="z-index: 100;"
     ></v-btn>
 
     <v-snackbar v-model="snackbar" :timeout="2000" color="inverse-surface">
@@ -85,6 +92,7 @@
 </template>
 
 <script setup>
+import { ref, watch } from 'vue';
 import SongsRepository from '../services/SongsRepository';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useAuth } from '../composables/useAuth';
@@ -98,4 +106,28 @@ const songs = SongsRepository.songs;
 const { isInPlaylist, playlistCount } = usePlaylist();
 const { snackbar, snackbarText, handleTogglePlaylist, handleShare } = useSongActions();
 const { search, filteredSongs } = useSongFiltering(songs);
+
+// Debounced Search Implementation
+const localSearch = ref(search.value);
+
+const debounce = (fn, delay) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delay);
+  };
+};
+
+const updateSearch = (value) => {
+  search.value = value;
+};
+
+const debouncedUpdateSearch = debounce(updateSearch, 300);
+
+// Sync localSearch if search changes externally (e.g. cleared)
+watch(search, (newValue) => {
+  if (localSearch.value !== newValue) {
+    localSearch.value = newValue;
+  }
+});
 </script>

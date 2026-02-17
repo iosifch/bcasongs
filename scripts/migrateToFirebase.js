@@ -60,11 +60,8 @@ async function migrate() {
         console.log('Uploading songs...');
         let count = 0;
         for (const song of songs) {
-            const { id, ...songData } = song;
-
             await addDoc(songsCollection, {
-                ...songData,
-                legacyId: id,
+                ...song,
                 createdAt: new Date(),
                 updatedAt: new Date()
             });

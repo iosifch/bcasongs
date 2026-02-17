@@ -2,144 +2,1714 @@
   "version": 3,
   "songs": [
     {
-      "id": "1",
-      "title": "Cred în Dumnezeu ca Tată v2",
-      "bookNumber": "1",
-      "originalKey": "G",
-      "content": "[A]Cred în Dumnezeu ca Tată, în Isus Hristos ca Fiu,\n[A]Cred în Duhul Sfânt că este, cred Cuvântul că e viu,\n[A]Cred că mai este iertare pentru tot ce-am făcut rău,\n[A]De aceea pe El Îl voi sluji!\n\n[A]Cred că Isus a fost jertfă, pe un lemn crucificat\n[A]Și-n mormânt lângă Golgota trupul I-a fost îngropat,\n[A]Cred că a-nviat precum a zis și că viu s-a arătat,\n[A]De aceea doar Lui Îi voi sluji!\n\n[A]Am luat hotărârea – înapoi nu voi da,\n[A]Cu privirea doar la cruce lumea-n spate o voi lăsa!\n[A]Nu-mi va fi deloc rușine să afirm că sunt creștin,\n[A]Îl voi sluji mereu prin harul Său divin!\n\n[A]Cred Cuvântul care spune „Trebuie să te naști din nou –\n[A]Viața veche ți-e schimbată și totul este nou!”,\n[A]Cred că dragostea lui Dumnezeu mi s-a descoperit,\n[A]De aceea mai mult Îi voi sluji!\n\n[A]Iar când solii întunericului mă vor ispiti,\n[A]Chem numele lui Isus și cu toții vor fugi;\n[A]Se apropie ziua când Isus va reveni,\n[A]Iar până-atunci un singur Nume ne face victorioși!\n\n[A]Cred că este-un bine și un rău, trăiești și apoi mori,\n[A]Cred că Biblia e harta, spre a cerului comori,\n[A]Cred că nu sunt singur în Hristos – pe mulți El i-a salvat –\n[A]De aceea crezare noi I-am dat!\n\n[A]Am luat hotărârea – înapoi nu vom da,\n[A]Cu privirea doar la cruce lumea-n spate o vom lăsa;\n[A]Nu ne va fi deloc rușine să rostim „Suntem creștini!” –\n[A]Îi vom sluji mereu prin harul Său divin!"
+      "title": "Cred în Dumnezeu ca Tată",
+      "bookNumber": 1,
+      "originalKey": null,
+      "content": "Cred în Dumnezeu ca Tată, în Isus Hristos ca Fiu,\nCred în Duhul Sfânt că este, cred Cuvântul că e viu,\nCred că mai este iertare pentru tot ce-am făcut rău,\nDe aceea pe El Îl voi sluji!\n\nCred că Isus a fost jertfă, pe un lemn crucificat\nȘi-n mormânt lângă Golgota trupul I-a fost îngropat,\nCred că a-nviat precum a zis și că viu s-a arătat,\nDe aceea doar Lui Îi voi sluji!\n\nAm luat hotărârea – înapoi nu voi da,\nCu privirea doar la cruce lumea-n spate o voi lăsa!\nNu-mi va fi deloc rușine să afirm că sunt creștin,\nÎl voi sluji mereu prin harul Său divin!\n\nCred Cuvântul care spune „Trebuie să te naști din nou –\nViața veche ți-e schimbată și totul este nou!”,\nCred că dragostea lui Dumnezeu mi s-a descoperit,\nDe aceea mai mult Îi voi sluji!\n\nIar când solii întunericului mă vor ispiti,\nChem numele lui Isus și cu toții vor fugi;\nSe apropie ziua când Isus va reveni,\nIar pân-atunci un singur Nume ne face victorioși!\n\nCred că este-un bine și un rău, trăiești și apoi mori,\nCred că Biblia e harta, spre a cerului comori,\nCred că nu sunt singur în Hristos – pe mulți El i-a salvat –\nDe aceea crezare noi I-am dat!\n\nAm luat hotărârea – înapoi nu vom da,\nCu privirea doar la cruce lumea-n spate o vom lăsa;\nNu ne va fi deloc rușine să rostim „Suntem creștini!” –\nÎi vom sluji mereu prin harul Său divin!"
     },
     {
-      "id": "2",
       "title": "Dați-mi în mână Biblia cea sfântă",
-      "bookNumber": "2",
-      "originalKey": "A",
-      "content": "[A]Dați-mi în mână Biblia cea sfântă –\n[A]Ea mângâieri dă celui întristat,\n[A]Nu-i nor s-ascundă raza-i minunată\n[A]De când Isus la noi S-a întrupat!\n\n[A]Să strălucească razele Scripturii –\n[A]Spre poarta strâmtă ne vor îndruma;\n[A]Sfatul lui Dumnezeu în ea cuprinde,\n[A]Promisiuni, harul și iubirea!\n\n[A]Dați-mi în mână Biblia cea sfântă –\n[A]Ea-nviorează pe cei osteniți;\n[A]Leac minunat e pentru orice rană,\n[A]Vindecă boala și-orice suferinți!\n\n[A]Dați-mi în mână Biblia cea sfântă –\n[A]În ea se află viața lui Isus;\n[A]El pentru mine-a dus cumplita luptă\n[A]Și pe vrăjmașul vieții l-a răpus!\n\n[A]Dați-mi în mână Biblia cea sfântă\n[A]Să gust cuvântul ei mântuitor,\n[A]Lacrimi să vărs ca semn de pocăință\n[A]Și să fiu lui Isus mulțumitor!"
+      "bookNumber": 2,
+      "originalKey": null,
+      "content": "Dați-mi în mână Biblia cea sfântă –\nEa mângâieri dă celui întristat,\nNu-i nor s-ascundă raza-i minunată\nDe când Isus la noi S-a întrupat!\n\nSă strălucească razele Scripturii –\nSpre poarta strâmtă ne vor îndruma;\nSfatul lui Dumnezeu în ea cuprinde,\nPromisiuni, harul și iubirea!\n\nDați-mi în mână Biblia cea sfântă –\nEa-nviorează pe cei osteniți,\nLeac minunat e pentru orice rană,\nVindecă boala și-orice suferinți!\n\nDați-mi în mână Biblia cea sfântă –\nÎn ea se află viața lui Isus;\nEl pentru mine-a dus cumplita luptă\nȘi pe vrășmașul vieții l-a răpus!\n\nDați-mi în mână Biblia cea sfântă\nSă gust cuvântul ei mântuitor,\nLacrimi să vărs ca semn de pocăință\nȘi să fiu lui Isus mulțumitor!"
     },
     {
-      "id": "3",
       "title": "Isus m-a eliberat",
-      "bookNumber": "3",
-      "originalKey": "A",
-      "content": "[A]/: Isus m-a eliberat prin brațul Său puternic –\n[A]Sunt liber, liber, liber, liber! :/\n\n[A]/: Nu mai sunt rob, sunt fiu de Împărat! :/\n\n[A]/: Bateți din palme, cântați, sărbătoriți-L pe El :/"
+      "bookNumber": 3,
+      "originalKey": null,
+      "content": "/: Isus m-a eliberat prin brațul Său puternic –\nSunt liber, liber, liber, liber! :/\n\n/: Nu mai sunt rob, sunt fiu de Împărat! :/\n\n/: Bateți din palme, cântați, sărbătoriți-L pe El :/"
     },
     {
-      "id": "4",
       "title": "Ca Tine, Isuse, nu-i nimeni jos pe pământ",
-      "bookNumber": "4",
-      "originalKey": "A",
-      "content": "[A]Ca Tine, Isuse, nu-i nimeni jos pe pământ –\n[A]Vreau să Te laud, să-Ți mulțumesc,\n[A]Din toată inima să-Ți cânt!\n[A]Ești scutul, nădejdea, turnul și scăparea mea –\n[A]Tot ce am eu și tot ce sunt vreau să las în mâna Ta!\n\n[A]Cu bucurie Te laudă pământul\n[A]Și eu vreau să-Ți spun cât de mult Te iubesc!\n[A]Munții se-nchină și marea Te cântă\n[A]Pe Tine, Domn Ceresc;\n[A]Florile-n câmp și natura întreagă\n[A]În mii de culori Te adoră mereu,\n[A]Te proslăvește și Îți mulțumește-n veci...\n\n[A]Cu bucurie Te laudă pământul\n[A]Și eu vreau să-Ți spun cât de mult Te iubesc!\n[A]Munții se-nchină și marea Te cântă\n[A]Pe Tine, Domn Ceresc,\n[A]Și noi venim cu cântarea iubirii\n[A]În fața Ta, Doamne, să ne închinăm –\n[A]Te lăudăm și-Ți cântăm căci ai Tăi suntem!"
+      "bookNumber": 4,
+      "originalKey": null,
+      "content": "Ca Tine, Isuse, nu-i nimeni jos pe pământ –\nVreau să Te laud, să-Ți mulțumesc,\nDin toată inima să-Ți cânt!\nEști scutul, nădejdea, turnul și scăparea mea –\nTot ce am eu și tot ce sunt vreau să las în mâna Ta!\n\nCu bucurie Te laudă pământul\nȘi eu vreau să-Ți spun cât de mult Te iubesc!\nMunții se-nchină și marea Te cântă\nPe Tine, Domn Ceresc;\nFlorile-n câmp și natura întreagă\nÎn mii de culori Te adoră mereu,\nTe proslăvește și Îți mulțumește-n veci...\n\nCu bucurie Te laudă pământul\nȘi eu vreau să-Ți spun cât de mult Te iubesc!\nMunții se-nchină și marea Te cântă\nPe Tine, Domn Ceresc,\nȘi noi venim cu cântarea iubirii\nÎn fața Ta, Doamne, să ne închinăm –\nTe lăudăm și-Ți cântăm căci ai Tăi suntem!"
     },
     {
-      "id": "5",
       "title": "Inima mea vrea să-Ți cânte",
-      "bookNumber": "5",
-      "originalKey": "A",
-      "content": "[A]Inima mea vrea să-Ți cânte,\n[A]Vrea să Te înalțe în fiecare zi –\n[A]Tu mi-ai adus bucurie și-atâta plinătate\n[A]Cum n-am putut gândi!\n\n[A]Vreau să-Ți mulțumesc pentru tot ce ai făcut\n[A]Și pentru tot ce-nsemni în viața mea;\n[A]Vreau să-Ți mulțumesc pentru tot ce ai schimbat\n[A]Și pentru că mi-ai umplut inima!"
+      "bookNumber": 5,
+      "originalKey": null,
+      "content": "Inima mea vrea să-Ți cânte,\nVrea să Te înalțe în fiecare zi –\nTu mi-ai adus bucurie și-atâta plinătate\nCum n-am putut gândi!\n\nVreau să-Ți mulțumesc pentru tot ce ai făcut\nȘi pentru tot ce-nsemni în viața mea;\nVreau să-Ți mulțumesc pentru tot ce ai schimbat\nȘi pentru că mi-ai umplut inima!"
     },
     {
-      "id": "6",
       "title": "Cântarea mea e numai despre Isus",
-      "bookNumber": "6",
-      "originalKey": "A",
-      "content": "[A]Cântarea mea e numai despre Isus,\n[A]Cerescul Fiu al Tatălui slăvit –\n[A]El a venit păcatul să mi-l șteargă\n[A]Când la Calvar pe cruce a murit...\n\n[A]Cântarea mea e numai despre Isus\n[A]Ce-n locul meu pedeapsa a purtat;\n[A]Și-n versul ei cântarea mea va spune\n[A]Ce fericiri și bogății ne-a dat!\n\n[A]Cămașa Lui stropită-n sfântu-I sânge,\n[A]Crucea și spinii și păcatul greu,\n[A]Mormântul gol, speranța revederii –\n[A]Despre acestea voi cânta mereu!\n\n[A]Cântarea mea va fi doar despre Isus –\n[A]Chiar peste Râu, odată-n veșnicii,\n[A]Cu imnul sfânt al miilor de îngeri\n[A]Cântarea mea atunci se va uni..."
+      "bookNumber": 6,
+      "originalKey": null,
+      "content": "Cântarea mea e numai despre Isus,\nCerescul Fiu al Tatălui slăvit –\nEl a venit păcatul să mi-l șteargă\nCând la Calvar pe cruce a murit...\n\nCântarea mea e numai despre Isus\nCe-n locul meu pedeapsa a purtat;\nȘi-n versul ei cântarea mea va spune\nCe fericiri și bogății ne-a dat!\n\nCămașa Lui stropită-n sfântu-I sânge,\nCrucea și spinii și păcatul greu,\nMormântul gol, speranța revederii –\nDespre acestea voi cânta mereu!\n\nCântarea mea va fi doar despre Isus –\nChiar peste Râu, odată-n veșnicii,\nCu imnul sfânt al miilor de îngeri\nCântarea mea atunci se va uni..."
     },
     {
-      "id": "7",
       "title": "Un simplu cântec eu Îți cânt",
-      "bookNumber": "7",
-      "originalKey": "A",
-      "content": "[A]Un simplu cântec eu Îți cânt,\n[A]O, Isuse, scump Isuse;\n[A]Îți mulțumesc că m-ai creat,\n[A]Scump Isuse, drag Isuse!\n\n[A]Îți mulțumesc că al Tău m-ai făcut!\n[A]În niciun loc n-aș vrea să fiu\n[A]Decât în mâna Ta, sub ocrotirea Ta –\n[A]Ține-mă strâns în mâna Ta,\n[A]Doar în mâna Ta!"
+      "bookNumber": 7,
+      "originalKey": null,
+      "content": "Un simplu cântec eu Îți cânt,\nO, Isuse, scump Isuse;\nÎți mulțumesc că m-ai creat,\nScump Isuse, drag Isuse!\n\nÎți mulțumesc că al Tău m-ai făcut!\nÎn niciun loc n-aș vrea să fiu\nDecât în mâna Ta, sub ocrotirea Ta –\nȚine-mă strâns în mâna Ta,\nDoar în mâna Ta!"
     },
     {
-      "id": "8",
       "title": "Când sunt în luptă pe-a mea cale",
-      "bookNumber": "8",
-      "originalKey": "A",
-      "content": "[A]Când sunt în luptă pe-a mea cale\n[A]Și-nconjurat de rău eu sunt,\n[A]Când simt că nu mai am speranță,\n[A]Mă uit în sfântul Tău Cuvânt;\n[A]Vrăjmașul caută să lovească\n[A]În sufletul ce îl iubești –\n[A]Atunci eu strig „Lăudat fii, Doamne!”\n[A]Și Tu de rău mă izbăvești!\n\n[A]Să strigăm „Lăudat să fie Domnul”,\n[A]Să chemăm pe singuru-Împărat,\n[A]Să strigăm către Cel Atotputernic\n[A]Căci El ne va da biruința Sa –\n[A]Să strigăm cu toții, să strigăm!\n\n[A]Eu știu că vor veni ispite,\n[A]Eu știu că nu va fi ușor,\n[A]Dar eu, când mă încred în Domnul,\n[A]În toate sunt biruitor;\n[A]Acum eu pot fi fericit\n[A]Căci Isus m-a eliberat,\n[A]Mi-a dat din Duhul Său cel Sfânt,\n[A]Putere noua El mi-a dat!"
+      "bookNumber": 8,
+      "originalKey": null,
+      "content": "Când sunt în luptă pe-a mea cale\nȘi-nconjurat de rău eu sunt,\nCând simt că nu mai am speranță,\nMă uit în sfântul Tău Cuvânt;\nVrăjmașul caută să lovească\nÎn sufletul ce îl iubești –\nAtunci eu strig „Lăudat fii, Doamne!”\nȘi Tu de rău mă izbăvești!\n\nSă strigăm „Lăudat să fie Domnul”,\nSă chemăm pe singuru-Împărat,\nSă strigăm către Cel Atotputernic\nCăci El ne va da biruința Sa –\nSă strigăm cu toții, să strigăm!\n\nEu știu că vor veni ispite,\nEu știu că nu va fi ușor,\nDar eu, când mă încred în Domnul,\nÎn toate sunt biruitor;\nAcum eu pot fi fericit\nCăci Isus m-a eliberat,\nMi-a dat din Duhul Său cel Sfânt,\nPutere nouă El mi-a dat!"
     },
     {
-      "id": "9",
       "title": "Doamne, Tu ești Dumnezeu",
-      "bookNumber": "9",
-      "originalKey": "A",
-      "content": "[A]Doamne, Tu ești Dumnezeu și vei domni în veci,\n[A]Întreg pământul este plin de slava Ta!\n[A]Mereu veghezi să-mplinești Cuvântul Tău Cel sfânt,\n[A]Cu dragoste ne conduci pe-al vieții drum!\n\n[A]/: Să fii înălțat, să fii înălțat,\n[A]Domn al dragostei – Împărat! :/"
+      "bookNumber": 9,
+      "originalKey": null,
+      "content": "Doamne, Tu ești Dumnezeu și vei domni în veci,\nÎntreg pământul este plin de slava Ta!\nMereu veghezi să-mplinești Cuvântul Tău Cel sfânt,\nCu dragoste ne conduci pe-al vieții drum!\n\n/: Să fii înălțat, să fii înălțat,\nDomn al dragostei – Împărat! :/"
     },
     {
-      "id": "10",
       "title": "Cum pot răsplăti eu iubirea-Ți imensă",
-      "bookNumber": "10",
-      "originalKey": "A",
-      "content": "[A]Cum pot răsplăti eu iubirea-Ți imensă\n[A]Când Tu Ți-ai dat viața pentru-n păcătos?\n[A]Te rog, o, primește umilă ofrandă,\n[A]/: Umilă ofrandă, Isuse Hristoase,\n[A]Din inima mea! :/\n\n[A]Când negura nopții-și-întinde mantaua\n[A]Privesc printre lacrimi spre Tine-a căuta...\n[A]Dincolo de stele eu știu că există\n[A]/: Un Tată puternic ce-asupra-mi veghează\n[A]Cu dragostea Sa! :/\n\n[A]Nu pot răsplăti eu cu-argint sau cu aur\n[A]Măreț sacrificiul, nici dragostea Ta,\n[A]De-aceea, o, Doamne, Te rog azi primește,\n[A]/: Primește cântarea scăldată în lacrimi\n[A]Și inima mea! :/"
+      "bookNumber": 10,
+      "originalKey": null,
+      "content": "Cum pot răsplăti eu iubirea-Ți imensă\nCând Tu Ți-ai dat viața pentru-n păcătos?\nTe rog, o, primește umilă ofrandă,\n/: Umilă ofrandă, Isuse Hristoase,\nDin inima mea! :/\n\nCând negura nopții-și-întinde mantaua\nPrivesc printre lacrimi spre Tine-a căuta...\nDincolo de stele eu știu că există\n/: Un Tată puternic ce-asupra-mi veghează\nCu dragostea Sa! :/\n\nNu pot răsplăti eu cu-argint sau cu aur\nMăreț sacrificiul, nici dragostea Ta,\nDe-aceea, o, Doamne, Te rog azi primește,\n/: Primește cântarea scăldată în lacrimi\nȘi inima mea! :/"
     },
     {
-      "id": "11",
       "title": "Doamne, dăruiește-mi harul, pacea Ta",
-      "bookNumber": "11",
-      "originalKey": "A",
-      "content": "[A]Doamne, dăruiește-mi harul, pacea Ta\n[A]Ca în umilință să Te pot urma;\n[A]Dă-mi credință multă să pot priveghea,\n[A]Râvnă înțeleaptă – mult să pot lucra!\n\n[A]Doamne, vreau din suflet să Îți mulțumesc –\n[A]Tu îmi ești nădejdea, știi că Te iubesc!\n[A]Pune-acum în mine gândul Tău curat –\n[A]Bun, milos ca Tine să fiu ne-ncetat!\n\n[A]Dă-mi gânduri curate și răbdarea Ta\n[A]Să înving ispite prin puterea Ta;\n[A]Dă-mi în suflet dorul cerului slăvit\n[A]Și multă lumină prin Duhul Tău Sfânt!"
+      "bookNumber": 11,
+      "originalKey": null,
+      "content": "Doamne, dăruiește-mi harul, pacea Ta\nCa în umilință să Te pot urma;\nDă-mi credință multă să pot priveghea,\nRâvnă înțeleaptă – mult să pot lucra!\n\nDoamne, vreau din suflet să Îți mulțumesc –\nTu îmi ești nădejdea, știi că Te iubesc!\nPune-acum în mine gândul Tău curat –\nBun, milos ca Tine să fiu ne-ncetat!\n\nDă-mi gânduri curate și răbdarea Ta\nSă înving ispite prin puterea Ta;\nDă-mi în suflet dorul cerului slăvit\nȘi multă lumină prin Duhul Tău Sfânt!"
     },
     {
-      "id": "12",
       "title": "O lume întreagă stă în nepăsare",
-      "bookNumber": "12",
-      "originalKey": "A",
-      "content": "[A]O lume întreagă stă în nepăsare\n[A]Și caută-adăpost când vine o-ncercare,\n[A]Dar eu nu mă tem, dar eu nu mă tem!\n[A]În ceasul cel bun e stăpână pe toate;\n[A]Când Domnul îi vorbește, îi-e frică de moarte,\n[A]Dar eu nu mă tem, dar eu nu mă tem!\n\n[A]Dar eu nu mă tem chiar dacă cei din jur mă părăsesc;\n[A]Dar eu nu mă tem, orice-ar veni!\n[A]Viața mea e-n mâna Celui ce-a murit pe lemn –\n[A]Cu mine Îl chem și eu nu mă tem!\n\n[A]Ades vine-ncercarea năvalnic ca marea\n[A]Și norii negri grabnic întunecă zarea,\n[A]Dar eu nu mă tem, dar eu nu mă tem!\n[A]Se spulberă gândul și orice speranță\n[A]Și nici măcar o clipă nu ai siguranță,\n[A]Dar eu nu mă tem, dar eu nu mă tem!\n\n[A]Și oamenii cei răi mă-nconjoară cu ură,\n[A]Din cupa lor să-mi dea să beau o picătură,\n[A]Dar eu nu mă tem, dar eu nu mă tem!\n[A]Cu Domnul meu trec biruitor prin toate –\n[A]Din apă și din foc să mă scape El poate,\n[A]Iar eu nu mă tem, iar eu nu mă tem!"
+      "bookNumber": 12,
+      "originalKey": null,
+      "content": "O lume întreagă stă în nepăsare\nȘi caută-adăpost când vine o-ncercare,\nDar eu nu mă tem, dar eu nu mă tem!\nÎn ceasul cel bun e stăpână pe toate;\nCând Domnul îi vorbește, îi-e frică de moarte,\nDar eu nu mă tem, dar eu nu mă tem!\n\nDar eu nu mă tem chiar dacă cei din jur mă părăsesc;\nDar eu nu mă tem, orice-ar veni!\nViața mea e-n mâna Celui ce-a murit pe lemn –\nCu mine Îl chem și eu nu mă tem!\n\nAdes vine-ncercarea năvalnic ca marea\nȘi norii negri grabnic întunecă zarea,\nDar eu nu mă tem, dar eu nu mă tem!\nSe spulberă gândul și orice speranță\nȘi nici măcar o clipă nu ai siguranță,\nDar eu nu mă tem, dar eu nu mă tem!\n\nȘi oamenii cei răi mă-nconjoară cu ură,\nDin cupa lor să-mi dea să beau o picătură,\nDar eu nu mă tem, dar eu nu mă tem!\nCu Domnul meu trec biruitor prin toate –\nDin apă și din foc să mă scape El poate,\nIar eu nu mă tem, iar eu nu mă tem!"
     },
     {
-      "id": "13",
       "title": "Noi suntem una-n Isus",
-      "bookNumber": "13",
-      "originalKey": "A",
-      "content": "[A]Noi suntem una-n Isus, suntem uniți în El;\n[A]Suntem uniți în Isus și vrem să fim ca El,\n[A]Și lumea recunoaște pe cine creștin este,\n[A]Lumea ne recunoaște dacă-avem dragoste –\n[A]Suntem creștini dacă avem dragoste!"
+      "bookNumber": 13,
+      "originalKey": null,
+      "content": "Noi suntem una-n Isus, suntem uniți în El;\nSuntem uniți în Isus și vrem să fim ca El,\nȘi lumea recunoaște pe cine creștin este,\nLumea ne recunoaște dacă-avem dragoste –\nSuntem creștini dacă avem dragoste!"
     },
     {
-      "id": "14",
       "title": "Domn minunat ești lângă mine",
-      "bookNumber": "14",
-      "originalKey": "A",
-      "content": "[A]Domn minunat ești lângă mine,\n[A]În orice zi eu sunt cu Tine\n[A]Căci mâna Ta nu m-a lăsat să rătăcesc...\n[A]Cu gingășie mă strigi pe nume,\n[A]Duhul Tău Sfânt îmi dă mângâiere\n[A]Și-aduce pace în sufletul meu căci mă iubești...\n[A]Sunt copleșit de-a Ta iubire,\n[A]M-ai cucerit pentru vecie –\n[A]O, Domnul meu, vreau să Îți mulțumesc!\n\n[A]Ia-mă, schimbă-mă, folosește-mă –\n[A]Viața mea e în mâna Ta!\n[A]Glasul Tău vreau mereu să-L am în sufletul meu...\n[A]Inima mea, Doamne, e a Ta!\n\n[A]Domn minunat, ești lângă mine,\n[A]În orice zi eu sunt cu Tine –\n[A]Cât timp trăiesc prin viața mea\n[A]Vreau să Te slăvesc!"
+      "bookNumber": 14,
+      "originalKey": null,
+      "content": "Domn minunat ești lângă mine,\nÎn orice zi eu sunt cu Tine\nCăci mâna Ta nu m-a lăsat să rătăcesc...\nCu gingășie mă strigi pe nume,\nDuhul Tău Sfânt îmi dă mângâiere\nȘi-aduce pace în sufletul meu căci mă iubești...\nSunt copleșit de-a Ta iubire,\nM-ai cucerit pentru vecie –\nO, Domnul meu, vreau să Îți mulțumesc!\n\nIa-mă, schimbă-mă, folosește-mă –\nViața mea e în mâna Ta!\nGlasul Tău vreau mereu să-L am în sufletul meu...\nInima mea, Doamne, e a Ta!\n\nDomn minunat, ești lângă mine,\nÎn orice zi eu sunt cu Tine –\nCât timp trăiesc prin viața mea\nVreau să Te slăvesc!"
     },
     {
-      "id": "15",
       "title": "Celui ce-i veșnic Îi dăm onoare",
-      "bookNumber": "15",
-      "originalKey": "A",
-      "content": "[A]Celui ce-i veșnic Îi dăm onoare, slavă și glorie-n veci;\n[A]Toată creația, orice națiune să I se-nchine doar Lui!\n\n[A]Orice limbă-n cer și aici jos să-Ți declare gloria,\n[A]L-al Tău tron cu toți ne-aplecăm genunchii;\n[A]Doamne, Tu vei fi înălțat\n[A]Și Împărăția Ta va fi veșnică!\n\n[A]Pământul așteaptă venirea Ta – glorie Celui din veșnicii!\n[A]Să fie văzută iar Slava Ta – glorie Celui din veșnicii!"
+      "bookNumber": 15,
+      "originalKey": null,
+      "content": "Celui ce-i veșnic Îi dăm onoare, slavă și glorie-n veci;\nToată creația, orice națiune să I se-nchine doar Lui!\n\nOrice limbă-n cer și aici jos să-Ți declare gloria,\nL-al Tău tron cu toți ne-aplecăm genunchii;\nDoamne, Tu vei fi înălțat\nȘi Împărăția Ta va fi veșnică!\n\nPământul așteaptă venirea Ta – glorie Celui din veșnicii!\nSă fie văzută iar Slava Ta – glorie Celui din veșnicii!"
     },
     {
-      "id": "16",
       "title": "Domnul va lucra luminând cărarea ta",
-      "bookNumber": "16",
-      "originalKey": "A",
-      "content": "[A]Domnul va lucra luminând cărarea ta –\n[A]Chiar dacă tu nu-L poți vedea, El va fi 'naintea ta!\n[A]Te va învăța cum să mergi pe calea Sa,\n[A]Și în necaz, și-n bucurii nu te va lăsa, Domnul va lucra!\n\n[A]Tu să crezi mereu, să te-ncrezi în brațul Său,\n[A]Iar când cel rău vrea viața ta, Domnul nu te va lăsa;\n[A]Roagă-te mereu către Tatăl Dumnezeu,\n[A]Și prin Cuvânt, prin Duhul Sfânt El te va-ajuta pe cărarea ta!\n\n[A]Chiar în pustiu de-ai fi, El te conduce,\n[A]Din Stâncă Apa Vieții îți va da;\n[A]Toate de vor pieri, El mereu cu tin' va fi –\n[A]Ți-a promis prin Cuvântul Sfânt!"
+      "bookNumber": 16,
+      "originalKey": null,
+      "content": "Domnul va lucra luminând cărarea ta –\nChiar dacă tu nu-L poți vedea, El va fi 'naintea ta!\nTe va învăța cum să mergi pe calea Sa,\nȘi în necaz, și-n bucurii nu te va lăsa,\nDomnul va lucra!\n\nTu să crezi mereu, să te-ncrezi în brațul Său,\nIar când cel rău vrea viața ta, Domnul nu te va lăsa;\nRoagă-te mereu către Tatăl Dumnezeu,\nȘi prin Cuvânt, prin Duhul Sfânt El te va-ajuta pe cărarea ta!\n\nChiar în pustiu de-ai fi, El te conduce,\nDin Stâncă Apa Vieții îți va da;\nToate de vor pieri, El mereu cu tin' va fi –\nȚi-a promis prin Cuvântul Sfânt!"
     },
     {
-      "id": "17",
       "title": "Sfânta Scriptură deschisă",
-      "bookNumber": "17",
-      "originalKey": "A",
-      "content": "[A]Sfânta Scriptură deschisă – ea poate îndrepta starea;\n[A]Prin ea oricine în lume poate afla fericirea!\n\n[A]O, sfânt Cuvânt, rază din cer,\n[A]Luminează în tot locul\n[A]Până când toți s-or mântui,\n[A]S-a schimba-n zi-ntunericul!\n\n[A]Iubirea, mila Tatălui – ea se face cunoscută;\n[A]Sufletele rătăcite le-aduce la calea dreaptă!\n\n[A]Ne spune moartea lui Isus că El ca Domn a înviat;\n[A]El plata mare a depus și nouă viață-n dar ne-a dat!\n\n[A]Cartea-asta Dumnezeu ne-a dat, ea-i izvorul fericirii;\n[A]Când noaptea morții va sosi, razele ei vor străluci!"
+      "bookNumber": 17,
+      "originalKey": null,
+      "content": "Sfânta Scriptură deschisă – ea poate îndrepta starea;\nPrin ea oricine în lume poate afla fericirea!\n\nO, sfânt Cuvânt, rază din cer,\nLuminează în tot locul\nPână când toți s-or mântui,\nS-a schimba-n zi-ntunericul!\n\nIubirea, mila Tatălui – ea se face cunoscută;\nSufletele rătăcite le-aduce la calea dreaptă!\n\nNe spune moartea lui Isus că El ca Domn a înviat;\nEl plata mare a depus și nouă viață-n dar ne-a dat!\n\nCartea-asta Dumnezeu ne-a dat, ea-i izvorul fericirii;\nCând noaptea morții va sosi, razele ei vor străluci!"
     },
     {
-      "id": "18",
       "title": "Doamne, astăzi vin",
-      "bookNumber": "18",
-      "originalKey": "A",
-      "content": "[A]Doamne, astăzi vin în fața Ta să mă închin\n[A]Ca să fiu umplut de har divin...\n[A]Prin lumina Ta aș vrea mai mult să Îmi cunosc\n[A]Slăbiciunile și să cresc în iubirea Ta!\n\n[A]Cheamă-mă și voi veni la Tine;\n[A]Când sunt slab, Te rog Tu să mă sprijinești –\n[A]Ca vulturul spre cer mă voi înălța\n[A]Și veșnic voi trăi, mereu voi locui prin iubirea Ta!\n\n[A]Doamne, vreau să fiu în stare să-nțeleg cum ești\n[A]Și care-i calea Ta ca să merg pe ea;\n[A]Și din pacea Ta în suflet să-mi reverși un strop\n[A]Ca cei din jur să stea și să bea din iubirea Ta!"
+      "bookNumber": 18,
+      "originalKey": null,
+      "content": "Doamne, astăzi vin în fața Ta să mă închin\nCa să fiu umplut de har divin...\nPrin lumina Ta aș vrea mai mult să îmi cunosc\nSlăbiciunile și să cresc în iubirea Ta!\n\nCheamă-mă și voi veni la Tine;\nCând sunt slab, Te rog Tu să mă sprijinești –\nCa vulturul spre cer mă voi înălța\nȘi veșnic voi trăi, mereu voi locui prin iubirea Ta!\n\nDoamne, vreau să fiu în stare să-nțeleg cum ești\nȘi care-i calea Ta ca să merg pe ea;\nȘi din pacea Ta în suflet să-mi reverși un strop\nCa cei din jur să stea și să bea din iubirea Ta!"
     },
     {
-      "id": "19",
       "title": "În umblarea mea prin lume",
-      "bookNumber": "19",
-      "originalKey": "A",
-      "content": "[A]În umblarea mea prin lume, prin ispitele haine,\n[A]Peste tot, Isuse Doamne, numai harul Tău mă tine!\n\n[A]Numai harul, numai harul mă păstrează ne-ncetat –\n[A]El mă face, el mă tine credincios cu-adevărat!\n\n[A]Pe cărarea curăției și în lupta spre mai bine\n[A]Să mă țin nu pot – întruna numai harul Tău mă tine!\n\n[A]În lucrarea Ta preasfântă unde m-ai chemat pe mine\n[A]Cât e de puțină roadă... Numai harul Tău mă tine!\n\n[A]Când aș vrea s-ascult Cuvântul, să-mplinesc cum se cuvine,\n[A]Văd cum totu-mi stă-mpotrivă – numai harul Tău mă tine!\n\n[A]Orișicând și-n orice stare, Doamne, îndrăznesc la Tine –\n[A]Și-n cădere, și-n 'nălțare numai harul Tău mă tine!"
+      "bookNumber": 19,
+      "originalKey": null,
+      "content": "În umblarea mea prin lume, prin ispitele haine,\nPeste tot, Isuse Doamne, numai harul Tău mă ține!\n\nNumai harul, numai harul mă păstrează ne-ncetat –\nEl mă face, el mă ține credincios cu-adevărat!\n\nPe cărarea curăției și în lupta spre mai bine\nSă mă țin nu pot – întruna numai harul Tău mă ține!\n\nÎn lucrarea Ta preasfântă unde m-ai chemat pe mine\nCât e de puțină roadă... Numai harul Tău mă ține!\n\nCând aș vrea s-ascult Cuvântul, să-mplinesc cum se cuvine,\nVăd cum totu-mi stă-mpotrivă – numai harul Tău mă ține!\n\nOrișicând și-n orice stare, Doamne, îndrăznesc la Tine –\nȘi-n cădere, și-n ‘nălțare numai harul Tău mă ține!"
     },
     {
-      "id": "20",
       "title": "Domnu-i bun orișicând",
-      "bookNumber": "20",
-      "originalKey": "A",
-      "content": "[A]Domnu-i bun orișicând –\n[A]Recunoscător laudă vreau să-I cânt!\n[A]Domnu-i bun orișicând –\n[A]Chiar și-n noaptea grea mă va lumina;\n[A]Domnu-i bun, Domnu-i bun orișicând!\n\n[A]Dacă treci prin valea morții și sunt umbre-n jurul tău,\n[A]Mâna Lui te va conduce ocrotit să fii de rău –\n[A]A promis că nu te lasă, nu te uită, nu ești părăsit!\n\n[A]Când trăiam cu toți-n noapte, dragostea Și-a arătat:\n[A]Tatăl bun Cel Sfânt din ceruri pe Isus jertfă L-a dat\n[A]Și-acum, liberi de păcate, îndurarea Lui o vom cânta!\n\n[A]Chiar când nu pot să-nțeleg\n[A]Planul Tău în viața mea,\n[A]În Tine mă încred –\n[A]Prin credință-atunci pot din nou vedea!"
+      "bookNumber": 20,
+      "originalKey": null,
+      "content": "Domnu-i bun orișicând –\nRecunoscător laudă vreau să-I cânt!\nDomnu-i bun orișicând –\nChiar și-n noaptea grea mă va lumina;\nDomnu-i bun, Domnu-i bun orișicând!\n\nDacă treci prin valea morții și sunt umbre-n jurul tău,\nMâna Lui te va conduce ocrotit să fii de rău –\nA promis că nu te lasă, nu te uită, nu ești părăsit!\n\nCând trăiam cu toți-n noapte, dragostea Și-a arătat:\nTatăl bun Cel Sfânt din ceruri pe Isus jertfă L-a dat\nȘi-acum, liberi de păcate, îndurarea Lui o vom cânta!\n\nChiar când nu pot să-nțeleg\nPlanul Tău în viața mea,\nÎn Tine mă încred –\nPrin credință-atunci pot din nou vedea!"
+    },
+    {
+      "title": "Destinul tău e să învingi",
+      "bookNumber": 21,
+      "originalKey": null,
+      "content": "Destinul tău e să învingi, când ești căzut, să te ridici;\nDestinul tău l-a scris cândva Isus;\nNumele tău de mult e scris în Cartea Vieții din Paradis;\nDestinul tău e cerul Său, să știi!\n\nNu suntem aici statornici – o Țară-avem și ea e sus;\nCalea se sfârșește-acolo... Îl vom vedea toți pe Isus!\n\nDeci să te porți cum e cinstit cu Tatăl tău ce te-a iubit\nȘi te-a plătit cu mare preț, să știi;\n„Pe brațul Meu Eu te-am purtat și-am să te port neîncetat!” –\nEl, Dumnezeu, spune așa în cartea Sa!"
+    },
+    {
+      "title": "Când în zare se ivește solul celui necurat",
+      "bookNumber": 22,
+      "originalKey": null,
+      "content": "Când în zare se ivește solul celui necurat,\nDumnezeu e tăria mea!\nCând armatele de duhuri cerul l-au întunecat,\nDumnezeu e tăria mea!\nCând tot iadul stă-n picioare pregătit pentru război\nȘi simt că sufletu-mi se zbate prins în cursa grea,\nMă aplec în rugăciune și-aștept ajutorul slavei –\nDumnezeu e Tăria mea!\n\nDumnezeu e tăria mea,\nAdăpost pentru sufletul meu,\nAjutor când povara e grea;\nDumnezeu e tăria mea!\n\nDumnezeu are putere ca în cer și pe pământ –\nDumnezeu e tăria mea!\nTot ce-n lume se întâmplă este scris și în Cuvânt –\nDumnezeu e tăria mea!\nÎncercarea când e mare și se pare că mă-ngroapă,\nÎntunericul e gros și nu mai pot vedea,\nPlec și fruntea și genunchii, dar înalț spre ceruri duhul –\nDumnezeu e scăparea mea!"
+    },
+    {
+      "title": "Domn peste pământ",
+      "bookNumber": 23,
+      "originalKey": null,
+      "content": "Domn peste pământ, peste Univers și peste noi,\nEști Dumnezeu și Creator, al nostru Domn;\nSuntem ai Tăi copii pentru vecii...\nAzi Te rugăm prin Duhul Tău: luminează peste noi!\n\nPrin lumina Ta vrem mereu să stăm pe calea Ta;\nDuh din Duhul Tău revarsă azi peste noi!\nPrivind în noi găsim iubirea Ta...\nNe-ai mântuit, ne-ai fericit – să fii veșnic preamărit!"
+    },
+    {
+      "title": "E-o minune când soarele-apune",
+      "bookNumber": 24,
+      "originalKey": null,
+      "content": "E-o minune când soarele-apune, minune din infinit,\nDar mai mare-i minunea din inimă –\nMinunea că El m-a iubit!\n\nMinunat e Domnul meu; mai minunat e El\nDecât orice pe pământ și-n cer,\nMinunat e Domnul Sfânt!\n\nE-o minune și vara, și iarna, și cerul înstelat,\nDar mai mare-i minunea din inimă –\nMinunea că El m-a salvat!\n\nE-o minune întreaga-mi făptură, minune din veșnicii,\nDar mai mare-i minunea din inimă –\nMinunea că El va veni!"
+    },
+    {
+      "title": "Isus, lumina iubirii Tale",
+      "bookNumber": 25,
+      "originalKey": null,
+      "content": "Isus, lumina iubirii Tale strălucește în întuneric –\nLumina lumii, ne dă din lumina Ta,\nEliberează-ne prin adevărul Tău;\nFii lumina mea, fii lumina mea!\n\nUmple, Isus, cu lumina-Ți această țară,\nVino, Duh Sfânt, inimi Tu să aprinzi!\nCurgi, izvor de har, inundă țara cu iubire,\nCu lumina Ta, Doamne, lumea s-o cuprinzi!\n\nÎn fața Ta noi venim să ne-nchinăm,\nȚie slavă noi pururi vrem să-Ți dăm;\nDin plinătatea-Ți primit-am har după har,\nÎn viața noastră Te vezi căci ne-ai dat în dar\nLumina Ta, lumina Ta!"
+    },
+    {
+      "title": "Eu sunt un om",
+      "bookNumber": 26,
+      "originalKey": null,
+      "content": "Eu sunt un om, sunt doar un om –\nAjută-mi, Te rog, să cred mai mult ce pot a fi,\nSă cred mai mult în al meu Domn;\nÎnvață-mă să Te slujesc timp de o zi!\n\nUn timp de o zi, Isuse, atât este tot ce-mi doresc –\nO, dă-mi Tu puteri ce-am de făcut să-nfăptuiesc\nCăci mâine nu știu, Isuse, dacă va mai fi înc-o zi,\nNu știu timpul când viața mea se va sfârși...\n\nÎmi amintesc când pe pământ\nCu oameni umblai și le vorbeai prin Duhul Sfânt –\nO, vin' și azi prezent să fii,\nSă ne vorbești prin Duhul Tău încă o zi!"
+    },
+    {
+      "title": "Cânt Domnului că mi-a făcut bine",
+      "bookNumber": 27,
+      "originalKey": null,
+      "content": "Cânt Domnului că mi-a făcut bine – lui Dumnezeu glorie!\nMi se bucură inima-n mine – lui Dumnezeu glorie!\n\nCânt Lui Dumnezeu „Glorie!”\nȘi tot pământul să-I cânte Lui Dumnezeu „Glorie!”;\nEl mi-a adus mântuire,\nDe-aceea-I cânt pe vecie Lui Dumnezeu „Glorie!”.\n\nCu natura-ntreagă Îi cânt și eu lui Dumnezeu „Glorie!”;\nSă-L slăvească munții și apele – lui Dumnezeu glorie!\n\nCu cei ce-L iubesc în veci voi cânta lui Dumnezeu „Glorie!”\nSus în cer pe veci Îl vom lauda – lui Dumnezeu glorie!"
+    },
+    {
+      "title": "Eu mă-ncred doar în Isus",
+      "bookNumber": 28,
+      "originalKey": null,
+      "content": "Eu mă-ncred doar în Isus – El mă ajută;\nEu mă-ncred doar în Isus – El e-a mea stâncă,\nEl e-al meu Turn în care la necaz alerg;\nEu mă-ncred doar în Isus – știu că nu greșesc!\n\nPe Domnul clădesc –\nAjutorul meu;\nEl e slava mea și când drumu-i greu...\nToate popoarele lumii să se-ncreadă-n El;\nEu mă-ncred doar în Isus – știu că nu greșesc!\n\nEu mă-ncred doar în Isus – El revarsă har;\nEu mă-ncred doar în Isus – viața-mi dă în dar;\nEl e-al meu Turn în care la necaz alerg;\nEu mă-ncred doar în Isus – știu că nu greșesc!\n\nEu mă-ncred doar în Isus și-n Duhul Său sfânt,\nEu mă-ncred doar în Isus aici pe pământ;\nEl e-al meu Turn în care la necaz alerg;\nEu mă-ncred doar în Isus – știu că nu greșesc!"
+    },
+    {
+      "title": "Doamne, Ție vreau să mă predau",
+      "bookNumber": 29,
+      "originalKey": null,
+      "content": "Doamne, Ție vreau să mă predau,\nSunt obosit de-atâtea griji ce mă apasă;\nGrijă, teamă, orice-ar fi –\nNu mai vreau să mă întorc cu ele acasă!\n\nÎn mâna Ta găsesc putere,\nÎn mâna Ta găsesc mângâiere,\nÎn mâna Ta vreau, Doamne, să mă ascund;\nÎn mâna Ta găsesc iertare,\nÎn mâna Ta e eliberare,\nÎn mâna Ta vreau totdeauna să mă ascund!"
+    },
+    {
+      "title": "Haideți să cântăm cu veselie Domnului",
+      "bookNumber": 30,
+      "originalKey": null,
+      "content": "Haideți să cântăm cu veselie Domnului\nȘi să strigăm de bucurie\nCătre Stânca mântuirii noastre;\nÎnaintea Lui să mergem toți cu laude –\nCântați-I cântece, cântați-I cântece,\nCântați-I cântece, o, dați cinste Lui!\n\nDomnul este mare Împărat –\nMarea și uscatul a creat;\nDomnul este mare Dumnezeu –\nLui mă-nchin, e Creatorul meu!\n\nSă ne închinăm, să ne smerim,\nSă plecăm genunchii, să-L slăvim;\nNoi suntem poporul Domnului –\nNu putem fi smulși din mâna Lui!"
+    },
+    {
+      "title": "Măriți pe Domnul căci El peste toate veghează",
+      "bookNumber": 31,
+      "originalKey": null,
+      "content": "Măriți pe Domnul căci El peste toate veghează,\nEl vi-e părinte și El păsul vi-l înțelege;\nVă adunați, cu tot ce aveți vă-nchinați,\nLui Dumnezeu laudă să-I dați!\n\nMăriți pe Domnul, pe Cel care totul conduce –\nPe-aripi de vultur El v-a dus și iar vă va duce.\nTatăl Ceresc ne-a dat chiar pe Fiul Său\nȘi-n El ne dă tot ce are!\n\nMăriți pe Domnul cu inimi și glasuri curate –\nCât ne-a iubit El nu vom înțelege vreodată...\nTată, dorim și-acum și-n veci să mărim\nIubirea Ta minunată!"
+    },
+    {
+      "title": "Aș vrea să cred în Tine, Doamne",
+      "bookNumber": 32,
+      "originalKey": null,
+      "content": "Aș vrea să cred în Tine, Doamne,\nCu-o-ncredere neclintită –\nChiar de ochii nu pot vedea,\n/: În Tine să cred! :/\nAș vrea să-Ți urmez calea, Doamne,\nSă nu m-abat când crucea-i grea,\nSă strălucesc în umbra Ta,\n/: O, Doamne, azi vreau! :/\n\nO, dă-mi Tu putere să stau lângă Tine,\nSă cresc în credința Ta sfântă!\nFă-mă statornic, prin Duhul, pe Calea cea dreaptă,\nMereu – amin!"
+    },
+    {
+      "title": "Îți vom cânta, Doamne, Ție",
+      "bookNumber": 33,
+      "originalKey": null,
+      "content": "Îți vom cânta, Doamne, Ție, căci meriți lăudat,\nCăci meriți lăudat, căci meriți lăudat;\nÎți vom cânta, Doamne, Ție, căci meriți lăudat,\nCând ne vom întâlni!\n\n/: Și împreună-Ți vom cânta, Te vom lăuda,\nToți Te vom lăuda :/\n\nVom îmbrăca haine albe la Râul minunat,\nLa Râul minunat, la Râul minunat;\nVom îmbrăca haine albe la Râul minunat\nCând ne vom întâlni!\n\nȘi vom cina împreună la masa Mirelui,\nLa masa Mirelui, la masa Mirelui;\nȘi vom cina împreună la masa Mirelui\nCând ne vom întâlni!"
+    },
+    {
+      "title": "Isus e mângâierea mea",
+      "bookNumber": 34,
+      "originalKey": null,
+      "content": "Isus e mângâierea mea și un Prieten minunat –\nÎn încercarea cea mai grea ajutor îmi este ne-ncetat!\n\nIsus, dulce Salvator, aș vrea să-Ți spun că Te iubesc –\nTu-mi ești un bun Sfătuitor și Îți mulțumesc!\n\nIsus e fericirea mea și pacea sufletului meu –\nPrin jertfa Lui de pe Calvar m-a făcut un fiu de Dumnezeu!\n\nÎn Isus e puterea mea – e-o Stâncă-n valul furios,\nCa o furtună în pustiu, o speranță e Isus Hristos!"
+    },
+    {
+      "title": "Imnuri de slavă spre cer se înalță",
+      "bookNumber": 35,
+      "originalKey": null,
+      "content": "Imnuri de slavă spre cer se înalță\nÎn cinstea Mântuitorului –\nCânt „osiana!” și cânt „aleluia!”\nȘi slavă Îi dau doar Lui!\n\nO, te unește cu mine, slăvește\nPe Domnul ce ne-a iubit nespus;\nÎl onorează, cu drag Îl urmează\nPe bunul Domn Isus!\n\nAcum știu bine că sunt o minune\nCreată spre slava Domnului –\nDuhul din mine o știe prea bine\nȘi slavă Îi cânt doar Lui!\n\nUită-te, frate, la harul prin care\nAjungi chiar fiu de Dumnezeu;\nMare răsplată pe tine te-așteaptă –\nRămâi cu Isus mereu!"
+    },
+    {
+      "title": "Tu mi-ai adus iertarea",
+      "bookNumber": 36,
+      "originalKey": null,
+      "content": "Tu mi-ai adus iertarea, mi-ai dat salvarea-n dar,\nM-ai scos din închisoarea păcatului murdar;\nMi-ai dat o nouă fire și un veșmânt curat,\nDar eu, ca mulțumire, Isuse, ce Ți-am dat?\n\nTu mi-ai adus putere, scântei din focul Tău,\nO sfântă văpăiere ce mistuie ce-i rău,\nSpre veșnica Cetate calea mi-ai arătat,\nDar pentru toate-acestea, Isuse, ce ți-am dat?\n\nTu tot ce-aveai în lume și-n cer mi-ai dăruit –\nȘi inimă, și nume, și Duh nemărginit;\nSpre zarea albăstruie Tu ce ai luat și cât?\nDoar patru răni de cuie și-o rană-n piept, atât..."
+    },
+    {
+      "title": "Un Nume-mi place să ascult",
+      "bookNumber": 37,
+      "originalKey": null,
+      "content": "Un Nume-mi place să ascult, de El aș vrea să cânt –\nCa Numele „Isus Hristos” nu-i altul pe pământ!\n\nÎl iubesc pe Isus, îl iubesc pe Isus,\nÎl iubesc pe Isus că-ntâi El m-a iubit!\n\nÎmi spune Numele iubit de-un Miel dumnezeiesc\nCe-n locul meu a fost jertfit ca-n veci eu să trăiesc!\n\nÎmi spune ce îmi dă Hristos în fiecare zi;\nDeși e drumu-ntunecos, cu El va străluci!\n\nÎmi spune că iubirea Lui m-ajută-n întristări\nȘi că puterea Domnului mă scapă de dureri!"
+    },
+    {
+      "title": "La Tine venim, la Tine venim",
+      "bookNumber": 38,
+      "originalKey": null,
+      "content": "La Tine venim, la Tine venim – mântuiți în fața Ta noi stăm,\nCu capul sus, inima plină de laudă, Ție ne închinăm;\nTe preamărim, Te preamărim, îndurarea Ta o înălțăm\nCăci ne-ai eliberat, lanțurile le-ai rupt și ne-ai mântuit!\n\nNoi Te iubim, noi Te iubim,\nAl Tău Nume mare-L înălțăm\nCăci în Tine e puterea, în Tine-i măreția\nPrin care suntem biruitori!\nȚie ne-nchinăm, Ție ne-nchinăm,\nCu podoabe sfinte-n fața Ta stăm,\nDoar pe Tine Te-nălțăm – Domnește Tu printre noi!"
+    },
+    {
+      "title": "Scumpe Isus, ține-mă lângă a Ta cruce",
+      "bookNumber": 39,
+      "originalKey": null,
+      "content": "Scumpe Isus, ține-mă lângă a Ta cruce\nCăci acolo-i sfânt Izvor ce salvare aduce!\n\nLauda mea e Isus ce-a murit pe cruce\nPână voi ajunge-n cer, la odihna dulce!\n\nLângă cruce am aflat dragostea-Ți divină\nȘi a Dimineții Stea mi-a adus lumină!\n\nLângă cruce voi veghea, stând în așteptare,\nPână când voi fi mutat în a Ta splendoare!"
+    },
+    {
+      "title": "Ce mult Domnu-a iubit",
+      "bookNumber": 40,
+      "originalKey": null,
+      "content": "Ce mult Domnu-a iubit oamenii de pe pământ,\nÎncât morții a dat pe unicul Fiu\nCa-n El crezând s-avem viață fără sfârșit!"
+    },
+    {
+      "title": "Văd în stele măreția Sa",
+      "bookNumber": 41,
+      "originalKey": null,
+      "content": "Văd în stele măreția Sa și în vânt eu Îi aud vocea,\nPe pământ și peste mări Îl văd cât e de măreț;\nA lăsat în lume Fiul Său să moară pentru păcatul meu,\nEl a dat viață lumii-ntregi – cât e de măreț!\n\nPrin credință-atunci Îl voi vedea\nȘi în fața Lui mă voi pleca,\nCând Îl voi cunoaște pe deplin,\nCăci El e Domn al Universului și\nAzi El e cu mine zi de zi,\nMă păzește de orice ar veni,\nMă ajută când e drumul greu –\nEl este tot ce am!\n\nSoarele și Luna Îl vestesc, stelele pe El Îl preamăresc,\nMâna Lui zidit-a ceru-ntreg – cât e de măreț!\nȘi pe mine tot El m-a creat și din moarte m-a eliberat;\nEl a dat viață lumii-ntregi – cât e de măreț!"
+    },
+    {
+      "title": "Puternic Împărat",
+      "bookNumber": 42,
+      "originalKey": null,
+      "content": "Puternic Împărat, în glorie îmbrăcat\nCu-al Tău veșmânt de Miel, slăvit de-ntregul cer;\nNeprihănit și Sfânt, Tu, Ție-Ți Legământ,\nPrin moarte-nvrednicit, viața-ai zămislit;\nÎnceput fără sfârșit, Sfârșit fără-nceput,\nIzvor de bucurii din veșnice-armonii,\n\nȚie glorie, Ție cinste, Ție onoare,\nDomn al veșniciei mele;\nȚie glorie, Ție cinste, Ție onoare în veci!"
+    },
+    {
+      "title": "Mă-ncred în El orice s-ar întâmpla",
+      "bookNumber": 43,
+      "originalKey": null,
+      "content": "Mă-ncred în El orice s-ar întâmpla\nPe drumul meu sau în viața mea –\nFie ce-o fi, în orice zi,\nCerescul Tată m-a călăuzi!\n\nMă-ncred în El – El știe soarta mea,\nPe stâncă sus sau în adânc de văi;\nLovit de val ajung la mal –\nCerescul Tată m-a călăuzi!\n\nMă-ncred în El chiar și când nu-nțeleg –\nEu voia Lui mereu vreau să aleg\nCăci doar așa, spre slava Sa,\nCerescul Tată m-a călăuzi!\n\nMă-ncred în El oriunde aș fi dus,\nChiar în cuptor de foc de aș fi pus –\nÎn suferinți sau bucurii,\nCerescul Tată m-a călăuzi!"
+    },
+    {
+      "title": "Sunt iertat căci ai fost părăsit",
+      "bookNumber": 44,
+      "originalKey": null,
+      "content": "Sunt iertat căci ai fost părăsit;\nSunt acceptat – ai fost condamnat;\nȘi viață am acum, iar Duhul Tău e-n mine\nCăci ai murit și-ai înviat!\n\nCe dragoste de Dumnezeu –\nSă moară un Rege-n locul meu...\nCe dragoste uimit privesc –\nCu bucurie Te slăvesc,\nCu tot ce am Te preamăresc!"
+    },
+    {
+      "title": "Când zorii se-arată zâmbind dimineața",
+      "bookNumber": 45,
+      "originalKey": null,
+      "content": "Când zorii se-arată zâmbind dimineața\nȘi înc-o zi iar a-nceput,\nCând soarele-n zori vrea să-și ridice fața,\nLumină să dea pe pământ,\n/: Când freamătul zilei începe de-odată\nȘi liniștea nopții s-a dus,\nCu gândul spre ceruri, din inima toată,\nÎl chem înc-o zi pe Isus! :/\n\nNu vreau fără Isus, nu vreau fără Isus\nO zi să trăiesc pe pământ –\n/: O zi fără Isus e o zi pierdută\nȘi nu mai revine nicicând! :/\n\nÎn zorii de zi, chiar departe de casă,\nDe locul odăii, ascuns\nÎn mijlocul lumii ades furtunoasă,\nDe zgomotul vremii pătruns,\nDin nou îmi înalț al meu gând către Tine\nȘi,pentru că-n zori mi-ai promis,\n/: Te chem, o, Isuse, să fii lângă mine –\nCu Tine sunt de neînvins! :/"
+    },
+    {
+      "title": "Privind la munți, privind în jur",
+      "bookNumber": 46,
+      "originalKey": null,
+      "content": "Privind la munți, privind în jur, eu văd iubirea Domnului\nȘi inima eu mi-o deschid să-nalț pe Domnul cerului –\nVreau să trăiesc în adevăr, să fiu mereu mulțumitor,\nZâmbind să le spun tuturor de-a Ta iubire!\n\nVeșnic Îți voi cânta iubirea! (x 4)"
+    },
+    {
+      "title": "Mărețul har m-a mântuit (Lanțul s-a frânt)",
+      "bookNumber": 47,
+      "originalKey": null,
+      "content": "Mărețul har m-a mântuit pe mine din păcat –\nPierdut eram, dar m-a găsit, de moarte m-a scăpat!\n\nMărețul har m-a învățat s-o rup cu orice rău;\nCe scump mi-e azi tot harul dat – trăiesc prin el mereu!\n\nLanțul s-a frânt, azi liber sunt,\nRăscumpărat prin sângele-I sfânt,\nȘi-n mila Sa mi-a dat în dar\nIubirea Lui – mărețul har!\n\nDureri, batjocuri, prigoniri adesea-am întâlnit –\nPrin harul marii Lui iubiri eu toate-am biruit!\n\nPrin har ajunge-voi în cer, cu slavă îmbrăcat,\nȘi voi slăvi în veșnicii pe Cel ce har mi-a dat!"
+    },
+    {
+      "title": "Numai prin har trăim astăzi",
+      "bookNumber": 48,
+      "originalKey": null,
+      "content": "Numai prin har trăim astăzi,\nNumai prin har existăm,\nNu prin ce facem sau spunem,\nCi prin sângele-Ți curs pe lemn!\nÎn părtășie cu Tine ne chemi să fim...\nCu-a Ta iubire ne-acoperi –\n/: Numai prin har trăim! :/\n\nPentru jertfirea-Ți măreață Te-adorăm,\nPentru că ne-ai curățit și prin har existăm!\n\nDoamne, de ne-ai ține vina, cine-ar sta?\nPrin har și prin jertfa-Ți sfântă ne-ai răscumpărat!"
+    },
+    {
+      "title": "Nu te-ndoi ci crede că după orice nor",
+      "bookNumber": 49,
+      "originalKey": null,
+      "content": "Nu te-ndoi, ci crede că după orice nor\nE-un soare și mai dulce, și mai strălucitor –\n/: Nu norul este veșnic, ci soarele-i acel\nCe-nvinge și rămâne stăpân în urmă el! :/\n\nNu te uita la tine, că ești atât de slab,\nNici la vrăjmașul care te-ar nimici degrab';\n/: Nu te uita la ziduri, la porțile de fier,\nLa ura ce scrâșnește, ci uită-te la cer! :/\n\nNu te-ndoi, ci crede că dincolo de tot\nVeghează Dumnezeul puternic, Savaot,\n/: Că niciun păr nu-ți cade și nicio clipă nu-i,\nCă nu-i nicio-ncercare, decât prin voia Lui! :/\n\nIar dacă crezi puternic, nimica nu-i spre rău,\nCi totul se va-ntoarce spre-un și mai bine-al tău;\n/: Nu te-ndoi, ci crede că-n ceasul cel mai greu,\nClipită de clipită veghează Dumnezeu! :/"
+    },
+    {
+      "title": "Osana, osana, osana sus în ceruri",
+      "bookNumber": 50,
+      "originalKey": null,
+      "content": "/: Osana, osana, osana sus în ceruri! :/\n\nTu ești Rege și Domn, în putere domnești,\nSlava Ta se va descoperi – „osana!” sus în ceruri!\n\n/: Glorie, glorie, glorie regelui Isus! :/\n\nTu ești Rege și Domn, în putere domnești,\nSlava Ta se va descoperi – glorie, aleluia!"
+    },
+    {
+      "title": "Isus, Te-așteptăm cu dor să vii",
+      "bookNumber": 51,
+      "originalKey": null,
+      "content": "Isus, Te-așteptăm cu dor să vii!\nTu ești al nostru Domn, Tu ești al nostru vis –\nTu ești totul, Isus!\n\nȚie ne închinăm căci ne-ai răscumpărat\nȘi în veci noi Te lăudăm, Isuse –\nAscultă-acum glasuri lăudând\nNumele Tău Preasfânt!"
+    },
+    {
+      "title": "Îndeajuns mi-e, Doamne",
+      "bookNumber": 52,
+      "originalKey": null,
+      "content": "/: Îndeajuns mi-e, Doamne, doar harul Tău :/ –\n\n/: Te laud, Doamne, Te preamăresc,\nRidic iar mâinile spre cer și Te slăvesc! :/\n\n/: Mă-nchin în fața tronului Tău, :/\n/: Cu Tine-n slavă curând voi sta :/ –"
+    },
+    {
+      "title": "Tot mai mult, Isus",
+      "bookNumber": 53,
+      "originalKey": null,
+      "content": "Tot mai mult, Isus, tot mai mult, voia Ta s-o-mplinesc tot mai mult,\nTot mai mult să-nțeleg ce-mi vorbești,\nVoia Ta s-o-mplinesc, Isus, tot mai mult!\n\nTu ești al meu Domn și-Împărat\nȘi pentru mine viața Tu Ți-ai dat\nCa să trăiesc și să Îți cânt în veci, Doamne!\nTu ești al meu Domn și-Împărat\nȘi pentru mine viața Tu Ți-ai dat –\nVreau să-Ți slujesc, Doamne, tot mai mult!"
+    },
+    {
+      "title": "Stau din nou gândindu-mă la jertfa Ta",
+      "bookNumber": 54,
+      "originalKey": null,
+      "content": "Stau din nou gândindu-mă la jertfa Ta,\nSângele-Ți curs, trupul străpuns...\nÎn locul meu pedeapsa morții ai luat –\nCe dar nemeritat! Doamne, Tu m-ai salvat!\n\nPrivesc către crucea unde ai suferit,\nSmerit de-ndurarea ce mi-ai oferit...\nMulțumesc, Isuse – viață nouă mi-ai dăruit!\n\nAcum ești înălțat în slavă –\nÎn fața Ta toți se vor pleca!\nPână atunci, uimit fiind de harul Tău,\nInima-mi va cânta pe veci dragostea Ta!\n\nDoamne-Ți mulțumesc pentru Golgota,\nViața-Ți dăruiesc, e-a Ta!"
+    },
+    {
+      "title": "Renunțând la gândurile mele",
+      "bookNumber": 55,
+      "originalKey": null,
+      "content": "Renunțând la gândurile mele,\nConcentrând atenția asupra Ta,\nMeditând în sfânta Ta prezență,\nNelăsând ca frica să mai stea,\nÎntrebări ce am le-aduc la Tine\nȘi le pun, Isus, 'naintea Ta...\nStând curat în sfânta Ta prezență,\nMă închin și Te voi lăuda!\n\nPrivesc la Tin', Cel ce-mi dai viață –\nTu începi și duci la bun sfârșit,\nTu-mi inspiri ființa și lucrarea,\nDoar iubirea Ta m-a împlinit!"
+    },
+    {
+      "title": "O cântare de mărire am în inimă mereu",
+      "bookNumber": 56,
+      "originalKey": null,
+      "content": "O cântare de mărire am în inimă mereu\nDe când L-am găsit pe Isus la calvar.\nEl mi-a dat odihnă sfântă, pace sufletului meu,\nȘi sunt liber, fericit prin al Său har.\n\nInima mea cântă azi cântarea,\nPlină de nespuse bucurii –\nMai frumos nici îngerii nu cântă\nCa acei din Valea Plângerii.\n\nCât de mult doream să aflu drumul cel adevărat,\nCineva să-mi ia păcatul dureros.\nAm aflat că El osânda la Golgota a purtat\nȘi-am venit atunci la cruce bucuros.\n\nCâtă frică și-ntuneric pe cărarea mea erau,\nCând umblam rătăcitor fără Isus!\nAm adus la El povara și de-atunci în viața mea\nBucuria și lumina au pătruns.\n\nMerg spre casa unde veșnic fericirea voi gusta,\nÎn eternul, strălucitul meu palat.\nFață-n față în mărire pe Isus Îl voi vedea,\nȘi cu sfinții-I voi da slavă ne-ncetat."
+    },
+    {
+      "title": "Pregătește-mi inima, Doamne",
+      "bookNumber": 57,
+      "originalKey": null,
+      "content": "Pregătește-mi inima, Doamne,\nSă fie un templu sfânt și curat!\nCu mulțumire trăiesc pentru Tine –\nTe iubesc, Isus, fii lăudat!"
+    },
+    {
+      "title": "Rătăceam în păcat și-n pierzare",
+      "bookNumber": 58,
+      "originalKey": null,
+      "content": "Rătăceam în păcat și-n pierzare,\nEram singur în noapte străin,\nDar Bunul Păstor cu-ndurare\nM-a găsit și mi-a dat har din plin!\n\n/ : Bunătatea, 'ndurarea mă vor însoți\nZi de zi, zi de zi-n viața mea! :/\n\nCu blândețe El mă-nviorează\nȘi putere îmi dă zi de zi,\nLa ape tot El mă conduce,\nMă păzește de orice-ar veni!\n\nCând străbat valea umbrelor morții,\nEl și-atunci îmi rămâne Păstor,\nMă poartă cu mâna Lui tare\nSpre limanul dincolo de nori!"
+    },
+    {
+      "title": "Nu este munte prea 'nalt",
+      "bookNumber": 59,
+      "originalKey": null,
+      "content": "Nu este munte prea 'nalt ca să nu-l miște,\nNu e problemă prea grea să n-o rezolve,\nNu e furtună prea grea să n-o liniștească,\nNu e durere prea grea să n-o aline!\n\n/: Da, luat-a pe umerii Săi povara lumii –\nEl poate lua chiar acum povara ta! :/\n\nOrice duh obosit la El să vină și-odihnă va primi!"
+    },
+    {
+      "title": "Dacă stai sub ocrotirea",
+      "bookNumber": 60,
+      "originalKey": null,
+      "content": "Dacă stai sub ocrotirea Celui Preaînalt, la umbra Lui,\nZici despre Domnul „El e-adăpostul,\nDomnul meu în care mă-ncred!”\n\nO mie să cadă alături de tine\nȘi zece mii la dreapta ta, da, vor cădea!\nCu ochii privește să vezi răsplătirea acelui rău –\nDoar harul Său te va salva!\n\nSă nu te temi nici de săgeata\nȘi nici de groaza din întuneric –\nEl te va lua sub aripa Lui\nCăci pavăză este credința-n El!\n\nPentru că zici „El e-adăpostul”\nȘi faci din El scăparea ta\nNenorocirea și nici urgia\nÎn cortul tău nu vor intra!\n\nDa, harul Său,\nDoar harul Său te va salva!"
+    },
+    {
+      "title": "Glasurile noastre azi primește",
+      "bookNumber": 61,
+      "originalKey": null,
+      "content": "Glasurile noastre azi primește –\nFă-le Tu un dulce, sfânt parfum;\nLasă „aleluia!” să se-nalțe,\nVeșnic să răsune-n templul Tău!\n\nSfânt ești, sfânt ești, Domn atotputernic;\nSfânt ești, sfânt ești, sfânt ești, Dumnezeu!"
+    },
+    {
+      "title": "Pot să se mute munții",
+      "bookNumber": 62,
+      "originalKey": null,
+      "content": "Pot să se mute munții, pot să se clatine dealurile,\nDar dragostea Sa nu se va-ndepărta de la tine!\nPot să vină furtuni, pot să urle valurile –\nNu te-ngrijora de viața ta căci e cu tine!\n\nÎncrede-te în Dumnezeu – El te va ajuta;\nÎn brațul Său, la orice pas, te ține!\nÎncrede-te-n Cuvântul Său – El te va apăra\nCu brațul Său ia orice rău de la tine!\n\nCând treci prin încercări, ispite sau dureri,\nNu descuraja căci El îți va da pace!\nCând sufletul ți-e întristat, El te va mângâia –\nÎn viața ta El va turna pace!"
+    },
+    {
+      "title": "Știi tu ce port în pieptul meu?",
+      "bookNumber": 63,
+      "originalKey": null,
+      "content": "Știi tu ce port în pieptul meu?\nPace, fericire!\nMi-ai șters păcatul cel mai greu - pace, fericire!\n\nIzvor de pace e Domnul, pace, pace, fericire –\nTot mai sus îmi iau zborul, către Domnul meu!\n\nLa Golgota eu am găsit pace, fericire,\nȘi în inimă pace-am primit, pace, fericire!\n\nDe îngrijorare sunt scăpat – pace, fericire!\nLa Domnul eu voi fi chemat – pace, fericire!\n\nSpre cer e drumul meu mereu – pace, fericire!\nS-ajung curând la Dumnezeu – pace, fericire!\n\nAcolo se sfârșesc dureri – pace, fericire!\nSunt nesfârșite mângâieri – pace, fericire!"
+    },
+    {
+      "title": "În această oră, Doamne, Te rugăm",
+      "bookNumber": 64,
+      "originalKey": null,
+      "content": "În această oră, Doamne, Te rugăm\nSă iei parte Tu cu noi,\nSă ne-asculți cum Îți cântăm și Te lăudăm,\nCăci totdeauna ești cu noi!\n\nTu nu ne lași părăsiți nicicând\nCăci noi trăim doar cu Tine-n gând,\nDoar pe Tine Te avem și-n Tine ne-ncredem!\nTu ești al nostru Mântuitor,\nMinunat și Bun Păstor,\nDoar cu Tine vrem să fim în veci – amin!\n\nCând ispite mari apar în viața mea\nN-am pe nimeni ajutor –\nDoar în Tine pururea ne încredem noi,\nVeșnice Ocrotitor!\n\nIar acuma, Doamne, noi Îți mulțumim\nPentru bunătatea Ta,\nPentru dragostea dintâi și iubirea Ta\nVrem în veci să-Ți mulțumim!"
+    },
+    {
+      "title": "M-am hotărât să-L urmez pe Isus",
+      "bookNumber": 65,
+      "originalKey": null,
+      "content": "M-am hotărât să-L urmez pe Isus, (x 3)\nȘi înapoi eu nu voi da!\n\nNimic nu mă va clinti pe cale, (x 3)\n\nÎn urmă-i lumea, 'nainte-i cerul, (x 3)\n\nRenunț la lume, dar nu la Isus, (x 3)"
+    },
+    {
+      "title": "Tu ești plin de îndurare, milă și har",
+      "bookNumber": 66,
+      "originalKey": null,
+      "content": "Tu ești plin de îndurare, milă și har,\nTu ești dragostea cea din vecii –\nFață-n față doresc să Te văd într-o zi\nCând la Tine eu voi veni,\nIsus, marea mea dragoste!\n\nScump Isus, pentru mine ești tot;\nScump Isus, Te iubesc nespus!\nVrednic de cinste și glorie –\nIsus, marea mea dragoste!\n\nStrălucești ca un soare în miez de zi –\nToată slava să fie a Ta!\nEști Stăpân, Creator și-al meu Domn zi de zi –\nȚie veșnic vreau să mă-nchin,\nIsus, marea mea dragoste!\n\nNe-nchinăm Numelui ce este preasfânt,\nGlorie lui Isus înălțăm!\nTe slăvim pentru tot ce-ai făcut pe pământ\nȘi în veci de veci vreau să-Ți cânt,\nIsus, marea mea dragoste!"
+    },
+    {
+      "title": "Isus, m-ai cuprins din necuprins",
+      "bookNumber": 67,
+      "originalKey": null,
+      "content": "Isus, m-ai cuprins din necuprins,\nIsus, viața-n mine ai aprins,\nIsus, m-ai iubit și m-ai salvat – să fii veșnic, veșnic lăudat!\n\nIsus, pentru orbi lumină ai,\nIsus, celor muți Tu le dai grai,\nIsus, șchiopii iarăși au umblat – să fii veșnic, veșnic lăudat!\n\nIsus, ești păstor celor pierduți,\nIsus, apărător celor micuți,\nIsus, din robie ne-ai scăpat – să fii veșnic, veșnic lăudat!"
+    },
+    {
+      "title": "Te-am găsit pe munții înalți",
+      "bookNumber": 68,
+      "originalKey": null,
+      "content": "Te-am găsit pe munții înalți,\nTe-am găsit la margini de râu,\nTe-am găsit în parfumul de flori,\nTe-am găsit, Isuse, Te-am găsit!\n\nTe-am găsit în fulgul de nea,\nTe-am găsit pe dealuri și stânci,\nTe-am găsit în pădurea-nverzită,\nTe-am găsit, Isuse, Te-am găsit!\n\nTe-am găsit pe cerul senin,\nTe-am găsit în nori și furtuni,\nTe-am găsit în stropii de ploaie,\nTe-am găsit, Isuse, Te-am găsit!\n\nTe-am găsit pe Golgota sus,\nTe-am găsit și atunci mi-ai vorbit,\nTe-am găsit, fericirea mi-ai dat,\nTe-am găsit, Isuse, Te-am găsit!"
+    },
+    {
+      "title": "Tată din Cer, Te iubesc și Te slăvesc",
+      "bookNumber": 69,
+      "originalKey": null,
+      "content": "Tată din Cer, Te iubesc și Te slăvesc –\nFii glorificat în veci de veci!\n\nFii glorificat, fii glorificat,\nFii glorificat în veci de veci!\n\nIsuse Sfânt, Te iubesc și Te slăvesc –\nFii glorificat în veci de veci!\n\nDuh Sfânt Ceresc Te iubesc și Te slăvesc –\nFii glorificat în veci de veci!"
+    },
+    {
+      "title": "Toți împreună vrem să Îți cântăm",
+      "bookNumber": 70,
+      "originalKey": null,
+      "content": "Toți împreună vrem să Îți cântăm,\nToți împreună să Te lăudăm,\nToți împreună Îți spunem „Te iubim!”\n\nNoi Te iubim, Te iubim –\nToți împreună Îți spunem „Te iubim!”\n\nToți împreună vrem să Îți cântăm,\nToți împreună să Te lăudăm,\nToți împreună Îți spunem „Mulțumim!”\n\nÎți mulțumim, mulțumim –\nToți împreună îți spunem „Mulțumim!”"
+    },
+    {
+      "title": "Veniți să Îi mulțumim, veniți să Îl preamărim",
+      "bookNumber": 71,
+      "originalKey": null,
+      "content": "Veniți să Îi mulțumim, veniți să Îl preamărim\nPe Cel Atotputernic – Dumnezeu minunat!\n\nCând sunt slab, El e tare, când sunt mic, El e mare,\nZi de zi prezența Lui o simt în viața mea!\nDe aceea acum să Îi cântăm,\nNumele să-I înălțăm,\nLui Isus să-I mulțumim cu toți' – veniți!"
+    },
+    {
+      "title": "Măreț ești Dumnezeu",
+      "bookNumber": 72,
+      "originalKey": null,
+      "content": "/: Măreț ești Dumnezeu – cu laude noi Te onorăm! :/\n\n/: Osana! Binecuvântat,\nBinecuvântat să fie Domnul! :/\n\n/: Voi binecuvânta pe Domnul toată viața mea! :/"
+    },
+    {
+      "title": "El vine iar",
+      "bookNumber": 73,
+      "originalKey": null,
+      "content": "Sfârșitul veacului trăim cu lupte, ură și război,\nDar fericiți la cer privim –\nNu e mult și vine Domnul iar la noi!\n\nEl vine iar, El vine iar – ce fericire negrăită!\nSe va sfârși al nopții chin amar căci Domnul vine iar!\n\nÎn cer și pe pământ, din plin, sunt semnele venirii Lui,\nCuvântul Său e „Da și-amin!” –\nÎn El nicio umbră de schimbare nu-i!\n\nCe zi măreață, ce splendori când trâmbița va răsuna\nȘi Domnul va veni pe nori –\nFără murmur, plini de slavă-I vom cânta!"
+    },
+    {
+      "title": "Ogoarele sunt gata de recoltă",
+      "bookNumber": 74,
+      "originalKey": null,
+      "content": "Ogoarele sunt gata de recoltă\nDar lucrătorii sunt așa puțini –\nMă dăruiesc, o, Doamne-n întregime\nCa să culeg recolta dintre spini!\n\nSunt aici la dispoziția Ta –\nCheamă-mă, Te voi asculta!\n\nE timpul potrivit pentru popoare –\nMai sunt în lume încă mari comori,\nIsus mai cheamă oameni în lucrare\nSă fie toți cu El biruitori!\n\nSuntem noi sare pentru lumea aceasta,\nÎn întuneric suntem noi lumini,\nTrăim ca Domnu-n vorbe și în fapte\nSă știe lumea că suntem creștini?"
+    },
+    {
+      "title": "Singura-mi înțelepciune",
+      "bookNumber": 75,
+      "originalKey": null,
+      "content": "Singura-mi înțelepciune e Isus, al meu Păstor,\nCare-n orice slăbiciune e-al meu Singur ajutor!\n\nSingura-mi îndreptățire e Hristos Cel răstignit\nCare-n marea Lui iubire pentru mine S-a jertfit!\n\nEl e singura-mi sfințire, Vița-n care-s altoit –\nSunt cu El în părtășie, de păcat sunt mântuit!\n\nEl e-a mea răscumpărare, datoria mi-a plătit\nȘi în cer, cu îndurare, un locaș mi-a pregătit!"
+    },
+    {
+      "title": "Ascultă, Doamne, lauda mea",
+      "bookNumber": 76,
+      "originalKey": null,
+      "content": "Ascultă, Doamne, lauda mea,\nCând mă gândesc la Tine-n ruga mea –\nTe iubesc, Doamne, Te iubesc!\nPurtat pe aripi în prezența Ta\nSufletu-mi cântă și, în inima mea,\nTe iubesc, Doamne, Te iubesc!\n\nIar acum eu doresc să mă-nchin întotdeauna\nPrin puterea Numelui Tău!\nÎmi ridic mâinile și-mi înalț vocea spre ceruri\nCăci Tu ești iubirea mea!"
+    },
+    {
+      "title": "El e 'nălțat, Împăratul divin e 'nălțat",
+      "bookNumber": 77,
+      "originalKey": null,
+      "content": "/: El e 'nălțat, Împăratul divin e 'nălțat – Îl voi lăuda! :/\n\nEl este Domn, doar El Adevărul e,\nCerul, pământul, tresaltă 'naintea Lui –\nEl e 'nălțat,împăratul divin e 'nălțat!"
+    },
+    {
+      "title": "Spală-mi, Doamne, gândul",
+      "bookNumber": 78,
+      "originalKey": null,
+      "content": "Spală-mi, Doamne, gândul, spală-mi, Doamne, viața –\nVreau să fiu curat și plăcut în fața Ta!\nNumai Tu urci zorii și împrăștii ceața,\nNumai Tu ești scutul și răsplata mea!\n\nSpală-mi, Doamne, gândul, spală-mi, Doamne, viața\nȘi mă fă asemeni cu Tine mereu!\nNumai Tu urci zorii și împrăștii ceața,\nNumai Tu ești scutul sufletului meu!\n\nSpală-mi, Doamne, gândul, spală-mi, Doamne, viața,\nIa din mintea mea orice gând al celui rău!\nFă să fiu ca Tine, să-Ți ascult povața\nCa să pot privi mereu în ochii Tăi!\n\nSpală-mi, Doamne, gândul, spală-mi, Doamne, viața\nCând troiene reci fac să-mi pară clipa grea!\nAdu primăvara și topește gheața\nCa să merg mereu doar pe calea Ta!"
+    },
+    {
+      "title": "Tu ești vrednic, Tu ești vrednic",
+      "bookNumber": 79,
+      "originalKey": null,
+      "content": "Tu ești vrednic, Tu ești vrednic, slavă, cinste să-Ți dăm!\nTu ești vrednic de-nchinare și să Te adorăm\n\nCăci Tu ai creat Universul și omul\nȘi viață din Tine primim!\nTu ești vrednic să-Ți dăm slavă\nȘi să Îți mulțumim!\n\nCăci Tu ai murit la Golgota pe cruce,\nIertare deplină ne-ai dat!\nTu ești vrednic să-Ți dăm slavă\nȘi să fii adorat!"
+    },
+    {
+      "title": "Slăvit fii, Isuse, căci lucruri mari faci",
+      "bookNumber": 80,
+      "originalKey": null,
+      "content": "Slăvit fii, Isuse, căci lucruri mari faci –\nLa Tine pe oameni cu drag îi atragi!\nPrin jertfa-Ți măreață Tu viață ne-ai dat\nȘi Cerul Tău, Doamne, ni l-ai descuiat!\n\nÎl slăviți pe Isus, slava Lui o cântați;\nÎl slăviți pe Isus și pe veci Lui vă dați!\nLa Tatăl veniți, prin Isus, Fiul Său –\nPrimiți mântuirea primind harul Său!\n\nCe mare salvare la toți ni s-a dat\nȘi ce mântuire prin sânge vărsat!\nDe crezi în jertfirea Lui Isus, găsești\nIertare și pace – în veci le primești!\n\nCe dragoste mare venită de sus\nȘi ce fericire să fii cu Isus,\nDar cea mai slăvită din stări vom trăi\nÎn Cer, când pe Isus mereu vom sluji!"
+    },
+    {
+      "title": "Tu măreția Ți-ai lăsat",
+      "bookNumber": 81,
+      "originalKey": null,
+      "content": "Tu măreția Ți-ai lăsat, pentru mine-ai renunțat,\nSuferind în mâini ce chiar Tu le-ai creat;\nAi luat rușinea mea când ai murit și-ai înviat\nȘi acum domnești pe pământ și-n cer 'nălțat!\n\nVreau cu-adevărat să mă închin –\nTu m-ai câștigat și sunt al Tău,\nTe voi iubi întotdeauna!\nTu singur pentru mine ai murit,\nCu viața Ta m-ai izbăvit –\nGlasul îmi înalț spre Tine-n adorare!"
+    },
+    {
+      "title": "Te-am ales, Te-am ales",
+      "bookNumber": 82,
+      "originalKey": null,
+      "content": "Te-am ales, Te-am ales, dintre mii și mii de mii, Te-am ales!\nGlasuri multe m-au strigat, mâini întinse m-au chemat,\nDar din toate, ne-nțeles, Te-am ales!\n\nTe-am ales, Te-am ales, dintre mii și mii de mii, Te-am ales!\nNimeni n-a iubit mai mult într-al vieții greu tumult –\nCând iubirea-am înțeles, Te-am ales!\n\nTe-am ales, Te-am ales, dintre mii și mii de mii, Te-am ales!\nCum puteam să nu-Ți răspund, cum puteam să mă ascund\nCând pe cruce, ne-nțeles, m-ai ales?\n\nM-ai ales, m-ai ales, dintre mii și mii de mii, m-ai ales.\nVreau să-Ți mulțumesc deplin pentru harul Tău divin –\nCând iubire-am înțeles, Te-am ales!"
+    },
+    {
+      "title": "Te-adorăm în fericire",
+      "bookNumber": 83,
+      "originalKey": null,
+      "content": "Te-adorăm în fericire, Domn al gloriei cerești\nCe cu raza-Ți de iubire inimile ne-ncălzești!\nO, alungă nori și ceață de-ntuneric și păcat\nȘi ne luminează viața cu Duhul Tău sfânt, curat!\n\nOrice lucruri mari sau mici ce prin Tine s-au creat –\nStele, îngeri – cântă-n juru-Ți laudă Ție ne-ncetat;\nMunți și mare, deal și vale, floarea în splendoarea sa –\nToate lucrurile Tale ne vestesc iubirea Ta!"
+    },
+    {
+      "title": "Te iubesc și-Ți cânt din toată inima",
+      "bookNumber": 84,
+      "originalKey": null,
+      "content": "Mâna Ți-ai întins-o, Tu m-ai apucat,\nN-ai scos din ape mari\nȘi cu glasul Tău din ceruri ai tunat\nȘi s-au ascuns cei tari...\n\nTu-mi aprinzi o lumină, Domnul meu,\nȘi-ntuneric și frică dispar!\nMâna Ți-ai întins-o, Tu m-ai apucat,\nM-ai scos din ape mari!\n\nDumnezeu mă-ncinge cu puterea Sa,\nM-așează pe 'nălțimi,\nÎmi deprinde brațul pentru lupta grea\nȘi-mi pune arcu-n mâini...\n\nViu e Domnul și tare-i Stânca mea\nȘi prin El voi trăi-n veșnicii!\nDumnezeu mă-ncinge cu puterea Sa,\nM-așează pe 'nălțimi..."
+    },
+    {
+      "title": "Tu ești Dumnezeu",
+      "bookNumber": 85,
+      "originalKey": null,
+      "content": "Tu ești Dumnezeu, ești creatorul Universului –\nCe-ai făcut cu mâna Ta onoare Îți va da\nCăci Tu ești Dumnezeu...\nTu ești Dumnezeu și omenirea e creația Ta\nȘi oricât noi am încerca să luăm din slava Ta,\nNicicând nu vom putea!\n\nTu ești minunat – noi ne-nchinăm și laude-Ți cântăm!\nȘi tot ce ai creat e binecuvântat\nCăci Tu ești Dumnezeu!\n\nTu ești Dumnezeu, ești Salvatorul omului căzut –\nDin rușine și păcat iertând l-ai ridicat\nCăci Tu ești Dumnezeu!\nTu ești Dumnezeu, și-n fața Ta cu toți' ne vom pleca\nȘi dintre toate, rând pe rând, privind și judecând,\nDoar Tu ești Dumnezeu!\n\nTu ești minunat – noi ne-nchinăm și slavă Îți cântăm!\nDin toată inima mereu Îți vom cânta\nCăci Tu ești Dumnezeu!"
+    },
+    {
+      "title": "Doamne, Îți spun „Da!”",
+      "bookNumber": 86,
+      "originalKey": null,
+      "content": "Doamne, Îți spun „da!” – vreau să fac doar voia Ta!\nDoamne, Îți spun „da, voia Ta nu voia mea!”\nCând Duhul Tău mă va-ndemna, Doamne, Te voi asculta,\nȘi răspunsul meu, oricând, va fi „Da!”\n\nDoamne, Îți spun „da, oriunde Te voi urma!”\nDoamne, Îți spun „da, în pașii Tăi eu voi umbla!”\nCând Duhul Tău mă va-ndemna, unde-mi spui, eu voi pleca,\nȘi răspunsul meu, oricând, va fi „Da!”"
+    },
+    {
+      "title": "Tu ești Izvorul vieții mele",
+      "bookNumber": 87,
+      "originalKey": null,
+      "content": "Tu ești Izvorul vieții mele!\nO, Doamne, ești tăria mea –\nTu-mi dai voință și putere să-Ți cânt din toată inima!\nTu ești aripa ce mă poartă, Tu-mi ești odihna din adânc,\nTu mă ridici pe stânca 'naltă la care nu pot să ajung!\n\n/: Eu cânt „aleluia, aleluia, aleluia!” :/\n\nTu dai un sens vieții mele, Tu mă împlinești în tot ce fac,\nTu mă ajuți în clipe grele, iubind, să rabd, să lupt, să tac!\nCuvântul Tău mi-e pâinea vieții; Tu-mi dai lumină zi de zi\nȘi chiar de trec prin valea morții eu nu mă tem orice-ar veni!\n\nIsuse, în mila Ta cea mare, Tu, Soarele din Înălțimi,\nAi coborât să-mi dai iertare, să mă ridici, să mă-nsenini!\nTrăiesc o stare minunată cu Tine-n inimă mereu\nȘi-aș vrea să știe lumea toată că Tu ești Dumnezeul meu!"
+    },
+    {
+      "title": "De n-ai fi Tu de partea noastră",
+      "bookNumber": 88,
+      "originalKey": null,
+      "content": "De n-ai fi Tu de partea noastră,\nAm fi ca praful luat de vânt,\nAm fi o carne fără viață,\nRătăcitoare pe pământ...\n\nDar noi venim cu toți' la Tine\nȘi tot ce-avem Îți dăruim\nCăci nimeni, Doamne, nu-i ca Tine –\nÎngenunchem și ne smerim!\n\nNoi n-avem nici un merit, Tată –\nE harul Tău că existăm;\nIsuse, Tu ne-ai dat viață\nȘi toate Ție-Ți datorăm!"
+    },
+    {
+      "title": "Peste-ntreg pământ domnești în veci",
+      "bookNumber": 89,
+      "originalKey": null,
+      "content": "Peste-ntreg pământ domnești în veci,\nCerul în amurg, munții stăpânești,\nDar, mai mult de-atât – Doamne, eu doresc\nCa Tu în mine să domnești!\n\nTu să domnești în viața mea,\nVreau să fiu umplut de puterea Ta\nCăci tot ce am Tu stăpânești\nȘi vreau ca-n mine să domnești!\n\nPeste orice gând sau cuvânt rostit\nSă se vadă aș vrea frumusețea Ta\nDar mai mult de-atât, Doamne, eu doresc\nCa Tu în mine să domnești!"
+    },
+    {
+      "title": "Când eu nu mai pot",
+      "bookNumber": 90,
+      "originalKey": null,
+      "content": "Când eu nu mai pot, mă apasă tot,\nTu îmi spui să privesc la Tine...\nGlasul Ți-l aud, Te apropii blând,\nSimt cum mă chemi și-atunci...\n\nVin sub aripa Ta, Tu m-acoperi cu ea,\nMă-nconjori și m-ascunzi în Tine –\nCând de mână m-apuci toată teama-mi alungi,\nPas cu pas îmi promiți că mă duci...\n\nȘtiu că-n trupul Tău ai purtat pe lemn\nTot ce eu nu pot purta;\nChinul Tău cel greu, doar de dragul meu,\nMă poate și azi vindeca!"
+    },
+    {
+      "title": "Isuse, dintre toți Te-aleg mereu",
+      "bookNumber": 91,
+      "originalKey": null,
+      "content": "Isuse, dintre toți Te-aleg mereu,\nÎn orice zi și-n orice clipă,\nCăci Tu ești viața sufletului meu\nȘi harul care mă ridică!\n\nTe-aleg mereu, Te-aleg mereu!\nIsus, Mântuitorul meu,\nTe-aleg mereu, Te-aleg mereu!\n\nIsuse, aleg deplin cărarea Ta\nDin miile de căi din lume,\nȘi vreau să merg pe ea, 'cât m-ar costa –\nDă-mi Duhul Tău să mă îndrume!\n\nIsuse, aleg Cuvântul Tău cel sfânt,\nCăci numai El e Adevărul\nCe-mi dă lumină lină pe pământ\nȘi-avânt să pot atinge cerul!\n\nIsuse, aleg iubirea Ta de jar\nDin tot ce-n lume mă îmbie\nCa să-mi aprind al inimii altar\nSă ard-acum și-n veșnicie!\n\nIsuse, din orice Te-aleg mereu,\nȘi-n orice zi voi ști mai bine\nCă Tu ești dragul sufletului meu –\nAlt Domn nu vreau, decât pe Tine!"
+    },
+    {
+      "title": "Mai mult ca orice comori și bogății",
+      "bookNumber": 92,
+      "originalKey": null,
+      "content": "Mai mult ca orice comori și bogății,\nDincolo de orice vis\nE dragostea lui Isus ce m-a găsit,\nDragostea perfectă de sus!\n\nOrice trecut ai duce-n suflet,\nOricât ai fi de neînsemnat,\nIubirea ce ți se oferă\nE darul sfânt al Cerului!\n\nCând oamenii-ți cer sacrificii\nCa să-ți dea din dragostea lor,\nVei rămâne doar c-o amăgire,\nCu un vis rănit și gol!\n\nDumnezeu așteaptă-n dragostea-I mare\nSă-ți deschizi viața pentru cer –\nPrivind în tine vei recunoaște\nCe nevoie ai de El!"
+    },
+    {
+      "title": "Glorie, veșnică glorie",
+      "bookNumber": 93,
+      "originalKey": null,
+      "content": "Glorie, veșnică glorie –\nMaiestate, Tu ești al nostru-mpărat!\nGlorie, pace și dragoste,\nDin tronul Tău, Isuse scump, s-au revărsat!\n\nÎnălțăm Numele Tău, slăvit Isuse,\nNe-nchinăm, Te onorăm ca Rege etern!\nGlorie, Mântuitorule –\nTu ai murit, ne-ai izbăvit, fii proslăvit!"
+    },
+    {
+      "title": "Isuse, fără Tine",
+      "bookNumber": 94,
+      "originalKey": null,
+      "content": "Isuse, fără Tine viața mea ce-ar fi fost acum?\nDoar grijă și suspine - dar minunat ești că ești bun!\nCu pace și iubire iertarea Ta m-a înconjurat;\nCe bine – ești cu mine, Prieten scump, Domn și Împărat!\n\nO, Doamne, o viață am –\nCu drag Ți-o dau, ca s-o câștig iar;\nE prea de preț, nu vreau s-o pierd\nDoar pentru mine să o risipesc!\n\nVăd bine sunt ispite ce-adeseori apasă-asupra mea\nCuvântul, pe șoptite, mă-nvață să le-arunc asupra Ta\nȘi valuri și furtună de-ar fi mereu în drumul meu\nȘtiu bine, tot mai bună e viața când Domn este Dumnezeu!"
+    },
+    {
+      "title": "Condu pașii mei",
+      "bookNumber": 95,
+      "originalKey": null,
+      "content": "Condu pașii mei să nu mai rătăcesc,\nCondu pașii mei să pot să Te slăvesc!\n\nInima-mi strigă spre Tine \"Rămâi lângă mine mereu!\" –\nO, Domnul meu, condu pașii mei!"
+    },
+    {
+      "title": "Deschide-mi ochii, vreau să Te văd, Isus",
+      "bookNumber": 96,
+      "originalKey": null,
+      "content": "Deschide-mi ochii, vreau să Te văd, Isus,\nSă Te-ating cu mâna, să-Ți spun „Te iubesc!”;\nȘi fă-mi urechea cu dor să Te-asculte –\nDeschide-mi ochii, vreau să Te văd Isus!"
+    },
+    {
+      "title": "Așa cum sunt, la Tine vin",
+      "bookNumber": 97,
+      "originalKey": null,
+      "content": "Așa cum sunt, la Tine vin...\nPutere n-am – Tu-mi fii sprijin,\nMă spală-n sângele-Ți divin!\nO, Mielule, eu vin, eu vin...\n\nDe îndoieli sunt apăsat,\nDe ispitiri împresurat –\nSlăbit, de valuri mult purtat,\nO, Mielule, eu vin, eu vin!\n\nAșa cum sunt de rătăcit,\nLa Tine vin să fiu primit,\nSă fiu bogat și fericit –\nO, Mielule, eu vin, eu vin!\n\nAșa cum sunt, Tu mă primești –\nPăcatul nici nu-mi amintești...\nCrezând Ție, mă mântuiești –\nO, Mielule, eu vin, eu vin!"
+    },
+    {
+      "title": "O, Doamne, stau și mă gândesc",
+      "bookNumber": 98,
+      "originalKey": null,
+      "content": "O, Doamne, stau și mă gândesc –\nCum am putut eu să trăiesc\nFăr' să-nțeleg că mă iubești\nȘi că ești Tatăl meu?\nAcum eu sunt copilul Tău,\nFac parte din familia Ta\nȘi singur eu nu voi mai fi\nCăci totdeauna ești cu mine!\n\n/: Îți voi cânta slavă, îți voi cânta slavă,\nÎți voi cânta slavă în veci de veci! :/"
+    },
+    {
+      "title": "Aș vrea să număr clipele",
+      "bookNumber": 99,
+      "originalKey": null,
+      "content": "Aș vrea să număr clipele, dar timpul trece-n grabă\nMinute ce-au trecut, le-am irosit\nAm spus că sunt al Lui Hristos dar Domnul înc-așteaptă\nSă fiu al Lui cu totul dăruit...\nȘi câte, Doamne, nu Ți-am spus, și câte nu Ți-am promis?\n\nDar ce voi spune când pe nori Tu vei veni în slavă învelit?\nAm fost un laș și am fugit...\nMereu m-ai binecuvântat\nȘi totuși doar la mine m-am gândit\nȘi Te-am uitat, și m-am ferit...\n\nO lume-ntreagă zace-n chin tânjind după speranță\nDar cine oare le-o va oferi?\nCum pot să stau nepăsător când eu am primit viață,\nCând alții mor, cum pot fi fericit?\nTu ne iubești la fel pe toți, la cruce ai dovedit!\n\n/: Aș vrea să-mi spui, când vei veni,\nCă am făcut ce-a trebuit să fac –\nO, Doamne, vreau să-Ți fiu pe plac :/"
+    },
+    {
+      "title": "Minunat ești Tu, fără de margini",
+      "bookNumber": 100,
+      "originalKey": null,
+      "content": "Minunat ești Tu, fără de margini, atât de minunat;\nChiar mai strălucitor ești, Doamne, decât eu mi-am imaginat!\nCine poate să cuprindă doar un strop din dragostea Ta?\nMinunat ești, Tu, fără de margini – Doamne sfânt, fii lăudat!\n\nIată, stau, eu stau în fața Ta, la tronul Tău divin –\nDumnezeu cel veșnic înălțat, în fața Ta mă-nchin!"
+    },
+    {
+      "title": "Un suflet bun să ai și-un gând frumos",
+      "bookNumber": 101,
+      "originalKey": null,
+      "content": "Un suflet bun să ai și-un gând frumos,\nÎn faptă și în grai, pentru Hristos!\n\nCu dragoste și-avânt spre tot ce-i drept și sfânt –\nAșa-ți dorim, așa, de ziua ta!\n\nSă fii în tot ce spui cinstit și blând,\nSă nu fii nimănui dator nicicând!\n\nSă mergi mereu curat pe drumu-adevărat –\nAșa-ți dorim așa de ziua ta!\n\nSă fii un vas ales lui Dumnezeu,\nSă ai rod bun cules din orice greu!\n\nÎn jurul tău să poți să-i fericești pe toți –\nAșa-ți dorim, așa, de ziua ta!\n\nMereu mai plin de-avânt, mai credincios,\nMai bun, mai drept, mai sfânt, mai ca Hristos,\n\nSă-I poți cu drag vedea în ceruri fața Sa –\nAșa-ți dorim, așa, de ziua ta!"
+    },
+    {
+      "title": "Isus, Isus, sfânt și singurul Stăpân",
+      "bookNumber": 102,
+      "originalKey": null,
+      "content": "Isus, Isus, sfânt și singurul Stăpân, Isus!\nIsus, Isus, Tu ești Fiu de Dumnezeu, Isus!\n\nCa mierea pe buze-i Legea Ta,\nIzvor plin de viață-i Duhul Tău,\nȘi pașii pe cale-mi luminezi –\nIsus ești totul pe deplin!"
+    },
+    {
+      "title": "Cineva se-ngrijește de mine mereu",
+      "bookNumber": 103,
+      "originalKey": null,
+      "content": "Cineva se-ngrijește de mine mereu –\nNu, o, nu-i o-ntâmplare, e-al meu Dumnezeu!\nZilnic toarnă asupra mea daruri din plin –\nMulțumire-I aduc și mă-nchin!\n\nE Cineva și Îi mulțumesc,\n(Știu că) e Cineva, este Tatăl ceresc!\nDarul de sus e Domnul Isus –\nCe măreț e al meu Dumnezeu!\n\nMulți nu cred azi în Domnul, slăvit Creator,\nNici nu văd al naturii și-al vieții izvor...\nO, ce inimi sărace în valul lumii –\nPentru toate n-au cui mulțumi!\n\nDintre daruri, cel mai sfânt și cel mai frumos\nEste darul salvării prin Isus Hristos\nN-am cuvinte și versuri să-I spun dragostea\nCe e-n clocot în inima mea."
+    },
+    {
+      "title": "Hai, vino acum să-L lauzi",
+      "bookNumber": 104,
+      "originalKey": null,
+      "content": "Hai, vino acum să-L lauzi,\nHai, vino să-I dai Lui inima;\nHai așa cum ești să-L lauzi,\nHai așa cum ești 'naintea Sa;\nHai!\n\nOrice om va mărturisi că ești Domn,\nToți genunchii se vor pleca,\nBinecuvântați vor fi toți cei ce Te vor căuta!"
+    },
+    {
+      "title": "El ne-a iubit venind în lume",
+      "bookNumber": 105,
+      "originalKey": null,
+      "content": "El ne-a iubit venind în lume,\nCa noi, pierduți, să fim salvați,\nPrin sângele vărsat pe cruce,\nLa Golgota Isus Hristos ne-a mântuit!\n\nȘtiind că-i viu, pot învinge teama –\nȘi eu sunt viu căci m-a salvat,\nȘi când ispita grea mă va ajunge,\nDe brațul Său eu sunt mereu eliberat!\n\nCa un copil ce se încrede\nÎn tatăl său pe-acest pământ,\nAșa mă-ncred și eu în Domnul\nȘi de păcat descătușat voios Îi cânt!\n\nCând voi pleca în veșnicie,\nCând lupta grea va înceta,\nÎl voi vedea pe nori de slavă\nPe Cel ce moartea a învins prin jertfa Sa!"
+    },
+    {
+      "title": "Tată, noi vrem ca slava Ta",
+      "bookNumber": 106,
+      "originalKey": null,
+      "content": "Tată, noi vrem ca slava Ta să poată fi văzută-n noi,\nInimile noastre să devină doar o inimă,\nȘi-atunci lumea va ști că Isus este Domn!\n\nFă-ne doar un glas ce-Ți înalță Numele,\nFă-ne doar un glas ce Te preamărește,\nFă-ne doar un glas un gând și-o inimă,\nLeagă-ne pe toți împreună!"
+    },
+    {
+      "title": "Domnul păcii să fie cu tine",
+      "bookNumber": 107,
+      "originalKey": null,
+      "content": "Domnul păcii să fie cu tine\nÎn furtună sau zile senine,\nDin potirul divin să-ți dea pace din plin –\nPacea Lui, pacea Lui peste Tine!\n\nDomnul Vieții cu tine să fie\nDimineața și-n noaptea târzie,\nDin izvorul divin să-ți dea viața din plin,\nViața Lui, Viața Lui pe vecie!\n\nDomnul milei te aibă în pază\nÎn răcoare sau caldă amiază,\nCa pe drumul divin să-I simți mila din plin,\nMila Lui, mila Lui veșnic trează!\n\nDomnul Slavei ți-ajute întruna\nCând mugește sau tace furtuna,\nIar în raiul divin să-ți dea slavă din plin –\nSlava Lui, slava Lui ți-e cununa!"
+    },
+    {
+      "title": "Astăzi vin la Tine, Domnul meu",
+      "bookNumber": 108,
+      "originalKey": null,
+      "content": "Astăzi vin la Tine, Domnul meu –\nSufletul mi-e plin de bucurie\nFiindcă m-ai făcut copilul Tău\nCa să pot trăi o veșnicie!\nSunt atât de fericit, Domnul meu iubit,\nDe minunea ce-ai făcut-o-n viața mea!\n\nVreau să Îți cânt, vreau să Te laud,\nSă Îți mulțumesc că ești în viața mea!\nCu putere m-ai luat din întuneric\nȘi mi-ai arătat înțelepciunea Ta."
+    },
+    {
+      "title": "Ai plătit un preț să-mi dai viață",
+      "bookNumber": 109,
+      "originalKey": null,
+      "content": "Ai plătit un preț să-mi dai viață,\nSă trăiesc prin har azi mântuit –\nN-am cuvinte, Doamne, să-Ți pot spune\nCât de drag îmi ești, și-s fericit!\n\nVoia Ta, nu voia mea,\nSă se facă Doamne-n viața mea,\nSă trăiesc cum Tu dorești, o, Domnul meu!\nToată roada Duhului Tău sfânt\nZi de zi s-o am pe-acest pământ,\nIubire să răspândesc mereu în jurul meu!\n\nNumele mi-e scris în Cartea Vieții\nȘi doresc Isus cu orice preț\nSă rămân statornic în credință,\nSă Te laud și să Te slăvesc!\n\nPacea Ta ce-ntrece orice lucruri,\nCunoștința-ntregului pământ\nS-o reverși în inima-mi, Stăpâne –\nOrice-ar fi să pot mereu să-Ți cânt!"
+    },
+    {
+      "title": "Da, eu cred în Isus",
+      "bookNumber": 110,
+      "originalKey": null,
+      "content": "Da, eu cred în Isus, cred că El e Fiul lui Dumnezeu,\nCred că a murit și-a înviat, prețul pentru noi a plătit!\n\nCred că El e prezent între noi aici,\nPe bolnavi vindecând și păcate iertând!\n\nDa, cred în Tine Doamne, cred că Tu ești Fiul lui Dumnezeu\nCred că ai murit și-ai înviat, prețul pentru noi ai plătit!"
+    },
+    {
+      "title": "Venim în a Ta prezență",
+      "bookNumber": 111,
+      "originalKey": null,
+      "content": "Venim în a Ta prezență cu toți' să Îți cântăm\nUn cântec de mărire, și venim să ne-nchinăm!\nNe-ai dat o viață nouă să putem să Te iubim –\nVenim cu mulțumire, o, Doamne, Te iubim!\n\nTu ești Tatăl creațiunii, Mielul Sfânt ce-ai înviat,\nEști singurul ce-ai biruit și mormântu-ai lepădat!\nTu pe toți ne-ai eliberat de la moarte și ne-ai dat\nLibertatea să venim ca-n prezența Ta să fim!"
+    },
+    {
+      "title": "Vrednic ești de cinste",
+      "bookNumber": 112,
+      "originalKey": null,
+      "content": "/: Vrednic ești de cinste și-nchinare –\nRidicăm mâinile noastre, înălțăm Numele Tău! :/\n\nCe mare ești și ce mari minuni faci Tu,\nȘi ca Tine altul nu-i, și ca Tine altul nu-i –\nCe mare ești!\n\n/: Vrem să spunem lumii despre Tine,\nCum prin moartea Ta pe cruce tuturor le-ai arătat :/\n\nCă Tu ești Domn, Tu ești Domn cu-adevărat\nȘi ca Tine altul nu-i, și ca Tine altul nu-i\nCăci Tu ești Domn!\n\n/: Lăudați pe Domnul – îngeri, oameni –\n„Aleluia!” să răsune și în cer și pe pământ! :/\n\nTu ești cu noi, Prinț al Păcii, Domn Preasfânt,\nȘi ca Tine altul nu-i, și ca Tine altul nu-i!\nTu ești cu noi..."
+    },
+    {
+      "title": "În adâncul iernii grele",
+      "bookNumber": 113,
+      "originalKey": null,
+      "content": "În adâncul iernii grele primăvara o aud\nDeși timpul pare-atât de lung...\nȘtiu că soarele lucește, deși nu văd decât nori\nȘi mă-ntreb „Oare cât va mai fi?”\n\nOceanul oglindește licărirea zorilor\nȘi eu văd că ziua va veni;\nSimt cum soarele-ncălzește în pofida vremilor –\nClipa-aceea când va veni?\n\nOchii îmi ridic și mă uit către cer –\nEl va veni, Isus Salvatorul!\nNu mai este mult căci semnele sunt tot mai clare –\nEl va veni, El va veni!\n\nCând privesc întreg pământul pot să spun „Nu mai e mult!”\nFiindcă timpul s-a apropiat –\nPeste tot în jur e foame, auzi doar despre război\nȘi spui: „Doamne, oare când vii la noi?”"
+    },
+    {
+      "title": "Tu ești Cel din care vine viața",
+      "bookNumber": 114,
+      "originalKey": null,
+      "content": "Tu ești Cel din care vine viața,\nEști Cuvântul și Adevărul,\nBogăția, suspinul, tot ce am!\nM-așteptai dintotdeauna...\nEști Lumină în întuneric –\nAș fi atât de părăsit fără Tine!\n\n/: Dar Tu, Doamne, ești cu mine-n orice zi,\nEști lumina mea în noapte,\nEști un foc în inimă care e viu! :/"
+    },
+    {
+      "title": "Domn al veșniciei",
+      "bookNumber": 115,
+      "originalKey": null,
+      "content": "Domn al veșniciei, ce Pământul ai creat,\nCerul este al Tău templu – glorie Celui înălțat!\n\nDomn al slavei mai sus de galaxii,\nTu ești vrednic, vrednic;\nUniversul în veci Te va slăvi –\nTu ești vrednic, vrednic!\n/: Tu ești Domn, ai fost și vei fi! :/\n\nDis-de-dimineață lumina voi întâmpina\nȘi, în noapte de mă clatin, al Tău Nume voi chema!\n\nAleluia! Tu ești Domn, ai fost și vei fi!"
+    },
+    {
+      "title": "Tu mă înalți",
+      "bookNumber": 116,
+      "originalKey": null,
+      "content": "Când sunt căzut și apăsat mi-e gândul,\nCând încercări asupra mea lovesc,\nAtunci Te-aștept în liniște deplină\nSă vii din nou, să stai și să-Ți vorbesc...\n\nTu mă înalți să pot atinge munții,\nTu mă ridici pe mare să pășesc;\nSunt puternic doar pe ai Tăi umeri –\nTu mă înalți mai mult decât gândesc!\n\nNu-i viață-aici să aibă împlinire\nȘi simțuri slabe repede se scurg,\nDar, Tu când vii, cuprins sunt de uimire –\nSimt uneori că cerul îl ating!"
+    },
+    {
+      "title": "Mai sus de oameni și de-mpărați",
+      "bookNumber": 117,
+      "originalKey": null,
+      "content": "Mai sus de oameni și de-mpărați,\nMai sus de toate pe care le-ai creat,\nMai sus de lume, mai sus de înțelepți\nTu ai fost, rămâi în veci de veci!\n\nMai sus de tronuri și-mpărății,\nMai sus de-a' lumii mari minunății,\nMai sus de aur și tot ce-i valoros\nTu rămâi în veci cel mai prețios!\n\nRăstignit și pus într-un mormânt,\nCa să mori venit-ai pământ\nȘi zdrobit ca un trandafir\nTu ai căzut și Te-ai gândit doar la min'!"
+    },
+    {
+      "title": "Rege minunat în slavă îmbrăcat",
+      "bookNumber": 118,
+      "originalKey": null,
+      "content": "„Rege minunat, în slavă îmbrăcat” /: Pământul va cânta! :/\nLumina-i haina Sa și noaptea nu va sta, /: Fugind din fața Sa! :/\n\n„Ce mare ești Tu!”, vom cânta „Ce mare ești Tu!” –\nToți vor vedea ce mare ești, Dumnezeu!\n\nChiar timpul l-a făcut, în mâna Lui se-ascund /: Sfârșit și început! :/\nTriunic Dumnezeu, Tată, Fiu și Duh, /: El este Miel și Leu! :/\n\nNumele Lui sfânt îl înălțăm cântând –\nCe mare e al meu Dumnezeu!"
+    },
+    {
+      "title": "Crucea-i ascultarea Domnului Isus",
+      "bookNumber": 119,
+      "originalKey": null,
+      "content": "Crucea-i ascultarea Domnului Isus –\nCea mai-naltă jertfă care s-a adus,\nDarul cel mai mare, prețul ne-ntrecut\nCa să mântuiască ce era pierdut!\n\nCrucea-i slava Ta, crucea-i pacea mea!\nDin blestem m-a scos, jertfa lui Hristos,\nViață mi-a adus crucea lui Isus –\nSlavă lui Hristos, slavă lui Hristos!\n\nCrucea e iubirea Domnului Isus –\nNu-i cuvânt să-nalțe dragostea mai sus,\nNu-i nimic s-arate-atât de strălucit,\nDragostea cu care Tatăl ne-a iubit!\n\nCrucea-i biruința Domnului Isus –\nEl a-nvins când singur morții S-a supus...\nȘi-a zdrobit vrăjmașul când S-a umilit –\nPreamărit e Mielul fiindcă S-a jertfit!\n\nCrucea este slava Domnului Isus –\nPrin ea și-a-nălțat El Numele-I mai sus!\nRănile Lui sfinte veșnic vor purta\nMântuirea noastră și mărirea Sa!"
+    },
+    {
+      "title": "Voi sărbători și-L voi lăuda",
+      "bookNumber": 120,
+      "originalKey": null,
+      "content": "/: Voi sărbători și-L voi lăuda,\nUn cântec nou Îi voi cânta :/\n\nInima mi se bucură-n El,\nGândul meu se-ndreaptă spre El,\nÎmi înalț mâinile către cer –\nTot ce sunt Îl laudă pe El!"
+    },
+    {
+      "title": "Minunat e Isus, Domnul meu cel de sus",
+      "bookNumber": 121,
+      "originalKey": null,
+      "content": "Minunat e Isus, Domnul meu cel de sus,\nMinunat – nimeni nu e ca El!\nE văzut și-auzit, prin Cuvântul Său vestit –\nMinunat, minunat e Isus!\n\nMinunat e Isus, Domnul meu cel de sus,\nMinunat – nimeni nu e ca El!\nPentru mine-a murit, de păcat m-a izbăvit –\nMinunat, minunat e Isus!\n\nMinunat e Isus, Domnul meu cel de sus,\nMinunat – nimeni nu e ca El!\nEl îmi umple mereu, tot mai mult lăuntrul meu –\nMinunat, minunat e Isus!"
+    },
+    {
+      "title": "Pe sfânta vieții cărare",
+      "bookNumber": 122,
+      "originalKey": null,
+      "content": "Pe sfânta vieții cărare, Isuse, prin har alergăm,\nȘi flori de iubire și soare spre lauda Ta semănăm!\n\nSpre lauda Ta, spre lauda Ta,\nIsuse, cu foc vom cânta!\nÎn veci Te slăvim, în veci Te iubim\nPrin harul pe care-l primim!\n\nÎn lupta cea bun-a credinței 'napoi nicidecum să nu dăm –\nSuntem rânduiți biruinței spre lauda Ta când luptăm!\n\nÎn toate, împreună cu Tine, Isuse, ne-ai pus să răbdăm –\nPrin Tine, și astăzi, și mâine, spre lauda Ta să cântăm!"
+    },
+    {
+      "title": "În prezența Ta, o, Doamne, e pace",
+      "bookNumber": 123,
+      "originalKey": null,
+      "content": "În prezența Ta, o, Doamne, e pace,\nÎn prezența Ta, o, Doamne-i liniște;\nÎn prezența Ta, o, Doamne-mi dai putere\nSă trec prin încercare mai ușor!\n\nDomnul meu, mă-ncred în Tine –\nTu ești stânca mea și ajutorul meu!\nDomnul meu, Te am numai pe Tine –\nDoamne, ești al meu și eu sunt tot al Tău!\n\nDoamne, fă-mă în prezența Ta să intru,\nDoamne, fă-mă să iubesc prezența Ta!\nDa, vreau de-acuma numai Ție\nȘi prezenței Tale glorie să-i dau!"
+    },
+    {
+      "title": "Doamne, Tu știi, Tu vezi oricare drum",
+      "bookNumber": 124,
+      "originalKey": null,
+      "content": "Doamne, Tu știi, Tu vezi oricare drum – condu-mă Tu!\nCum aș putea eu singur să mă-ndrum – condu-mă Tu!\nDă-mi Tu povața blândului Tău glas,\nCondu-mă Tu la fiecare pas!\n\nDoamne, Tu știi cărarea pentru crini – condu-mă Tu!\nNu mă lăsa să-ntârzii prin străini, condu-mă Tu!\nNu vreau zadarnic pașii să-mi opresc,\nCondu-mă Tu, Păstorul meu ceresc!\n\nDoamne, Tu știi, Tu vezi orice ungher – condu-mă Tu!\nVreau să mă-nalț cu Tine către cer – condu-mă Tu!\nTu-mi dai seninul florilor de mai,\nIubirea Ta e calea către rai!"
+    },
+    {
+      "title": "Adonai",
+      "bookNumber": 125,
+      "originalKey": null,
+      "content": "Doamne, în veci vei fi misterul ce-L voi iubi,\nDomn peste cer și pământ, Dumnezeu minunat!\nVino în lumina Ta, îmbrăcat în onoarea Ta –\nStrigă acum inimă: „Vino, Rege, din nou!”\nȘi toți azi vom vedea din ceruri gloria Ta!\n\nAdonai, Adonai,\nToți genunchii astăzi se vor pleca,\nAdonai, Adonai,\nDumnezeu, doar Tu ești iar noi vom striga „Adonai!”\n\nÎn Ierusalim stăm, laude-Ți înălțăm,\nPorți deschise avem, ne e dor să revii\nȘi tot Sionul cântă „Baruh haba beșem!”\n\nTu ești Domn peste-ntreg pământ!"
+    },
+    {
+      "title": "Domnul din ceruri domnește",
+      "bookNumber": 126,
+      "originalKey": null,
+      "content": "Domnul din ceruri domnește, pe tron e așezat\nPlin de mărire și-n slavă e îmbrăcat –\nNoi toți, cu sfinte podoabe, stăm în prezența Sa\nȘi-n timp ce îi vom cânta slava Lui vom vedea!\n\nCăci Domnu-i bun, El în veci iubește,\nÎndurarea Lui nu se va sfârși –\nSpre-ai săi copii El cu drag privește\nȘi-n mijlocul laudelor noastre El va veni!"
+    },
+    {
+      "title": "El e fântâna cu ape vii",
+      "bookNumber": 127,
+      "originalKey": null,
+      "content": "Astăzi cânt voios căci Dumnezeu\nE stăpânul vieții mele – El e Domnul meu!\nCine pe pământ, cine-n ceruri sus\nE ca Domnul meu, e ca Domnul meu Isus?\nFără El, flămând și însetat,\nRătăceam în lumea largă neajutorat,\nDar, când m-a găsit, El m-a săturat\nȘi mi-a dat să beau, El mi-a dat să beau din harul Său!\n\nEl e fântâna cu ape vii –\nNimic în lume nu-L poate-nlocui!\nStânca de Veacuri, Păstorul meu,\nRâul Vieții, De-a pururi Dumnezeu!\n\nO, ce fericit sunt cu Domnul meu –\nNicăieri în lume nu-i altul ca și El!\nEl e mai de preț decât tot ce am,\nEl e slava mea, e comoara mea în veci!\nChiar de n-ar mai fi râuri pe pământ,\nEl e râul vieții mele, limpede și sfânt –\nNiciodată El nu va seca\nȘi voi bea din El, Eu voi bea din El mereu!"
+    },
+    {
+      "title": "Cerul declară gloria Celui înviat",
+      "bookNumber": 128,
+      "originalKey": null,
+      "content": "Cerul declară gloria Celui înviat –\nCine se compară cu frumusețea Domnului?\n\n/: În veci de veci ești Tu :/, /: divinul Miel pe tron :/ –\n/: Genunchii îmi aplec :/ și Ție mă închin!\n\nVoi proclama gloria Celui înviat\nCe-a fost junghiat să ne-mpace cu Dumnezeu!"
+    },
+    {
+      "title": "Căci dacă trăim, pentru Domnul trăim",
+      "bookNumber": 129,
+      "originalKey": null,
+      "content": "Domnul ne-a creat după chipul Său,\nEl ne-a învățat să urâm ce e rău,\nSă nu ne mai întoarcem pe unde am fost\nCă n-are niciun rost...\nNu mai vrem în lume să rătăcim,\nVrem de azi viața cu El să trăim,\nTot ce-avem să punem în mâna Lui,\nÎn mâna Domnului!\n\nCăci dacă trăim, pentru Domnul trăim,\nȘi dacă murim, pentru Domnul murim,\nDeci fie că trăim, fie că murim,\nNoi suntem ai Domnului!\nCăci dacă trăim, pentru Domnul trăim,\nȘi dacă murim, pentru Domnul murim,\nNoi suntem ai Lui!\n\nNu putem să știm dacă mâine în zori\nVa fi o zi cu soare sau o zi cu nori,\nȘtim însă că Domnul va fi cu noi\nLa bine și-n nevoi!\nHotărâți 'nainte vom alerga,\nSpre ceruri, zi de zi, ne vom îndrepta,\nNicio clipă nu vom privi 'napoi\nCăci Domnul e cu noi!"
+    },
+    {
+      "title": "Vedeți ce dragoste ne-a dat Tatăl",
+      "bookNumber": 130,
+      "originalKey": null,
+      "content": "/: Vedeți ce dragoste ne-a dat Tatăl prin Fiul Său iubit :/\n\n/: Ca să ne numim copii ai Lui! :/"
+    },
+    {
+      "title": "Aceasta mi-e dorința",
+      "bookNumber": 131,
+      "originalKey": null,
+      "content": "Aceasta mi-e dorința, să Te-onorez,\nCu-ntreaga mea ființă să Te slăvesc!\nCu tot ce e în mine Te preamăresc\nȘi tot ce am, Isuse, Îți dăruiesc!\n\nDoamne-Ți dau inima și-Ți dau sufletul –\nPentru Tine eu trăiesc;\nChiar suflarea ce-o am Ție azi Ți-o dăruiesc –\nFă-n mine voia Ta!\n\nVrednic ești de cinste, fii înălțat,\nÎmpărate veșnic, fii lăudat!\n„Alfa și Omega” de-a pururi viu,\nEști Domn al Veșniciei în veci, amin!"
+    },
+    {
+      "title": "Astăzi mă-nchin Domnului",
+      "bookNumber": 132,
+      "originalKey": null,
+      "content": "Astăzi mă-nchin Domnului\nȘi-I dau slavă căci El mult bine mi-a făcut:\nCând eram în strâmtorare către El eu am strigat\nȘi El mâna Și-a întins și m-a salvat!\n\nMi-amintesc de ziua-n care Dumnezeu m-a cercetat –\nA fost ziua-n care Domnul de-L iubesc m-a întrebat...\nA fost o zi deosebită – abia atunci am înțeles\nCă Isus mult m-a iubit\nȘi prin moartea Sa pe cruce m-a ales!\n\nÎncercările vin valuri dar le birui prin Isus –\nDoar în El mi-am pus nădejdea ca s-ajung în ceruri sus!\nÎncercările să vină – prin ele mă voi oțeli,\nȘi-ntr-o zi pe nori de slavă\nPrintre miile de sfinți și eu voi fi!"
+    },
+    {
+      "title": "Cântați pe Isus cu iubire",
+      "bookNumber": 133,
+      "originalKey": null,
+      "content": "Cântați pe Isus cu iubire căci El pentru noi a murit,\nLăudați-L și dați-I mărire căci El pentru noi S-a jertfit!\n\nEu vreau să cânt pe Mielul de Tatăl sfințit,\nSă cânt, să cânt pe Cel ce nespus ne-a iubit!\n\nCântați toți măreața-I putere – păcatul cel greu El l-a frânt,\nZdrobind moartea prin înviere intrat-a în locul preasfânt!\n\nCântați plini de-avânt și speranță – Isus e mereu printre noi!\nVeghind să avem siguranță, Păstoru-ngrijește de oi.\n\nCântați pe Răscumpărătorul, pe Cel ce e viu pururea,\nPe Domnul și Mântuitorul ce veșnic ne va îndruma!"
+    },
+    {
+      "title": "Ai deschis cerul Tău",
+      "bookNumber": 134,
+      "originalKey": null,
+      "content": "Ai deschis cerul Tău, ai lăsat slava Ta și-ai venit\nPentru mine, un biet păcătos...\nM-ai iubit așa mult c-ai murit la Calvar\nSă deschizi ochii mei, să-nțeleg și să Te slăvesc!\n\nPentru cântec speranță și rază de soare,\nLumină și pace pe-a mea cărare,\nPentru tot ce Tu îmi dai, mulțumesc!\nPentru zâmbetul Tău înscris printre stele,\nMângâierea Ta în clipele grele,\nPentru dragostea Ta revărsată în mine\nMă închin, recunosc că ești Domn și rostesc: „Mulțumesc!”"
+    },
+    {
+      "title": "Lumina Lumii, Prezență Divină",
+      "bookNumber": 135,
+      "originalKey": null,
+      "content": "Lumina Lumii, Prezență Divină,\nAjută-mă să-nțeleg\nCât de frumos ne-ai creat pentru Tine –\nSperanță ne-ai dăruit!\n\nToată închinarea, toată adorarea\nȚie-Ți dăruiesc, o, Domnul meu!\nNumai Tu ești veșnic, numai Tu ești vrednic,\nDoamne, numai Tu ești minunat!\n\nRege Etern, ce domnești sus în ceruri\nLa dreapta lui Dumnezeu,\nÎn umilință venit-ai în lume,\nDin dragoste Te-ai jertfit!\n\nCum să-nțeleg cât Te-a costat\nSă răstignești al meu păcat?"
+    },
+    {
+      "title": "Sfânt ești, sfânt ești, Domnul meu",
+      "bookNumber": 136,
+      "originalKey": null,
+      "content": "Sfânt ești, sfânt ești, Domnul meu,\nPământul e plin de slava Ta;\nNumele Tău e 'nălțat,\nPe-ntregul pământ ești Domn!\n\nLuminezi viața mea și prin Tine strălucesc...\n\nCerul cântă laudă: „Minunat e Domnul, e Rege-n Univers!”\nAleluia – și-n viața mea!"
+    },
+    {
+      "title": "Te laud chiar dacă ploaia nu s-a oprit",
+      "bookNumber": 137,
+      "originalKey": null,
+      "content": "Te laud chiar dacă ploaia nu s-a oprit,\nTe laud chiar dacă problema mea nu s-a sfârșit!\n\nTe laud chiar dacă simt că inima mi s-a sfâșiat,\nTe laud căci Tu rămâi în bine sau rău același Dumnezeu!\n\nToată lauda mea, toată dragostea mea,\nTot ce sunt eu acum Îți predau, și Îți cânt\nUn vers din inima mea ce zboară spre Slava Ta\nSă ia viață și să-nalțe gloria Ta\n\nTe laud chiar dacă nu înțeleg uneori,\nTe laud chiar dacă nu am răspuns la-ntrebări!"
+    },
+    {
+      "title": "Dați Domnului tot ce-I al Lui",
+      "bookNumber": 138,
+      "originalKey": null,
+      "content": "/: Dați Domnului tot ce-I al Lui,\nDați Domnului cinste, onoare,\nDați Domnului laudă Numelui Său! :/\n\n/: Închinați-vă Lui în sfințenie,\nVocea Lui răsună cu putere –\nDomnul e Rege în veci! :/"
+    },
+    {
+      "title": "Schimbă-mi inima",
+      "bookNumber": 139,
+      "originalKey": null,
+      "content": "Schimbă-mi inima, fă-mă mai curat,\nMai real, mai sfânt, mai adevărat!\n\nTu ești Olarul iar eu lutul –\nFă-mă să semăn, Doamne, cu Tine!"
+    },
+    {
+      "title": "Cu Isus în lumea asta",
+      "bookNumber": 140,
+      "originalKey": null,
+      "content": "Cu Isus în lumea asta voi merge eu mereu –\nÎnainte-i țara mea, înainte-i Dumnezeu!\nDeși calea e îngustă și plină de-ncercări,\nCu Isus ajunge-voi în veșnicii!\n\nIsus, Isus este calea-n țara bucuriilor,\nEste jertfa ce ne poartă spre limanul cel dorit!\nIsus, Isus este calea-n țara bucuriilor –\nCrede-n El și-n veci tu fi-vei fericit!\n\nCând durerea te doboară, amice, nu uita,\nÎnainte-i țara ta, înainte-i Dumnezeu;\nAtunci ochii ți-i ridică și cere mila Sa,\nȘi prin harul Său El te va ajuta!\n\nNiciodată pe-a ta cale să nu te uiți 'napoi –\nÎnainte-i țara ta, înainte-i Dumnezeu;\nVrednică vei fi acolo, la dreapta Lui vei sta\nO mireasă când vei fi în țara Sa."
+    },
+    {
+      "title": "Numele Domnului e-un turn tare",
+      "bookNumber": 141,
+      "originalKey": null,
+      "content": "Numele Domnului e-un turn tare –\nCel credincios caută adăpost în El;\nNumele Domnului e-un turn tare –\nCel credincios caută salvarea-n El.\n\nDoamne, Ție noi ne-nchinăm,\nDoamne, Numele-Ți lăudăm –\nDa, Numele Tău pentru noi e adăpost!\nCând încercări ne copleșesc,\nDoamne, Tu ne izbăvești –\nDa, Numele Tău pentru noi e adăpost!"
+    },
+    {
+      "title": "Azi Domnul este Păstorul meu",
+      "bookNumber": 142,
+      "originalKey": null,
+      "content": "Azi Domnul este Păstorul meu – eu lipsă n-am să duc;\nDin verzi pășuni și din ape vii eu sufletul mi-adăp.\n\nPovață-mi dă pe cărarea grea,\nÎn lume port al Său Nume Sfânt,\nChiar și prin moarte eu trec ușor\nȘi nu mă tem nicicând!\n\nToiagul Tău și nuiaua Ta mă mângâie ades;\nPe cap mă ungi, ca să mă sfințești, cu undelemn ales!\n\nTu hrană-mi dai când dușmani privesc,\nPaharul meu este astăzi plin –\nPrimesc belșugul ce-L răspândești\nȘi-n fața Ta mă-nchin!\n\nDa, fericirea mă va-nsoți în toată viața mea\nȘi-n Casa Tatălui meu voi sta până când voi muri!\n\nAleluia, (x 7) amin!"
+    },
+    {
+      "title": "Tu ești sfânt Isus, ești atât de sfânt",
+      "bookNumber": 143,
+      "originalKey": null,
+      "content": "/: Tu ești sfânt Isus, ești atât de sfânt! :/\n\nCe privilegiu și onoare să ne aflăm în fața Ta,\nÎnconjurați de slava Ta ne închinăm!\n\n/: Tu ești vrednic, Isus, Tu ești vrednic! :/\n/: Credincios ești Tu, atât de credincios! :/"
+    },
+    {
+      "title": "O laudă mai înfocată",
+      "bookNumber": 144,
+      "originalKey": null,
+      "content": "O laudă mai înfocată\nAprinde-n mine, Doamne, iar –\nDintr-o trăire mai curată\nSă Te înalț mai sfânt, mai clar!\n\nLăudat, lăudat,\nFie Numele Tău lăudat!\nDomnul meu minunat,\nFii în veci, fii în veci lăudat!\n\nNimic din lumea pământească\nNu-mi poate pune stăvilar\nCa, printr-o viață mai cerească,\nSă Te înalț mai sfânt, mai clar!\n\nMai hotărât pe-a crucii cale\nVreau să pășesc urcând prin har\nCa, și pe munte, și prin vale,\nSă Te înalț mai sfânt, mai clar!\n\nCu jarul dragostei din Tine\nSă-mi umpli-al inimii altar\nȘi prin cântări tot mai divine\nSă Te înalț mai sfânt, mai clar!\n\nFii binecuvântat, Părinte,\nOcean de har cu nehotar!\nVreau cu-o trăire mai fierbinte\nSă Te înalț mai sfânt, mai clar!"
+    },
+    {
+      "title": "Cum dorește un cerb izvor de apă",
+      "bookNumber": 145,
+      "originalKey": null,
+      "content": "Cum dorește un cerb izvor de apă-așa eu Te doresc –\nTu ești singura mea dorință, să Te laud eu tânjesc!\n\nTu-mi ești scut și tăria mea\nȘi Ție-Ți dau toată inima!\nTu ești singura mea dorință, să Te laud eu tânjesc!\n\nAl meu suflet Te caută zi și noapte – ești Dumnezeul viu!\nTu ești singura mea dorință – doar al Tău eu vreau să fiu!"
+    },
+    {
+      "title": "Fii binecuvântat",
+      "bookNumber": 146,
+      "originalKey": null,
+      "content": "Fii binecuvântat când pământul e săturat,\nCând ploaia dă peste el, fii binecuvântat!\nFii binecuvântat când mă aflu pe pământ uscat\nȘi pășesc singur prin pustiu, fii binecuvântat!\n\nFiecare laudă Ție Ți-o dau,\nCând noaptea se apropie Te voi lăuda!\n\nBinecuvântat fie El, binecuvântat!\nBinecuvântat fie El, binecuvântăm Numele Său!\n\nFii binecuvântat când soarele-i din nou pe cer,\nCând toate sunt cum le-ai creat, fii binecuvântat!\nFii binecuvântat când drumu-i plin de suferinți\nIar dacă plâng și-mi este greu, fii binecuvântat!\n\n/: Primește lauda – ești vrednic Dumnezeu!\nÎmi cântă inima – fii binecuvântat! :/"
+    },
+    {
+      "title": "Ce bucurie am în Isus",
+      "bookNumber": 147,
+      "originalKey": null,
+      "content": "Ce bucurie am în Isus –\nO viață nouă El mi-a adus,\nPentru vecie m-a mântuit\nȘi moștenire mi-a dăruit!\n\nÎn veci cânta-voi că-s fericit –\nIsus pe cruce m-a mântuit!\nÎn veci aceasta eu voi cânta:\n„Te-ador, Isuse, ești viața mea!”\n\nCu bucurie inima mea\nUna cu Domnul să fie-ar vrea –\nEl pace sfântă îmi dă din plin,\nÎnviorat sunt prin har divin!\n\nCe fericit sunt și liniștit –\nCând e cu mine sunt ocrotit;\nEu știu prea bine și spun mereu:\n„Domnul e viața și e al meu!”"
+    },
+    {
+      "title": "Eu de Tine am nevoie",
+      "bookNumber": 148,
+      "originalKey": null,
+      "content": "Doamne vin și-ngenunchez,\nȚie Îți mărturisesc:\nFără Tine, aș cădea,\nDoar Tu ești odihna mea!\n\nEu de Tine am nevoie, am nevoie, Doamne –\nTu ești neprihănirea mea, și-a mea apărare!\n\nAcolo unde-i mult păcat, e Har mai mult, nemăsurat –\nHristos în mine, asta e, prin harul Său, sfințenie!\n\nSă mă-nveți cântări să-nalț; când ispite-n cale vin,\nEu mă las Isus pe al Tău braț – ești speranță și alin!"
+    },
+    {
+      "title": "Isuse, culme minunată",
+      "bookNumber": 149,
+      "originalKey": null,
+      "content": "Isuse, culme minunată\nDe unde-L văd pe Dumnezeu,\n/: Ce viață binecuvântată\nAdus-ai sufletului meu! :/\n\nGăsesc atâta bucurie în Tine, Domnul meu cel bun,\n/: Încât cu glasul meu nevrednic\nÎn veci eu n-am să pot să spun! :/\n\nAtâta milă și iubire, Isuse, în Tine am aflat,\n/: Cât n-o să poată niciodată\nSă spună-un păcătos iertat! :/\n\nAtâta dragoste și pace\nEu aflu-n Tine zi de zi –\n/: Mai mult decât credeam, Isuse,\nSau îmi puteam închipui! :/\n\nCu ce cuvinte-Ți voi da slavă\nCând Tu mă faci acum să am\n/: Atâta har cât altădată\nNici să-mi închipui nu-ndrăzneam! :/\n\nPrimește jertfa unor lacrimi\nȘi darul cântecului smuls\n/: Din taina unei inimi care\nȚi-ar da, dar n-are ce mai mult! :/"
+    },
+    {
+      "title": "Sfânt ești, sfânt ești, sfânt ești",
+      "bookNumber": 150,
+      "originalKey": null,
+      "content": "Sfânt ești, sfânt ești, sfânt ești, Domn atotputernic –\nTot ce ai creat Te laudă-n cer și pe pământ!\nSfânt ești, sfânt ești, sfânt ești, bun, milos și darnic –\nDoamne, ești veșnic, Tată, Fiu, Duh Sfânt!\n\nSfânt ești, sfânt ești, sfânt ești – sfinții toți Îți cântă\nȘi 'nainte-Ți pun coroana de învingător;\nHeruvimi și îngeri Ție Ți se-nchină –\nIeri, azi și veșnic ești biruitor!\n\nSfânt ești, sfânt ești, sfânt ești – norul Te ascunde,\nOchiul păcătosului nu poate-a Te vedea!\nSfânt și-atotputernic ești din veșnicie –\nDoamne, Iehova, Tu ești dragostea!"
+    },
+    {
+      "title": "Sună harfa laudei mele",
+      "bookNumber": 151,
+      "originalKey": null,
+      "content": "Sună harfa laudei mele numai pentru Dumnezeu –\nLa nevoi și la durere „Aleluia!” Îi cânt eu;\n/: Toată viața cât trăiesc pe Isus Îl preamăresc! :/\n\nA creat tot Universul, Domnul, prin al Său Cuvânt;\nPe bolnavi îi vindecase cât trăise pe pământ;\n/: Și pe mine m-a creat, mântuire-apoi mi-a dat! :/\n\nFericit e cine are pe Isus în ajutor,\nCine Lui I se supune și Îi e ascultător;\n/: Fie bine, fie rău, Domnul este scutul meu! :/\n\n„Aleluia, aleluia!” să răsune ne-ncetat,\nPână Domnul vine-n slavă astfel cum a cuvântat;\n/: Să Îi cânte inima până când Îl va vedea. :/"
+    },
+    {
+      "title": "O, ce valuri de îndurare",
+      "bookNumber": 152,
+      "originalKey": null,
+      "content": "O, ce valuri de îndurare curg din crucea lui Isus;\nO, ce jertfă minunată este jertfa lui Isus!\n\nCurățit în al lui sânge și crezând în jertfa Lui\nMă apropii fără teamă de preasfântul Dumnezeu...\n\nPretutindeni să se-ntindă valu-acestei mari iubiri –\nToată lumea să audă despre jertfa lui Isus!\n\nOrice suflet ce se află în ruină și păcat,\nSă privească, deci, la Tatăl și să fie mântuit!"
+    },
+    {
+      "title": "Doamne, dacă nu ai fi Tu",
+      "bookNumber": 153,
+      "originalKey": null,
+      "content": "Doamne, dacă nu ai fi Tu, ce m-aș face fără de Tine?\nMintea mea e-atât de rea – încotro m-ar purta mintea mea?\nToată forța ce o mai am e că Tu mereu ești cu mine –\nBate vântu-n geam? E bine! Și dacă cerul nu e senin, ce îmi pasă?\n\n/: Drumul acesta mă duce spre Casă :/"
+    },
+    {
+      "title": "Sfânt ești Tu, preasfânt ești Doamne",
+      "bookNumber": 154,
+      "originalKey": null,
+      "content": "Sfânt ești Tu, preasfânt ești, Doamne –\nDoar Tu ești vrednic să primești laude!\nSfânt ești Tu, preasfânt ești, Doamne –\nDin toată inima-ți cânt!\n\nMare ești Tu, vrednic să fii lăudat!\nSfânt și credincios, Tu ești măreț, preasfânt ești Tu!"
+    },
+    {
+      "title": "Se-aud pașii Domnului venind",
+      "bookNumber": 155,
+      "originalKey": null,
+      "content": "Se-aud pașii Domnului venind – așteaptă liniștit! –\nLuceferi în jur se-aprind, pământul e sfințit...\nÎn El nu vezi păcat, e sfânt și preacurat –\nRămâi liniștit în fața Lui și-nchină-te smerit!\n\nE-aici Împăratul cel preasfânt, în glorie 'nălțat,\nCu flacăra Lui arzând ce-i rău și întinat;\nAici e Cel din veci, Lumina lumii-ntregi –\nRămâi liniștit în fața Lui și-nchină-te curat!\n\nE-aici Domnul cu puterea Sa – fă-ți liniște-n adânc! –\nDoar El poate vindeca cu glasul Lui prea-blând;\nNimic nu-I e prea greu – te-ncrede-n harul Său,\nRămâi liniștit în fața Lui și-ascultă-al Său Cuvânt!"
+    },
+    {
+      "title": "Isus, viața noastră",
+      "bookNumber": 156,
+      "originalKey": null,
+      "content": "Isus, viața noastră, noi pe Tine Te mărim,\nCăci prin jertfirea Ta pe cruce noi voioși trăim.\nNe-ai dat în dar iertarea pentru vina ce-o purtăm,\nDe-aceea Îți cântăm: „Aleluia!”\n\nGlorie, glorie, aleluia, glorie, glorie, aleluia,\nGlorie, glorie, aleluia Părintelui ceresc! (aleluia!)\n\nDin clipa când în viața noastră pacea a intrat,\nCântăm într-una Mielului ce ne-a răscumpărat –\nA Lui să fie slava ce în veci va triumfa,\nAcum și pururea – aleluia!\n\nIsuse, când din nou în lume Te vei arăta,\nAcei ce-au biruit prin jertfa Ta s-or bucura,\nȘi-nconjurați de strălucire toți Îți vor cânta\nȘi slavă Îți vor da – aleluia!"
+    },
+    {
+      "title": "Când Isus Cristos m-a mântuit",
+      "bookNumber": 157,
+      "originalKey": null,
+      "content": "Când Isus Cristos m-a mântuit,\nHar din harul Său El mi-a dăruit;\nPacea Lui mă face fericit\nȘi mă-ndeamnă-ntr-una să Îi cânt!\n\nDoamne, Te slăvesc și Îți mulțumesc\nPentru bunătatea-Ți mare;\nPentru încercări, binecuvântări,\nDoamne, azi Îți mulțumesc!\n\nVreau să știe toți că-s fericit\nCu Isus al meu ce m-a mântuit;\nVreau de-acum doar Lui să Îi slujesc,\nPrin viața mea să-I mulțumesc!"
+    },
+    {
+      "title": "Domnul meu e viu",
+      "bookNumber": 158,
+      "originalKey": null,
+      "content": "Cine-a făcut soarele să răsară,\nȘi cine a pus țărmul lângă ocean,\nȘi cum știe Luna Soarele s-ascundă,\nȘi cum scris cu stele ceru-ntreg?\n\nDa, eu știu, Domnul meu e viu;\nEu știu, Domnul meu e viu!\nOrice făptură va striga „El poate viață da!”\nEu știu, Domnul meu e viu!\n\nAcelași Domn care pe toate le știe\nSe-apleacă spre cei ce strigă spre El\nȘi le dă mână Sa ce-a fost cândva străpunsă,\nȘi tot ce-atinge viață prinde iar!"
+    },
+    {
+      "title": "De trăiești cu Domnul tău mereu",
+      "bookNumber": 159,
+      "originalKey": null,
+      "content": "De trăiești cu Domnul tău mereu, fericit îți este traiul tău,\n/: Pe-ale vieții tale căi, peste dealuri și prin văi,\nEl te duce numa-n fericiri! :/\n\nLasă soarta ta în mâna Lui, viața ta să fie-a Domnului,\n/: Să-i predai tot ce-i al tău, să-mplinești Cuvântul Său –\nEl te duce numa-n fericiri :/\n\nCând ispita te va încerca și durerea te va îneca\n/: Nicidecum nu șovăi, El și-atunci te va iubi,\nEl te duce numa-n fericiri :/"
+    },
+    {
+      "title": "Ești necuprins și sfânt ca nimeni altul",
+      "bookNumber": 160,
+      "originalKey": null,
+      "content": "Ești necuprins și sfânt ca nimeni altul,\nȘi totuși ne iubești din veșnicii;\nÎn Tine n-am găsit nicicând schimbare –\nAi fost, vei fi și ești în veci de veci!\n\nO, Doamne, mare ești, mare e mila Ta\nCe-asupra noastră mereu o reverși –\nIubirea Ta simțim pe-a noastră cale\nȘi-n Tine am găsit un adăpost!\n\nȘi zori, și-amiaz' de zi, și-amurg, și noapte,\nȘi cerul înstelat Te laudă –\nÎn susur de izvor, în cânt de păsări,\nÎn toate simt și văd iubirea Ta!\n\nEști necuprins și sfânt, plin de-ndurare –\nIertare să primesc la Tine vin!\nTărie n-am, sunt slab, Tu să-mi fii sprijin –\nViața mi-o poți schimba în cer senin!"
+    },
+    {
+      "title": "O, Doamne mare",
+      "bookNumber": 161,
+      "originalKey": null,
+      "content": "O, Doamne mare, când privesc eu lumea,\nCe ai creat-o prin al Tău Cuvânt,\nȘi ființele ce-mpodobesc natura,\nCum le-ntreții cu brațul Tău cel sfânt,\n\n/: Atunci Îți cânt, Măreț Stăpânitor,\nCe mare ești, ce mare ești! :/\n\nPrivirea când mi-o 'nalț și văd minunea –\nMulțimea astrelor ce-alerg pe cer,\nMărețul soare cât și blânda lună,\nCa mingi de aur plutind în eter –\n\nCând întâlnesc pe Domnu-n Cartea Sfântă,\nȘi când zăresc mulțimea de-ndurări,\nPe-ai Săi aleși cum i-a iubit într-una\nȘi i-a condus prin binecuvântări,\n\nCând Domnul bun mă va chema la Sine,\nȘi când voi sta uimit în fața Sa,\nPrivind la Domnul sfânt al veșniciei,\nCăzând la tronu-I, mă voi închina..."
+    },
+    {
+      "title": "Nu vreau nimic, nimic altceva",
+      "bookNumber": 162,
+      "originalKey": null,
+      "content": "/: Nu vreau nimic, nimic altceva,\nDecât să stau în prezența Ta,\nSă mă-nchin la picioarele Tale\nUnde dragostea Ta mă înconjoară, mă face tare! :/\n\n/: Prezența Ta e tot ce vreau –\nSă Te simt aproape,\nSă Te iubesc e tot ce vreau! :/"
+    },
+    {
+      "title": "Mulțumim, o, Tatăl nostru",
+      "bookNumber": 163,
+      "originalKey": null,
+      "content": "Mulțumim, o, Tatăl nostru, pentru Fiul Tău iubit,\nMulțumim că-n orice vreme minunat ne-ai ocrotit!\nPentru primăveri senine dar și pentru toamne reci,\nPentru lacrimi, Ție, Doamne, Îți aducem slavă-n veci!\n\nMulțumim pentru răspunsul ce ni-l dai când ne rugăm,\nMulțumim că ajutorul gata pentru noi îl ai,\nPentru rău și pentru bine, pentru sfinte mângâieri,\nMulțumim pentru iubirea mai bogată azi ca ieri.\n\nMulțumim pentru toți spinii, mulțumim și pentru flori,\nPentru case și familii, pentru soarele din nori!\nPentru bucurii nespuse, pentru pace, Te slăvim;\nPentru tainica nădejde, Doamne mare, Îți mulțumim!"
+    },
+    {
+      "title": "Mântuire ni s-a dat, fără nicio plată",
+      "bookNumber": 164,
+      "originalKey": null,
+      "content": "Mântuire ni s-a dat, fără nicio plată,\nPrin Isus crucificat, fără nicio plată!\nDoar Cristos ne-a mântuit, de păcat ne-a izbăvit –\nCât de mult El ne-a iubit fără nicio plată!\n\nCurge un bogat Izvor, fără nicio plată,\nVeșnic și mântuitor, fără nicio plată!\nOrișicine care vrea, însetat, din El să bea,\nMântuire va afla fără nicio plată!\n\nDe Isus tu ești iubit, fără nicio plată –\nNu vrei să fii mântuit, fără nicio plată,\nInima Lui s-o predai (este tot ce poți să-I dai!)\nSă ajungi la El în rai, fără nicio plată?"
+    },
+    {
+      "title": "Isus, iubirea sufletului meu",
+      "bookNumber": 165,
+      "originalKey": null,
+      "content": "Isus, iubirea sufletului meu,\nIsus, vreau să fiu al Tău mereu!\nM-ai ridicat din noroi și m-ai spălat, pe stânca m-ai urcat\nDe aceea-Ți cânt neîncetat:\n\nTe iubesc, Te doresc –\nDe lumea mi-ar cădea,\nEu nu Te voi lăsa!\nSalvarea mi-e doar în Tine –\nMereu Te voi lăuda căci, Doamne, ești cu mine!"
+    },
+    {
+      "title": "Multă vreme eu am rătăcit",
+      "bookNumber": 166,
+      "originalKey": null,
+      "content": "Multă vreme eu am rătăcit neștiind că Isus m-a iubit,\nPentru mine că s-a răstignit pe Golgota!\n\nSus pe cruce al Său sânge-a curs,\nTrupul, inima I s-au străpuns –\nDoar pentru păcatul meu muri pe Golgota!\n\nDin Cuvântul Domnului cunosc astăzi că eu sunt un păcătos\nȘi că-n locul meu muri Cristos pe Golgota!\n\nAm venit la El și-a meritat – multe binecuvântări mi-a dat;\nM-a făcut copilul Său bogat – la Golgota!"
+    },
+    {
+      "title": "Dă-ne iubire, o, Doamne",
+      "bookNumber": 167,
+      "originalKey": null,
+      "content": "Dă-ne iubire, o, Doamne, să o purtăm în priviri –\nDragostea Ta printre oameni să ne-nsoțească mereu;\nDă-ne-o-nțelegere nouă, să ne iubim ca și frați,\nDragostea Ta printre oameni fie mereu!"
+    },
+    {
+      "title": "Isus e Domn al domnilor",
+      "bookNumber": 168,
+      "originalKey": null,
+      "content": "Isus e Domn al domnilor și Rege-al regilor –\nCântări de laudă înălțați și Lui vă închinați!\n\nCu toții să-I cântăm, pe Domnul să-L lăudăm\nCăci ne-a iubit și ne-a iertat și în cer locaș ne-a dat\nAl nostru Împărat!\n\nMoartea și iadul a învins pe cruce când s-a stins;\nDe la pierzare ne-a scăpat și viață El ne-a dat!\n\nVoi însetaților veniți din apă să sorbiți –\nLa crucea lui Isus de vii, iertare vei primi!"
+    },
+    {
+      "title": "El e-n stare, da, e-n stare",
+      "bookNumber": 169,
+      "originalKey": null,
+      "content": "El e-n stare, da, e-n stare\nSă rezolve-ngrijorarea ce o am;\nEl e-n stare, da, e-n stare\nSă-mi atingă inima cu-al Lui balsam!\n\nEl e-n stare, da, e-n stare\nSă-mplinească dincolo de orice vis;\nEl e-n stare, da e-n stare\nSă îmi schimbe astăzi viața ca prin vis!\n\nEl e-n stare, da, e-n stare\nSă-mplinească dincolo de orice vis;\nEl e-n stare, da e-n stare\nSă îmi schimbe astăzi viața,\nSă îți schimbe astăzi viața,\nSă ne schimbe astăzi viața ca prin vis!"
+    },
+    {
+      "title": "Lui Isus mi-am dat inima",
+      "bookNumber": 170,
+      "originalKey": null,
+      "content": "Lui Isus mi-am dat inima și sunt fericit!\nLui Isus mi-am dat inima – El pentru mine-a murit!\nAm fost pierdut în păcat, acum, însă, sunt salvat!\nLui Isus mi-am dat inima, da – sunt fericit!\n\nLui Isus mi-am dat inima și sunt liniștit;\nEl în schimb mi-a dat pacea Sa, El pentru mine-a murit!\nAm fost pierdut în păcat, acum, însă, sunt salvat!\nIsus e în inimă, da – sunt liniștit!\n\nLui Isus mi-am dat inima – cât sunt de fericit!\nLui Isus mi-am dat inima – da, sunt mântuit!\nDe astăzi nu mai trăiesc eu ci Isus trăiește-n pieptul meu;\nIsus e în inima mea, da – sunt fericit!"
+    },
+    {
+      "title": "Nu pot apa s-o trec fără Tine",
+      "bookNumber": 171,
+      "originalKey": null,
+      "content": "Nu pot apa s-o trec fără Tine,\nNu pot munții să-i urc numai eu\nȘi la greu, dac-o fi, și la bine,\nFii alături de mine mereu!\n\nZi după zi, ceas după ceas, tot pas cu pas...\n\nHai, hai cu mine, hai,\nCăci cu Tine, oricum, nu mi-e frică de drum!\nHai, hai cu mine, hai,\nS-alungăm, oricând vrei, toți norii grei!\n\nViața n-are doar clipe senine –\nVom da uneori de drum greu,\nDar e ușor dacă mergi lângă mine –\nȘtiu că mergi fiindcă ești Domnul meu!"
+    },
+    {
+      "title": "Fața Ta, o, Doamne, o căutăm",
+      "bookNumber": 172,
+      "originalKey": null,
+      "content": "Fața Ta, o, Doamne, o căutăm –\nPentru-a noastră țară ne rugăm!\nTrezește-ne, o, Doamne, inima,\nȘi toți din jur pe Tin' Te vor vedea!\n\nÎnălțăm Numele Tău, în unitate ne-nchinăm;\nLaudele vor răsuna – /: țara o vei transforma! :/\n\nNiciodată nu vom da 'napoi –\nCu credință noi înaintăm!\nCând cu lacrimi noi vom semăna,\nRecoltă din belșug vom secera.\n\n/: Vrem trezire, vrem trezire, vrem trezire în noi! :/"
+    },
+    {
+      "title": "Ce bucurie să mă știu copilul Tău",
+      "bookNumber": 173,
+      "originalKey": null,
+      "content": "Ce bucurie să mă știu copilul Tău\nȘi să fiu mereu păzit de mâna Ta!\nGlorie Ție – ai spălat păcatul meu\nPrin Isus, crucificat la Golgota!\n\nTot ce este-n mine Te glorifică\nȘi cu tot ce am Te preamăresc;\nViața mea o las în mâna Ta de Tată,\nȘi-am să-Ți cânt mereu că Te iubesc!\n\nCu ce blândețe mă înveți să Te urmez –\nZi de zi mă oglindesc în ochii Tăi!\nCe șoapte calde, când îmi spui că mă iubești,\nȘi mă-ntreb cum aș putea să-Ți mulțumesc?"
+    },
+    {
+      "title": "Să 'nalț jertfa Ta, Isuse",
+      "bookNumber": 174,
+      "originalKey": null,
+      "content": "Să 'nalț jertfa Ta, Isuse, mai întâi și mai deplin,\nHarurile ei aduse și comorile-i nespuse –\n\nIată ce doresc, iată ce doresc,\nIată ce doresc – amin!\n\nSă spun despre jertfa sfântă, despre harul ei divin –\nAzi, când lumea se frământă, și spre-a morții căi se-avântă –\n\nSă cânt Golgota măreață într-un cântec mai senin,\nSpre-o eternă dimineață, Doamne, aprinde-a mea viață! –"
+    },
+    {
+      "title": "Ce minunat e să fii mântuit",
+      "bookNumber": 175,
+      "originalKey": null,
+      "content": "Ce minunat e să fii mântuit, să ai a cerului pace,\nSă îți îndrepți drumul spre infinit, spre veșnica fericire,\nSă te cufunzi în iubire,\nDin Dumnezeu să primești mereu putere,\nSă fii pe veci fericit copil de Dumnezeu!\n\nChiar dacă lumea trăiește-n păcat,\nPrivirea mea-i către ceruri;\nSingurul scop nobil din viața mea e să trăiesc pentru Isus,\nSă mă cufund în iubire\nȘi inima să se-aprindă pentru Tine –\nNu e mai mare-mplinire\nDecât să fiu al Tău copil de Dumnezeu\n\nȘi zilnic să mă cufund în iubire,\nDin Dumnezeu să primesc mereu putere,\nSă fiu pe veci fericit /: copil de Dumnezeu! :/"
+    },
+    {
+      "title": "Isuse, pentru mine cerul ai părăsit",
+      "bookNumber": 176,
+      "originalKey": null,
+      "content": "Isuse, pentru mine cerul ai părăsit,\nDe străluciri mărețe, Doamne, Te-ai despărțit!\n\nÎn locul meu pe cruce ai murit –\nTu, Domnul meu în veci să fii slăvit!\n\nIsuse, pentru mine, sărac Tu ai trăit...\nDe când trăiești în mine mă simt prea-fericit!\n\nVreau să-Ți cânt numai Ție la bine și la rău –\nTu-mi ești Mântuitorul, iar eu copilul Tău!"
+    },
+    {
+      "title": "Nu va fi o veste mai frumoasă",
+      "bookNumber": 177,
+      "originalKey": null,
+      "content": "Nu va fi o veste mai frumoasă\nCa salvarea dată prin Isus,\nNici iubire care să jertfească\nPentru noi cât a jertfit Isus!\n\nDragostea Lui e darul cel mai minunat,\nMinunat, minunat;\nO, dragostea Lui e darul cel mai minunat,\nMinunat și pentru noi!\n\nZilnic mă-nconjoară cu-ndurare –\nVăd la orice pas cât e de bun!\n„El mi-a dat, pe veci, răscumpărare!”\nPot și eu acum voios să spun!\n\nNu vom înțelege niciodată\nCe măreață e iubirea Sa –\nȘi atunci, în slava nevisată,\nTot iubirea Lui o vom cânta!"
+    },
+    {
+      "title": "În fața Tronului de sus",
+      "bookNumber": 178,
+      "originalKey": null,
+      "content": "În fața Tronului de sus\nEu am un bun Apărător,\nUn mare Preot, pe Isus,\nLa care aflu ajutor!\n\nSăpat eu sunt pe mâna Sa\nȘi pe-a Lui inimă sunt scris,\nIar când în ceruri eu voi sta\n/: Pârâșul meu va fi învins! :/\n\nSatan când mă va acuza\nSpunându-mi că sunt vinovat,\nPrivesc la Domnul, Stânca mea,\nCe-a șters la cruce-al meu păcat!\n\nFiindcă Domnul a murit,\nEu am ajuns neprihănit,\nDreptatea Lui s-a împlinit,\n/: Prin moartea Lui sunt mântuit! :/\n\nȘi iată Mielul înălțat,\nCel Nepătat, Neprihănit,\nCuvântul Viu și Întrupat –\nE Rege-al Regilor, slăvit!\n\nUnit cu El nu voi muri –\nCu sânge m-a răscumpărat!\nVoi fi cu El în veșnicii,\n/: Cu Domnul meu glorificat! :/"
+    },
+    {
+      "title": "Isus, Tu ești al meu Domn",
+      "bookNumber": 179,
+      "originalKey": null,
+      "content": "Isus, Tu ești al meu Domn,\nTu mă conduci pe-al meu drum;\nTot mereu, Isus, Tu aduci pace –\nTe prețuiesc, ești al meu\nTot mereu!\n\nCând sunt departe, Tu mă chemi\nÎn necaz mă întărești –\nPentru Tine eu trăiesc,\nDomnul meu Isus!\n\nCând sunt în valuri, mă ridici;\nLa liman Tu mă conduci;\nInima mi-o întărești –\nEști al meu, Isus!"
+    },
+    {
+      "title": "În casa Tatălui meu sfânt",
+      "bookNumber": 180,
+      "originalKey": null,
+      "content": "În casa Tatălui meu sfânt este locul meu!\nSă mă smeresc cu sufletul și cu ruga inimii\nSă-L văd pe El prin lumina Duhului\nSă-I mulțumesc și să-L slăvesc – iată ce doresc!\n\nEu sunt aici, îngenunchiat lângă tronul Tău...\nCând mă privesc și Te privesc nici nu pot să înțeleg\nDe ce-ai ales să-L trimiți pe Fiul Tău –\nAșa de scump El a plătit tot păcatul meu!\n\nÎn preajma Ta e gloria cerului întreg!\nMă simt smerit dar fericit și în suflet mă întreb:\nCum aș putea să-nțeleg iubirea Ta?\nDar azi eu vin, cu tot ce sunt, Ție să mă-nchin!"
+    },
+    {
+      "title": "Doamne, toarnă din puterea Ta mai mult",
+      "bookNumber": 181,
+      "originalKey": null,
+      "content": "/: Doamne, toarnă din puterea Ta mai mult –\nTu să umpli fiecare vas al Tău,\nSlava Ta să se arate pe pământ,\nSă desăvârșești lucrarea Ta în noi! :/\n\n/: Acum stăm în fața Ta, la Tine noi privim,\nPrivim lumina Ta – lumina ce dă viața! :/\n\n/: Doamne, vrem s-atingem tronul Tău de har,\nSă fim copleșiți de norul slavei Tale –\nNoi să fim în Tine, Tu – mereu în noi,\nȘi nimic să nu ne mai despartă! :/"
+    },
+    {
+      "title": "Mare ești, Rege în veci de veci",
+      "bookNumber": 182,
+      "originalKey": null,
+      "content": "Mare ești, Rege în veci de veci –\nPământul, cerul, marea, toate le-ai creat!\nMare ești, Rege în veci de veci –\nToți slavă Îți vor da, al lumii Împărat!\n\nNumele-Ți vom 'nălța, Isuse –\nCu toți' ne vom pleca 'naintea Ta!\nNumele-Ți vom 'nălța, Isuse –\nAtotputernic ești, ca Tine altul nu-i!"
+    },
+    {
+      "title": "Agnus Dei",
+      "bookNumber": 183,
+      "originalKey": null,
+      "content": "/: Aleluia, Aleluia, Domnul nostru domnește în veci! :/ Aleluia!\n\nTu ești sfânt, ești sfânt, Domnul nostru din ceruri –\nVrednic ești în veci, vrednic ești în veci! Amin!"
+    },
+    {
+      "title": "Binecuvântați sunt acei",
+      "bookNumber": 184,
+      "originalKey": null,
+      "content": "Binecuvântați sunt acei care stau în Templul Său,\nBinecuvântați sunt acei ce se încred în Domnul!\n\nVom simți puterea Sa, față-n față-L vom vedea\n\nDin înalt ascultă-ne, Doamne,\nCând ne rugăm, când Te căutăm, ne închinăm!\n\nDoar Tu ești sfânt, doar Tu ești sfânt, numai Tu ești sfânt!"
+    },
+    {
+      "title": "Doamne, Tu ești sfânt",
+      "bookNumber": 185,
+      "originalKey": null,
+      "content": "Doamne, Tu ești sfânt – arată-ne azi gloria Ta!\nPentru că ești sfânt, venim cu toți-naintea Ta,\nÎți aducem slavă, Numele-Ți lăudăm,\nStăm în reverență, Ție ne-nchinăm!\n\nGlorie Ție, Doamne – gloria-i doar a Ta!\nCu toți plecăm genunchii, stăm smeriți 'naintea Ta...\nIsuse, Domn al slavei, ne-așternem la pământ –\nNe-atinge și ne schimbă căci, Doamne, Tu ești sfânt!"
+    },
+    {
+      "title": "Doamne, ești mai scump ca argintul",
+      "bookNumber": 186,
+      "originalKey": null,
+      "content": "Doamne, ești mai scump ca argintul,\nDoamne, ești mai scump ca aurul!\nNu-i nimic în lume să îmi placă –\nTot ce vreau, Isuse, ești doar Tu!\n\nCine poate măsura iubirea Ta\nȘi cine poate cântări ce-i drept?\nCine poate număra răbdarea Ta –\nMila Ta întrece orice înțeles!"
+    },
+    {
+      "title": "Din fecioară S-a născut în staul",
+      "bookNumber": 187,
+      "originalKey": null,
+      "content": "Din fecioară S-a născut în staul,\nPrin puterea Duhului cel Sfânt,\nMesia – aduce mântuire\nPentru orice om de pe pământ!\n\nCeru-ntreg a fost plin de cântec sfânt\nRăspândind lumina pe pământ –\nDumnezeu a dat chiar pe Fiul Său,\nPrunc Preasfânt, numit „Emanuel”!\n\nDomnul cerului venind în lume\nA trăit ca rob al tuturor,\nPlin de dragoste și compasiune,\nPlin de Duhul cel Nemuritor...\n\nA avut și El zile cu dureri,\nCa și noi a fost prin încercări;\nPașii Lui au scris Calea către cer –\nSfânt e Domnul meu Emanuel.\n\nEl a fost trădat cu sărutarea\nUnuia din ucenicii Săi,\nA fost răstignit pe lemnul crucii\nAducând iertare tuturor!\n\nAzi El este viu și așteaptă-n cer\nZiua când se v-arăta pe nori\nSă ne ia și să fim mereu cu El –\nSă-L lăudăm pe-al nostru-Emanuel!"
+    },
+    {
+      "title": "Atât cât voi trăi",
+      "bookNumber": 188,
+      "originalKey": null,
+      "content": "Tot ce-n lume ne încântă, tot ce stelele rostesc,\nOrice vis ce-adânc se-avântă\nPe culmi de tainică iubire-n gând curat\nOrice șoaptă de poveste, orice dor după etern,\nÎntregul freamăt al Creației vorbește despre El!\n\nȘi atât cât voi trăi cu fiecare strop de viață-aș vrea\nSă las să strălucească iubire limpede de cer!\nȘi-atât cât voi trăi la fiecare pas ce-l fac aș vrea\nSă las în urma mea iubirea jerfei din Calvar!\n\nDin înaltul munților, pe cuprinsul apelor,\nOrice gând ce se înalță, orice mână ce oferă ajutor,\nFiecare rugă-n taină, șoptită cu credință Domnului,\nOrice tainică speranță vorbește despre El!\n\nȘi, atât cât voi trăi, cu tot ce am, cu tot ce sunt,\nAș vrea s-arăt iubirea Lui!\nȘi, atât cât voi trăi, cu tot ce am aș vrea să las\nIubirea din Calvar!"
+    },
+    {
+      "title": "E bucurie-n Cristos",
+      "bookNumber": 189,
+      "originalKey": null,
+      "content": "E bucurie-n Cristos, este dragoste-n Spirit,\nE nădejde-n credința în El!\nE-o fântână ce-o știu, ce hrănește-al meu suflet,\nE Cuvântul ce curge din El!\n\nMărirea și slava-s a Lui, puterea și gloria-s a Lui!\nSă lăsăm gura Lui să ne-nvețe, cântând,\nVoia Lui s-o-mplinim pe pământ!"
+    },
+    {
+      "title": "Tu mi-ești refugiu când sunt slab",
+      "bookNumber": 190,
+      "originalKey": null,
+      "content": "Tu mi-ești refugiu când sunt slab,\nTu ești comoara ce o caut –\nTu ești în toate Domn!\nInima mea Ție Ți-o dau,\nÎmbracă-mă cu al Tău har – fii Tu în toate Domn!\n\nIsus, Miel Preasfânt, Ție mă închin,\nIsus, Miel Preasfânt, Dumnezeu divin!\n\nTu mi-ai luat rușinea mea,\nM-ai ridicat în slava Ta –\nTu ești în toate Domn!\nMâna-Ți întinzi atunci când cad,\nCând sunt setos, Tu apă-mi dai –\nFii Tu în toate Domn!"
+    },
+    {
+      "title": "Ca vulturul plutesc spre ceruri",
+      "bookNumber": 191,
+      "originalKey": null,
+      "content": "Să nu uiți suflete-al meu ce-ai auzit,\nCe s-a spus de la creație –\nCă Domnul e de partea ta –\nSă nu uiți, să nu te temi;\nCrede în El – prin putere și dreptate,\nPe-al tău drum Te va-nsoți!\n\nCa vulturul plutesc spre ceruri,\nFerm, lângă Domnul meu\nȘi nicicând nu mă voi pierde,\nȘi laud Numele Lui!\nȘtiu că Domnul mi-e alături,\nMărețe-I sunt căile,\nMă încred în El din inimă!\n\nMă-ncred în a Lui promisiune, răbdător aștept…"
+    },
+    {
+      "title": "Iată-mă, smerit de Maiestatea Ta",
+      "bookNumber": 192,
+      "originalKey": null,
+      "content": "Iată-mă, smerit de Maiestatea Ta,\nAcoperit de dragostea Ta;\nIată-mă – știu că sunt un om păcătos\nSpălat în sângele lui Hristos!\n\nAm găsit iubirea cea mai mare în sfârșit,\nCăci viața Tu Ți-ai dat – ce preț nemăsurat!\n\nDomnul meu, Domnul meu,\nAl Tău har m-a găsit cum eram –\nN-am nimic, dar sunt viu în mâna Ta!\n\nIată-mă, smerit sunt de Iubirea Ta,\nIertat să pot acum eu ierta;\nRidicat... Știu cât de mult mă dorești –\nÎn Slava Ta și-n foc mă sfințești!\n\nDomnul meu, Domnul meu –\nIubirea Ta pe veci m-a schimbat\nÎn prezența Ta, al meu Împărat!"
+    },
+    {
+      "title": "Nimeni nu e ca Tine",
+      "bookNumber": 193,
+      "originalKey": null,
+      "content": "Nimeni nu e ca Tine,\nNimeni n-a putut viața-mi schimba –\nOricât de mult aș căuta n-aș găsi!\n...Totuși, nimeni nu-i ca Tin'!\n\nDragostea-Ți fără de margini\nInima mi-a copleșit...\nSunt în siguranță sub brațul Tău sfânt –\nNimeni nu-i ca Tin'!"
+    },
+    {
+      "title": "M-ai făcut să-nțeleg",
+      "bookNumber": 194,
+      "originalKey": null,
+      "content": "M-ai făcut să-nțeleg că nu-i nume mai scump,\nSus în cer, pe pământ, decât „Isus”\nȘi, prin Duhul Tău Sfânt, și în inimă-adânc,\nPot să simt că ești tot ce-mi doresc!\n\nPovara păcatului meu ai luat,\nO inimă nouă mi-ai dat –\nCu dragostea Ta m-ai atins, m-ai schimbat\nȘi acum știu că sunt doar al Tău!"
+    },
+    {
+      "title": "Când mă uit la perfecțiunea Ta",
+      "bookNumber": 195,
+      "originalKey": null,
+      "content": "Când mă uit la perfecțiunea Ta,\nCând privesc la frumusețea Ta,\nȘi când tot ce mă-mpresoară dispare în lumina Ta...\nCând mă simt cuprins de pacea Ta\nCând deasupra mea e mâna Ta\nȘi când tot ce mă-mpresoară dispare în lumina Ta\n\n/: Eu Te slăvesc, eu Te slăvesc –\nDe-aceea trăiesc ca să Te slăvesc! :/"
+    },
+    {
+      "title": "Doar Tu ești Domn – tronul e al Tău",
+      "bookNumber": 196,
+      "originalKey": null,
+      "content": "/: Doar Tu ești Domn – tronul e al Tău!\nNu vrem să avem niciun alt Dumnezeu! :/\n/: Vrem să fim liberi de dumnezei străini;\nUnui singur Stăpân vrem să Îi slujim! :/\n\n/: Căci numai El e vrednic, El e vrednic, vrednic;\nCăci numai El e vrednic, El e Dumnezeu! :/"
+    },
+    {
+      "title": "Doamne, Tu ești Stânca-n care mă ascund",
+      "bookNumber": 197,
+      "originalKey": null,
+      "content": "Doamne, Tu ești Stânca-n care mă ascund,\nScutul meu, Tăria care mă scapă!\nEu strig „Lăudat să fie Domnul meu!”\nȘi sunt izbăvit de vrăjmașii mei!\n\n/: Și azi mă închin, la Tine îmi înalț sufletul –\nTu cunoști inima mea, Doamne, Ție-Ți aparțin! :/\n\nÎn îndoiala mea am chemat Numele Tău cel sfânt\nȘi am strigat către Stânca mântuirii...\nDe-acolo, de sus, Tu ai auzit glasul meu,\nM-ai scos la loc larg pentru că mă iubești!"
+    },
+    {
+      "title": "Iubirea Lui e mult prea mare",
+      "bookNumber": 198,
+      "originalKey": null,
+      "content": "Iubirea Lui e mult prea mare în vorbe simple s-o descrii –\nMai sus de orice stea răsare, și-n adâncimi o poți găsi!\n'Naintea Lui, când vii și spui păcatul tău amar,\nEl, prin Isus, îți dă de sus scăpare-n al său har!\n\nIubire Sfântă și bogată – Tu ne rămâi mereu\nCântarea noastră minunată, în veci, Lui Dumnezeu!\n\nCoroane, tronuri au să cadă când ziua mare va suna,\nȘi, cei ce azi nu vor să creadă, la munți atunci vor alerga!\nDar dragostea în veci va sta – o, Doamne, Tu nu treci,\nȘi-n al Tău har fără hotar noi vom trăi în veci!\n\nCu apa mării de-am înscrie iubirea Lui pe ceru-ntins,\nȘi orice om de-ar vrea să fie un scrib pe-al slavei necuprins,\nȘi tot n-ar fi de-ajuns să scrii, căci mările-ar seca –\nDin veșnicii în veșnicii se-ntinde Dragostea!"
+    },
+    {
+      "title": "Iubirea-adâncă-a Tatălui",
+      "bookNumber": 199,
+      "originalKey": null,
+      "content": "Iubirea-adâncă-a Tatălui,\nNimic nu o măsoară –\nCe-avea mai scump El dărui,\nFăcând din noi comoară!\n\nDurere de ne'nchipuit,\nCăci Tatăl Și-a-ntors fața –\nPe Cel ales L-a părăsit,\nIar nouă ne-a dat viața!\n\nLa Fiul răstignit privesc\nPăcatu-mi cum Îl frânge –\nÎn rând cu cei ce Îl hulesc\nȘi vocea mea-L străpunge!\n\nPe cruce Eu Te-am țintuit\nDar când Ți-ai dat suflarea,\nAl nopții chin s-a risipit\nȘi mi-ai adus iertarea!\n\nCu ce-aș putea să mă mândresc,\nCăci daruri n-am, nici fapte?\nCu învierea-I mă fălesc,\nCu salvatoarea-I moarte!\n\nO, nu-s de-ajuns spre-a-Ți mulțumi\nNici cânt, nici osanale –\nCristos cu viața Sa plăti\nA mea răscumpărare!"
+    },
+    {
+      "title": "În străvechea Carte Sfântă",
+      "bookNumber": 200,
+      "originalKey": null,
+      "content": "În străvechea Carte Sfântă tot citesc și iar citesc\nCât de bun a fost în lume blândul Fiu dumnezeiesc!\n\nÎn străvechea Carte Sfântă\nCitesc, citesc, citesc și iar citesc\nCât de bun a fost Mântuitorul,\nCât de mult El ne-a iubit,\n\nCum El a iubit copiii și la Sine i-a chemat,\nCum la pieptul Său îi strânse și cu drag i-a dezmierdat –\n\nCum acelor care sufăr le-a venit în ajutor;\nPentru cei săraci și singuri a fost Frate iubitor!\n\nCum El n-a oprit pe nimeni, nici pe cel mai păcătos,\nSă se-apropie de Dânsul – El cu toți a fost milos!\n\nÎn străvechea Carte Sfântă nu mă satur de citit –\nCât a fost de bun și dulce, cât de mult El ne-a iubit!"
+    },
+    {
+      "title": "O, ce prieten am în Isus",
+      "bookNumber": 201,
+      "originalKey": null,
+      "content": "O, ce prieten am în Isus când mă rog lui Dumnezeu –\nMijlocește pentru mine și eu stau pe brațul Său!\n\nCâtă dragoste-mi arată – a plătit păcatul meu,\nȘi spălat în al Lui sânge pot să zbor și eu spre cer!\n\nCe prezență minunată umple tot sufletul meu –\nCalea, adevărul, viața, le găsesc în Domnul meu!\n\nO, ce prieten bun mi-e Isus – El e Salvatorul meu!\nSchimbă inima mea, Doamne – fă-mă după placul Tău!"
+    },
+    {
+      "title": "E-o nouă zi, soarele răsare",
+      "bookNumber": 202,
+      "originalKey": null,
+      "content": "E-o nouă zi, soarele răsare din nou să curgă cântul meu –\nPrin orice trec și orice ar fi să vină,\nAș vrea-n apus să fiu găsit cântând!\n\nCântă, suflete-al meu, suflete, înalță-i Numele;\nCântă-i mai înfocat, suflete! Mă-nchin Numelui preasfânt...\n\nBogat în har și-ncet la mânie, ești mare și smerit cu inima –\nPentru bunătatea-Ți toată voi cânta întruna,\nMii de comori în Tine voi afla!\n\nȘi-n ziua când tăria-mi piere, sfârșitul văd, ceasul mi-a sosit,\nDuhul meu nu va-nceta să-Ți cânte\nChiar zeci de mii de ani și-apoi în veci!"
+    },
+    {
+      "title": "În orice colț de noapte",
+      "bookNumber": 203,
+      "originalKey": null,
+      "content": "Privirea Ta cutreieră pământul,\nLa glasul Tău se-așterne chiar și vântul,\nDin palma Ta țâșnesc izvoare vii,\nDin cerul necuprins răsună armonii!\n\n/: În orice colț de noapte e o stea,\nÎn orice răsărit se vede fața Ta,\nPe munți și văi se-așterne slava Ta –\nO, Doamne, vin și eu, mă-nchin cu viața mea! :/\n\nDin soare Îți faci flăcări slujitori,\nPe aripile vântului cobori\nMantaua Ta e haină din lumină –\nM-aplec smerit căci sunt doar tină!"
+    },
+    {
+      "title": "Sunt un pribeag fără de țară",
+      "bookNumber": 204,
+      "originalKey": null,
+      "content": "Sunt un pribeag fără de țară, rătăcitor prin lung pustiu,\nDar am în ceruri o comoară, căci țara mea e-n veșnicii!\n\nMă-ndrept spre cer să-L văd pe Domnul,\nSă nu mai fiu un peregrin,\nCăci după ce-am să trec Iordanul\nSe va sfârși al meu suspin!\n\nVoi lepăda a mea povoară, eliberat de crucea grea;\nNădejdea mea nu o să moară și voi intra-n odihna Sa!\n\nTu vezi ce grea e 'naintarea – mă lupt să biruiesc mereu;\nUn dor nespus mă cheam-acasă – e dorul după Dumnezeu!\n\nȘi voi parcurge calea toată, și voi ajunge-al meu sfârșit –\nPrimit voi fi cu bucurie acasă când voi fi sosit!"
+    },
+    {
+      "title": "Aș vrea să Te cunosc",
+      "bookNumber": 205,
+      "originalKey": null,
+      "content": "/: Aș vrea să Te cunosc tot mai mult, Isus! :/\n\nOchii îmi îndrept către Tine și doresc\nDoar voia Ta să o fac!\nCuvântul Tău e lumina mea,\nBrațul Tău sfânt e tăria mea –\nFii glorificat, veșnic lăudat\nÎn viața mea mereu!\n\n/: Aș vrea să Te iubesc tot mai mult, Isus! :/\n\n/: Aș vrea să Te slăvesc tot mai mult, Isus! :/\n\n/: Aș vrea să Te slujesc tot mai mult, Isus! :/"
+    },
+    {
+      "title": "Emanuel",
+      "bookNumber": 206,
+      "originalKey": null,
+      "content": "Sfânt ești, sfânt – mă plec înaintea Ta,\nDomn și Rege-al meu!\nAleluia – ai venit la noi!\nTu faci totul nou...\n\nEmanuel, Isus Cristos – Tu nu mă părăsești;\nDomn și Păstor, veghezi asupra mea!\nEmanuel...\n\nAtât de minunat ale nopții-adânci\nStele ai numit –\nTotuși, mă iubești, numele mi-ai strigat\nȘi Te voi urma!\n\nSfânt ești, sfânt ești, Domn din ceruri –\nNimeni nu-i ca Tin'!"
+    },
+    {
+      "title": "M-a aflat pe căi străine",
+      "bookNumber": 207,
+      "originalKey": null,
+      "content": "M-a aflat pe căi străine bunul meu Păstor, Isus –\nDin adânc și întuneric la lumină m-a adus!\n\nAleluia, aleluia – voi cânta neîncetat!\nPrin Isus am mântuire – fie veșnic lăudat!\n\nM-a luat cu drag pe brațe, de păcat m-a vindecat,\nHrană din Cuvântul vieții și putere El mi-a dat!\n\nM-a spălat Mântuitorul, haină albă am primit,\nM-a sfințit prin al Său sânge – o, cât sunt de fericit!"
+    },
+    {
+      "title": "Dragostea Ta",
+      "bookNumber": 208,
+      "originalKey": null,
+      "content": "Când încă nu eram Te-ai gândit la mine\nCând nu existam, Isus, mă cunoșteai –\nPe dealul Golgotei, pe Via Dolorosa,\nPurtai păcatul meu amar pe cruce la Calvar!\n\nCuiele nu Te-au ținut pe cruce –\nPuteai atât de lesne să cobori,\nDar dragostea Ta pentru omenire\nTe-a pironit gândindu-Te la noi...\n\nNu Te-am văzut cum Te-a văzut Maria,\nȘi mâna nu mi-am pus-o în mâna Ta\nCa pipăind să cred că ești Isus Mesia –\nCred, ai murit și-ai înviat să fiu și eu salvat!\n\nCu dragoste, prin jertfă, m-ai mântuit –\nIertat sunt de păcate și-s fericit!\nÎn legământ am spus „Te voi urma în viață!” –\nIsus, ești Domnul meu ceresc, mă-nchin și Te iubesc!"
+    },
+    {
+      "title": "Vreau să spună cel ce-i slab",
+      "bookNumber": 209,
+      "originalKey": null,
+      "content": "Vreau să spună cel ce-i slab: „Eu sunt tare în Hristos!”,\nCel sărac: „Eu sunt bogat!” iar cel orb „Sunt sănătos!”.\n\nOsana, osana, Mielului ce-a fost junghiat!\nOsana, osana, Celui mort și înviat!\n\nTot ce-a fost rău și murdar mi-ai iertat prin al Tău har –\nCa un râu iubirea Ta umple azi inima mea!\n\nȘtiu că mă vei ridica și de-aș fi-n adânc de mări –\nBucuros Te voi lăuda cu-ale inimii cântări!"
+    },
+    {
+      "title": "Doar în Hristos",
+      "bookNumber": 210,
+      "originalKey": null,
+      "content": "Doar în Hristos mă-ncred mereu, Lumina și tăria mea;\nO stânca tare-i Dumnezeu Când e furtună-n viața mea!\n\nDe-ar fi să trec prin valea grea\nȘi de-ar fi noapte-n jurul meu\nMă mângâie prezența Sa –\nDoar în Hristos mă-ncred mereu!\n\nDoar în Hristos sfânt și divin – În chip de om El s-a-mbrăcat,\nDarul divin, neprihănit, De păcătoși batjocorit!\n\nMânia Tatălui de sus\nS-a potolit la Golgota –\nÎn locul meu muri Isus,\nIar eu trăiesc prin moartea Sa!\n\nAu pus Lumina în mormânt, În întuneric L-au lăsat,\nDar nu S-a stins căci Domnul Sfânt A treia zi a înviat!\n\nBiruitor e Domnul meu –\nBlestemul greu a ridicat!\nEu sunt a Lui, căci Dumnezeu\nCu sânge m-a răscumpărat!\n\nÎn fața morții, când voi sta, Doar în Hristos mă-ncred mereu\nCăci orice pas din viața mea Îl hotărăște Dumnezeu!\n\nDin mâna Lui nu va putea\nNimic și nimeni să mă ia –\nPân' ce la Domnul plec și eu,\nDoar în Hristos mă-ncred mereu!"
+    },
+    {
+      "title": "Ai pregătit din veșnicie",
+      "bookNumber": 211,
+      "originalKey": null,
+      "content": "Ai pregătit din veșnicie un plan atât de minunat,\nSă scapi întreaga omenire de păcat!\nL-ai dat pe Fiul Tău în lume, El S-a lăsat crucificat –\nPrin moartea lui Isus de moarte m-ai scăpat!\n\nN-am meritat așa iubire,\nIar sacrificiul – nici atât!\nMurind, iubindu-mă pe mine,\nMă bucur de-un nou început –\nPrioritatea mea acum e\nSă Te cunosc mereu mai mult,\nSă fiu mereu mai mult ca Tine,\nIsuse sfânt!\n\nDe când în mine El domnește, am pace și sunt liniștit –\nȘtiu că-n furtunile vieții sunt ocrotit!\nMai mult decât a Lui iubire nu vreau în viață altceva,\nDoar Chipul Lui să-L port în mine – atât aș vrea!\n\nÎn lume, pe pământ..."
+    },
+    {
+      "title": "Doamne, candelă pe calea mea",
+      "bookNumber": 212,
+      "originalKey": null,
+      "content": "/: Doamne, candelă pe calea mea\nE Cuvântul Tău mereu! :/\n\nSingur când mă simt, rătăcit pe drum,\nEști alături de mine;\nTeamă de nimic eu nu am atunci\nCând mă aflu lângă Tine!\n\nEu nu voi uita cum dragostea Ta\nPentru mine-ai arătat-o;\nCălăuza mea ești totdeauna –\nTeama Tu mi-ai alungat-o!"
+    },
+    {
+      "title": "Suntem poporul spălat",
+      "bookNumber": 213,
+      "originalKey": null,
+      "content": "Suntem poporul spălat prin sângele Mielului sfânt –\nVedeți, cu El ne-a-mpăcat, și ne hrănim din Cuvânt!\nSpre cer 'nălțăm zi de zi mâini curate, slăvim\nPe Dumnezeul cel sfânt, pe „Eu Sunt Acel Ce Sunt”!\n\nCe bucurie să fii în Templul Său,\nCe fericire să fii-n a Lui prezență –\nCântări de cinste, de laudă, mărire și slavă astăzi\nÎn templul Lui să-nălțăm!"
+    },
+    {
+      "title": "Azi Domnul e Păstorul meu",
+      "bookNumber": 214,
+      "originalKey": null,
+      "content": "Azi Domnul e Păstorul meu – El mă conduce la pășuni,\nMă-nviorează cu izvoare reci, Pe cale povață-mi dă!\n\n/:Mă voi încrede doar în El :/\nCăci fericirea și-ndurarea Lui în viață m-or însoți!\n\nPrin valea morții de-aș umbla, de niciun rău eu nu mă tem –\nTu ești cu mine și mă mângâi, mă mustri când eu greșesc...\n\nȘi, chiar dușmani de aș avea, Tu hrană-mi dai 'naintea lor,\nPe cap mă ungi cu untdelemn ales și plin e paharul meu!"
+    },
+    {
+      "title": "Nu te teme, căci Eu sunt cu tine",
+      "bookNumber": 215,
+      "originalKey": null,
+      "content": "Nu te teme, căci Eu sunt cu tine,\nNu te uita cu îngrijorare, căci Eu sunt Dumnezeul tău –\nEu te întăresc și tot Eu îți vin în ajutor,\nEu te sprijinesc cu dreapta Mea biruitoare"
+    },
+    {
+      "title": "Crucea-ai ales",
+      "bookNumber": 216,
+      "originalKey": null,
+      "content": "Știind că vine un Calvar și că viața e un dar,\nCrucea-ai ales!\nȘi, cu mănunchi de spini pe cap, ca noi să nu fim condamnați,\nCrucea-ai ales!\nDeși durerea crucii Te-a zdrobit,\nAscultător prin moarte-ai biruit!\n\nAzi trăiesc căci m-ai iubit – pe vecie fii preamărit!\nA Ta iubire m-a copleșit – mi-ai dat iertare și-s fericit!\n\nCa să învingi al morții bold și din rușine să ne scoți,\nCrucea-ai ales!\nCa să devii biruitor și să ne fii Mântuitor,\nCrucea-ai ales\nȘi, suspinând, ai spus în ruga Ta\n„Nu voia Mea, ci, Tată, voia Ta!”\n\nA Ta iubire, (x 3) m-a copleșit!\nMi-ai dat iertare, (x 3) și-s fericit!"
+    },
+    {
+      "title": "Când oceanele",
+      "bookNumber": 217,
+      "originalKey": null,
+      "content": "/: Ține-mă în mâna Ta,\nSă m-ascunzi întinde-Ți aripa! :/\n\nCând oceanele cumplit vuiesc,\nDoamne, dă-mi puteri să biruiesc!\nTată, știu că Tu ești veghetor –\nStau liniștit, știu că ești Domn!\n\nDoar în Cristos mă odihnesc –\nPuterea Sa în liniște-o găsesc..."
+    },
+    {
+      "title": "Cum aș putea să înțeleg",
+      "bookNumber": 218,
+      "originalKey": null,
+      "content": "Cum aș putea să înțeleg cât m-ai iubit\nTe-ai coborât chiar în mormânt și m-ai găsit\nȘi până când spre slava Ta mărețul har mă va purta,\nTe voi urma!\n\nCuvântul Tău o lume-ntreagă a creat,\nCuvântul Tău S-a întrupat și m-a salvat,\nȘi până când spre slava Ta mărețul har mă va purta,\nTe voi urma!\n\nVoi trăi să Te urmez, voi trăi să Te-onorez,\nVoi trăi în adorarea Ta!\n\nÎntr-o zi Te voi vedea, voi privi uimit Fața Ta,\nPentru tot ce ești Îți voi cânta, Isus!"
+    },
+    {
+      "title": "Inima mea tânjește după curțile Tale",
+      "bookNumber": 219,
+      "originalKey": null,
+      "content": "Inima mea tânjește după curțile Tale,\nSufletul meu suspină după-al Tău locaș!\nMi se topesc oasele de dor după Tine\nIar ochii-mi plâng neîncetat!\n\nPrivesc spre Locul Sfânt ca să-Ți văd puterea și slava,\nChem bunătatea Ta peste viața mea!\nAștept în tăcere răspunsul Tău, Doamne –\nVino, nu-ntârzia!\n\nTe voi binecuvânta, da, toată viața mea\nȘi în Numele Tău voi ridica mâinile,\nLauda Ta va fi mereu în gura mea –\nTe iubesc, o, Domnul meu!"
+    },
+    {
+      "title": "Atât am căutat rostul vieții",
+      "bookNumber": 220,
+      "originalKey": null,
+      "content": "Atât am căutat rostul vieții\nC-am ajuns rob acestei căutări,\nDar Isus mi-a deschis orizont spre Calvar –\nLoc de har și de mari îndurări!\n\nMi-a șters pentru veci tot trecutul\nPrin sângele curs pe Calvar!\nAm schimbat temerile într-un cânt glorios –\n„Sunt liber acum – o, ce har!”\n\nAcum de trecut eu sunt liber\nCăci Isus a-nnoit viața mea –\nMulțumiri am în inima mea ne-ncetat,\nȘi-o cântare spre lauda Sa!\n\nIar acum Isus este în Ceruri,\nUnde locul El ne-a pregătit –\nÎn curând vom fi duși toți în slavă\nUnde-n veci cu El vom locui!"
+    },
+    {
+      "title": "Înalț vocea mea",
+      "bookNumber": 221,
+      "originalKey": null,
+      "content": "Înalț vocea mea către Tin', Rege-al gloriei,\nRidic mâinile către Cel ce e vrednic;\nTânjesc după Tine – atinge-mi, Doamne, inima!\n\nUmple, Doamne, și viața mea\nCu prezența-Ți divină – Tu ești dorința mea!\nRevarsă Duhul Sfânt azi din nou –\nTânjesc după Tine, Tu ești dorința mea!\n\nTânjesc să mă speli în voia milei Tale,\nTânjesc să m-aprinzi cu focul gloriei Tale\nȘi inima mea să simtă mângâierea Ta..."
+    },
+    {
+      "title": "Când privesc bolta-nstelată",
+      "bookNumber": 222,
+      "originalKey": null,
+      "content": "Când privesc bolta-nstelată ce-i întinsă sus,\nMă cuprinde-un dor să merg înspre Isus;\nSunt ca Petru ce, pornit pe val, se scufunda –\nMâna mea vreau s-o ții în mâna Ta!\n\nMâna Ta, Doamne, m-a scăpat din noaptea grea,\nMana Ta, Doamne, mă păzește-n noaptea rea,\nȘi poate fi valu-nalt – Tu ții corabia mea;\nMâna Ta, Doamne, mă va purta!\n\nCând șuvoaiele-nspumate vin asupra mea\nȘi când vântul rău m-aruncă la pământ,\nDeși inima-mi se-oprește-n loc, eu nu mă tem –\nMâna mea vreau s-o ții în mâna Ta\n\nMâine, dincolo de noapte, în alți zori de zi,\nVoi deschide ochii printre galaxii\nȘi-am să strig „Slăvit să fii și azi și-n veșnicii!” –\nMâna mea vreau s-o ții în mana Ta!"
+    },
+    {
+      "title": "Al Tău e sufletul meu",
+      "bookNumber": 223,
+      "originalKey": null,
+      "content": "Al Tău e sufletul meu, a Ta e inima mea,\nNimic nu-mi mai aparține – și-Ți mulțumesc! –\n/: Căci Tu m-ai primit așa cum sunt! :/\n\nAcum trăiesc pentru Tine și sunt împlinit –\nDoar Tu mă umpli de viață, mă faci fericit,\nDomnul meu, Domnul meu!"
+    },
+    {
+      "title": "Doamne, știu că viața mea",
+      "bookNumber": 224,
+      "originalKey": null,
+      "content": "Doamne, știu că viața mea are nevoie de Tine –\nCând trec prin grele-ncercări, din suflet eu Te chem!\nFără de Tine nu vreau să mai pășesc în viață –\nAscultă, Doamne, Te rog, suspinul inimii mele!\n\nPune-Ți Tu mâna pe inima mea,\nCu bucurie îmi umple viața,\nDă-nviorare și mângâiere\nCa inima mea să-Ți aducă laude!\nPune-Ți Tu mâna pe inima mea,\nCu bucurie îmi umple viața,\nDă-nviorare și mângâiere,\nDuh de-nchinare – ești al meu Dumnezeu!"
+    },
+    {
+      "title": "În îndurarea Domnului",
+      "bookNumber": 225,
+      "originalKey": null,
+      "content": "În îndurarea Domnului cum am ajuns, nu știu,\nDin lumea plină de păcat răscumpărat să fiu,\n\nDar știu bine – mă-ncred în Domnul! –\nEu sunt de-acuma al Lui cu totul;\nRăsplata, de El promisă, mi-o va da când va veni!\n\nNu știu cum Dumnezeu cel sfânt credință-n El mi-a dat,\nDurerea din lăuntrul meu nu știu cum a-ncetat,\n\nNu știu cum Duhul Său cel Sfânt convinge de păcat,\nCum luminează sufletul și-l face alb, curat,\n\nNu știu când va veni Isus pe norii cerului\nȘi nu știu cum voi fi chemat să ies 'naintea Lui,"
+    },
+    {
+      "title": "Dacă-ntr-o tainică vreme",
+      "bookNumber": 226,
+      "originalKey": null,
+      "content": "Dacă-ntr-o tainică vreme\nDin lut cineva m-a făcut,\n/: Și dacă sunt om și nu vierme –\nO, Doamne, așa ai vrut Tu! :/\n\nDacă am grai și nu muget\nSă spun ce iubesc și ce nu,\n/: Și dacă am harul să cuget –\nO, Doamne, așa ai vrut Tu! :/\n\nDacă întâia zidire\nDeplin în păcat se pierdu,\n/: Când totuși mi-ai dat izbăvire,\nO, Doamne, așa ai vrut Tu! :/\n\nDacă m-ai scos din neghină\nNu viața-mi urâtă-Ți plăcu,\n/: Nu eu am vrut iarăși Lumina –\nO, Doamne, așa ai vrut Tu! :/\n\nIar dacă voi merge odată\nLa Cel ce din Duh mă născu,\n/: Voi spune de-a pururea „Tată,\nTe laud c-așa ai vrut Tu!” :/"
+    },
+    {
+      "title": "Ce mare ești Tu, ce mare e mila Ta",
+      "bookNumber": 227,
+      "originalKey": null,
+      "content": "Ce mare ești Tu, ce mare e mila Ta\nCe mare e tot ce faci Tu pentru mine!\nCe mare ești Tu, și bunătatea Ta\nMă umple atunci când îți cânt „Ce mare ești Tu!”\n\nCăci dragostea Ta\nAjunge pân' la ceruri\nIar inima Ta m-a găsit și m-a salvat!"
+    },
+    {
+      "title": "Doamne, bunătatea Ta",
+      "bookNumber": 228,
+      "originalKey": null,
+      "content": "Doamne, bunătatea Ta îmi cuprinde inima\nȘi mă face fericit, Domnul meu iubit!\nDe cu zori până-n apus numai harul Tău, Isus,\nÎmi sfințește inima și viața mea!\n\nN-ai în lume-asemănare, nu e nimenea sub soare,\nNici în cer, nici pe pământ cum ești Tu de sfânt!\nDragostea-Ți mă copleșește, pacea Ta mă liniștește,\nHarul Tău îmi dă avânt tot mai mult să-Ți cânt!\n\nNorii negri când apar, Tu îmi ești un veșnic far,\nDrumul mi-l călăuzești și mă ocrotești!\nȘi prin arșiță Îți cânt numai Ție, Doamne sfânt,\nCă-n izvorul sfânt, ceresc, eu mă răcoresc!\n\nDoamne, pune-n gura mea totdeauna lauda,\nNumai Ție să Îți cânt pe acest pământ!\nIar când zorii vor veni, Numele Tău voi slăvi –\nAsta-i fericirea mea, să-Ți cânt slava Ta!"
+    },
+    {
+      "title": "Doamne, Tu Prietenul sufletului meu ești",
+      "bookNumber": 229,
+      "originalKey": null,
+      "content": "Doamne, Tu Prietenul sufletului meu ești\nȘi de aproape bine mă cunoști –\nȘtii când dorm, când mă scol, îmi pătrunzi tot gândul,\nEști cu mine pe oriunde umblu!\nIată, Tu ești în cerul de sus,\nTu ești și în adâncul de jos,\nEști pe aripile zărilor și pe marginea mărilor!\n\nTu mă-nconjori din față, mă-nconjori dinapoi,\nȘi când nu știu, pe brațe, Doamne, Tu mă ții!\n\n/: O, știința Ta minunată e pentru mine prea înaltă :/"
+    },
+    {
+      "title": "Splendori divine lăsat-ai",
+      "bookNumber": 230,
+      "originalKey": null,
+      "content": "Splendori divine lăsat-ai, știind destinul Tău,\nȘi pe crucea de pe Golgota, răstignit, viața Tu Ți-ai dat!\n\nDe nu ne-ar iubi, marea s-ar usca,\nN-ar fi stele pe cer, păsări n-ar mai zbura;\nDe nu ne-ar iubi, ceru-ar fi un mit\nAm fi veșnic hoinari, de nu ne-ar iubi!\n\nStrăin de Tatăl din ceruri, departe-am rătăcit,\nÎnsă El, cu brațe deschise, în casa Lui El m-a primit!\n\nAzi cânt că marea-I iubire aici s-a arătat\nȘi prin jertfa de pe Golgota cu Tatăl ne-a-mpăcat!"
+    },
+    {
+      "title": "Când lupta se-apropie",
+      "bookNumber": 231,
+      "originalKey": null,
+      "content": "Când lupta se-apropie, te rog, nu uita:\nRăzboiul e al Domnului!\nRămâi în picioare și nu dispera –\nRăzboiul e al Domnului!\n\nTu cântă-I glorie, laudă, onoare și cinste doar Lui;\nTu cântă-I glorie, laudă – puterea e numai a Lui!\n\nArmura de slavă să-mbraci, dar să știi:\nRăzboiul e al Domnului!\nȚine sus Cuvântul și nu te clinti –\nRăzboiul e al Domnului!\n\nÎn mijlocul luptei tu strigă mereu: „Războiul e al Domnului!”\nÎn fruntea oștirii e chiar Dumnezeu –\nRăzboiul e al Domnului!"
+    },
+    {
+      "title": "Golgota, pe culmea ta, odată",
+      "bookNumber": 232,
+      "originalKey": null,
+      "content": "Golgota, pe culmea ta, odată,\nFost-au înălțate trei cruci mari;\n/: Dintre ele una-i neuitată –\nCrucea lui Isus între tâlhari! :/\n\nPe această Cruce-n chinuri grele\nA murit din dragoste Hristos\n/: Ca prin Sângele vărsat să spele\nDe păcat pe orice păcătos! :/\n\nPrin acest scump sânge și pe mine\nDomnul de păcat m-a izbăvit –\n/: Golgota, Isus, murind pe tine,\nMi-a deschis Edenul fericit! :/\n\nPe această Cale pân' la moarte\nCu credință voi păși mereu,\n/: Căci în lume toate sunt deșarte –\nSuferință și suspinul greu... :/\n\nPentru jertfa Lui mântuitoare\nCe-a depus-o sus pe culmea ta\n/: Nici în veșnicia viitoare,\nGolgota, eu nu te voi uita! :/"
+    },
+    {
+      "title": "Aleluia, aleluia, aleluia – El e Domn!",
+      "bookNumber": 233,
+      "originalKey": null,
+      "content": "/: Aleluia, aleluia, aleluia – El e Domn;\nAleluia, aleluia, aleluia – Isus Hristos e Domn! :/\n\nȘi-a arătat marea putere când din mormânt a înviat,\nÎntunericu-n lumină a schimbat;\nA rupt lanțurile morții – liber sunt azi de păcat,\nPrin marea Lui iubire sunt salvat!"
+    },
+    {
+      "title": "Tu nu pleci niciodată de la mine",
+      "bookNumber": 234,
+      "originalKey": null,
+      "content": "Tu nu pleci niciodată de la mine\nȘi nicio clipă singur nu mă lași,\nTu ești mereu puterea ce mă ține\nDin cel dintâi, la cel din urmă pas!\n\nTu nu mă lași și nu mă uiți vreodată –\nStrăbat cu Tine munți înalți și văi;\nChiar prin necazuri dacă trec vreodată,\nCu Tine alături am să fiu mereu!\n\nCu Tine și rănit străbat cărarea,\nCu Tine eu veghez în ceas târziu;\nCând Tu mă mustri, eu primesc mustrarea,\nȘi când Te bucuri, totdeauna știu!\n\nTu nu mă lași fără de siguranță\nȘi ești mereu cu mine ca o stea –\nMi-ai pus în mine, Doamne, o speranță\nCum nu e nimeni să mi-o poată da!\n\nPurtat-am o povară de păcate,\nDar sângele salvării le-a spălat;\nTu m-ai scăpat de toate, da, de toate –\nȘtiu bine că pe toate le ai uitat!\n\nSunt fericit chiar dacă vrei să sufăr –\nCând valuri vin și vânturi grele bat\nPlutesc pe ape ca un fir de nufăr\nPe care Tu-l păstrezi mereu curat...\n\nÎți mulțumesc că ești cu mine-n lume,\nÎți mulțumesc că m-ai iubit mereu,\nÎți mulțumesc că Tu mi-ai dat un nume,\nAcela de „copil de Dumnezeu”!"
+    },
+    {
+      "title": "M-ai regăsit când eu pierdut în lume",
+      "bookNumber": 235,
+      "originalKey": null,
+      "content": "M-ai regăsit când eu pierdut în lume\nMă răstigneam pe-altarele de lut,\nCând, prăbușit, gemeam în neputință,\nCând poftele fărâmă m-au făcut!\n\nTu m-ai cules, din pulbere, cu harul,\nCa să mă-mbraci cu dragostea dintâi,\nȘi mi-ai șoptit „Tu ești mărgăritarul –\nÎn dragostea Mea pururi să rămâi!”\n\nAstăzi alerg tot mai grăbit pe cale,\nSă urc acolo sus la dreapta Ta.\nSă trec prin poarta biruinței Tale,\nPrin poarta ce se cheamă Golgota.\n\nȘi dacă azi mai cad sub greul crucii\nȘi mă pândesc ispite în ascuns,\nȘi-atunci eu mulțumiri Ți-aduc, Isuse,\nCăci harul Tău îmi este îndeajuns."
+    },
+    {
+      "title": "Simțeam cum mi se stinge",
+      "bookNumber": 236,
+      "originalKey": null,
+      "content": "Simțeam cum mi se stinge\nLumina din inima mea –\nDoar un păcat ajunge fața a I-o-ntuneca;\n\nLa Tatăl m-am dus pe genunchi imediat și am plâns,\nIertare i-am cerut – El cu sânge sfânt m-a curățat!\n\nVa străluci din nou\nLumina din sufletul meu,\nÎn lumea aceasta – da, da, da,\nLumina lumii iarăși voi fi!\n\nNu-i numai o simțire ci e scris în Cuvântul sfânt –\nVoi fi iar o lumină în colțul lumii întunecat!"
+    },
+    {
+      "title": "Cu Isus vreau să-mi continui calea",
+      "bookNumber": 237,
+      "originalKey": null,
+      "content": "Cu Isus vreau să-mi continui calea,\nEl să-mi fie-n veci nedespărțit,\nNumai El îmi poate stinge jalea,\nEl mă poate face fericit!\n\nLângă Tine, Doamne, voi rămâne\nCâtă vreme sunt aicea jos –\nȚine-mă în brațul Tău, Stăpâne,\nNeclintit și-n toate credincios!\n\nObosit când sunt, El m-odihnește,\nIar în lupta grea îmi este scut;\nLa răspântii El mă sfătuiește,\nȘi-n nevoi mi-e singurul avut!\n\nVreau cu El să merg tot înainte,\nȘi prin El să fiu oricând voios –\nÎmplinind cereștile-I Cuvinte,\nSă mă afle-n toate credincios!"
+    },
+    {
+      "title": "Astăzi vin, bunule Tată",
+      "bookNumber": 238,
+      "originalKey": null,
+      "content": "Astăzi vin, bunule Tată, și Te rog neîncetat\nSă mă pocăiesc m-ajută, o, Isus, cu-adevărat!\n\nFă să se cunoască, Doamne,\nO schimbare-n viața mea,\nFața mea să radieze de iubirea Ta!\nFă ca dragostea-Ți, Isuse,\nSă reflecte-n viața mea,\nȘi-n încercări și-n suferințe, să-mi dai pacea Ta!\n\nDă-mi putere ca prin toate să îmi țin privirea sus,\nAțintită pân' la moarte la Golgota, la Isus!"
+    },
+    {
+      "title": "Cât de măreț e Dumnezeu",
+      "bookNumber": 239,
+      "originalKey": null,
+      "content": "Cât de măreț e Dumnezeu – văd marea cu talazuri grele,\nMă-nalț pe munții de bazalt și-mi zboară gândul printre stele,\nTot mai înalt!\nCe împărat își duce-oștirea spre un gigantic apogeu?\nAcel ce-a pus în goluri firea, Acel ce-a scris oricui menirea\nMai mult decât nemărginirea, e Tatăl meu!\n\nCât de temut e Dumnezeu – vuiau de pe Sinai ecouri\nCând glasul Domnului vorbea iar Moise-nainta prin nouri\nȘi tremura…\nLa tronul alb se strâng sfielnici voivozi de foc din Empireu,\nȘi heruvimii vin cucernic slăvind Eternul Vistiernic –\nȘi-acest Stăpân Atotputernic e Tatăl meu!\n\nȘi cât de bun e Dumnezeu! Chiar dacă stelele bătrâne\ntot au o vreme când se-aștern, dar cine în Isus rămâne\nE-un fiu etern!\nȘi-n fața slavei sclipitoare, în ceasul lumii cel mai greu,\nAcei ce-au dat pe sfinți la fiare vedea-vor Forța Creatoare;\nEu voi șopti cu adorare „E Tatăl meu!”"
+    },
+    {
+      "title": "Viata și mișcarea și suflarea",
+      "bookNumber": 240,
+      "originalKey": null,
+      "content": "Viața și mișcarea și suflarea sunt în Tine, Doamne –\nNumai Tu ești sursa vieții mele!\nFiecare pas Tu mi-l conduci, mi-l conduci pe cale,\nViața-ntreagă este-n mâna Ta!\n\nNa, na, na na na na, na! (x 4)\n\nHarul și-ndurarea Ta! Când mă uit zăresc privirea Ta...\nUimit de-a Ta Iubire Te doresc, Isus, numai pe Tin'!"
+    },
+    {
+      "title": "Privind în jur",
+      "bookNumber": 241,
+      "originalKey": null,
+      "content": "Simt fiorul dragostei divine\nÎn minunea fiecărui răsărit,\nSimt întreaga veșnicie-n mine\nPe un vârf de munte neclintit;\nFiecare adiere-mi spune\nCât de blândă e iubirea Ta,\nFiecare-apus îmi amintește\nCe frumoasă e privirea Ta!\n\nPrivind în jur, mă-ncântă frumusețea\nCe-ai lăsat-o-n fiecare dintre noi;\nPrivind la Tine, mă umple dorul\nDe-a petrece veșnicia amândoi!\n\nȘtiu că orice răsărit de soare\nE al Tatălui cadou pentru ai Săi,\nFiecare-a inimii bătaie\nEste pulsul Tatălui în pieptul meu;\nConștiința ce ne-ai dat și rațiunea\nSunt un strop din Chipul Tău în noi –\nFiecare pas făcut în rugăciune\nNe apropie mai mult de tronul Tău!\n\nPrivind la Tine, Doamne,\nSunt motivat să mă închin mai mult;\nPrivind la Tine, Doamne,\nSunt motivat să Te iubesc mai mult!"
+    },
+    {
+      "title": "Am auzit o veste, că Isus veni din slavă",
+      "bookNumber": 242,
+      "originalKey": null,
+      "content": "Am auzit o veste, că Isus veni din slavă\nȘi la Golgota-n locul meu a fost crucificat;\nEl mi-a luat povara și mi-a dat în dar iertarea –\nPrin jertfa Lui, victoria de-acum am câștigat!\n\nVictoria în Isus mi-a dat în dar salvarea,\nCu sfântul Său sânge El m-a răscumpărat;\nÎntreaga mea iubire doar Lui I se cuvine –\nÎn El am victoria, spălat sunt de păcat!\n\nAm auzit de Domnul, de puterea Lui cea mare,\nCum pe bolnavi i-a vindecat, pe morți i-a înviat;\nEu am strigat „O, Doamne, Te-ndură și de mine!”\nȘi-n viața mea victoria Isus a câștigat!\n\nAm auzit că Domnul mi-a zidit o casă-n ceruri\nȘi-n acel locaș de străluciri la masa Lui vom sta;\nCu îngerii în coruri în mărire-I vom da slavă\nȘi cântecul victoriei atunci îl vom cânta!"
+    },
+    {
+      "title": "Răsună astăzi în toate țările",
+      "bookNumber": 243,
+      "originalKey": null,
+      "content": "Răsună astăzi în toate țările cântările cerului –\nRăsună astăzi în toate țările cântările Sionului!\n\nAleluia, Aleluia, Aleluia, Alelu-aleluia!\n\nNumele Domnului nostru e-nălțat în toate țările\nNumele Domnului e lăudat în toate țările lumii!\n\nDin toată lumea răscumpărați vor fi și-n cer ne vor întâlni\nȘi împreună în ceruri vom cânta Domnului „Aleluia!”"
+    },
+    {
+      "title": "Deși mergem pe o cale ce e grea",
+      "bookNumber": 244,
+      "originalKey": null,
+      "content": "Deși mergem pe o cale ce e grea,\nVom vedea pe Dumnezeu –\nAtunci suferința n-a mai exista,\nCând vom vedea pe Dumnezeu!\n\nVom vedea pe Dumnezeu,\nVom cânta în mărire;\nCând ne va chema în jurul Tronului,\nVom vedea pe Dumnezeu!\n\nDupă multe valuri și furtună grea,\nVom vedea pe Dumnezeu;\nPe vecie cu El ne vom bucura –\nVom vedea pe Dumnezeu.\n\nDupă ce ispitele s-or isprăvi,\nVom vedea pe Dumnezeu;\nDupă ce luptă sfântă vom dobândi,\nVom vedea pe Dumnezeu!\n\nAcolo-n mărire, cei ce vom fi mers,\nVom vedea pe Dumnezeu;\nDurerea n-a mai fi, lacrima s-a șters –\nVom vedea pe Dumnezeu!"
+    },
+    {
+      "title": "Isus la Tine eu vin căutând fața Ta",
+      "bookNumber": 245,
+      "originalKey": null,
+      "content": "/: Isus la Tine eu vin căutând fața Ta,\nSpre Tine-mi înalț mâinile, Te laud în veci! :/\n\nCalea Tu ești și ești adevăr, vei fi glorificat;\nCalea-i Isus, Isus e adevăr, viața-i Isus!"
+    },
+    {
+      "title": "Voi înălța numele Tău",
+      "bookNumber": 246,
+      "originalKey": null,
+      "content": "Numele Tău e 'nălțat, printre neamuri e lăudat,\nPuterea Ta este vestită pe-ntreg pământ;\nVrednic de cinste ești Tu, se cuvine să ne-nchinăm,\nÎnaintea Ta, în fața Ta, Doamne!\n\nVoi înălța numele Tău,\nVoi proclama domnia-Ți pe pământ,\nVoi arăta puterea sângelui Tău sfânt!\nDorința mea va fi a Ta,\nVoi face, Doamne, numai voia Ta,\nCât voi trăi pe-acest pământ să Te slujesc!\n\nÎn glorie și-n slavă-ntronat, în splendoare ești îmbrăcat,\nMinunile Tale-s cântate din neam în neam\nCăci nimeni nu este ca Tin', Dumnezeule divin –\nCreația întreagă pe Tine Te laudă!\n\n/: Numele Tău e sfânt, Numele Tău e drept,\nNumele Tău e mare pe-ntreg pământ! :/"
+    },
+    {
+      "title": "Deschide-mi ochii, o, Doamne",
+      "bookNumber": 247,
+      "originalKey": null,
+      "content": "/: Deschide-mi ochii, o, Doamne, deschide-mi ochii, Te rog –\nVreau să Te văd, vreau să Te văd! :/\n\nFii preamărit, fii proslăvit în lumina gloriei Tale,\nRevarsă Duhul Tău! Îți cântăm: „Sfânt ești, sfânt ești, sfânt ești!”\n\n/: Sfânt ești, sfânt ești, sfânt ești (x 3) –\nAș vrea să Te văd! :/"
+    },
+    {
+      "title": "Nu sunt în stare să-nțeleg",
+      "bookNumber": 248,
+      "originalKey": null,
+      "content": "Nu sunt în stare să-nțeleg\nAl Dumnezeului plan drept,\nDar știu că sus la dreapta Lui\nStă Isus Salvatorul;\n\nÎl cred pe El și-al Său Cuvânt –\nIsus muri să fiu eu sfânt,\nVreau inima să-I dăruiesc\nLui Isus Salvatorul!\n\nEl și-a lăsat al Său loc sfânt\nSă vină-aici jos pe pământ –\nRăspunsu-i simplu l-am găsit\nÎn Isus Salvatorul!\n\nEl este viu, El m-a iubit –\nDe-a pururi Stânca mea va fi;\nDomnul a fost, Domnul va fi,\nDomnul meu veșnic va domni!\n\nTrăind, murind, aș vrea să-ți spun\nDe Dumnezeul sfânt și bun –\nCel ce trăiește-n veșnicii\nMuri să mă salveze!"
+    },
+    {
+      "title": "Ce minunat e să fii într-o familie",
+      "bookNumber": 249,
+      "originalKey": null,
+      "content": "/: Ce minunat e să fii într-o familie,\nFamilia sfântă a Domnului Isus! :/\n\n/: Suntem o familie unită, suntem o familie regală –\nFamilia care iubește, familia Domnului Isus! :/"
+    },
+    {
+      "title": "Mai aproape, Doamne, către Tine",
+      "bookNumber": 250,
+      "originalKey": null,
+      "content": "Mai aproape, Doamne, către Tine\nDeși e grea crucea pentru mine,\nTotuși cântarea mea este totdeauna\nMai aproape, Doamne, către Tine.\n\nCând soarele-apune, singur fiind,\nPe piatră-mi plec capul cel ostenit.\nÎn visul meu și-atunci, o las ca să ajung\nMai aproape, Doamne, către Tine.\n\nIar după vis vine dimineața,\nAtunci eu cu ulei unge-voi piatra.\nȘi-așa și prin necaz, spre Tin' eu sunt atras,\nMai aproape, Doamne, către Tine."
+    },
+    {
+      "title": "Tu ești Creatorul Universului întreg",
+      "bookNumber": 251,
+      "originalKey": null,
+      "content": "Tu ești Creatorul Universului întreg,\nTu ești început și întregire tuturor;\nStelele și luna glasul Tău îl înțeleg,\nMarea și pământul, tot ce are viață Îți dedică existența lor!\n\nToate le-ai creat,\nPe toate Mâna Ta le ține,\nToate-mi spun că Tu ești Dumnezeu,\nAi trimis suflarea Ta și viață peste mine\nȘi, mai mult de tot ce ești, Tu ești Tatăl meu!\n\nÎmpărat al slavei, Tu luminii ești stăpân,\nÎngerii Te laudă, și oștirile cerești;\nVin cu bucurie viața mea să Ți-o închin,\nVreau să-Ți simt prezența, să-Ți ascult Cuvântul,\nSă Te-aud șoptind că mă iubești!"
+    },
+    {
+      "title": "Bunule Păstor",
+      "bookNumber": 252,
+      "originalKey": null,
+      "content": "Bunule Păstor, eu viața mea Ți-o dau –\nOriunde mă conduci eu voi merge!\nAm ales s-ascult de dulcele-Ți Cuvânt –\nOriunde mă conduci, Te urmez!\n\nPe pășune liniștită sau la pârâu domol,\nCu mine e mereu Păstorul cel Bun!\nDe-aș urca pe munți înalți\nVăi adânci de-aș coborî,\nCu mine e mereu Păstorul Bun!\n\nBunule Păstor, Tu viață nouă-mi dai;\nCând vocea Ți-o aud lacrimile-mi curg!\nDragostea Ți-o simt și vreau să Te urmez –\nCu bucurie-Ți dau inima!\n\nRâu năprasnic de aș trece sau noapte de ar fi,\nCu mine e mereu Păstorul cel Bun!\nDe-aș fi prins de grea furtună\nSau de-al negrei lumi necaz\nCu mine e mereu Păstorul Bun!"
+    },
+    {
+      "title": "Isus, totul pentru Isus",
+      "bookNumber": 253,
+      "originalKey": null,
+      "content": "/: Isus, totul pentru Isus,\nTot ce am și sunt și sper oricând să fiu; :/\n/: Planuri, ambiții, speranțe,\nToate acum le las în ale Tale mâini! :/\n\n/: Căci doar în voia Ta sunt liber cu adevărat! :/\nIsus, totul pentru Isus,\nTot ce am și sunt și sper oricând să fiu!"
+    },
+    {
+      "title": "Al meu ești, Isuse",
+      "bookNumber": 254,
+      "originalKey": null,
+      "content": "Al meu ești, Isuse – ce mult Te iubesc;\nA lumii plăcere eu n-o mai doresc!\nTu ești Salvatorul și Te prețuiesc –\nDe-acum, o, Isuse, nespus Te iubesc!\n\nCa să mă răscumperi pe cruce-ai murit\nȘi spinii-a Ta frunte adânc au rănit!\nÎntâi m-ai iubit Tu – în veci Te slăvesc;\nDe-acum, o, Isuse, nespus Te iubesc!\n\nÎn viață și-n moarte, Isus, Te doresc;\nSlăvesc al Tău Nume atât cât trăiesc!\nSudorile morții când mă copleșesc,\nVoi zice „Isuse, și-acum Te iubesc!”\n\nÎn fața măririi, la Tronul de sus,\nUita-voi de jalea ce-n urm-a apus –\nCununa de slavă atunci o primesc\nȘi vesel voi spune „Isus, Te iubesc!”"
+    },
+    {
+      "title": "Minunat, Bun Salvator",
+      "bookNumber": 255,
+      "originalKey": null,
+      "content": "Minunat, Bun Salvator, Prieten scump Tu îmi ești –\nCine-a crezut c-ar putea un Miel să-mi salveze sufletul?\nO, Tu mi-ai salvat sufletul!\n\nDoamne, pe Tine Te laud,\nDoamne, pe Tine Te-ador –\nTu dai vindecarea și harul pe care le doresc,\nO, pe care eu le doresc!\n\nAtotputernic ești, Tată; pe-ai Tăi-i iubești credincios!\nÎn slăbiciunea mea eu vin\nÎn fața tronului Tău,\nO, în fața tronului Tău..."
+    },
+    {
+      "title": "Isus, Nume scris veșnic",
+      "bookNumber": 256,
+      "originalKey": null,
+      "content": "Isus, Nume scris veșnic,\nAtotputernic, Părinte-al Veșniciei!\nEmanuel – cu noi e Domnul,\nCel minunat, al Păcii Domn!\n\nIsus – ce nume minunat!\nMântuitor sfânt, din ceruri coborât,\nEmanuel, Fiul lui Dumnezeu,\nTu ești Mesia, ești Domnul meu!"
+    },
+    {
+      "title": "Ai fost răstignit și cuiele-mi spun",
+      "bookNumber": 257,
+      "originalKey": null,
+      "content": "Ai fost răstignit și cuiele-mi spun ce mare Ți-a fost iubirea;\nCununa de spini îmi spune și ea ce mare Ți-a fost iubirea!\n\nCând cer și stele vor pieri, semnele vor dăinui\nȘi în veci îmi vor șopti cât m-ai iubit –\nDe aceea vreau să-Ți spun\n„În veci inima, în veci dragostea,\nÎn veci viața mea este-a Ta !”"
+    },
+    {
+      "title": "Din adâncul inimii",
+      "bookNumber": 258,
+      "originalKey": null,
+      "content": "Din adâncul inimii pe Isus vreau a-L vesti,\nSă Îi cânt mereu „Osana, aleluia!”\nVreau să spun întregii lumi Dumnezeu cât e de bun\nȘi-mpreună să-I cântăm toți „Aleluia!”\n\n„Aleluia!” – Te laudă al meu suflet;\n„Aleluia!” – Te laudă gura mea mereu;\n„Aleluia!” – vreau să spun tuturora\nCe măreț ești, Doamne, Dumnezeul meu!"
+    },
+    {
+      "title": "Spală-mă în râul dragostei",
+      "bookNumber": 259,
+      "originalKey": null,
+      "content": "Spală-mă în râul dragostei,\nUmple-mă deplin cu bucurie sfântă,\nSetea sufletului satură-mi\nCu ploaia Ta de sus!\n\nÎn vremi de-nviorare\nBinecuvântare lasă Tu;\nMai mult, mai mult, o, Doamne\nBinecuvintează-ne Tu!"
+    },
+    {
+      "title": "Tu ești scăparea mea",
+      "bookNumber": 260,
+      "originalKey": null,
+      "content": "Tu ești scăparea mea,\nLa Tine am găsit un loc de nădejde\nCând toate-n jur se clatină –\n\nLa Tine alerg, la Tine alerg!\nPace Tu îmi dai din plin și îmi ștergi lacrima –\nLa Tine alerg!"
+    },
+    {
+      "title": "La Tine, Doamne, îmi înalț sufletul",
+      "bookNumber": 261,
+      "originalKey": null,
+      "content": "/: La Tine, Doamne, îmi înalț sufletul! :/ –\n\nDomnul meu, mă-ncred în Tine\nSă nu fiu dat de rușine,\nCel rău să nu se bucure de mine!\n\n/: Învață-mă cărările Tale! :/\n\n/: Nu-mi amintești greșelile mele... :/"
+    },
+    {
+      "title": "În lumea-aceasta toate-s trecătoare",
+      "bookNumber": 262,
+      "originalKey": null,
+      "content": "În lumea-aceasta toate-s trecătoare,\nSe duc întruna, toate vor pieri,\nȘi lucruri care fac inima să doară,\nAcolo sus vor fi doar amintiri!\n\nDar, pân-atunci, voi lăuda pe Domnul,\nRuga mea spre El se va-ndrepta\nPână-n cea zi când în cer voi ajunge\nÎn ziua când Îl voi vedea!\n\nÎn lumea-aceasta toate-s trecătoare,\nDurerile-s doar trepte tot mai sus,\nDe-a lungul drumului ce mă conduce\nL-al meu Mântuitor iubit Isus!\n\nDar pân-atunci inima mea să cânte\nPân-atunci cu drag voi aștepta;\nPână-n cea zi, când în cer voi ajunge;\nÎn ziua când mă va chema.\n\nÎn lumea-aceasta toate-s trecătoare,\nNecazul meu de azi va fi cândva\nCununa vieții cea nemuritoare,\nCe Domnu-n ceruri mie îmi va da!\n\nDar pân-atunci cu Domnul voi rămâne,\nViața voi trăi-o-n înălțimi,\nPână-n cea zi când în cer voi ajunge,\nÎn ziua când L-oi întâlni!"
+    },
+    {
+      "title": "Viața făr' de Tine, Tată ceresc",
+      "bookNumber": 263,
+      "originalKey": null,
+      "content": "Viața făr' de Tine, Tată ceresc,\nEste doar deșertăciune –\nNumai Tu poți da vieții un sens\nCa să trăiesc pentru Tine!\n\nViața mea Tu ai schimbat, Isus,\nȘi-ai făcut un om nou din mine;\nAi pus în mine un dor nespus,\nDorul de-a fi lângă Tine!\n\nDuhul Tău Sfânt mi-a dat dragoste-n dar\nȘi brațul Tău ocrotire;\nNumai în Tine, Isuse iubit,\nPot să găsesc fericire!\n\nViața ta poate-a schimba Isus,\nPoate face-un om nou din tine!\nAstăzi îndreaptă-ți privirea-n sus –\nIată că Mirele vine!"
+    },
+    {
+      "title": "Când mă tem, mă-ncred în Tine",
+      "bookNumber": 264,
+      "originalKey": null,
+      "content": "/: Când mă tem, mă-ncred în Tine –\nApără-mă Tu de tot ce este rău și dă-mi învingere mereu! :/\n\nTe voi lăuda căci Tu ai viața mea!\nLumea ai făcut prin al Tău Cuvânt;\nDoamne, ești de trei ori sfânt!\n\nTu ești cetățuia mea, Tu mă scoți din necaz,\nCu cântări de izbăvire Tu mă înconjori!"
+    },
+    {
+      "title": "Mă chemi să umblu peste ape",
+      "bookNumber": 265,
+      "originalKey": null,
+      "content": "Mă chemi să umblu peste ape,\nNecunoscutul să-l străbat –\nAcolo Te găsesc pe Tine,\nAșa încerci credința mea...\n\nȘi Numele Îți voi striga, la valuri nu mă voi uita;\nÎn brațul Tău mă odihnesc și nu mă tem –\nEu sunt al Tău, Tu ești al meu!\n\nȘtiu, harul Tău va fi cu mine\nIar brațul Tău mă va ghida;\nCând simt că teama mă-nconjoară\nDoamne, Tu nu mă vei lăsa!\n\nDuh Sfânt, dă-mi credință fără de hotare –\nVreau să umblu peste ape\nOriunde mă chemi, Doamne;\nDu-mă dincolo de unde pot eu merge\nȘi credința mea va crește\nÎn prezența Ta, Isuse!"
+    },
+    {
+      "title": "Regele vieții, Domnul meu",
+      "bookNumber": 266,
+      "originalKey": null,
+      "content": "Regele vieții, Domnul meu, fii-n veci glorificat!\nCa să nu uit coroana Ta, du-mă la Golgota...\n\nCa să nu uit de Ghețimani și nici de agonia grea,\nCa să nu uit iubirea Ta, du-mă la Golgota!\n\nDoamne, ajută-mă să port crucea mea zi de zi,\nȘi chiar paharul Tău să beau, gata a suferi..."
+    },
+    {
+      "title": "Cântecul revelației",
+      "bookNumber": 267,
+      "originalKey": null,
+      "content": "/: Vrednic Miel e Domnul slavei,\nSfânt e, sfânt e doar El!\nSă-i cântăm, dar, Celui ce-n veci stă\nPe al milei tron! :/\n\nSfânt e, sfânt e, sfânt e Domnul Atotputernic,\nCe-a fost și este și va fi!\nÎi cântă Universul „Slăvit să fii, Isus!”\nEști tot ce am mai bun – prin cântec Te laud!\n\nÎmbrăcat ești în lumină,\nNe umpli viața cu măreție;\nPutere, onoare, glorie, lauda a Ta va fi –\nEști Rege azi și-n veșnicii!\n\nCuprins de teamă și de uimire\nSunt când rostesc Numele Tău!\nÎn Tine e putere, suflare, Apă Vie –\nMinunea vieții mele ești!"
+    },
+    {
+      "title": "Să cântăm cu bucurie",
+      "bookNumber": 268,
+      "originalKey": null,
+      "content": "Să cântăm cu bucurie înaintea Domnului,\nSă cântăm cu mulțumire-n fața Lui –\nAceastă zi e-a Domnului deci să ne bucurăm în ea\nCântându-I glorie, aleluia!\n\n/: Eu sunt fericit, eu sunt fericit,\nSunt fericit că El m-a mântuit! :/"
+    },
+    {
+      "title": "O inimă curată, Doamne",
+      "bookNumber": 269,
+      "originalKey": null,
+      "content": "/: O inimă curată, Doamne,\nEste tot ce-mi doresc din partea Ta! :/\n\nO inimă în care răutatea să nu stea,\nO inimă în care să domnești Tu, aș vrea,\nO inimă deschisă pentru Tine, Domnul meu –\nSă înalțe osanale către Tine, cel mai mare Dumnezeu!"
+    },
+    {
+      "title": "Eu Te laud cu inima mea",
+      "bookNumber": 270,
+      "originalKey": null,
+      "content": "Eu Te laud cu inima mea,\nEu Te caut cu tot ce sunt eu,\nEu Te caut, Te caut mereu –\nVreau pe Tine să Te urmez!\n\nVreau să mă închin doar Ție,\nSă Te laud, Domnul meu –\nTot ce am Îți aparține,\nTu ești vrednic, Domnul meu!\n\nÎmi plec genunchii, Te-nalț Împărat,\nTe ador, Îți dau tot ce am!\nRidic privirea, privesc spre-al Tău tron,\nMă-ncred în Tine, doar în Tine-al meu Domn!"
+    },
+    {
+      "title": "Din El, prin El și pentru El",
+      "bookNumber": 271,
+      "originalKey": null,
+      "content": "/: Din El, prin El și pentru El sunt toate lucrurile! :/\n\nA Lui să fie gloria (x 3) în veci de veci – amin!"
+    },
+    {
+      "title": "Tată din ceruri, noi Te iubim",
+      "bookNumber": 272,
+      "originalKey": null,
+      "content": "Tată din ceruri, noi Te iubim,Numele Tău înălțăm;\nVie-mpărăția Ta prin lauda noastră –\nNoi cu toții preamărim lucrarea Ta!\n\nBinecuvântat fii, o, Doamne, cel ce ai fost, ești și vei fi!\nSfânt și minunat, atotputernic – Tu vei domni în veci!"
+    },
+    {
+      "title": "Când am pacea Domnului",
+      "bookNumber": 273,
+      "originalKey": null,
+      "content": "Când am pacea Domnului în viața mea\nDe vifor eu nu sunt răpus\nIar inima mea tot așa va cânta\n„Bine e, bine e în Isus!”\n\n„Bine e, în Isus, bine e, bine e în Isus!”\n\nChiar dacă cel rău să mă-nfrice ar vrea,\nMă-ncred în Divinul Cuvânt –\nIsus a plătit la Calvar vina mea\nȘi curat sunt prin sângele sfânt!\n\nPovara păcatului El mi-a luat,\nDin groapa pieirii m-a scos –\nAcum eu sunt liber, prin har sunt iertat\nȘi-L slăvesc pe Isus bucuros!\n\nAștept, Doamne, ziua când vei reveni,\nCând trâmbița va răsuna;\nÎn slavă, pe nori, fața Ta voi vedea\nȘi-al meu suflet atunci va cânta:"
+    },
+    {
+      "title": "Sfânt Cuvânt din veșnicii",
+      "bookNumber": 274,
+      "originalKey": null,
+      "content": "Sfânt Cuvânt din veșnicii, ne conduci, ne susții;\nInima lui Dumnezeu ne-arăți în versul Tău mereu!\nSfânt Cuvânt, la noi venit, Tu ni Te-ai descoperit\nÎn viața lui Isus ce pentru noi a fost străpuns!\n\nSfânt Cuvânt neschimbat, viața Tu ne-ai transformat –\nNe deschidem inima, să ascultăm de vocea Ta!\n\nSfânt Cuvânt credincios, toarnă-Ți harul glorios,\nSă purtăm victorios chipul sfânt a lui Cristos!\nSfânt Cuvânt, de viață plin, dă-ne ajutor deplin\nSă pășim pe calea Ta până-n ceruri vom intra!"
+    },
+    {
+      "title": "Cetate tare-i Dumnezeu,",
+      "bookNumber": 275,
+      "originalKey": null,
+      "content": "Cetate tare-i Dumnezeu, statornic pe vecie –\nEl este adăpostul meu și scut îmi este mie;\nCel rău mereu ar vrea să intre-n viața mea,\nPutere are-acum și mulți i se supun –\nÎn om vrea să domnească...\n\nPrin mine însumi n-aș putea s-ajung la biruință\nDar sprijin sigur voi afla la Domnul prin credință;\nPutere îmi va da și mă va ajuta –\nIspite de-or veni cu El voi birui,\nÎn El îmi pun nădejdea!\n\nCând valul morții furios ne-ar face să ne temem,\nPrivim spre țintă, spre Hristos, credința să n-o pierdem;\nEl moartea-a biruit pe cruce răstignit –\nLa ceruri înălțat e-al nostru Împărat,\nÎn veci de veci domnește!"
+    },
+    {
+      "title": "Jos, la picioarele-Ți",
+      "bookNumber": 276,
+      "originalKey": null,
+      "content": "Jos, la picioarele-Ți, stau adânc plecat –\nÎn prezența Ta sunt îngenuncheat, sunt îngenuncheat!\n\nNu-i chemare mai mare, nu-i altă onoare\nDecât să îngenunchez la tronul Tău!\nCopleșit de uimire, scăldat în iubire,\nEu trăiesc doar pentru-a Te lăuda!"
+    },
+    {
+      "title": "Fii a mea lumină",
+      "bookNumber": 277,
+      "originalKey": null,
+      "content": "Fii a mea lumină, Părinte ceresc –\nPrin Tine blând și curat să trăiesc,\nZiua și noaptea, Doamne, s-aud vocea Ta,\nPrezența Ta să-mi umple mereu inima!\n\nTu să-mi fii izbândă și gândul cel bun,\nDin Tine pururi comori să-mi adun;\nTu, locuind în mine, noi una să fim,\nCuvântul Tău să-mi dea-nțelepciune și-alin!\n\nNu vreau bogăție, nici laude lumești\nCăci mai de preț decât toate Tu-mi ești!\nTu, numai Tu ești Rege în sufletul meu,\nEști Primul, ești Stăpânul, ești Domn, Dumnezeu!\n\nChiar de-ar fi s-alunec, rămâi viața mea,\nTu-mi ești Puterea, doar Tu, Dragostea!\nTu, Soare-al veșniciei mai sus de-orice nor,\nMi-ești sfântă bucurie și-al inimii dor!"
+    },
+    {
+      "title": "Credința mea eu o zidesc",
+      "bookNumber": 278,
+      "originalKey": null,
+      "content": "Credința mea eu o zidesc\nPe-al Domnului Cuvânt ceresc.\nCa spuma toate vor pieri,\nHristos în veci Stâncă-mi va fi!\n\nZidesc pe Stâncă, pe Hristos,\n/: Nicicând pe malul nisipos. :/\n\nChiar când e-ascunsă Fața Sa,\nDragostea-i mă va-nconjura,\nȘi orice vifor de-ar veni\nÎn El scăpare voi găsi!\n\nCând vin primejdii pe pământ,\nEu sunt ferit prin legământ;\nChiar toate de s-ar clătina,\nHristos rămâne Stânca mea!\n\nIar când Isus va reveni,\nPrin har, în El mă va găsi;\nDoar prin neprihănirea Lui\nVoi sta în fața Tronului!"
+    },
+    {
+      "title": "Doamne, Numele-Ți înalț",
+      "bookNumber": 279,
+      "originalKey": null,
+      "content": "Doamne, Numele-Ți înalț! Doamne, laudă-Ți cânt Ție!\nFericit sunt că Te am, fericit de-a Ta iertare!\n\nTu ai venit pe pământ să ne salvezi,\nSus pe cruce ai murit iertați să fim...\nDe pe cruce în mormânt, din mormânt sus la cer –\nSă fii înălțat mereu!"
+    },
+    {
+      "title": "Am ales pe Domnul Isus al meu bun Păstor",
+      "bookNumber": 280,
+      "originalKey": null,
+      "content": "Am ales pe Domnul Isus al meu bun Păstor –\nCu El sigur voi ajunge sus Învingător;\nSus în cer în nemurire vreau să fiu și eu,\nSus în cer în strălucire, sus cu Dumnezeu!\n\nUn izvor de fericire am găsit în Domnul meu,\nUn izvor de apă vie este El;\nVino, prietene, aleargă la Izvorul mult dorit –\nEste loc și pentru tine, vino să fii fericit!\n\nSeara, când se lasă luna, cheamă-L pe Isus,\nSpune-I Lui în rugăciune tot ce ai de spus –\nEl te-ascultă, Te iubește ca pe fiul Său\nȘi în dar îți dă iertarea sufletului tău!\n\nIar când zorii se arată pe cerul senin\nRugăciunea ți-o înalță Domnului divin;\nMulțumește-I cu iubire, fii încrezător –\nSingur nicicând nu te lasă, El e-ocrotitor!"
+    },
+    {
+      "title": "Nimeni nu-i ca Tine, Isus",
+      "bookNumber": 281,
+      "originalKey": null,
+      "content": "Tu ești Cel ce exiști din veșnicii,\nTu ești Cel ce în veci va domni;\nNumai Tu ești al meu Creator,\nNumai Tu ești pe veci Mântuitor!\n\nTu ești Cel ce pe mare a umblat,\nTu ești Cel ce din morți a înviat;\nNumai Tu ești așa de minunat,\nNumai Tu ești mereu neschimbat!\n\nNimeni nu-i ca Tine, Isus,\nNimeni nu-i ca Tine, Isus!\n\nNumele Tău e înălțat și orice națiune se va pleca;\nÎntreg Universul va declara acum și în veci gloria Ta!"
+    },
+    {
+      "title": "Azi cânt de bucurie",
+      "bookNumber": 282,
+      "originalKey": null,
+      "content": "Azi cânt de bucurie, dau slavă-n veșnicie\nCă Isus m-a salvat;\nNecazuri vin și pleacă, cu Isus toate-au să treacă,\nCu Tatăl minunat!\n\nEl totul mi-e, El totul mi-e mie,\nEl totul mi-e, Isus Hristos mie\nMi-e tată, mamă, soră, frate –\nEl totul mi-e mie!\n\nAzi cânt de bucurie, dau slavă-n veșnicie\nCă Isus m-a sfințit,\nM-a spălat de păcate, mi-a dat haine curate,\nMi-a dat din Duhul Sfânt!\n\nAzi cânt de bucurie, dau slavă-n veșnicie\nCă Isus m-a iertat –\nGreșeli, păcate, toate mi le-a iertat – pe toate,\nEl totul mi-a iertat!\n\nAzi cânt de bucurie, dau slavă numai Ție\nCăci, Isus, m-ai primit –\nNu sunt orfan pe lume ci port al Tău sfânt nume\nDe Tatăl sunt primit!"
+    },
+    {
+      "title": "Binecuvântează, suflete, pe Domnul tău",
+      "bookNumber": 283,
+      "originalKey": null,
+      "content": "Binecuvântează, suflete, pe Domnul tău\nȘi nu uita niciuna din binefacerile Lui\nCăci El îți iartă făr'delegea ta,\nÎndurare-n dar îți dă și-n veci mântuirea!"
+    },
+    {
+      "title": "Doamne, Tu-n necazuri",
+      "bookNumber": 284,
+      "originalKey": null,
+      "content": "Doamne, Tu-n necazuri lângă noi rămâi –\nChinurile noastre Tu le-nduri întâi;\nEle mai-nainte trec prin mâna Ta\nȘi îngădui numai cât putem răbda...\n\nNu te teme, crede ne-ncetat –\nPrin Isus ești binecuvântat;\nFie cât de mare crucea care-o sui\nMergi cu fiecare pas pe urma Lui!\n\nLacrimile noastre numărate sunt –\nTu măsori povara sufletului frânt;\nTu porți mâna care taie-n rana grea\nȘi îngădui numai cat putem răbda...\n\nChinurile noastre Tu le-ai mărginit,\nMărginită-i jalea celui asuprit;\nMărginit e răul și puterea sa\nCăci îngădui numai cât putem răbda...\n\nDoamne, Tu-n necazuri fii cu toți ai Tăi,\nSă nu meargă singuri pe-a durerii căi;\nCântărește crucea Tu cu mâna Ta,\nSă îngădui numai cât putem răbda!"
+    },
+    {
+      "title": "Stânca mea",
+      "bookNumber": 285,
+      "originalKey": null,
+      "content": "Credința mea eu o zidesc\nPe-al Domnului Cuvânt ceresc.\nCa spuma toate vor pieri,\nHristos în veci Stâncă-mi va fi!\n\nChiar când e-ascunsă Fața Sa,\nDragostea-i mă va-nconjura,\nȘi orice vifor de-ar veni\nÎn El scăpare voi găsi!\n\nStânca mea e Cristos,\nLui rămân veșnic credincios –\nÎn furtuni Tu ești Domn, al nostru Domn!\n\nCând vin primejdii pe pământ,\nEu sunt ferit prin legământ;\nChiar toate de s-ar clătina,\n/: Hristos rămâne Stânca mea! :/\n\nIar când Isus va reveni,\nPrin har, în El mă va găsi;\nDoar prin neprihănirea Lui\nVoi sta în fața Tronului!"
     }
   ]
 }

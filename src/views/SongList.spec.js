@@ -10,6 +10,12 @@ import { useSongFiltering } from '../composables/useSongFiltering';
 
 // --- Mocks ---
 
+vi.mock('../firebaseConfig', () => ({
+    auth: {},
+    googleProvider: {},
+    db: {}
+}));
+
 vi.mock('../composables/useAuth', () => ({
     useAuth: vi.fn(() => ({
         isAuthenticated: ref(true),
@@ -87,6 +93,7 @@ describe('SongList.vue', () => {
                 plugins: [vuetify],
                 stubs: {
                     SongCard: true,
+                    UserAuth: true,
                     VVirtualScroll: false // Allow rendering to check props
                 }
             }

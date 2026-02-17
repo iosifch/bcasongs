@@ -12,6 +12,12 @@ import { VLayout } from 'vuetify/components';
 import { vuetify } from '../vitest-setup';
 
 // --- Mocks ---
+vi.mock('../firebaseConfig', () => ({
+  auth: {},
+  googleProvider: {},
+  db: {}
+}));
+
 vi.mock('../composables/useAuth', () => ({
   useAuth: vi.fn(() => ({
     isAuthenticated: ref(true),

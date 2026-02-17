@@ -16,6 +16,12 @@ export default defineConfig({
         inline: ['vuetify'],
       },
     },
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html'],
+      include: ['src/**/*.{js,vue}'],
+      exclude: ['src/**/*.spec.js', 'src/test-utils.js', 'src/vitest-setup.js']
+    },
   },
   ssr: {
     noExternal: ['vuetify'],

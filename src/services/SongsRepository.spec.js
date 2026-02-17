@@ -119,4 +119,41 @@ describe('SongsRepository', () => {
       }));
     });
   });
+
+  describe('getSong', () => {
+    beforeEach(() => {
+      SongsRepository.stop();
+    });
+
+    it('should return the correct song by ID', () => {
+      mockOnSnapshot.mockImplementation((collection, callback) => {
+        callback({
+          docs: [
+            { id: '1', data: () => ({ title: 'Song 1' }) },
+            { id: '2', data: () => ({ title: 'Song 2' }) }
+          ]
+        });
+        return vi.fn();
+      });
+
+      SongsRepository.initialize();
+
+      expect(SongsRepository.getSong('2')).toEqual({ id: '2', title: 'Song 2' });
+    });
+
+    it('should return undefined for a non-existent song ID', () => {
+      mockOnSnapshot.mockImplementation((collection, callback) => {
+        callback({
+          docs: [
+            { id: '1', data: () => ({ title: 'Song 1' }) }
+          ]
+        });
+        return vi.fn();
+      });
+
+      SongsRepository.initialize();
+
+      expect(SongsRepository.getSong('non-existent')).toBeUndefined();
+    });
+  });
 });

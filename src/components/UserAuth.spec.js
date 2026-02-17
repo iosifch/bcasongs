@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { flushPromises } from '@vue/test-utils';
 import UserAuth from './UserAuth.vue';
 import { auth, googleProvider } from '../firebaseConfig';
-import { signInWithPopup, onAuthStateChanged } from 'firebase/auth';
+import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 import { getDoc } from 'firebase/firestore';
 import { ref, computed } from 'vue';
 import { useAuth } from '../composables/useAuth';
@@ -104,7 +104,7 @@ describe('UserAuth.vue', () => {
     await wrapper.find('button').trigger('click');
     await flushPromises();
 
-    const menuContent = document.querySelector('.v-card');
+    const menuContent = document.querySelector('[data-testid="user-menu-card"]');
     expect(menuContent?.textContent).toContain('John Doe');
   });
 
@@ -132,5 +132,23 @@ describe('UserAuth.vue', () => {
 
     expect(getSnackbarText()).toContain('Login Failed');
     expect(getSnackbarText()).toContain('Popup closed');
+  });
+
+  it('calls signOut when logout button is clicked', async () => {
+    setupAuthenticated();
+
+    const wrapper = mountWithLayout(UserAuth);
+    await flushPromises();
+
+    // Open the user menu
+    await wrapper.find('button').trigger('click');
+    await flushPromises();
+
+    // Click the Logout button in the teleported menu card
+    const logoutBtn = document.querySelector('[data-testid="logout-btn"]');
+    logoutBtn.click();
+    await flushPromises();
+
+    expect(signOut).toHaveBeenCalledWith(auth);
   });
 });

@@ -137,4 +137,33 @@ describe('PlaylistRepository', () => {
             );
         });
     });
+
+    describe('addSongToPlaylist error handling', () => {
+        it('should fall back to setDoc when updateDoc throws not-found', async () => {
+            const notFoundError = new Error('Document not found');
+            notFoundError.code = 'not-found';
+            mockUpdateDoc.mockRejectedValue(notFoundError);
+
+            await PlaylistRepository.addSongToPlaylist('song1');
+
+            expect(mockUpdateDoc).toHaveBeenCalled();
+            expect(mockSetDoc).toHaveBeenCalledWith(
+                expect.anything(),
+                expect.objectContaining({
+                    songIds: ['song1'],
+                    updatedAt: 'timestamp'
+                })
+            );
+        });
+
+        it('should rethrow non-not-found errors from updateDoc', async () => {
+            const otherError = new Error('Permission denied');
+            otherError.code = 'permission-denied';
+            mockUpdateDoc.mockRejectedValue(otherError);
+            vi.spyOn(console, 'error').mockImplementation(() => {});
+
+            await expect(PlaylistRepository.addSongToPlaylist('song1')).rejects.toThrow('Permission denied');
+            expect(mockSetDoc).not.toHaveBeenCalled();
+        });
+    });
 });

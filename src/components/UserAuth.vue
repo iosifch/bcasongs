@@ -17,7 +17,7 @@
             </v-avatar>
           </v-btn>
         </template>
-        <v-card>
+        <v-card data-testid="user-menu-card">
           <v-card-text>
             <div class="mx-auto text-center">
               <v-avatar color="secondary">
@@ -29,7 +29,7 @@
                 {{ user.email }}
               </p>
               <v-divider class="my-3"></v-divider>
-              <v-btn rounded variant="text" @click="handleSignOut">
+              <v-btn rounded variant="text" @click="handleSignOut" data-testid="logout-btn">
                 Logout
               </v-btn>
             </div>

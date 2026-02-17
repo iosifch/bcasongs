@@ -275,7 +275,7 @@
     <v-dialog v-model="keyDialog" max-width="320">
       <v-card rounded="xl" class="pa-4">
         <v-card-text class="pt-4">
-          <div class="text-center text-h4 mb-6">
+          <div class="text-center text-h4 mb-6" data-testid="key-preview">
             {{ selectedRoot }}{{ selectedAccidental }}{{ selectedQuality }}
           </div>
 

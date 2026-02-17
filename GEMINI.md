@@ -43,6 +43,7 @@ All package management commands must be run inside the container:
 ### Testing Instructions
 - **Vitest** is used for unit and component testing.
 - Tests are located alongside source files (e.g., `src/services/SongsRepository.spec.js`).
+- **Element Identification**: All UI elements targeted by tests must use `data-testid` attributes. Never use CSS class selectors (e.g., `.v-card`, `.text-h4`) for test assertions — they are fragile and coupled to Vuetify internals.
 - **Run Tests (Watch Mode)**: `docker compose exec app npm test`
 - **Run Tests (Single Run)**: `docker compose exec app npm run test:run`
 

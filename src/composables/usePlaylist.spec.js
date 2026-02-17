@@ -61,4 +61,21 @@ describe('usePlaylist', () => {
     await reorderPlaylist(['song2', 'song1']);
     expect(PlaylistRepository.reorderSongsInPlaylist).toHaveBeenCalledWith(['song2', 'song1']);
   });
+
+  it('should propagate errors from addSongToPlaylist when toggling', async () => {
+    PlaylistRepository.addSongToPlaylist.mockRejectedValue(new Error('Firestore error'));
+
+    const { togglePlaylist } = usePlaylist();
+
+    await expect(togglePlaylist('song1')).rejects.toThrow('Firestore error');
+  });
+
+  it('should propagate errors from removeSongFromPlaylist when toggling', async () => {
+    mockSongIds.value = ['song1'];
+    PlaylistRepository.removeSongFromPlaylist.mockRejectedValue(new Error('Network error'));
+
+    const { togglePlaylist } = usePlaylist();
+
+    await expect(togglePlaylist('song1')).rejects.toThrow('Network error');
+  });
 });

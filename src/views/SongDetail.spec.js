@@ -8,6 +8,23 @@ import SongsRepository from '../services/SongsRepository';
 import LyricsService from '../services/LyricsService';
 import { mountWithLayout, getSnackbarText } from '../test-utils';
 
+// Deterministic paragraph ID counter — reset in each beforeEach
+let paragraphIdCounter = 0;
+
+// -- Factory functions --
+const createMockSong = (overrides = {}) => ({
+  id: '1',
+  title: 'Test Song',
+  originalKey: 'G',
+  content: 'Test lyrics',
+  bookNumber: '123',
+  ...overrides
+});
+
+const createMockParagraphs = (overrides) => overrides || [
+  { id: 'p1', type: 'verse', lines: [{ text: 'Line 1', isSpacer: false }] }
+];
+
 // -- Mocks --
 vi.mock('../composables/useAuth', () => ({
   useAuth: vi.fn(() => ({
@@ -53,7 +70,7 @@ vi.mock('../services/LyricsService', () => ({
     parseToParagraphs: vi.fn(() => []),
     serialize: vi.fn(() => ''),
     createParagraph: vi.fn((type) => ({
-      id: Math.random().toString(36).substr(2, 9),
+      id: `test-paragraph-${++paragraphIdCounter}`,
       type: type || 'verse',
       lines: []
     })),
@@ -104,16 +121,11 @@ const enterEditMode = async (wrapper) => {
 
 // -- Test suites --
 describe('SongDetail.vue - Key Change', () => {
-  const mockSong = {
-    id: '1',
-    title: 'Test Song',
-    originalKey: 'G',
-    content: '[G]Test lyrics',
-    bookNumber: '123'
-  };
+  const mockSong = createMockSong({ content: '[G]Test lyrics' });
 
   beforeEach(() => {
     vi.clearAllMocks();
+    paragraphIdCounter = 0;
     SongsRepository.getSong.mockReturnValue(mockSong);
     vi.mocked(useRoute).mockReturnValue({ params: { id: '1' } });
   });
@@ -159,7 +171,7 @@ describe('SongDetail.vue - Key Change', () => {
     await wrapper.find('[data-testid="key-btn"]').trigger('click');
     await flushPromises();
 
-    const dialogPreview = document.querySelector('.v-dialog .text-h4');
+    const dialogPreview = document.querySelector('[data-testid="key-preview"]');
     expect(dialogPreview?.textContent?.trim()).toBe('C#m');
   });
 
@@ -172,8 +184,10 @@ describe('SongDetail.vue - Key Change', () => {
     await wrapper.find('[data-testid="key-btn"]').trigger('click');
     await flushPromises();
 
-    // v-select components are teleported to body — direct DOM interaction is impractical,
-    // so we set the reactive values that the selects are bound to
+    // RATIONALE: Vuetify v-select components are teleported to document.body, which makes
+    // simulating user interaction (opening the dropdown, scrolling, clicking an option)
+    // impractical in a test environment. Setting the reactive v-model values directly is
+    // the accepted compromise — the v-select binding is Vuetify's responsibility, not ours.
     wrapper.vm.selectedRoot = 'A';
     wrapper.vm.selectedAccidental = 'b';
     wrapper.vm.selectedQuality = 'm';
@@ -207,20 +221,12 @@ describe('SongDetail.vue - Key Change', () => {
 });
 
 describe('SongDetail.vue - Edit Mode Save Flow', () => {
-  const mockSong = {
-    id: '1',
-    title: 'Test Song',
-    originalKey: 'G',
-    content: 'Test lyrics',
-    bookNumber: '123'
-  };
-
-  const mockParagraphs = [
-    { id: 'p1', type: 'verse', lines: [{ text: 'Line 1', isSpacer: false }] }
-  ];
+  const mockSong = createMockSong();
+  const mockParagraphs = createMockParagraphs();
 
   beforeEach(() => {
     vi.clearAllMocks();
+    paragraphIdCounter = 0;
     SongsRepository.getSong.mockReturnValue(mockSong);
     LyricsService.parseToParagraphs.mockReturnValue([...mockParagraphs.map(p => ({ ...p, lines: [...p.lines] }))]);
     LyricsService.serialize.mockReturnValue('Line 1');
@@ -295,6 +301,10 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
     await enterEditMode(wrapper);
     expect(findEditBtn(wrapper).classes()).not.toContain('v-btn--disabled');
 
+    // RATIONALE: We call toggleEditMode() directly to capture the returned Promise.
+    // This allows asserting the button's disabled state mid-save (while the Promise
+    // is pending). A button click triggers the same method but does not expose the
+    // Promise, making it impossible to test the transient loading state.
     const exitPromise = wrapper.vm.toggleEditMode();
     await flushPromises();
 
@@ -379,14 +389,15 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
 });
 
 describe('SongDetail.vue - Paragraph Management', () => {
-  const mockSong = { id: '1', title: 'Test', content: 'Verse 1\n\nVerse 2' };
-  const mockParagraphs = [
+  const mockSong = createMockSong({ title: 'Test', content: 'Verse 1\n\nVerse 2' });
+  const mockParagraphs = createMockParagraphs([
     { id: 'p1', type: 'verse', lines: [{ text: 'Verse 1', isSpacer: false }] },
     { id: 'p2', type: 'verse', lines: [{ text: 'Verse 2', isSpacer: false }] }
-  ];
+  ]);
 
   beforeEach(() => {
     vi.clearAllMocks();
+    paragraphIdCounter = 0;
     SongsRepository.getSong.mockReturnValue(mockSong);
     LyricsService.parseToParagraphs.mockReturnValue([...mockParagraphs.map(p => ({ ...p, lines: [...p.lines] }))]);
     setupAuthenticated();
@@ -497,6 +508,7 @@ describe('SongDetail.vue - Paragraph Management', () => {
 describe('SongDetail.vue - Add New Song Flow', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    paragraphIdCounter = 0;
     setupAuthenticated();
     vi.mocked(useRoute).mockReturnValue({ params: { id: 'new' } });
   });

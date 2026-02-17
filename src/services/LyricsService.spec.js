@@ -36,6 +36,32 @@ describe('LyricsService', () => {
 
       expect(lineText).toBe('Amazing Grace');
     });
+
+    it('should return an empty array for empty string input', () => {
+      expect(LyricsService.parseToParagraphs('')).toEqual([]);
+    });
+
+    it('should return an empty array for null input', () => {
+      expect(LyricsService.parseToParagraphs(null)).toEqual([]);
+    });
+
+    it('should return an empty array for undefined input', () => {
+      expect(LyricsService.parseToParagraphs(undefined)).toEqual([]);
+    });
+
+    it('should strip complex chords like Cmaj7 and F#m/C#', () => {
+      const content = '[Cmaj7]Amazing [F#m/C#]Grace';
+      const paragraphs = LyricsService.parseToParagraphs(content);
+      expect(paragraphs[0].lines[0].text).toBe('Amazing Grace');
+    });
+
+    it('should handle multiple consecutive empty lines as a single paragraph break', () => {
+      const content = 'Verse 1\n\n\n\nVerse 2';
+      const paragraphs = LyricsService.parseToParagraphs(content);
+      expect(paragraphs).toHaveLength(2);
+      expect(paragraphs[0].lines[0].text).toBe('Verse 1');
+      expect(paragraphs[1].lines[0].text).toBe('Verse 2');
+    });
   });
 
   describe('serialize', () => {
@@ -145,6 +171,22 @@ describe('LyricsService', () => {
       const filtered = LyricsService.filterEmptyParagraphs(paragraphs);
       expect(filtered).toHaveLength(1);
       expect(filtered[0].lines[0].text).toBe('L1');
+    });
+  });
+
+  describe('roundtrip: parseToParagraphs -> serialize', () => {
+    it('should preserve verse structure through parse and serialize', () => {
+      const content = 'Verse 1 line 1\nVerse 1 line 2\n\nVerse 2 line 1';
+      const paragraphs = LyricsService.parseToParagraphs(content);
+      const result = LyricsService.serialize(paragraphs);
+      expect(result).toBe(content);
+    });
+
+    it('should preserve chorus tags through parse and serialize', () => {
+      const content = '{start_of_chorus}\nChorus line\n{end_of_chorus}';
+      const paragraphs = LyricsService.parseToParagraphs(content);
+      const result = LyricsService.serialize(paragraphs);
+      expect(result).toBe(content);
     });
   });
 });

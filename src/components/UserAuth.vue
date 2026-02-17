@@ -50,7 +50,7 @@
         density="comfortable"
         style="width: 40px; height: 40px; min-width: 40px;"
       >
-        <v-icon size="25">account_circle</v-icon>
+        <v-icon size="25" icon="account_circle"></v-icon>
       </v-btn>
     </div>
     

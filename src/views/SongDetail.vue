@@ -110,7 +110,7 @@
       :ripple="false"
       style="padding: 0;"
     >
-      <v-icon size="25">{{ isEditMode ? 'check' : 'edit_document' }}</v-icon>
+      <v-icon size="25" :icon="isEditMode ? 'check' : 'edit_document'"></v-icon>
     </v-btn>
 
     <v-btn

@@ -2,25 +2,11 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mount, flushPromises } from '@vue/test-utils';
 import UserAuth from './UserAuth.vue';
 import { auth, googleProvider, db } from '../firebaseConfig';
-import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
+import { signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import { getDoc } from 'firebase/firestore';
 import { ref, computed } from 'vue';
 import { useAuth } from '../composables/useAuth';
-
-// Mock Vuetify components
-const global = {
-  stubs: {
-    'v-btn': { template: '<button><slot /></button>' },
-    'v-avatar': { template: '<div><slot /></div>' },
-    'v-img': { template: '<img />' },
-    'v-menu': { name: 'v-menu', template: '<div><slot name="activator" :props="{}"></slot><slot></slot></div>' },
-    'v-card': { template: '<div><slot /></div>' },
-    'v-card-text': { template: '<div><slot /></div>' },
-    'v-divider': { template: '<hr />' },
-    'v-snackbar': { template: '<div><slot></slot><slot name="actions"></slot></div>' },
-    'v-icon': { template: '<i><slot /></i>' }
-  }
-};
+import { mountWithLayout } from '../test-utils';
 
 // Mock Firebase
 vi.mock('../firebaseConfig', () => ({
@@ -44,8 +30,6 @@ vi.mock('firebase/firestore', () => ({
   getDoc: vi.fn()
 }));
 
-import { useAuth } from '../composables/useAuth';
-
 describe('UserAuth.vue', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -59,12 +43,11 @@ describe('UserAuth.vue', () => {
       initializeAuth: vi.fn()
     });
 
-    const wrapper = mount(UserAuth, { global });
+    const wrapper = mountWithLayout(UserAuth);
     await flushPromises();
 
-    expect(wrapper.findComponent({ name: 'v-menu' }).exists()).toBe(false);
-    const buttons = wrapper.findAll('button');
-    expect(buttons.length).toBeGreaterThan(0);
+    expect(wrapper.findComponent({ name: 'VMenu' }).exists()).toBe(false);
+    expect(wrapper.findComponent({ name: 'VIcon' }).props('icon')).toBe('account_circle');
   });
 
   it('shows user avatar when user is logged in', async () => {
@@ -81,34 +64,29 @@ describe('UserAuth.vue', () => {
       initializeAuth: vi.fn()
     });
 
-    // We still need onAuthStateChanged for the whitelist check in onMounted if we want to test that logic
-    // But wait, the component calls onAuthStateChanged in onMounted too...
-    // The component calls:
-    // onMounted(() => {
-    //   initializeAuth();
-    //   onAuthStateChanged(auth, async (currentUser) => { ... })
-    // })
-
-    // So we assume useAuth handles global auth state, but the component has its own listener for whitelist checking?
-    // Yes on lines 68-91 of UserAuth.vue.
-
-    // So we ALSO need to mock onAuthStateChanged to trigger that callback.
     onAuthStateChanged.mockImplementation((auth, callback) => {
       callback(mockUser);
       return () => { };
     });
 
-    // Mock Firestore Whitelist Check (Allow access)
     getDoc.mockResolvedValue({
       exists: () => true,
       data: () => ({ allowedEmails: ['test@example.com'] })
     });
 
-    const wrapper = mount(UserAuth, { global });
+    const wrapper = mountWithLayout(UserAuth);
     await flushPromises();
 
-    expect(wrapper.findComponent({ name: 'v-menu' }).exists()).toBe(true);
-    expect(wrapper.text()).toContain('Test User');
+    expect(wrapper.findComponent({ name: 'VMenu' }).exists()).toBe(true);
+    
+    const img = wrapper.findComponent({ name: 'VImg' });
+    expect(img.exists()).toBe(true);
+    expect(img.props('src')).toBe('http://example.com/photo.jpg');
+    
+    await wrapper.find('button').trigger('click');
+    await flushPromises();
+    
+    expect(document.body.innerHTML).toContain('Test User');
   });
 
   it('calls signInWithPopup when login button is clicked', async () => {
@@ -119,10 +97,10 @@ describe('UserAuth.vue', () => {
       initializeAuth: vi.fn()
     });
 
-    const wrapper = mount(UserAuth, { global });
+    const wrapper = mountWithLayout(UserAuth);
     await flushPromises();
 
-    await wrapper.vm.handleLogin();
+    await wrapper.find('button').trigger('click');
 
     expect(signInWithPopup).toHaveBeenCalledWith(auth, googleProvider);
   });

@@ -11,7 +11,7 @@
         rounded="lg"
         style="width: 40px; height: 40px; min-width: 40px;"
       >
-        <v-icon size="25">arrow_back</v-icon>
+        <v-icon size="25" icon="arrow_back"></v-icon>
       </v-btn>
       <v-toolbar-title class="text-h6 font-weight-bold">Playlist</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -20,11 +20,11 @@
 
   <div>
     <v-container fluid class="pa-3">
-      <div v-if="SongsRepository.loading.value && playlistSongs.length === 0" class="d-flex justify-center my-4">
+      <div v-if="SongsRepository.loading.value && playlistModel.length === 0" class="d-flex justify-center my-4">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
 
-      <div v-else-if="playlistSongs.length === 0" class="text-center mt-4 text-medium-emphasis">
+      <div v-else-if="playlistModel.length === 0" class="text-center mt-4 text-medium-emphasis">
         No songs in playlist.
       </div>
 
@@ -39,7 +39,7 @@
           :key="song.id"
           class="d-flex align-center mb-3"
         >
-          <v-icon class="drag-handle mr-2 cursor-move text-medium-emphasis">drag_indicator</v-icon>
+          <v-icon class="drag-handle mr-2 cursor-move text-medium-emphasis" icon="drag_indicator"></v-icon>
           <SongCard
             :song="song"
             :is-in-playlist="true"
@@ -61,58 +61,15 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
 import SongsRepository from '../services/SongsRepository';
-import { usePlaylist } from '../composables/usePlaylist';
-import { useShare } from '../composables/useShare';
+import { useSongActions } from '../composables/useSongActions';
+import { usePlaylistSongs } from '../composables/usePlaylistSongs';
+import { useAppNavigation } from '../composables/useAppNavigation';
 import SongCard from '../components/SongCard.vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
-const router = useRouter();
 const songs = SongsRepository.songs;
-const { playlist, togglePlaylist, isInPlaylist, reorderPlaylist } = usePlaylist();
-const { share } = useShare();
-const snackbar = ref(false);
-const snackbarText = ref('');
-
-const goBack = () => {
-  if (window.history.length > 2) {
-    router.back();
-  } else {
-    router.push('/');
-  }
-};
-
-const handleTogglePlaylist = (songId) => {
-  const wasInPlaylist = isInPlaylist(songId);
-  togglePlaylist(songId);
-  snackbarText.value = wasInPlaylist ? 'Removed from playlist' : 'Added to playlist';
-  snackbar.value = true;
-};
-
-const handleShare = async (song) => {
-  const url = `${window.location.origin}/song/${song.id}`;
-  const result = await share(song.title, url);
-
-  if (result.copied) {
-    snackbarText.value = 'Link copied to clipboard';
-    snackbar.value = true;
-  }
-};
-
-const playlistModel = computed({
-  get: () => {
-    return playlist.value
-      .map(id => songs.value.find(s => s.id === id))
-      .filter(Boolean);
-  },
-  set: (val) => {
-    reorderPlaylist(val.map(s => s.id));
-  }
-});
-
-const playlistSongs = computed(() => {
-  return playlistModel.value;
-});
+const { snackbar, snackbarText, handleTogglePlaylist, handleShare } = useSongActions();
+const { playlistModel } = usePlaylistSongs(songs);
+const { goBack } = useAppNavigation();
 </script>

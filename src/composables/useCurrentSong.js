@@ -1,29 +1,48 @@
-import { ref, computed } from 'vue';
+import { ref, watch, onMounted } from 'vue';
+import SongsRepository from '../services/SongsRepository';
 
-const currentSong = ref(null);
-const isEditMode = ref(false);
+export function useCurrentSong(songId, onSongResolved) {
+  const song = ref(null);
+  const loading = ref(true);
 
-export function useCurrentSong() {
-    const setCurrentSong = (song) => {
-        currentSong.value = song;
-        isEditMode.value = false; // Reset edit mode when song changes
-    };
+  const resolveSong = () => {
+    if (songId === 'new') {
+      song.value = {
+        title: '',
+        content: '',
+        originalKey: null
+      };
+      if (onSongResolved) onSongResolved(song.value);
+      loading.value = false;
+      return;
+    }
 
-    const clearCurrentSong = () => {
-        currentSong.value = null;
-        isEditMode.value = false;
-    };
+    const foundSong = SongsRepository.getSong(songId);
+    if (foundSong) {
+      song.value = foundSong;
+      if (onSongResolved) onSongResolved(song.value);
+    }
+    loading.value = false;
+  };
 
-    const toggleEditMode = () => {
-        isEditMode.value = !isEditMode.value;
-    };
+  onMounted(() => {
+    if (!SongsRepository.loading.value) {
+      resolveSong();
+    } else {
+      const stopWatch = watch(
+        () => SongsRepository.loading.value,
+        (isLoading) => {
+          if (!isLoading) {
+            resolveSong();
+            stopWatch();
+          }
+        }
+      );
+    }
+  });
 
-    return {
-        currentSong: computed(() => currentSong.value),
-        isEditMode: computed(() => isEditMode.value),
-        setCurrentSong,
-        clearCurrentSong,
-        toggleEditMode,
-        rawIsEditMode: isEditMode // Exposed for v-model binding if needed
-    };
+  return {
+    song,
+    loading
+  };
 }

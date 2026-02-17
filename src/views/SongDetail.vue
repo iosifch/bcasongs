@@ -10,7 +10,7 @@
         rounded="lg"
         style="width: 40px; height: 40px; min-width: 40px;"
       >
-        <v-icon size="25">arrow_back</v-icon>
+        <v-icon size="25" icon="arrow_back"></v-icon>
       </v-btn>
 
       <v-chip
@@ -71,13 +71,13 @@
       data-testid="font-size-btn"
       style="padding: 0;"
     >
-      <v-icon size="25">format_size</v-icon>
+      <v-icon size="25" icon="format_size"></v-icon>
     </v-btn>
 
     <v-btn
       variant="tonal"
       color="surface-variant"
-      @click="handleShare"
+      @click="handleShare(song)"
       title="Share Song"
       class="ml-2"
       density="comfortable"
@@ -89,7 +89,7 @@
       :disabled="isEditMode"
       style="padding: 0;"
     >
-      <v-icon size="25">share</v-icon>
+      <v-icon size="25" icon="share"></v-icon>
     </v-btn>
 
     <v-btn
@@ -117,7 +117,7 @@
       v-if="isAuthenticated"
       variant="tonal"
       :color="songInPlaylist ? 'primary' : 'surface-variant'"
-      @click="handleTogglePlaylist"
+      @click="handleTogglePlaylist(song?.id)"
       class="ml-2"
       title="Toggle Playlist"
       density="comfortable"
@@ -129,7 +129,7 @@
       :disabled="isEditMode"
       style="padding: 0;"
     >
-      <v-icon size="25">{{ songInPlaylist ? 'playlist_remove' : 'playlist_add' }}</v-icon>
+      <v-icon size="25" :icon="songInPlaylist ? 'playlist_remove' : 'playlist_add'"></v-icon>
     </v-btn>
   </v-app-bar>
 
@@ -180,18 +180,18 @@
                 <v-btn
                   size="small"
                   title="Add Above"
-                  @click="addParagraph(pIndex, 'above')"
+                  @click="onAddParagraph(pIndex, 'above')"
                   data-testid="add-above-btn"
                 >
-                  <v-icon>add_row_above</v-icon>
+                  <v-icon icon="add_row_above"></v-icon>
                 </v-btn>
                 <v-btn
                   size="small"
                   title="Add Below"
-                  @click="addParagraph(pIndex, 'below')"
+                  @click="onAddParagraph(pIndex, 'below')"
                   data-testid="add-below-btn"
                 >
-                  <v-icon>add_row_below</v-icon>
+                  <v-icon icon="add_row_below"></v-icon>
                 </v-btn>
                 <v-btn
                   size="small"
@@ -200,7 +200,7 @@
                   @click="removeParagraph(pIndex)"
                   data-testid="delete-paragraph-btn"
                 >
-                  <v-icon>delete</v-icon>
+                  <v-icon icon="delete"></v-icon>
                 </v-btn>
               </v-btn-group>
             </template>
@@ -265,7 +265,7 @@
       </v-col>
     </v-row>
 
-    <v-snackbar v-model="snackbar" :timeout="2000" color="inverse-surface" data-testid="snackbar">
+    <v-snackbar v-model="snackbar" :timeout="2000" color="inverse-surface">
       {{ snackbarText }}
       <template v-slot:actions>
         <v-btn color="inverse-primary" variant="text" @click="snackbar = false">Close</v-btn>
@@ -275,7 +275,7 @@
     <v-dialog v-model="keyDialog" max-width="320">
       <v-card rounded="xl" class="pa-4">
         <v-card-text class="pt-4">
-          <div class="text-center text-h4 mb-6" data-testid="key-preview">
+          <div class="text-center text-h4 mb-6">
             {{ selectedRoot }}{{ selectedAccidental }}{{ selectedQuality }}
           </div>
 
@@ -289,7 +289,6 @@
                 rounded="lg"
                 density="comfortable"
                 menu-icon="arrow_drop_down"
-                data-testid="key-root-select"
               ></v-select>
             </v-col>
             <v-col cols="12">
@@ -305,7 +304,6 @@
                 rounded="lg"
                 density="comfortable"
                 menu-icon="arrow_drop_down"
-                data-testid="key-accidental-select"
               ></v-select>
             </v-col>
             <v-col cols="12">
@@ -320,7 +318,6 @@
                 rounded="lg"
                 density="comfortable"
                 menu-icon="arrow_drop_down"
-                data-testid="key-quality-select"
               ></v-select>
             </v-col>
           </v-row>
@@ -335,32 +332,31 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, onUnmounted, nextTick } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import SongsRepository from '../services/SongsRepository';
-import LyricsService from '../services/LyricsService';
+import { ref, computed, onUnmounted, nextTick } from 'vue';
+import { useRoute } from 'vue-router';
 
-import { useShare } from '../composables/useShare';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useAuth } from '../composables/useAuth';
 import { useSongSettings } from '../composables/useSongSettings';
+import { useSongEditor } from '../composables/useSongEditor';
+import { useKeyManager } from '../composables/useKeyManager';
+import { useSongActions } from '../composables/useSongActions';
+import { useCurrentSong } from '../composables/useCurrentSong';
+import { useAppNavigation } from '../composables/useAppNavigation';
 
 const route = useRoute();
-const router = useRouter();
-const song = ref(null);
-const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
+const { isInPlaylist } = usePlaylist();
 const { isAuthenticated, isAuthenticating } = useAuth();
 const { fontSizeClass, cycleFontSize } = useSongSettings();
+const { goBack } = useAppNavigation();
 
-const isEditMode = ref(false);
-const isSaving = ref(false);
+const { snackbar, snackbarText, handleTogglePlaylist, handleShare } = useSongActions();
+const songId = route.params.id;
+const { song, loading } = useCurrentSong(songId, (resolvedSong) => initializeEditor(resolvedSong));
+const { isEditMode, isSaving, editTitle, paragraphs, initializeEditor, addParagraph, removeParagraph, toggleEditMode } = useSongEditor(song, snackbarText, snackbar);
+const { keyDialog, selectedRoot, selectedAccidental, selectedQuality, openKeyDialog, saveKeyChange } = useKeyManager(song, snackbarText, snackbar);
+
 const songInPlaylist = computed(() => (song.value && song.value.id) ? isInPlaylist(song.value.id) : false);
-const loading = ref(true);
-const paragraphs = ref([]);
-const snackbar = ref(false);
-const snackbarText = ref('');
-const editTitle = ref('');
-const { share } = useShare(); 
 
 const textareaRefs = new Map();
 const setTextareaRef = (el, id) => {
@@ -371,203 +367,16 @@ const setTextareaRef = (el, id) => {
   }
 };
 
-// Key Change Dialog Logic
-const keyDialog = ref(false);
-const selectedRoot = ref('C');
-const selectedAccidental = ref('');
-const selectedQuality = ref('');
-
-const openKeyDialog = () => {
-  if (!song.value) return;
-  
-  // Parse current key: e.g., "C#m" -> root: "C", accidental: "#", quality: "m"
-  const currentKey = song.value.originalKey || 'C';
-  const match = currentKey.match(/^([A-G])([#b]?)(m?)$/);
-  if (match) {
-    selectedRoot.value = match[1];
-    selectedAccidental.value = match[2];
-    selectedQuality.value = match[3];
-  }
-  
-  keyDialog.value = true;
-};
-
-const saveKeyChange = async () => {
-  const newKey = `${selectedRoot.value}${selectedAccidental.value}${selectedQuality.value}`;
-  
-  try {
-    if (route.params.id !== 'new' && song.value.id) {
-      await SongsRepository.save(song.value.id, song.value.content, null, newKey);
-    }
-    song.value.originalKey = newKey;
-    keyDialog.value = false;
-    snackbarText.value = 'Key changed successfully';
-    snackbar.value = true;
-  } catch (error) {
-    console.error('Failed to change key:', error);
-    snackbarText.value = 'Error changing key';
-    snackbar.value = true;
-  }
-};
-
-const handleTogglePlaylist = () => {
-  if (!song.value || !song.value.id) return;
-  const wasInPlaylist = isInPlaylist(song.value.id);
-  togglePlaylist(song.value.id);
-  snackbarText.value = wasInPlaylist ? 'Removed from playlist' : 'Added to playlist';
-  snackbar.value = true;
-};
-
-const handleShare = async () => {
-  if (!song.value || !song.value.id) return;
-  const url = window.location.origin + `/song/${song.value.id}`;
-  const result = await share(song.value.title, url);
-  if (result.copied) {
-    snackbarText.value = 'Link copied to clipboard';
-    snackbar.value = true;
-  }
-};
-
-const goBack = () => {
-  if (window.history.length > 2) {
-    router.back();
-  } else {
-    router.push('/');
-  }
-};
-
-const addParagraph = (index, position) => {
-  const newP = LyricsService.createParagraph('verse');
-  newP.editText = '';
-  const insertAt = position === 'above' ? index : index + 1;
-  paragraphs.value.splice(insertAt, 0, newP);
-
+const onAddParagraph = (index, position) => {
+  const newId = addParagraph(index, position);
   nextTick(() => {
-    const component = textareaRefs.get(newP.id);
+    const component = textareaRefs.get(newId);
     if (component) {
       const target = component.$el?.querySelector('textarea') || component;
       target.focus?.();
     }
   });
 };
-
-const removeParagraph = (index) => {
-  if (paragraphs.value.length > 1) {
-    paragraphs.value.splice(index, 1);
-  }
-};
-
-const toggleEditMode = async () => {
-  if (isEditMode.value) {
-    // Exiting edit mode — cleanup, sync, then save
-    if (song.value && paragraphs.value.length > 0) {
-      // 1. Validation: Title
-      if (!editTitle.value || editTitle.value.trim().length < 3) {
-        snackbarText.value = 'Title must have at least 3 characters';
-        snackbar.value = true;
-        return;
-      }
-
-      // 2. Validation: At least one paragraph must have 3+ characters
-      const validParagraphs = paragraphs.value.filter(p => {
-        const text = (p.editText || '').replace(/\s/g, '');
-        return text.length >= 3;
-      });
-
-      if (validParagraphs.length === 0) {
-        snackbarText.value = 'Each paragraph must have at least 3 characters';
-        snackbar.value = true;
-        return;
-      }
-
-      isSaving.value = true;
-      try {
-        // 3. Cleanup: Remove paragraphs that are too short (less than 3 chars)
-        paragraphs.value = validParagraphs;
-
-        // 4. Sync editText back into structured lines
-        paragraphs.value.forEach((p) => {
-          if (p.editText !== undefined) {
-            LyricsService.syncParagraphLines(p, p.editText);
-          }
-        });
-
-        const newContent = LyricsService.serialize(paragraphs.value);
-        
-        if (route.params.id === 'new') {
-          // Add new song
-          const newId = await SongsRepository.addSong(editTitle.value, newContent, song.value.originalKey);
-          snackbarText.value = 'Song created successfully';
-          snackbar.value = true;
-          router.replace(`/song/${newId}`);
-        } else {
-          // Save existing song
-          await SongsRepository.save(song.value.id, newContent, editTitle.value);
-          song.value.title = editTitle.value;
-          snackbarText.value = 'Changes saved to cloud';
-          snackbar.value = true;
-          isEditMode.value = false;
-        }
-      } catch (error) {
-        console.error('Save failed:', error);
-        snackbarText.value = 'Error saving: ' + (error.code === 'permission-denied' ? 'Permission Denied' : error.message);
-        snackbar.value = true;
-      } finally {
-        isSaving.value = false;
-      }
-    } else {
-      isEditMode.value = false;
-    }
-  } else {
-    // Entering edit mode — populate editText and title
-    editTitle.value = song.value.title;
-    paragraphs.value.forEach((p) => {
-      p.editText = p.lines.map(l => l.text).join('\n');
-    });
-    isEditMode.value = true;
-  }
-};
-
-const resolveSong = () => {
-  const id = route.params.id;
-  if (id === 'new') {
-    song.value = {
-      title: '',
-      content: '',
-      originalKey: null
-    };
-    editTitle.value = '';
-    paragraphs.value = [LyricsService.createParagraph('verse')];
-    paragraphs.value[0].editText = '';
-    isEditMode.value = true;
-    loading.value = false;
-    return;
-  }
-
-  song.value = SongsRepository.getSong(id);
-  if (song.value) {
-    isEditMode.value = false;
-    paragraphs.value = LyricsService.parseToParagraphs(song.value.content);
-  }
-  loading.value = false;
-};
-
-onMounted(() => {
-  SongsRepository.initialize();
-  if (!SongsRepository.loading.value) {
-    resolveSong();
-  } else {
-    const stopWatch = watch(
-      () => SongsRepository.loading.value,
-      (isLoading) => {
-        if (!isLoading) {
-          resolveSong();
-          stopWatch();
-        }
-      }
-    );
-  }
-});
 
 onUnmounted(() => {
     isEditMode.value = false;

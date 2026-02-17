@@ -31,7 +31,7 @@
           :model-value="playlistCount > 0"
           color="primary"
         >
-          <v-icon size="25">queue_music</v-icon>
+          <v-icon size="25" icon="queue_music"></v-icon>
         </v-badge>
       </v-btn>
 
@@ -45,7 +45,6 @@
     </div>
 
     <div v-else>
-      <!-- Main List -->
       <v-row dense>
         <v-col cols="12" v-for="song in filteredSongs" :key="song.id" class="pb-2">
           <SongCard
@@ -86,48 +85,17 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
 import SongsRepository from '../services/SongsRepository';
 import { usePlaylist } from '../composables/usePlaylist';
 import { useAuth } from '../composables/useAuth';
-import { useShare } from '../composables/useShare';
-import { useSearch } from '../composables/useSearch';
+import { useSongActions } from '../composables/useSongActions';
+import { useSongFiltering } from '../composables/useSongFiltering';
 import SongCard from '../components/SongCard.vue';
 import UserAuth from '../components/UserAuth.vue';
 
 const { isAuthenticated, isAuthenticating } = useAuth();
 const songs = SongsRepository.songs;
-const { search } = useSearch();
-const { playlist, togglePlaylist, isInPlaylist } = usePlaylist();
-const { share } = useShare();
-const snackbar = ref(false);
-const snackbarText = ref('');
-
-const playlistCount = computed(() => playlist.value.length);
-
-const handleTogglePlaylist = (songId) => {
-  const wasInPlaylist = isInPlaylist(songId);
-  togglePlaylist(songId);
-  snackbarText.value = wasInPlaylist ? 'Removed from playlist' : 'Added to playlist';
-  snackbar.value = true;
-};
-
-const handleShare = async (song) => {
-  const url = `${window.location.origin}/song/${song.id}`;
-  const result = await share(song.title, url);
-
-  if (result.copied) {
-    snackbarText.value = 'Link copied to clipboard';
-    snackbar.value = true;
-  }
-};
-
-const filteredSongs = computed(() => {
-  if (!search.value) return songs.value;
-  const term = search.value.toLowerCase();
-  return songs.value.filter(song =>
-    song.title.toLowerCase().includes(term) ||
-    song.content.toLowerCase().includes(term)
-  );
-});
+const { isInPlaylist, playlistCount } = usePlaylist();
+const { snackbar, snackbarText, handleTogglePlaylist, handleShare } = useSongActions();
+const { search, filteredSongs } = useSongFiltering(songs);
 </script>

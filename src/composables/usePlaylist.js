@@ -3,6 +3,7 @@ import PlaylistRepository from '../services/PlaylistRepository';
 
 export function usePlaylist() {
   const playlist = computed(() => PlaylistRepository.songIds.value);
+  const playlistCount = computed(() => playlist.value.length);
 
   const togglePlaylist = async (songId) => {
     if (PlaylistRepository.containsSong(songId)) {
@@ -26,6 +27,7 @@ export function usePlaylist() {
 
   return {
     playlist,
+    playlistCount,
     loading: PlaylistRepository.loading,
     error: PlaylistRepository.error,
     togglePlaylist,

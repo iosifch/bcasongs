@@ -55,7 +55,9 @@ All package management commands must be run inside the container:
 ### Code Style & Best Practices
 - **Vue.js**:
   - specifically use the **Composition API** with `<script setup>`.
-  - logic should be extracted into composables or services where possible.
+  - **Separation of Concerns**: Views (`src/views`) must remain "thin" and only contain logic related to **UI orchestration** (routing, lifecycle hooks, connecting data to components).
+  - All **business and domain logic** (validations, data transformations, persistence calls) must be extracted into **composables** or **services**.
+  - This separation ensures that logic can be tested in isolation (pure unit tests) without the overhead of mounting the UI framework.
 - **Vuetify**:
   - Use native Vuetify 3 components (e.g., `<v-card>`, `<v-btn>`) for all UI elements.
   - Follow Material Design principles.

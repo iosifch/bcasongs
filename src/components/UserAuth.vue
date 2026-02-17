@@ -54,7 +54,7 @@
       </v-btn>
     </div>
     
-    <v-snackbar v-model="snackbar" :timeout="3000" color="error">
+    <v-snackbar v-model="snackbar" :timeout="3000" color="error" data-testid="snackbar">
       {{ errorMsg }}
       <template v-slot:actions>
         <v-btn color="white" variant="text" @click="snackbar = false">Close</v-btn>

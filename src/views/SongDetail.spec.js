@@ -1,14 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { mount, flushPromises } from '@vue/test-utils';
-import { ref, computed, defineComponent, h } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { flushPromises } from '@vue/test-utils';
+import { ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import SongDetail from './SongDetail.vue';
 import { useAuth } from '../composables/useAuth';
 import SongsRepository from '../services/SongsRepository';
 import LyricsService from '../services/LyricsService';
-import { VLayout } from 'vuetify/components';
+import { mountWithLayout, getSnackbarText } from '../test-utils';
 
-// 1. Mock Composables
+// -- Mocks --
 vi.mock('../composables/useAuth', () => ({
   useAuth: vi.fn(() => ({
     isAuthenticated: ref(false),
@@ -38,7 +38,6 @@ vi.mock('../composables/useSongSettings', () => ({
   }))
 }));
 
-// 2. Mock Services
 vi.mock('../services/SongsRepository', () => ({
   default: {
     getSong: vi.fn(),
@@ -68,30 +67,42 @@ vi.mock('../services/LyricsService', () => ({
   }
 }));
 
-// 3. Mock Vue Router
-const mockRoute = { params: { id: '1' } };
 const mockRouter = { back: vi.fn(), push: vi.fn(), replace: vi.fn() };
 vi.mock('vue-router', () => ({
-  useRoute: vi.fn(() => mockRoute),
+  useRoute: vi.fn(() => ({ params: { id: '1' } })),
   useRouter: vi.fn(() => mockRouter)
 }));
 
-// Helper to mount with Vuetify Layout context (Standard Wrapper pattern)
-const mountSongDetail = (options = {}) => {
-  const RootComponent = defineComponent({
-    render() {
-      return h(VLayout, null, {
-        default: () => h(SongDetail)
-      })
-    }
-  })
+// -- Shared helpers --
+const setupAuthenticated = () => {
+  useAuth.mockReturnValue({
+    isAuthenticated: computed(() => true),
+    isAuthenticating: ref(false)
+  });
+};
 
-  return mount(RootComponent, options).findComponent(SongDetail)
-}
+const setupUnauthenticated = () => {
+  useAuth.mockReturnValue({
+    isAuthenticated: computed(() => false),
+    isAuthenticating: ref(false)
+  });
+};
+
+const mountAndWait = async () => {
+  const wrapper = mountWithLayout(SongDetail);
+  await flushPromises();
+  return wrapper;
+};
 
 const findEditBtn = (wrapper) => wrapper.find('[data-testid="edit-btn"]');
 const getEditIcon = (wrapper) => findEditBtn(wrapper).findComponent({ name: 'VIcon' }).props('icon');
 
+const enterEditMode = async (wrapper) => {
+  await findEditBtn(wrapper).trigger('click');
+  await flushPromises();
+};
+
+// -- Test suites --
 describe('SongDetail.vue - Key Change', () => {
   const mockSong = {
     id: '1',
@@ -108,13 +119,9 @@ describe('SongDetail.vue - Key Change', () => {
   });
 
   it('shows key as a chip when not authenticated', async () => {
-    useAuth.mockReturnValue({
-      isAuthenticated: computed(() => false),
-      isAuthenticating: ref(false)
-    });
+    setupUnauthenticated();
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
     expect(wrapper.find('[data-testid="key-chip"]').exists()).toBe(true);
     expect(wrapper.find('[data-testid="key-chip"]').text()).toBe('G');
@@ -122,74 +129,80 @@ describe('SongDetail.vue - Key Change', () => {
   });
 
   it('shows key as a button when authenticated', async () => {
-    useAuth.mockReturnValue({
-      isAuthenticated: computed(() => true),
-      isAuthenticating: ref(false)
-    });
+    setupAuthenticated();
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
     expect(wrapper.find('[data-testid="key-btn"]').exists()).toBe(true);
     expect(wrapper.find('[data-testid="key-btn"]').text().trim()).toBe('G');
     expect(wrapper.find('[data-testid="key-chip"]').exists()).toBe(false);
   });
 
-  it('opens dialog and parses key when key button is clicked', async () => {
-    useAuth.mockReturnValue({
-      isAuthenticated: computed(() => true),
-      isAuthenticating: ref(false)
-    });
+  it('opens dialog with note selector when key button is clicked', async () => {
+    setupAuthenticated();
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
     await wrapper.find('[data-testid="key-btn"]').trigger('click');
     await flushPromises();
 
-    expect(document.body.innerHTML).toContain('Note'); 
+    const rootSelect = document.querySelector('[data-testid="key-root-select"]');
+    expect(rootSelect).not.toBeNull();
   });
 
   it('parses complex key correctly when opening dialog', async () => {
     SongsRepository.getSong.mockReturnValue({ ...mockSong, originalKey: 'C#m' });
-    useAuth.mockReturnValue({
-      isAuthenticated: computed(() => true),
-      isAuthenticating: ref(false)
-    });
+    setupAuthenticated();
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
     await wrapper.find('[data-testid="key-btn"]').trigger('click');
     await flushPromises();
 
-    expect(document.body.innerHTML).toContain('C#m');
+    const dialogPreview = document.querySelector('.v-dialog .text-h4');
+    expect(dialogPreview?.textContent?.trim()).toBe('C#m');
   });
 
   it('saves new key via Change button and updates displayed key', async () => {
-    useAuth.mockReturnValue({
-      isAuthenticated: computed(() => true),
-      isAuthenticating: ref(false)
-    });
+    setupAuthenticated();
     SongsRepository.save.mockResolvedValue();
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
     await wrapper.find('[data-testid="key-btn"]').trigger('click');
     await flushPromises();
 
+    // v-select components are teleported to body — direct DOM interaction is impractical,
+    // so we set the reactive values that the selects are bound to
     wrapper.vm.selectedRoot = 'A';
     wrapper.vm.selectedAccidental = 'b';
     wrapper.vm.selectedQuality = 'm';
+    await flushPromises();
 
-    const saveBtn = document.body.querySelector('[data-testid="key-save-btn"]');
+    const saveBtn = document.querySelector('[data-testid="key-save-btn"]');
     saveBtn.click();
     await flushPromises();
 
     expect(SongsRepository.save).toHaveBeenCalledWith('1', mockSong.content, null, 'Abm');
-    expect(document.body.innerHTML).toContain('Key changed successfully');
+    expect(getSnackbarText()).toContain('Key changed successfully');
     expect(wrapper.find('[data-testid="key-btn"]').text().trim()).toBe('Abm');
+  });
+
+  it('shows error snackbar when key change fails', async () => {
+    setupAuthenticated();
+    SongsRepository.save.mockRejectedValue(new Error('Network error'));
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    const wrapper = await mountAndWait();
+
+    await wrapper.find('[data-testid="key-btn"]').trigger('click');
+    await flushPromises();
+
+    const saveBtn = document.querySelector('[data-testid="key-save-btn"]');
+    saveBtn.click();
+    await flushPromises();
+
+    expect(getSnackbarText()).toContain('Error changing key');
   });
 });
 
@@ -211,24 +224,16 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
     SongsRepository.getSong.mockReturnValue(mockSong);
     LyricsService.parseToParagraphs.mockReturnValue([...mockParagraphs.map(p => ({ ...p, lines: [...p.lines] }))]);
     LyricsService.serialize.mockReturnValue('Line 1');
-    useAuth.mockReturnValue({
-      isAuthenticated: computed(() => true),
-      isAuthenticating: ref(false)
-    });
+    setupAuthenticated();
     vi.mocked(useRoute).mockReturnValue({ params: { id: '1' } });
   });
 
-  const findEditBtn = (wrapper) => wrapper.find('[data-testid="edit-btn"]');
-  const getEditIcon = (wrapper) => findEditBtn(wrapper).findComponent({ name: 'VIcon' }).props('icon');
-
   it('enters edit mode when edit button is clicked', async () => {
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
     expect(getEditIcon(wrapper)).toContain('edit_document');
 
-    await findEditBtn(wrapper).trigger('click');
-    await flushPromises();
+    await enterEditMode(wrapper);
 
     expect(getEditIcon(wrapper)).toContain('check');
   });
@@ -236,11 +241,9 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
   it('saves and exits edit mode after successful persistence', async () => {
     SongsRepository.save.mockResolvedValue();
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
-    await findEditBtn(wrapper).trigger('click');
-    await flushPromises();
+    await enterEditMode(wrapper);
     expect(getEditIcon(wrapper)).toContain('check');
 
     await findEditBtn(wrapper).trigger('click');
@@ -249,24 +252,22 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
     expect(LyricsService.serialize).toHaveBeenCalled();
     expect(SongsRepository.save).toHaveBeenCalledWith('1', 'Line 1', 'Test Song');
     expect(getEditIcon(wrapper)).toContain('edit_document');
-    expect(document.body.innerHTML).toContain('Changes saved to cloud');
+    expect(getSnackbarText()).toContain('Changes saved to cloud');
   });
 
   it('stays in edit mode when save fails', async () => {
     SongsRepository.save.mockRejectedValue(new Error('Network error'));
     vi.spyOn(console, 'error').mockImplementation(() => {});
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
-    await findEditBtn(wrapper).trigger('click');
-    await flushPromises();
+    await enterEditMode(wrapper);
 
     await findEditBtn(wrapper).trigger('click');
     await flushPromises();
 
     expect(getEditIcon(wrapper)).toContain('check');
-    expect(document.body.innerHTML).toContain('Error saving');
+    expect(getSnackbarText()).toContain('Error saving');
   });
 
   it('shows permission denied message on permission error', async () => {
@@ -275,27 +276,23 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
     SongsRepository.save.mockRejectedValue(permError);
     vi.spyOn(console, 'error').mockImplementation(() => {});
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
-    await findEditBtn(wrapper).trigger('click');
-    await flushPromises();
+    await enterEditMode(wrapper);
     await findEditBtn(wrapper).trigger('click');
     await flushPromises();
 
     expect(getEditIcon(wrapper)).toContain('check');
-    expect(document.body.innerHTML).toContain('Permission Denied');
+    expect(getSnackbarText()).toContain('Permission Denied');
   });
 
   it('disables edit button while saving', async () => {
     let resolverFn;
     SongsRepository.save.mockImplementation(() => new Promise(resolve => { resolverFn = resolve; }));
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
-    await findEditBtn(wrapper).trigger('click');
-    await flushPromises();
+    await enterEditMode(wrapper);
     expect(findEditBtn(wrapper).classes()).not.toContain('v-btn--disabled');
 
     const exitPromise = wrapper.vm.toggleEditMode();
@@ -312,23 +309,19 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
   });
 
   it('shows textareas when edit mode is active', async () => {
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
     expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(0);
 
-    await findEditBtn(wrapper).trigger('click');
-    await flushPromises();
+    await enterEditMode(wrapper);
 
     expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(1);
   });
 
   it('textarea contains paragraph text when entering edit mode', async () => {
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
-    await findEditBtn(wrapper).trigger('click');
-    await flushPromises();
+    await enterEditMode(wrapper);
 
     const textarea = wrapper.find('[data-testid="lyrics-textarea"] textarea');
     expect(textarea.element.value).toBe('Line 1');
@@ -337,11 +330,9 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
   it('saves modified textarea content', async () => {
     SongsRepository.save.mockResolvedValue();
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
-    await findEditBtn(wrapper).trigger('click');
-    await flushPromises();
+    await enterEditMode(wrapper);
 
     const textarea = wrapper.find('[data-testid="lyrics-textarea"] textarea');
     await textarea.setValue('Modified Line 1\nNew Line 2');
@@ -365,11 +356,9 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
   it('hides textareas after exiting edit mode', async () => {
     SongsRepository.save.mockResolvedValue();
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
-    await findEditBtn(wrapper).trigger('click');
-    await flushPromises();
+    await enterEditMode(wrapper);
     expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(1);
 
     await findEditBtn(wrapper).trigger('click');
@@ -378,14 +367,12 @@ describe('SongDetail.vue - Edit Mode Save Flow', () => {
   });
 
   it('disables font size button in edit mode', async () => {
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
     const fontSizeBtn = wrapper.find('[data-testid="font-size-btn"]');
     expect(fontSizeBtn.classes()).not.toContain('v-btn--disabled');
 
-    await findEditBtn(wrapper).trigger('click');
-    await flushPromises();
+    await enterEditMode(wrapper);
 
     expect(fontSizeBtn.classes()).toContain('v-btn--disabled');
   });
@@ -402,16 +389,13 @@ describe('SongDetail.vue - Paragraph Management', () => {
     vi.clearAllMocks();
     SongsRepository.getSong.mockReturnValue(mockSong);
     LyricsService.parseToParagraphs.mockReturnValue([...mockParagraphs.map(p => ({ ...p, lines: [...p.lines] }))]);
-    useAuth.mockReturnValue({ isAuthenticated: computed(() => true), isAuthenticating: ref(false) });
+    setupAuthenticated();
     vi.mocked(useRoute).mockReturnValue({ params: { id: '1' } });
   });
 
   it('adds a paragraph above the current one', async () => {
-    const wrapper = mountSongDetail();
-    await flushPromises();
-
-    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
-    await flushPromises();
+    const wrapper = await mountAndWait();
+    await enterEditMode(wrapper);
 
     expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(2);
 
@@ -424,11 +408,8 @@ describe('SongDetail.vue - Paragraph Management', () => {
   });
 
   it('adds a paragraph below the current one', async () => {
-    const wrapper = mountSongDetail();
-    await flushPromises();
-
-    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
-    await flushPromises();
+    const wrapper = await mountAndWait();
+    await enterEditMode(wrapper);
 
     await wrapper.findAll('[data-testid="add-below-btn"]')[0].trigger('click');
     await flushPromises();
@@ -439,11 +420,8 @@ describe('SongDetail.vue - Paragraph Management', () => {
   });
 
   it('removes a paragraph', async () => {
-    const wrapper = mountSongDetail();
-    await flushPromises();
-
-    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
-    await flushPromises();
+    const wrapper = await mountAndWait();
+    await enterEditMode(wrapper);
 
     expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(2);
 
@@ -456,30 +434,25 @@ describe('SongDetail.vue - Paragraph Management', () => {
 
   it('disables delete button if only one paragraph remains', async () => {
     LyricsService.parseToParagraphs.mockReturnValue([{ id: 'p1', type: 'verse', lines: [] }]);
-    const wrapper = mountSongDetail();
-    await flushPromises();
-
-    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
-    await flushPromises();
+    const wrapper = await mountAndWait();
+    await enterEditMode(wrapper);
 
     const deleteBtn = wrapper.find('[data-testid="delete-paragraph-btn"]');
     expect(deleteBtn.classes()).toContain('v-btn--disabled');
   });
 
   it('allows editing and saving the song title', async () => {
-    const wrapper = mountSongDetail();
-    await flushPromises();
-
-    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
-    await flushPromises();
+    SongsRepository.save.mockResolvedValue();
+    const wrapper = await mountAndWait();
+    await enterEditMode(wrapper);
 
     const titleInput = wrapper.find('[data-testid="title-input"] input');
     expect(titleInput.exists()).toBe(true);
-    
+
     await titleInput.setValue('New Updated Title');
     await flushPromises();
 
-    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await findEditBtn(wrapper).trigger('click');
     await flushPromises();
 
     expect(SongsRepository.save).toHaveBeenCalledWith(
@@ -490,20 +463,17 @@ describe('SongDetail.vue - Paragraph Management', () => {
   });
 
   it('prevents saving if title is too short', async () => {
-    const wrapper = mountSongDetail();
-    await flushPromises();
-
-    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
-    await flushPromises();
+    const wrapper = await mountAndWait();
+    await enterEditMode(wrapper);
 
     const titleInput = wrapper.find('[data-testid="title-input"] input');
-    await titleInput.setValue('Ab'); 
+    await titleInput.setValue('Ab');
     await flushPromises();
 
-    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await findEditBtn(wrapper).trigger('click');
     await flushPromises();
 
-    expect(document.body.innerHTML).toContain('Title must have at least 3 characters');
+    expect(getSnackbarText()).toContain('Title must have at least 3 characters');
     expect(getEditIcon(wrapper)).toContain('check');
   });
 
@@ -513,16 +483,13 @@ describe('SongDetail.vue - Paragraph Management', () => {
       { id: 'p2', type: 'verse', lines: [{ text: '2', isSpacer: false }] }
     ]);
 
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
+    await enterEditMode(wrapper);
 
     await findEditBtn(wrapper).trigger('click');
     await flushPromises();
 
-    await findEditBtn(wrapper).trigger('click');
-    await flushPromises();
-
-    expect(document.body.innerHTML).toContain('Each paragraph must have at least 3 characters');
+    expect(getSnackbarText()).toContain('Each paragraph must have at least 3 characters');
     expect(getEditIcon(wrapper)).toContain('check');
   });
 });
@@ -530,16 +497,12 @@ describe('SongDetail.vue - Paragraph Management', () => {
 describe('SongDetail.vue - Add New Song Flow', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    useAuth.mockReturnValue({
-      isAuthenticated: computed(() => true),
-      isAuthenticating: ref(false)
-    });
+    setupAuthenticated();
     vi.mocked(useRoute).mockReturnValue({ params: { id: 'new' } });
   });
 
   it('initializes with empty state and edit mode active for new songs', async () => {
-    const wrapper = mountSongDetail();
-    await flushPromises();
+    const wrapper = await mountAndWait();
 
     expect(wrapper.find('[data-testid="title-input"]').exists()).toBe(true);
     expect(wrapper.findAll('[data-testid="lyrics-textarea"]')).toHaveLength(1);
@@ -549,18 +512,35 @@ describe('SongDetail.vue - Add New Song Flow', () => {
   it('saves new song and redirects to its detail page', async () => {
     SongsRepository.addSong.mockResolvedValue('new-id-123');
     LyricsService.serialize.mockReturnValue('Line 1\nLine 2');
-    
-    const wrapper = mountSongDetail();
-    await flushPromises();
+
+    const wrapper = await mountAndWait();
 
     await wrapper.find('[data-testid="title-input"] input').setValue('Brand New Song');
     await wrapper.find('[data-testid="lyrics-textarea"] textarea').setValue('Line 1\nLine 2');
     await flushPromises();
 
-    await wrapper.find('[data-testid="edit-btn"]').trigger('click');
+    await findEditBtn(wrapper).trigger('click');
     await flushPromises();
 
     expect(SongsRepository.addSong).toHaveBeenCalledWith('Brand New Song', 'Line 1\nLine 2', null);
     expect(mockRouter.replace).toHaveBeenCalledWith('/song/new-id-123');
+  });
+
+  it('shows error snackbar when adding a new song fails', async () => {
+    SongsRepository.addSong.mockRejectedValue(new Error('Firestore write failed'));
+    LyricsService.serialize.mockReturnValue('Some lyrics');
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    const wrapper = await mountAndWait();
+
+    await wrapper.find('[data-testid="title-input"] input').setValue('New Song Title');
+    await wrapper.find('[data-testid="lyrics-textarea"] textarea').setValue('Some lyrics');
+    await flushPromises();
+
+    await findEditBtn(wrapper).trigger('click');
+    await flushPromises();
+
+    expect(getSnackbarText()).toContain('Error saving');
+    expect(getEditIcon(wrapper)).toContain('check');
   });
 });

@@ -2,6 +2,7 @@
  * @vitest-environment happy-dom
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { nextTick } from 'vue';
 import { useSongSettings } from './useSongSettings';
 
 describe('useSongSettings', () => {
@@ -24,29 +25,23 @@ describe('useSongSettings', () => {
     it('persists font size to localStorage when changed', async () => {
         const { fontSizeLevel, cycleFontSize } = useSongSettings();
 
-        // Initial state 0
         expect(fontSizeLevel.value).toBe(0);
 
-        // Initial save might not happen immediately depending on watch timing, 
-        // but let's trigger a change
         cycleFontSize(); // 0 -> 1
+        await nextTick();
 
-        // Watchers in Vue composition API run synchronously by default for simple refs in some contexts, 
-        // but safe to check after NextTick or just check simply here as it's a unit test environment.
-        // However, explicit waiting might be needed if using `flushPromises`.
-        // For simple ref watcher, it should be immediate in this synchronous test flow or need await nextTick.
-        // Let's verify value first.
         expect(fontSizeLevel.value).toBe(1);
+        expect(localStorage.getItem('bcasongs_fontSizeLevel')).toBe('1');
 
-        // Verify localStorage
-        // Note: In some test envs watch might need await nextTick(). 
-        // But let's try direct check.
-        // If this fails, we might need `await nextTick()`.
+        cycleFontSize(); // 1 -> 2
+        await nextTick();
+
+        expect(localStorage.getItem('bcasongs_fontSizeLevel')).toBe('2');
     });
 
-    it('cycles font size correctly', () => {
+    it('cycles font size correctly: 0 -> 1 -> 2 -> 0', () => {
         const { fontSizeLevel, cycleFontSize } = useSongSettings();
-        // 0 -> 1 -> 2 -> 0
+
         expect(fontSizeLevel.value).toBe(0);
         cycleFontSize();
         expect(fontSizeLevel.value).toBe(1);
@@ -54,5 +49,15 @@ describe('useSongSettings', () => {
         expect(fontSizeLevel.value).toBe(2);
         cycleFontSize();
         expect(fontSizeLevel.value).toBe(0);
+    });
+
+    it('returns the correct fontSizeClass for each level', () => {
+        const { fontSizeClass, cycleFontSize } = useSongSettings();
+
+        expect(fontSizeClass.value).toBe('lyrics-text-1');
+        cycleFontSize();
+        expect(fontSizeClass.value).toBe('lyrics-text-2');
+        cycleFontSize();
+        expect(fontSizeClass.value).toBe('lyrics-text-3');
     });
 });

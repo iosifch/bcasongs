@@ -265,7 +265,7 @@
       </v-col>
     </v-row>
 
-    <v-snackbar v-model="snackbar" :timeout="2000" color="inverse-surface">
+    <v-snackbar v-model="snackbar" :timeout="2000" color="inverse-surface" data-testid="snackbar">
       {{ snackbarText }}
       <template v-slot:actions>
         <v-btn color="inverse-primary" variant="text" @click="snackbar = false">Close</v-btn>
@@ -289,6 +289,7 @@
                 rounded="lg"
                 density="comfortable"
                 menu-icon="arrow_drop_down"
+                data-testid="key-root-select"
               ></v-select>
             </v-col>
             <v-col cols="12">
@@ -304,6 +305,7 @@
                 rounded="lg"
                 density="comfortable"
                 menu-icon="arrow_drop_down"
+                data-testid="key-accidental-select"
               ></v-select>
             </v-col>
             <v-col cols="12">
@@ -318,6 +320,7 @@
                 rounded="lg"
                 density="comfortable"
                 menu-icon="arrow_drop_down"
+                data-testid="key-quality-select"
               ></v-select>
             </v-col>
           </v-row>

@@ -4,9 +4,9 @@ import { VLayout } from 'vuetify/components'
 
 /**
  * Standard helper to wrap components in VLayout for Vuetify 3 layout injection.
+ * Use this for all component tests that need Vuetify layout context.
  */
 export function mountWithLayout(component, options = {}) {
-  // We wrap the component in another component that provides the layout context
   const RootComponent = defineComponent({
     render() {
       return h(VLayout, null, {
@@ -24,6 +24,15 @@ export function mountWithLayout(component, options = {}) {
 
   return mount(RootComponent, {
     ...options,
-    // We must ensure the component itself is accessible for findComponent
   }).findComponent(component)
+}
+
+/**
+ * Helper to find a snackbar's text content from the teleported DOM.
+ * Vuetify teleports snackbars to document.body, so we query the DOM directly
+ * via a data-testid attribute instead of using document.body.innerHTML.
+ */
+export function getSnackbarText() {
+  const snackbar = document.querySelector('[data-testid="snackbar"]');
+  return snackbar?.textContent?.trim() ?? '';
 }

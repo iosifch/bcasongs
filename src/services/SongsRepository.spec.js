@@ -1,16 +1,15 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import SongsRepository from './SongsRepository';
 
-// Mock dependencies
 const mockOnSnapshot = vi.fn();
 const mockAddDoc = vi.fn();
 const mockUpdateDoc = vi.fn();
 const mockDeleteDoc = vi.fn();
-const mockCollection = vi.fn();
-const mockDoc = vi.fn();
+const mockCollection = vi.fn(() => ({ _type: 'mock-collection-ref' }));
+const mockDoc = vi.fn((db, collection, id) => ({ _path: `${collection}/${id}` }));
 
 vi.mock('../firebaseConfig', () => ({
-  db: {}
+  db: { _type: 'mock-db' }
 }));
 
 vi.mock('firebase/firestore', () => ({
@@ -31,12 +30,15 @@ describe('SongsRepository', () => {
   describe('initialize', () => {
     it('should subscribe to songs collection', () => {
       SongsRepository.initialize();
-      expect(mockCollection).toHaveBeenCalled(); // checks if collection() was called
-      expect(mockOnSnapshot).toHaveBeenCalled(); // checks if onSnapshot() was called
+      expect(mockCollection).toHaveBeenCalledWith(expect.anything(), 'songs');
+      expect(mockOnSnapshot).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.any(Function),
+        expect.any(Function)
+      );
     });
 
     it('should update songs state when snapshot triggers', () => {
-      // Setup mock implementation for onSnapshot to trigger the callback immediately
       mockOnSnapshot.mockImplementation((collection, callback) => {
         const mockSnapshot = {
           docs: [
@@ -45,46 +47,76 @@ describe('SongsRepository', () => {
           ]
         };
         callback(mockSnapshot);
-        return vi.fn(); // unsubscribe function
+        return vi.fn();
       });
 
       SongsRepository.initialize();
 
       expect(SongsRepository.songs.value).toHaveLength(2);
       expect(SongsRepository.songs.value[0]).toEqual({ id: '1', title: 'Song 1' });
+      expect(SongsRepository.songs.value[1]).toEqual({ id: '2', title: 'Song 2' });
       expect(SongsRepository.loading.value).toBe(false);
     });
   });
 
   describe('CRUD Operations', () => {
-    it('addSong should call addDoc', async () => {
+    it('addSong should call addDoc with correct payload and return new id', async () => {
       mockAddDoc.mockResolvedValue({ id: 'new-id-123' });
       const id = await SongsRepository.addSong('New Song', 'Lyrics', 'G');
-      expect(mockAddDoc).toHaveBeenCalledWith(undefined, expect.objectContaining({
-        title: 'New Song',
-        content: 'Lyrics',
-        originalKey: 'G'
-      }));
+
+      expect(mockAddDoc).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.objectContaining({
+          title: 'New Song',
+          content: 'Lyrics',
+          originalKey: 'G'
+        })
+      );
       expect(id).toBe('new-id-123');
     });
 
-    it('save (update) should call updateDoc', async () => {
+    it('save should update content and title for the correct document', async () => {
       await SongsRepository.save('123', 'New Lyrics', 'New Title');
-      expect(mockDoc).toHaveBeenCalled();
-      expect(mockUpdateDoc).toHaveBeenCalled();
+
+      expect(mockDoc).toHaveBeenCalledWith(expect.anything(), 'songs', '123');
+      expect(mockUpdateDoc).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.objectContaining({
+          content: 'New Lyrics',
+          title: 'New Title',
+          updatedAt: 'timestamp'
+        })
+      );
     });
 
-    it('save (update) should include originalKey if provided', async () => {
-      await SongsRepository.save('123', 'Lyrics', null, 'C#m');
-      expect(mockUpdateDoc).toHaveBeenCalledWith(undefined, expect.objectContaining({
-        originalKey: 'C#m'
-      }));
+    it('save should include originalKey in the update payload when provided', async () => {
+      await SongsRepository.save('456', 'Lyrics', null, 'C#m');
+
+      expect(mockDoc).toHaveBeenCalledWith(expect.anything(), 'songs', '456');
+      expect(mockUpdateDoc).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.objectContaining({
+          originalKey: 'C#m',
+          updatedAt: 'timestamp'
+        })
+      );
     });
 
-    it('deleteSong should call deleteDoc', async () => {
+    it('save should not include title in payload when title is null', async () => {
+      await SongsRepository.save('789', 'Lyrics', null);
+
+      const updatePayload = mockUpdateDoc.mock.calls[0][1];
+      expect(updatePayload).not.toHaveProperty('title');
+      expect(updatePayload.content).toBe('Lyrics');
+    });
+
+    it('deleteSong should delete the correct document', async () => {
       await SongsRepository.deleteSong('123');
-      expect(mockDoc).toHaveBeenCalled();
-      expect(mockDeleteDoc).toHaveBeenCalled();
+
+      expect(mockDoc).toHaveBeenCalledWith(expect.anything(), 'songs', '123');
+      expect(mockDeleteDoc).toHaveBeenCalledWith(expect.objectContaining({
+        _path: 'songs/123'
+      }));
     });
   });
 });

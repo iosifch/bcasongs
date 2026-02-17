@@ -4,7 +4,7 @@ import PlaylistRepository from './PlaylistRepository';
 const mockOnSnapshot = vi.fn();
 const mockUpdateDoc = vi.fn();
 const mockSetDoc = vi.fn();
-const mockDoc = vi.fn();
+const mockDoc = vi.fn(() => ({ _type: 'mock-doc-ref' }));
 const mockArrayUnion = vi.fn(val => ({ type: 'arrayUnion', val }));
 const mockArrayRemove = vi.fn(val => ({ type: 'arrayRemove', val }));
 
@@ -31,17 +31,20 @@ describe('PlaylistRepository', () => {
     describe('initialize', () => {
         it('should subscribe to the shared playlist document', () => {
             PlaylistRepository.initialize();
-            expect(mockDoc).toHaveBeenCalled();
-            expect(mockOnSnapshot).toHaveBeenCalled();
+            expect(mockDoc).toHaveBeenCalledWith(expect.anything(), 'playlists', 'shared');
+            expect(mockOnSnapshot).toHaveBeenCalledWith(
+                expect.anything(),
+                expect.any(Function),
+                expect.any(Function)
+            );
         });
 
         it('should populate songIds when snapshot triggers', () => {
             mockOnSnapshot.mockImplementation((docRef, callback) => {
-                const mockSnapshot = {
+                callback({
                     exists: () => true,
                     data: () => ({ songIds: ['song1', 'song2'] })
-                };
-                callback(mockSnapshot);
+                });
                 return vi.fn();
             });
 
@@ -53,11 +56,10 @@ describe('PlaylistRepository', () => {
 
         it('should handle empty playlist document', () => {
             mockOnSnapshot.mockImplementation((docRef, callback) => {
-                const mockSnapshot = {
+                callback({
                     exists: () => false,
                     data: () => null
-                };
-                callback(mockSnapshot);
+                });
                 return vi.fn();
             });
 
@@ -69,7 +71,7 @@ describe('PlaylistRepository', () => {
     });
 
     describe('containsSong', () => {
-        it('should return true if song is in playlist', () => {
+        it('should return true if song is in playlist and false otherwise', () => {
             mockOnSnapshot.mockImplementation((docRef, callback) => {
                 callback({
                     exists: () => true,
@@ -85,26 +87,54 @@ describe('PlaylistRepository', () => {
     });
 
     describe('write operations', () => {
-        it('addSongToPlaylist should call updateDoc with arrayUnion', async () => {
+        it('addSongToPlaylist should call updateDoc with arrayUnion payload', async () => {
             await PlaylistRepository.addSongToPlaylist('song1');
-            expect(mockUpdateDoc).toHaveBeenCalled();
-            expect(mockArrayUnion).toHaveBeenCalledWith('song1');
+
+            expect(mockUpdateDoc).toHaveBeenCalledWith(
+                expect.anything(),
+                expect.objectContaining({
+                    songIds: { type: 'arrayUnion', val: 'song1' },
+                    updatedAt: 'timestamp'
+                })
+            );
         });
 
-        it('removeSongFromPlaylist should call updateDoc with arrayRemove', async () => {
+        it('removeSongFromPlaylist should call updateDoc with arrayRemove payload', async () => {
             await PlaylistRepository.removeSongFromPlaylist('song1');
-            expect(mockUpdateDoc).toHaveBeenCalled();
-            expect(mockArrayRemove).toHaveBeenCalledWith('song1');
+
+            expect(mockUpdateDoc).toHaveBeenCalledWith(
+                expect.anything(),
+                expect.objectContaining({
+                    songIds: { type: 'arrayRemove', val: 'song1' },
+                    updatedAt: 'timestamp'
+                })
+            );
         });
 
-        it('reorderSongsInPlaylist should call setDoc with new order', async () => {
+        it('reorderSongsInPlaylist should persist the new order via setDoc', async () => {
             await PlaylistRepository.reorderSongsInPlaylist(['song2', 'song1']);
-            expect(mockSetDoc).toHaveBeenCalled();
+
+            expect(mockSetDoc).toHaveBeenCalledWith(
+                expect.anything(),
+                expect.objectContaining({
+                    songIds: ['song2', 'song1'],
+                    updatedAt: 'timestamp'
+                }),
+                { merge: true }
+            );
         });
 
-        it('replaceAllSongsInPlaylist should call setDoc with new ids', async () => {
+        it('replaceAllSongsInPlaylist should persist the new ids via setDoc', async () => {
             await PlaylistRepository.replaceAllSongsInPlaylist(['song3', 'song4']);
-            expect(mockSetDoc).toHaveBeenCalled();
+
+            expect(mockSetDoc).toHaveBeenCalledWith(
+                expect.anything(),
+                expect.objectContaining({
+                    songIds: ['song3', 'song4'],
+                    updatedAt: 'timestamp'
+                }),
+                { merge: true }
+            );
         });
     });
 });

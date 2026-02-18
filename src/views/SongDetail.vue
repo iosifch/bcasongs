@@ -13,6 +13,10 @@
         <v-icon size="25" icon="chevron_left"></v-icon>
       </v-btn>
 
+      <v-app-bar-title class="text-h7 font-weight-regular text-truncate ml-0 pl-0">
+        {{ song?.title }}
+      </v-app-bar-title>
+
   </v-app-bar>
 
   <v-app-bar location="bottom" flat color="background" class="px-2" scroll-behavior="hide" scroll-threshold="150">

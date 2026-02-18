@@ -92,6 +92,8 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'SongList' });
+
 import { ref, watch } from 'vue';
 import { useAuth } from '../composables/useAuth';
 import { usePlaylist } from '../composables/usePlaylist';

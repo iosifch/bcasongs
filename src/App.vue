@@ -1,7 +1,11 @@
 <template>
   <v-app>
     <v-main>
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <keep-alive include="SongList">
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </v-main>
   </v-app>
 </template>

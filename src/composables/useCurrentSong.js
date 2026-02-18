@@ -1,11 +1,11 @@
-import { ref, watch, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import SongsRepository from '../services/SongsRepository';
 
 export function useCurrentSong(songId, onSongResolved) {
   const song = ref(null);
   const loading = ref(true);
 
-  const resolveSong = () => {
+  onMounted(async () => {
     if (songId === 'new') {
       song.value = {
         title: '',
@@ -17,28 +17,12 @@ export function useCurrentSong(songId, onSongResolved) {
       return;
     }
 
-    const foundSong = SongsRepository.getSong(songId);
-    if (foundSong) {
-      song.value = foundSong;
+    const found = await SongsRepository.getSong(songId);
+    if (found) {
+      song.value = found;
       if (onSongResolved) onSongResolved(song.value);
     }
     loading.value = false;
-  };
-
-  onMounted(() => {
-    if (!SongsRepository.loading.value) {
-      resolveSong();
-    } else {
-      const stopWatch = watch(
-        () => SongsRepository.loading.value,
-        (isLoading) => {
-          if (!isLoading) {
-            resolveSong();
-            stopWatch();
-          }
-        }
-      );
-    }
   });
 
   return {

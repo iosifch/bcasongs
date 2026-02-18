@@ -1,12 +1,17 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import SongsRepository from './SongsRepository';
 
-const mockOnSnapshot = vi.fn();
+const mockGetDocs = vi.fn();
+const mockGetDoc = vi.fn();
+const mockQuery = vi.fn((...args) => ({ _type: 'mock-query', args }));
+const mockOrderBy = vi.fn((...args) => ({ _type: 'mock-orderBy', args }));
+const mockLimit = vi.fn((...args) => ({ _type: 'mock-limit', args }));
+const mockStartAfter = vi.fn((...args) => ({ _type: 'mock-startAfter', args }));
 const mockAddDoc = vi.fn();
 const mockUpdateDoc = vi.fn();
 const mockDeleteDoc = vi.fn();
 const mockCollection = vi.fn(() => ({ _type: 'mock-collection-ref' }));
-const mockDoc = vi.fn((db, collection, id) => ({ _path: `${collection}/${id}` }));
+const mockDoc = vi.fn((db, coll, id) => ({ _path: `${coll}/${id}` }));
 
 vi.mock('../firebaseConfig', () => ({
   db: { _type: 'mock-db' }
@@ -14,7 +19,12 @@ vi.mock('../firebaseConfig', () => ({
 
 vi.mock('firebase/firestore', () => ({
   collection: (...args) => mockCollection(...args),
-  onSnapshot: (...args) => mockOnSnapshot(...args),
+  getDocs: (...args) => mockGetDocs(...args),
+  getDoc: (...args) => mockGetDoc(...args),
+  query: (...args) => mockQuery(...args),
+  orderBy: (...args) => mockOrderBy(...args),
+  limit: (...args) => mockLimit(...args),
+  startAfter: (...args) => mockStartAfter(...args),
   addDoc: (...args) => mockAddDoc(...args),
   updateDoc: (...args) => mockUpdateDoc(...args),
   deleteDoc: (...args) => mockDeleteDoc(...args),
@@ -22,40 +32,139 @@ vi.mock('firebase/firestore', () => ({
   serverTimestamp: () => 'timestamp'
 }));
 
+const makeDocs = (items) => items.map(item => ({
+  id: item.id,
+  data: () => {
+    const { id, ...rest } = item;
+    return rest;
+  }
+}));
+
 describe('SongsRepository', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    SongsRepository.stop();
   });
 
   describe('initialize', () => {
-    it('should subscribe to songs collection', () => {
-      SongsRepository.initialize();
-      expect(mockCollection).toHaveBeenCalledWith(expect.anything(), 'songs');
-      expect(mockOnSnapshot).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.any(Function),
-        expect.any(Function)
-      );
-    });
-
-    it('should update songs state when snapshot triggers', () => {
-      mockOnSnapshot.mockImplementation((collection, callback) => {
-        const mockSnapshot = {
-          docs: [
-            { id: '1', data: () => ({ title: 'Song 1' }) },
-            { id: '2', data: () => ({ title: 'Song 2' }) }
-          ]
-        };
-        callback(mockSnapshot);
-        return vi.fn();
+    it('should fetch first page of songs', async () => {
+      mockGetDocs.mockResolvedValueOnce({
+        docs: makeDocs([
+          { id: '1', title: 'Song 1' },
+          { id: '2', title: 'Song 2' }
+        ])
       });
 
-      SongsRepository.initialize();
+      await SongsRepository.initialize();
 
+      expect(mockCollection).toHaveBeenCalledWith(expect.anything(), 'songs');
+      expect(mockQuery).toHaveBeenCalled();
+      expect(mockOrderBy).toHaveBeenCalledWith('title');
+      expect(mockLimit).toHaveBeenCalledWith(20);
       expect(SongsRepository.songs.value).toHaveLength(2);
       expect(SongsRepository.songs.value[0]).toEqual({ id: '1', title: 'Song 1' });
-      expect(SongsRepository.songs.value[1]).toEqual({ id: '2', title: 'Song 2' });
       expect(SongsRepository.loading.value).toBe(false);
+      expect(SongsRepository.fullyLoaded.value).toBe(true);
+    });
+
+    it('should paginate when first page is full', async () => {
+      const firstPage = makeDocs(
+        Array.from({ length: 20 }, (_, i) => ({ id: `${i}`, title: `Song ${i}` }))
+      );
+      const secondPage = makeDocs([
+        { id: '20', title: 'Song 20' },
+        { id: '21', title: 'Song 21' }
+      ]);
+
+      mockGetDocs
+        .mockResolvedValueOnce({ docs: firstPage })
+        .mockResolvedValueOnce({ docs: secondPage });
+
+      await SongsRepository.initialize();
+
+      expect(mockGetDocs).toHaveBeenCalledTimes(2);
+      expect(mockStartAfter).toHaveBeenCalled();
+      expect(SongsRepository.songs.value).toHaveLength(22);
+      expect(SongsRepository.fullyLoaded.value).toBe(true);
+    });
+
+    it('should set loading to false after first page', async () => {
+      const firstPage = makeDocs(
+        Array.from({ length: 20 }, (_, i) => ({ id: `${i}`, title: `Song ${i}` }))
+      );
+
+      let resolveSecondPage;
+      mockGetDocs
+        .mockResolvedValueOnce({ docs: firstPage })
+        .mockImplementationOnce(() => new Promise(resolve => { resolveSecondPage = resolve; }));
+
+      const initPromise = SongsRepository.initialize();
+
+      // Wait for first page to resolve
+      await vi.waitFor(() => {
+        expect(SongsRepository.loading.value).toBe(false);
+      });
+
+      expect(SongsRepository.songs.value).toHaveLength(20);
+      expect(SongsRepository.fullyLoaded.value).toBe(false);
+
+      // Resolve second page
+      resolveSecondPage({ docs: [] });
+      await initPromise;
+
+      expect(SongsRepository.fullyLoaded.value).toBe(true);
+    });
+
+    it('should handle errors', async () => {
+      mockGetDocs.mockRejectedValueOnce(new Error('Network error'));
+
+      await SongsRepository.initialize();
+
+      expect(SongsRepository.error.value).toBe('Network error');
+      expect(SongsRepository.loading.value).toBe(false);
+    });
+  });
+
+  describe('getSong', () => {
+    it('should return a song from local cache', async () => {
+      mockGetDocs.mockResolvedValueOnce({
+        docs: makeDocs([
+          { id: '1', title: 'Song 1' },
+          { id: '2', title: 'Song 2' }
+        ])
+      });
+
+      await SongsRepository.initialize();
+
+      const song = await SongsRepository.getSong('2');
+      expect(song).toEqual({ id: '2', title: 'Song 2' });
+      expect(mockGetDoc).not.toHaveBeenCalled();
+    });
+
+    it('should fetch from Firestore when not in local cache', async () => {
+      mockGetDoc.mockResolvedValueOnce({
+        exists: () => true,
+        id: 'remote-1',
+        data: () => ({ title: 'Remote Song' })
+      });
+
+      const song = await SongsRepository.getSong('remote-1');
+
+      expect(mockGetDoc).toHaveBeenCalled();
+      expect(mockDoc).toHaveBeenCalledWith(expect.anything(), 'songs', 'remote-1');
+      expect(song).toEqual({ id: 'remote-1', title: 'Remote Song' });
+      // Should be added to local cache
+      expect(SongsRepository.songs.value).toContainEqual({ id: 'remote-1', title: 'Remote Song' });
+    });
+
+    it('should return null when song does not exist in Firestore', async () => {
+      mockGetDoc.mockResolvedValueOnce({
+        exists: () => false
+      });
+
+      const song = await SongsRepository.getSong('non-existent');
+
+      expect(song).toBeNull();
     });
   });
 
@@ -117,43 +226,6 @@ describe('SongsRepository', () => {
       expect(mockDeleteDoc).toHaveBeenCalledWith(expect.objectContaining({
         _path: 'songs/123'
       }));
-    });
-  });
-
-  describe('getSong', () => {
-    beforeEach(() => {
-      SongsRepository.stop();
-    });
-
-    it('should return the correct song by ID', () => {
-      mockOnSnapshot.mockImplementation((collection, callback) => {
-        callback({
-          docs: [
-            { id: '1', data: () => ({ title: 'Song 1' }) },
-            { id: '2', data: () => ({ title: 'Song 2' }) }
-          ]
-        });
-        return vi.fn();
-      });
-
-      SongsRepository.initialize();
-
-      expect(SongsRepository.getSong('2')).toEqual({ id: '2', title: 'Song 2' });
-    });
-
-    it('should return undefined for a non-existent song ID', () => {
-      mockOnSnapshot.mockImplementation((collection, callback) => {
-        callback({
-          docs: [
-            { id: '1', data: () => ({ title: 'Song 1' }) }
-          ]
-        });
-        return vi.fn();
-      });
-
-      SongsRepository.initialize();
-
-      expect(SongsRepository.getSong('non-existent')).toBeUndefined();
     });
   });
 });

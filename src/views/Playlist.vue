@@ -20,7 +20,7 @@
 
   <div>
     <v-container fluid class="pa-3">
-      <div v-if="SongsRepository.loading.value && playlistModel.length === 0" class="d-flex justify-center my-4">
+      <div v-if="loading && playlistModel.length === 0" class="d-flex justify-center my-4">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
 
@@ -61,15 +61,13 @@
 </template>
 
 <script setup>
-import SongsRepository from '../services/SongsRepository';
 import { useSongActions } from '../composables/useSongActions';
 import { usePlaylistSongs } from '../composables/usePlaylistSongs';
 import { useAppNavigation } from '../composables/useAppNavigation';
 import SongCard from '../components/SongCard.vue';
 import { VueDraggable } from 'vue-draggable-plus';
 
-const songs = SongsRepository.songs;
 const { snackbar, snackbarText, handleTogglePlaylist, handleShare } = useSongActions();
-const { playlistModel } = usePlaylistSongs(songs);
+const { playlistModel, loading } = usePlaylistSongs();
 const { goBack } = useAppNavigation();
 </script>

@@ -1,6 +1,5 @@
 <template>
-  <v-app-bar flat color="background" :elevation="0" scroll-behavior="hide" scroll-threshold="150">
-    <v-container class="pa-0 fill-height d-flex align-center px-3">
+  <v-app-bar flat color="background" scroll-behavior="hide" scroll-threshold="150" class="px-2">
       <v-btn
         icon
         variant="tonal"
@@ -11,11 +10,12 @@
         rounded="lg"
         style="width: 40px; height: 40px; min-width: 40px;"
       >
-        <v-icon size="25" icon="arrow_back"></v-icon>
+        <v-icon size="25" icon="chevron_left"></v-icon>
       </v-btn>
-      <v-toolbar-title class="text-h6 font-weight-bold">Playlist</v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-container>
+
+      <v-app-bar-title class="text-h7 font-weight-regular text-truncate ml-0 pl-0">
+        Playlist
+      </v-app-bar-title>
   </v-app-bar>
 
   <div>

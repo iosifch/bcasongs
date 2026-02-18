@@ -51,6 +51,7 @@ All package management commands must be run inside the container:
 - **Commit Messages**: Must be descriptive and follow Conventional Commits (e.g., `feat: ...`, `fix: ...`, `docs: ...`, `chore: ...`).
 - **Push Policy**: Commits and pushes to the repository are **ONLY** performed upon explicit request by the programmer.
 - **Branch Specification**: Always specify the target branch in the push command. Use the branch requested by the programmer or, if unspecified, the current branch.
+- **No AI Co-Authors**: Never add any AI agent as a co-author in commit messages (no `Co-Authored-By` lines for AI agents).
 
 ### Code Style & Best Practices
 - **Vue.js**:

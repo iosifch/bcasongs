@@ -10,49 +10,33 @@
         rounded="lg"
         style="width: 40px; height: 40px; min-width: 40px;"
       >
-        <v-icon size="25" icon="arrow_back"></v-icon>
+        <v-icon size="25" icon="chevron_left"></v-icon>
       </v-btn>
 
-      <v-chip
-        v-if="song?.bookNumber"
-        color="outline"
-        variant="outlined"
-        size="small"
-        class="ml-1 font-weight-bold text-on-surface-variant"
-      >
-        #{{ song.bookNumber }}
-      </v-chip>
-
-      <template v-if="!isAuthenticating">
-        <v-chip
-          v-if="song?.originalKey && !isAuthenticated"
-          data-testid="key-chip"
-          color="outline"
-          variant="outlined"
-          size="small"
-          class="ml-2 font-weight-bold text-on-surface-variant text-none"
-        >
-          {{ song.originalKey }}
-        </v-chip>
-
-        <v-btn
-          v-else-if="song?.originalKey && isAuthenticated"
-          data-testid="key-btn"
-          variant="tonal"
-          color="surface-variant"
-          class="ml-2 font-weight-bold text-none"
-          density="comfortable"
-          min-width="40"
-          height="40"
-          rounded="lg"
-          @click="openKeyDialog"
-        >
-          {{ song.originalKey }}
-        </v-btn>
-      </template>
   </v-app-bar>
 
   <v-app-bar location="bottom" flat color="background" class="px-2" scroll-behavior="hide" scroll-threshold="150">
+    <v-chip
+      v-if="song?.originalKey"
+      data-testid="key-chip"
+      color="outline"
+      variant="outlined"
+      size="small"
+      class="mr-2 font-weight-bold text-on-surface-variant text-none"
+    >
+      {{ song.originalKey }}
+    </v-chip>
+
+    <v-chip
+      v-if="song?.bookNumber"
+      color="outline"
+      variant="outlined"
+      size="small"
+      class="font-weight-bold text-on-surface-variant"
+    >
+      #{{ song.bookNumber }}
+    </v-chip>
+
     <v-spacer></v-spacer>
     
     <v-btn
@@ -90,6 +74,26 @@
       style="padding: 0;"
     >
       <v-icon size="25" icon="share"></v-icon>
+    </v-btn>
+
+    <v-btn
+      v-if="isAuthenticated"
+      data-testid="key-btn"
+      variant="tonal"
+      color="surface-variant"
+      @click="openKeyDialog"
+      title="Change Key"
+      class="ml-2 font-weight-bold text-none"
+      density="comfortable"
+      min-width="40"
+      width="40"
+      height="40"
+      rounded="lg"
+      :ripple="false"
+      :disabled="isEditMode"
+      style="padding: 0;"
+    >
+      <v-icon size="25" icon="music_note_add"></v-icon>
     </v-btn>
 
     <v-btn

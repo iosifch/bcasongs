@@ -41,14 +41,14 @@
   </v-app-bar>
 
   <v-container fluid class="py-1 px-2 h-100 d-flex flex-column">
-    <div v-if="SongsRepository.loading.value && songs.length === 0" class="d-flex justify-center my-4">
+    <div v-if="loading && songs.length === 0" class="d-flex justify-center my-4">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
     </div>
 
     <div v-else class="flex-grow-1" style="min-height: 0;">
       <v-virtual-scroll
-        v-if="filteredSongs.length > 0"
-        :items="filteredSongs"
+        v-if="songs.length > 0"
+        :items="songs"
         height="100%"
         item-height="100"
       >
@@ -93,19 +93,17 @@
 
 <script setup>
 import { ref, watch } from 'vue';
-import SongsRepository from '../services/SongsRepository';
-import { usePlaylist } from '../composables/usePlaylist';
 import { useAuth } from '../composables/useAuth';
+import { usePlaylist } from '../composables/usePlaylist';
 import { useSongActions } from '../composables/useSongActions';
-import { useSongFiltering } from '../composables/useSongFiltering';
+import { useSongs } from '../composables/useSongs';
 import SongCard from '../components/SongCard.vue';
 import UserAuth from '../components/UserAuth.vue';
 
 const { isAuthenticated, isAuthenticating } = useAuth();
-const songs = SongsRepository.songs;
+const { songs, search, loading } = useSongs();
 const { isInPlaylist, playlistCount } = usePlaylist();
 const { snackbar, snackbarText, handleTogglePlaylist, handleShare } = useSongActions();
-const { search, filteredSongs } = useSongFiltering(songs);
 
 // Debounced Search Implementation
 const localSearch = ref(search.value);

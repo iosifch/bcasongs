@@ -4,9 +4,7 @@ import { mountWithLayout } from '../test-utils';
 import { ref } from 'vue';
 import SongList from './SongList.vue';
 import { vuetify } from '../vitest-setup';
-import SongCard from '../components/SongCard.vue';
-import SongsRepository from '../services/SongsRepository';
-import { useSongFiltering } from '../composables/useSongFiltering';
+import { useSongs } from '../composables/useSongs';
 
 // --- Mocks ---
 
@@ -34,35 +32,24 @@ vi.mock('../composables/useSongActions', () => ({
     }))
 }));
 
-// Mock SongsRepository
-vi.mock('../services/SongsRepository', async () => {
-    const { ref } = await vi.importActual('vue');
-    return {
-        default: {
-            songs: ref([]),
-            loading: ref(false)
-        }
-    };
-});
-
-// Mock useSongFiltering
-vi.mock('../composables/useSongFiltering', async () => {
+// Mock useSongs
+vi.mock('../composables/useSongs', async () => {
     const { ref } = await vi.importActual('vue');
 
-    // Create shared refs
+    const songs = ref([]);
     const search = ref('');
-    const filteredSongs = ref([]);
+    const loading = ref(false);
 
     const fn = vi.fn(() => ({
+        songs,
         search,
-        filteredSongs
+        loading
     }));
 
-    // Expose refs for testing
-    fn.mockState = { search, filteredSongs };
+    fn.mockState = { songs, search, loading };
 
     return {
-        useSongFiltering: fn
+        useSongs: fn
     };
 });
 
@@ -71,10 +58,9 @@ describe('SongList.vue', () => {
     beforeEach(() => {
         vi.useFakeTimers();
         // Reset state
-        useSongFiltering.mockState.search.value = '';
-        useSongFiltering.mockState.filteredSongs.value = [];
-        SongsRepository.loading.value = false;
-        SongsRepository.songs.value = [];
+        useSongs.mockState.search.value = '';
+        useSongs.mockState.songs.value = [];
+        useSongs.mockState.loading.value = false;
     });
 
     afterEach(() => {
@@ -101,31 +87,31 @@ describe('SongList.vue', () => {
         await input.setValue('Amazing Grace');
 
         // Should not update immediately
-        expect(useSongFiltering.mockState.search.value).toBe('');
+        expect(useSongs.mockState.search.value).toBe('');
 
         // Advance time
         vi.advanceTimersByTime(300);
 
-        expect(useSongFiltering.mockState.search.value).toBe('Amazing Grace');
+        expect(useSongs.mockState.search.value).toBe('Amazing Grace');
     });
 
     it('displays loading spinner when loading and no songs', async () => {
-        SongsRepository.loading.value = true;
+        useSongs.mockState.loading.value = true;
         const wrapper = mountComponent();
 
         expect(wrapper.findComponent({ name: 'VProgressCircular' }).exists()).toBe(true);
     });
 
-    it('displays "No songs found" when filteredSongs is empty and not loading', async () => {
-        SongsRepository.loading.value = false;
-        useSongFiltering.mockState.filteredSongs.value = [];
-        const wrapper = mountComponent(); // Re-mounting to reflect state
+    it('displays "No songs found" when songs is empty and not loading', async () => {
+        useSongs.mockState.loading.value = false;
+        useSongs.mockState.songs.value = [];
+        const wrapper = mountComponent();
 
         expect(wrapper.text()).toContain('No songs found');
     });
 
     it('renders virtual scroll when songs are present', async () => {
-        useSongFiltering.mockState.filteredSongs.value = [
+        useSongs.mockState.songs.value = [
             { id: '1', title: 'Song 1', content: 'Lyrics 1' },
             { id: '2', title: 'Song 2', content: 'Lyrics 2' }
         ];

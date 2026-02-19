@@ -31,21 +31,14 @@ This application serves as a digital songbook. It allows users to manage, view, 
 > It is assumed that the container is already running.
 - **Docker**: The project is containerized using `Dockerfile` (node:lts-alpine) and `docker-compose.yml`.
 - **Environment Variables**: Managed via `.env` files.
-- **Start Development Server**: `docker compose up -d`
-- **Install Dependencies**: `docker compose exec app npm install`
 
 ### Package Management
-All package management commands must be run inside the container:
-- **Install Package**: `docker compose exec app npm install <package_name>`
-- **Uninstall Package**: `docker compose exec app npm uninstall <package_name>`
-- **Audit Dependencies**: `docker compose exec app npm audit`
+All package management commands must be run inside the container.
 
 ### Testing Instructions
 - **Vitest** is used for unit and component testing.
 - Tests are located alongside source files (e.g., `src/services/SongsRepository.spec.js`).
 - **Element Identification**: All UI elements targeted by tests must use `data-testid` attributes. Never use CSS class selectors (e.g., `.v-card`, `.text-h4`) for test assertions — they are fragile and coupled to Vuetify internals.
-- **Run Tests (Watch Mode)**: `docker compose exec app npm test`
-- **Run Tests (Single Run)**: `docker compose exec app npm run test:run`
 
 ### Git Workflow & Version Control
 - **Commit Messages**: Must be descriptive and follow Conventional Commits (e.g., `feat: ...`, `fix: ...`, `docs: ...`, `chore: ...`).

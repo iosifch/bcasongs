@@ -40,7 +40,7 @@
     </v-container>
   </v-app-bar>
 
-  <v-container fluid class="py-1 px-2 h-100 d-flex flex-column">
+  <v-container fluid class="py-0 px-0 h-100 d-flex flex-column">
     <div v-if="loading && songs.length === 0" class="d-flex justify-center my-4">
       <v-progress-circular indeterminate color="primary"></v-progress-circular>
     </div>
@@ -53,14 +53,12 @@
         item-height="100"
       >
         <template v-slot:default="{ item }">
-          <div class="pb-2 px-1">
-            <SongCard
-              :song="item"
-              :is-in-playlist="isInPlaylist(item.id)"
-              @toggle-playlist="handleTogglePlaylist"
-              @share="handleShare"
-            />
-          </div>
+          <SongCard
+            :song="item"
+            :is-in-playlist="isInPlaylist(item.id)"
+            @toggle-playlist="handleTogglePlaylist"
+            @share="handleShare"
+          />
         </template>
       </v-virtual-scroll>
 

@@ -19,7 +19,7 @@
   </v-app-bar>
 
   <div>
-    <v-container fluid class="pa-3">
+    <v-container fluid class="pa-0 d-flex flex-column flex-grow-1">
       <div v-if="loading && playlistModel.length === 0" class="d-flex justify-center my-4">
         <v-progress-circular indeterminate color="primary"></v-progress-circular>
       </div>
@@ -37,9 +37,8 @@
         <div
           v-for="song in playlistModel"
           :key="song.id"
-          class="d-flex align-center mb-3"
+          class="d-flex align-center"
         >
-          <v-icon class="drag-handle mr-2 cursor-move text-medium-emphasis" icon="drag_indicator"></v-icon>
           <SongCard
             :song="song"
             :is-in-playlist="true"
@@ -47,6 +46,7 @@
             @share="handleShare"
             class="flex-grow-1"
           />
+          <v-icon class="drag-handle cursor-move text-medium-emphasis mr-2" icon="drag_indicator"></v-icon>
         </div>
       </VueDraggable>
     </v-container>

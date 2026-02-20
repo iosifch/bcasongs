@@ -2,7 +2,7 @@
   <v-card
     :to="{ name: 'SongDetail', params: { id: song.id } }"
     color="surface"
-    class="rounded-lg transition-swing"
+    class="rounded-lg transition-swing mx-3 mt-3"
     hover
   >
     <v-card-text class="py-3 px-3">

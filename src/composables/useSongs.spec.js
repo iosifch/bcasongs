@@ -77,6 +77,43 @@ describe('useSongs', () => {
     expect(songs.value).toHaveLength(0);
   });
 
+  it('handles songs with null content gracefully', () => {
+    SongsRepository.songs.value = [
+      { id: '1', title: 'Amazing Grace', content: null },
+      { id: '2', title: 'Holy Holy', content: 'Holy is the Lord' }
+    ];
+
+    const { songs, search } = useSongs();
+    search.value = 'holy';
+
+    expect(songs.value).toHaveLength(1);
+    expect(songs.value[0].title).toBe('Holy Holy');
+  });
+
+  it('handles songs with undefined content gracefully', () => {
+    SongsRepository.songs.value = [
+      { id: '1', title: 'Amazing Grace' },
+      { id: '2', title: 'Holy Holy', content: 'Holy is the Lord' }
+    ];
+
+    const { songs, search } = useSongs();
+    search.value = 'amazing';
+
+    expect(songs.value).toHaveLength(1);
+    expect(songs.value[0].title).toBe('Amazing Grace');
+  });
+
+  it('handles songs with null title gracefully', () => {
+    SongsRepository.songs.value = [
+      { id: '1', title: null, content: 'Some lyrics here' }
+    ];
+
+    const { songs, search } = useSongs();
+    search.value = 'lyrics';
+
+    expect(songs.value).toHaveLength(1);
+  });
+
   it('exposes loading from repository', () => {
     SongsRepository.loading.value = true;
 

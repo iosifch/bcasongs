@@ -37,11 +37,15 @@ function initializeAuth() {
             } catch (e) {
                 if (e.code === 'permission-denied') {
                     console.error('Access Denied: Permission error checking whitelist');
-                    await signOut(auth);
-                    user.value = null;
-                    return;
+                } else {
+                    console.error('Error checking auth whitelist:', e);
                 }
-                console.error('Error checking auth whitelist:', e);
+                // Fail-closed: if we can't verify the whitelist, don't authenticate
+                await signOut(auth);
+                user.value = null;
+                isAuthenticating.value = false;
+                _resolveAuthReady();
+                return;
             }
         }
         

@@ -1,18 +1,23 @@
 import { ref, readonly } from 'vue';
 import { db } from '../firebaseConfig';
 import { doc, onSnapshot, updateDoc, setDoc, arrayUnion, arrayRemove, serverTimestamp } from 'firebase/firestore';
+import type { Unsubscribe, DocumentReference } from 'firebase/firestore';
 
-const _songIds = ref([]);
+const _songIds = ref<string[]>([]);
 const _loading = ref(true);
-const _error = ref(null);
+const _error = ref<string | null>(null);
 
-let _unsubscribe = null;
+let _unsubscribe: Unsubscribe | null = null;
 
 const PLAYLIST_DOC = 'shared';
 const PLAYLIST_COLLECTION = 'playlists';
 
-function _playlistRef() {
+function _playlistRef(): DocumentReference {
     return doc(db, PLAYLIST_COLLECTION, PLAYLIST_DOC);
+}
+
+interface FirebaseError extends Error {
+    code?: string
 }
 
 export default {
@@ -20,7 +25,7 @@ export default {
     loading: readonly(_loading),
     error: readonly(_error),
 
-    initialize() {
+    initialize(): void {
         if (_unsubscribe) return; // Already initialized
 
         _loading.value = true;
@@ -44,25 +49,25 @@ export default {
         );
     },
 
-    stop() {
+    stop(): void {
         if (_unsubscribe) {
             _unsubscribe();
             _unsubscribe = null;
         }
     },
 
-    containsSong(songId) {
+    containsSong(songId: string): boolean {
         return _songIds.value.includes(songId);
     },
 
-    async addSongToPlaylist(songId) {
+    async addSongToPlaylist(songId: string): Promise<void> {
         try {
             await updateDoc(_playlistRef(), {
                 songIds: arrayUnion(songId),
                 updatedAt: serverTimestamp()
             });
         } catch (e) {
-            if (e.code === 'not-found') {
+            if ((e as FirebaseError).code === 'not-found') {
                 await setDoc(_playlistRef(), {
                     songIds: [songId],
                     updatedAt: serverTimestamp()
@@ -74,7 +79,7 @@ export default {
         }
     },
 
-    async removeSongFromPlaylist(songId) {
+    async removeSongFromPlaylist(songId: string): Promise<void> {
         try {
             await updateDoc(_playlistRef(), {
                 songIds: arrayRemove(songId),
@@ -86,7 +91,7 @@ export default {
         }
     },
 
-    async reorderSongsInPlaylist(newOrderIds) {
+    async reorderSongsInPlaylist(newOrderIds: string[]): Promise<void> {
         try {
             await setDoc(_playlistRef(), {
                 songIds: newOrderIds,
@@ -98,7 +103,7 @@ export default {
         }
     },
 
-    async replaceAllSongsInPlaylist(newIds) {
+    async replaceAllSongsInPlaylist(newIds: string[]): Promise<void> {
         try {
             await setDoc(_playlistRef(), {
                 songIds: newIds,

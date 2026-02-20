@@ -5,20 +5,20 @@ const mockOnSnapshot = vi.fn();
 const mockUpdateDoc = vi.fn();
 const mockSetDoc = vi.fn();
 const mockDoc = vi.fn(() => ({ _type: 'mock-doc-ref' }));
-const mockArrayUnion = vi.fn(val => ({ type: 'arrayUnion', val }));
-const mockArrayRemove = vi.fn(val => ({ type: 'arrayRemove', val }));
+const mockArrayUnion = vi.fn((val: unknown) => ({ type: 'arrayUnion', val }));
+const mockArrayRemove = vi.fn((val: unknown) => ({ type: 'arrayRemove', val }));
 
 vi.mock('../firebaseConfig', () => ({
     db: {}
 }));
 
 vi.mock('firebase/firestore', () => ({
-    doc: (...args) => mockDoc(...args),
-    onSnapshot: (...args) => mockOnSnapshot(...args),
-    updateDoc: (...args) => mockUpdateDoc(...args),
-    setDoc: (...args) => mockSetDoc(...args),
-    arrayUnion: (...args) => mockArrayUnion(...args),
-    arrayRemove: (...args) => mockArrayRemove(...args),
+    doc: (...args: unknown[]) => mockDoc(...args),
+    onSnapshot: (...args: unknown[]) => mockOnSnapshot(...args),
+    updateDoc: (...args: unknown[]) => mockUpdateDoc(...args),
+    setDoc: (...args: unknown[]) => mockSetDoc(...args),
+    arrayUnion: (...args: unknown[]) => mockArrayUnion(...args),
+    arrayRemove: (...args: unknown[]) => mockArrayRemove(...args),
     serverTimestamp: () => 'timestamp'
 }));
 
@@ -40,7 +40,7 @@ describe('PlaylistRepository', () => {
         });
 
         it('should populate songIds when snapshot triggers', () => {
-            mockOnSnapshot.mockImplementation((docRef, callback) => {
+            mockOnSnapshot.mockImplementation((_docRef: unknown, callback: (snapshot: unknown) => void) => {
                 callback({
                     exists: () => true,
                     data: () => ({ songIds: ['song1', 'song2'] })
@@ -55,7 +55,7 @@ describe('PlaylistRepository', () => {
         });
 
         it('should handle empty playlist document', () => {
-            mockOnSnapshot.mockImplementation((docRef, callback) => {
+            mockOnSnapshot.mockImplementation((_docRef: unknown, callback: (snapshot: unknown) => void) => {
                 callback({
                     exists: () => false,
                     data: () => null
@@ -72,7 +72,7 @@ describe('PlaylistRepository', () => {
 
     describe('containsSong', () => {
         it('should return true if song is in playlist and false otherwise', () => {
-            mockOnSnapshot.mockImplementation((docRef, callback) => {
+            mockOnSnapshot.mockImplementation((_docRef: unknown, callback: (snapshot: unknown) => void) => {
                 callback({
                     exists: () => true,
                     data: () => ({ songIds: ['song1'] })
@@ -140,7 +140,7 @@ describe('PlaylistRepository', () => {
 
     describe('addSongToPlaylist error handling', () => {
         it('should fall back to setDoc when updateDoc throws not-found', async () => {
-            const notFoundError = new Error('Document not found');
+            const notFoundError = new Error('Document not found') as Error & { code: string };
             notFoundError.code = 'not-found';
             mockUpdateDoc.mockRejectedValue(notFoundError);
 
@@ -157,7 +157,7 @@ describe('PlaylistRepository', () => {
         });
 
         it('should rethrow non-not-found errors from updateDoc', async () => {
-            const otherError = new Error('Permission denied');
+            const otherError = new Error('Permission denied') as Error & { code: string };
             otherError.code = 'permission-denied';
             mockUpdateDoc.mockRejectedValue(otherError);
             vi.spyOn(console, 'error').mockImplementation(() => {});

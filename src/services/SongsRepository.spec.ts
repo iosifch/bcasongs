@@ -3,39 +3,44 @@ import SongsRepository from './SongsRepository';
 
 const mockGetDocs = vi.fn();
 const mockGetDoc = vi.fn();
-const mockQuery = vi.fn((...args) => ({ _type: 'mock-query', args }));
-const mockOrderBy = vi.fn((...args) => ({ _type: 'mock-orderBy', args }));
-const mockLimit = vi.fn((...args) => ({ _type: 'mock-limit', args }));
-const mockStartAfter = vi.fn((...args) => ({ _type: 'mock-startAfter', args }));
+const mockQuery = vi.fn((...args: unknown[]) => ({ _type: 'mock-query', args }));
+const mockOrderBy = vi.fn((...args: unknown[]) => ({ _type: 'mock-orderBy', args }));
+const mockLimit = vi.fn((...args: unknown[]) => ({ _type: 'mock-limit', args }));
+const mockStartAfter = vi.fn((...args: unknown[]) => ({ _type: 'mock-startAfter', args }));
 const mockAddDoc = vi.fn();
 const mockUpdateDoc = vi.fn();
 const mockDeleteDoc = vi.fn();
 const mockCollection = vi.fn(() => ({ _type: 'mock-collection-ref' }));
-const mockDoc = vi.fn((db, coll, id) => ({ _path: `${coll}/${id}` }));
+const mockDoc = vi.fn((_db: unknown, coll: string, id: string) => ({ _path: `${coll}/${id}` }));
 
 vi.mock('../firebaseConfig', () => ({
   db: { _type: 'mock-db' }
 }));
 
 vi.mock('firebase/firestore', () => ({
-  collection: (...args) => mockCollection(...args),
-  getDocs: (...args) => mockGetDocs(...args),
-  getDoc: (...args) => mockGetDoc(...args),
-  query: (...args) => mockQuery(...args),
-  orderBy: (...args) => mockOrderBy(...args),
-  limit: (...args) => mockLimit(...args),
-  startAfter: (...args) => mockStartAfter(...args),
-  addDoc: (...args) => mockAddDoc(...args),
-  updateDoc: (...args) => mockUpdateDoc(...args),
-  deleteDoc: (...args) => mockDeleteDoc(...args),
-  doc: (...args) => mockDoc(...args),
+  collection: (...args: unknown[]) => mockCollection(...args),
+  getDocs: (...args: unknown[]) => mockGetDocs(...args),
+  getDoc: (...args: unknown[]) => mockGetDoc(...args),
+  query: (...args: unknown[]) => mockQuery(...args),
+  orderBy: (...args: unknown[]) => mockOrderBy(...args),
+  limit: (...args: unknown[]) => mockLimit(...args),
+  startAfter: (...args: unknown[]) => mockStartAfter(...args),
+  addDoc: (...args: unknown[]) => mockAddDoc(...args),
+  updateDoc: (...args: unknown[]) => mockUpdateDoc(...args),
+  deleteDoc: (...args: unknown[]) => mockDeleteDoc(...args),
+  doc: (...args: unknown[]) => mockDoc(...args),
   serverTimestamp: () => 'timestamp'
 }));
 
-const makeDocs = (items) => items.map(item => ({
+interface MockItem {
+  id: string
+  [key: string]: unknown
+}
+
+const makeDocs = (items: MockItem[]) => items.map(item => ({
   id: item.id,
   data: () => {
-    const { id, ...rest } = item;
+    const { id: _id, ...rest } = item;
     return rest;
   }
 }));
@@ -93,7 +98,7 @@ describe('SongsRepository', () => {
         Array.from({ length: 20 }, (_, i) => ({ id: `${i}`, title: `Song ${i}` }))
       );
 
-      let resolveSecondPage;
+      let resolveSecondPage: (value: { docs: unknown[] }) => void;
       mockGetDocs
         .mockResolvedValueOnce({ docs: firstPage })
         .mockImplementationOnce(() => new Promise(resolve => { resolveSecondPage = resolve; }));
@@ -109,7 +114,7 @@ describe('SongsRepository', () => {
       expect(SongsRepository.fullyLoaded.value).toBe(false);
 
       // Resolve second page
-      resolveSecondPage({ docs: [] });
+      resolveSecondPage!({ docs: [] });
       await initPromise;
 
       expect(SongsRepository.fullyLoaded.value).toBe(true);
@@ -214,7 +219,7 @@ describe('SongsRepository', () => {
     it('save should not include title in payload when title is null', async () => {
       await SongsRepository.save('789', 'Lyrics', null);
 
-      const updatePayload = mockUpdateDoc.mock.calls[0][1];
+      const updatePayload = mockUpdateDoc.mock.calls[0][1] as Record<string, unknown>;
       expect(updatePayload).not.toHaveProperty('title');
       expect(updatePayload.content).toBe('Lyrics');
     });

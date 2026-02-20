@@ -4,9 +4,18 @@ import { collection, getDocs, getDoc, query, orderBy, limit, startAfter, addDoc,
 
 const PAGE_SIZE = 20;
 
-const _songs = ref([]);
+export interface Song {
+  id: string
+  title: string
+  content: string
+  originalKey?: string | null
+  createdAt?: unknown
+  updatedAt?: unknown
+}
+
+const _songs = ref<Song[]>([]);
 const _loading = ref(true);
-const _error = ref(null);
+const _error = ref<string | null>(null);
 const _fullyLoaded = ref(false);
 
 export default {
@@ -15,7 +24,7 @@ export default {
   error: readonly(_error),
   fullyLoaded: readonly(_fullyLoaded),
 
-  async initialize() {
+  async initialize(): Promise<void> {
     if (_loading.value === false && _songs.value.length > 0) return;
 
     _loading.value = true;
@@ -23,14 +32,14 @@ export default {
     _fullyLoaded.value = false;
 
     const songsCollection = collection(db, 'songs');
-    let lastDoc = null;
+    let lastDoc: unknown = null;
 
     try {
       // First page
       const firstQuery = query(songsCollection, orderBy('title'), limit(PAGE_SIZE));
       const firstSnapshot = await getDocs(firstQuery);
 
-      _songs.value = firstSnapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      _songs.value = firstSnapshot.docs.map(d => ({ id: d.id, ...d.data() } as Song));
       _loading.value = false;
 
       if (firstSnapshot.docs.length < PAGE_SIZE) {
@@ -49,7 +58,7 @@ export default {
 
         _songs.value = [
           ..._songs.value,
-          ...nextSnapshot.docs.map(d => ({ id: d.id, ...d.data() }))
+          ...nextSnapshot.docs.map(d => ({ id: d.id, ...d.data() } as Song))
         ];
 
         if (nextSnapshot.docs.length < PAGE_SIZE) break;
@@ -59,25 +68,25 @@ export default {
       _fullyLoaded.value = true;
     } catch (err) {
       console.error("Firestore Error:", err);
-      _error.value = err.message;
+      _error.value = (err as Error).message;
       _loading.value = false;
     }
   },
 
-  stop() {
+  stop(): void {
     _songs.value = [];
     _loading.value = true;
     _fullyLoaded.value = false;
     _error.value = null;
   },
 
-  async getSong(id) {
+  async getSong(id: string): Promise<Song | null> {
     const local = _songs.value.find(s => s.id === id);
     if (local) return local;
 
     const docSnap = await getDoc(doc(db, 'songs', id));
     if (docSnap.exists()) {
-      const song = { id: docSnap.id, ...docSnap.data() };
+      const song: Song = { id: docSnap.id, ...docSnap.data() } as Song;
       if (!_songs.value.find(s => s.id === id)) {
         _songs.value = [..._songs.value, song];
       }
@@ -88,7 +97,7 @@ export default {
 
   // --- Write Operations ---
 
-  async addSong(title, content, key = null) {
+  async addSong(title: string, content: string, key: string | null = null): Promise<string> {
     try {
       const docRef = await addDoc(collection(db, 'songs'), {
         title,
@@ -104,8 +113,8 @@ export default {
     }
   },
 
-  async save(id, content, title = null, originalKey = null) {
-    const updateData = {
+  async save(id: string, content: string, title: string | null = null, originalKey: string | null = null): Promise<void> {
+    const updateData: Record<string, unknown> = {
       content,
       updatedAt: serverTimestamp()
     };
@@ -122,7 +131,7 @@ export default {
     }
   },
 
-  async deleteSong(id) {
+  async deleteSong(id: string): Promise<void> {
     try {
       await deleteDoc(doc(db, 'songs', id));
     } catch (e) {

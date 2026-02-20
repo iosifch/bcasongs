@@ -5,17 +5,18 @@ import 'vuetify/styles'
 // Vuetify
 import { createVuetify } from 'vuetify'
 import { h } from 'vue'
+import type { IconProps } from 'vuetify'
 
 // Custom icon set for Material Symbols
 const materialSymbols = {
-  component: (props) => {
+  component: (props: IconProps) => {
     const iconName = typeof props.icon === 'string'
       ? props.icon
-      : props.icon?.icon || props.icon
+      : (props.icon as { icon?: string })?.icon || props.icon
     return h(
       'i',
       { class: 'material-symbols-outlined' },
-      iconName
+      iconName as string
     )
   },
 }
@@ -48,7 +49,7 @@ export default createVuetify({
           'error-container': '#ffdad6',
           'on-error-container': '#93000a',
 
-          background: '#f1eee0', // Using surface color as background base if needed, or keeping default. User specified surface colors. Let's map background to surface or surface-container-lowest? Standard MD3 often uses surface. Let's stick to the list provided.
+          background: '#f1eee0',
           surface: '#fdf9ec',
           'surface-bright': '#fdf9ec',
           'surface-dim': '#dddacd',

@@ -63,7 +63,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useAuth } from '../composables/useAuth';
 
@@ -71,16 +71,10 @@ const { user, initializeAuth, signInWithGoogle, logout, loginError } = useAuth()
 const snackbar = ref(false);
 const errorMsg = ref('');
 
-defineProps({
-  size: {
-    type: String,
-    default: undefined
-  },
-  avatarSize: {
-    type: Number,
-    default: 26
-  }
-});
+defineProps<{
+  size?: string;
+  avatarSize?: number;
+}>();
 
 onMounted(() => {
   initializeAuth();

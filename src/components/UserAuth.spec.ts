@@ -4,6 +4,7 @@ import UserAuth from './UserAuth.vue';
 import { ref, computed } from 'vue';
 import { useAuth } from '../composables/useAuth';
 import { mountWithLayout, getSnackbarText } from '../test-utils';
+import type { Mock } from 'vitest';
 
 vi.mock('../composables/useAuth', () => ({
   useAuth: vi.fn()
@@ -14,7 +15,7 @@ const mockSignInWithGoogle = vi.fn();
 const mockLogout = vi.fn();
 
 const setupUnauthenticated = () => {
-  useAuth.mockReturnValue({
+  (useAuth as Mock).mockReturnValue({
     user: ref(null),
     isAuthenticated: computed(() => false),
     isAuthenticating: ref(false),
@@ -25,7 +26,7 @@ const setupUnauthenticated = () => {
   });
 };
 
-const setupAuthenticated = (userOverrides = {}) => {
+const setupAuthenticated = (userOverrides: Record<string, unknown> = {}) => {
   const mockUser = {
     displayName: 'Test User',
     email: 'test@example.com',
@@ -33,7 +34,7 @@ const setupAuthenticated = (userOverrides = {}) => {
     ...userOverrides
   };
 
-  useAuth.mockReturnValue({
+  (useAuth as Mock).mockReturnValue({
     user: ref(mockUser),
     isAuthenticated: computed(() => true),
     isAuthenticating: ref(false),
@@ -106,7 +107,7 @@ describe('UserAuth.vue', () => {
       throw new Error('Popup closed');
     });
 
-    useAuth.mockReturnValue({
+    (useAuth as Mock).mockReturnValue({
       user: ref(null),
       isAuthenticated: computed(() => false),
       isAuthenticating: ref(false),
@@ -137,7 +138,7 @@ describe('UserAuth.vue', () => {
     await flushPromises();
 
     // Click the Logout button in the teleported menu card
-    const logoutBtn = document.querySelector('[data-testid="logout-btn"]');
+    const logoutBtn = document.querySelector('[data-testid="logout-btn"]') as HTMLElement;
     logoutBtn.click();
     await flushPromises();
 

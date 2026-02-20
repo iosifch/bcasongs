@@ -17,7 +17,7 @@ global.visualViewport = {
   removeEventListener: vi.fn(),
   width: 1024,
   height: 768,
-}
+} as unknown as VisualViewport
 
 // 3. Create Vuetify instance
 const vuetify = createVuetify({

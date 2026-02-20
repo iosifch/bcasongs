@@ -65,21 +65,19 @@
   </v-card>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useAuth } from '../composables/useAuth';
+import type { Song } from '../services/SongsRepository';
 
 const { isAuthenticated } = useAuth();
 
-defineProps({
-  song: {
-    type: Object,
-    required: true
-  },
-  isInPlaylist: {
-    type: Boolean,
-    default: false
-  }
-});
+defineProps<{
+  song: Song;
+  isInPlaylist?: boolean;
+}>();
 
-const emit = defineEmits(['toggle-playlist', 'share']);
+const emit = defineEmits<{
+  'toggle-playlist': [id: string];
+  'share': [song: Song];
+}>();
 </script>

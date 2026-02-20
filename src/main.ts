@@ -6,7 +6,7 @@ import './style.css'
 import { registerSW } from 'virtual:pwa-register'
 
 // Register Service Worker
-const updateSW = registerSW({
+registerSW({
   onNeedRefresh() {
     // Handle refresh logic here if needed (e.g., show a toast)
     console.log('New content available, click on reload button to update.')

@@ -3,7 +3,7 @@ import SongsRepository from '../services/SongsRepository';
 
 const search = ref('');
 
-const removeDiacritics = (str) =>
+const removeDiacritics = (str: string): string =>
   str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
 export function useSongs() {

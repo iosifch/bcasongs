@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { flushPromises } from '@vue/test-utils';
+import { flushPromises, mount } from '@vue/test-utils';
 import { useCurrentSong } from './useCurrentSong';
 import SongsRepository from '../services/SongsRepository';
-import { mount } from '@vue/test-utils';
+import type { Mock } from 'vitest';
 
 vi.mock('../services/SongsRepository', () => ({
   default: {
@@ -15,7 +15,7 @@ describe('useCurrentSong', () => {
     vi.clearAllMocks();
   });
 
-  const TestComponent = (id, callback) => ({
+  const TestComponent = (id: string, callback?: (song: unknown) => void) => ({
     setup() {
       const { song, loading } = useCurrentSong(id, callback);
       return { song, loading };
@@ -38,7 +38,7 @@ describe('useCurrentSong', () => {
 
   it('resolves an existing song from repository', async () => {
     const mockSong = { id: '1', title: 'Existing' };
-    SongsRepository.getSong.mockResolvedValue(mockSong);
+    (SongsRepository.getSong as Mock).mockResolvedValue(mockSong);
 
     const wrapper = mount(TestComponent('1'));
     await flushPromises();
@@ -49,7 +49,7 @@ describe('useCurrentSong', () => {
 
   it('calls onSongResolved callback when song is found', async () => {
     const mockSong = { id: '1', title: 'Found' };
-    SongsRepository.getSong.mockResolvedValue(mockSong);
+    (SongsRepository.getSong as Mock).mockResolvedValue(mockSong);
     const callback = vi.fn();
 
     mount(TestComponent('1', callback));
@@ -59,7 +59,7 @@ describe('useCurrentSong', () => {
   });
 
   it('sets loading to false when song is not found', async () => {
-    SongsRepository.getSong.mockResolvedValue(null);
+    (SongsRepository.getSong as Mock).mockResolvedValue(null);
 
     const wrapper = mount(TestComponent('non-existent'));
     await flushPromises();

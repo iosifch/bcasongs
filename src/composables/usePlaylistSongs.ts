@@ -1,10 +1,11 @@
 import { ref, computed, watch } from 'vue';
 import { usePlaylist } from './usePlaylist';
 import SongsRepository from '../services/SongsRepository';
+import type { Song } from '../services/SongsRepository';
 
 export function usePlaylistSongs() {
   const { playlist, reorderPlaylist } = usePlaylist();
-  const playlistSongs = ref([]);
+  const playlistSongs = ref<Song[]>([]);
   const loading = ref(false);
 
   let requestId = 0;
@@ -27,7 +28,7 @@ export function usePlaylistSongs() {
       // Ignore stale responses from previous requests
       if (currentRequest !== requestId) return;
 
-      playlistSongs.value = songs.filter(Boolean);
+      playlistSongs.value = songs.filter((s): s is Song => s !== null);
     } catch (error) {
       if (currentRequest !== requestId) return;
       console.error('Error loading playlist songs:', error);
@@ -40,7 +41,7 @@ export function usePlaylistSongs() {
 
   const playlistModel = computed({
     get: () => playlistSongs.value,
-    set: (val) => {
+    set: (val: Song[]) => {
       reorderPlaylist(val.map(s => s.id));
     }
   });

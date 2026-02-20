@@ -2,10 +2,12 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ref } from 'vue';
 import { useSongEditor } from './useSongEditor';
 import SongsRepository from '../services/SongsRepository';
+import type { Song } from '../services/SongsRepository';
+import type { Mock } from 'vitest';
 
 // Mock Router/Route globally for this file
 const mockReplace = vi.fn();
-let mockRouteParams = { id: '1' };
+let mockRouteParams: Record<string, string> = { id: '1' };
 
 vi.mock('vue-router', () => ({
   useRouter: () => ({ replace: mockReplace }),
@@ -20,21 +22,23 @@ vi.mock('../services/SongsRepository', () => ({
 }));
 
 describe('useSongEditor', () => {
-  let snackbarText, snackbar, songRef;
+  let snackbarText: ReturnType<typeof ref<string>>;
+  let snackbar: ReturnType<typeof ref<boolean>>;
+  let songRef: ReturnType<typeof ref<Song | null>>;
 
   beforeEach(() => {
     vi.clearAllMocks();
     mockRouteParams = { id: '1' }; // Reset to default
     snackbarText = ref('');
     snackbar = ref(false);
-    songRef = ref({ id: '1', title: 'Test', content: 'Verse 1', originalKey: 'G' });
+    songRef = ref({ id: '1', title: 'Test', content: 'Verse 1', originalKey: 'G' } as Song);
   });
 
   it('validates title length (min 3 chars)', async () => {
     const editor = useSongEditor(songRef, snackbarText, snackbar);
     editor.isEditMode.value = true;
     editor.editTitle.value = 'Ab'; // Too short
-    editor.paragraphs.value = [{ editText: 'Valid content long enough' }];
+    editor.paragraphs.value = [{ editText: 'Valid content long enough' }] as never[];
 
     await editor.toggleEditMode();
 
@@ -47,7 +51,7 @@ describe('useSongEditor', () => {
     const editor = useSongEditor(songRef, snackbarText, snackbar);
     editor.isEditMode.value = true;
     editor.editTitle.value = 'Valid Title';
-    editor.paragraphs.value = [{ editText: '12' }]; // Too short
+    editor.paragraphs.value = [{ editText: '12' }] as never[]; // Too short
 
     await editor.toggleEditMode();
 
@@ -63,9 +67,9 @@ describe('useSongEditor', () => {
     editor.paragraphs.value = [
       { id: 'p1', editText: 'Valid line', lines: [], type: 'verse' },
       { id: 'p2', editText: '1', lines: [], type: 'verse' }
-    ];
-    
-    SongsRepository.save.mockResolvedValue();
+    ] as never[];
+
+    (SongsRepository.save as Mock).mockResolvedValue(undefined);
 
     await editor.toggleEditMode();
 
@@ -79,9 +83,9 @@ describe('useSongEditor', () => {
     const editor = useSongEditor(songRef, snackbarText, snackbar);
     editor.isEditMode.value = true;
     editor.editTitle.value = 'Brand New';
-    editor.paragraphs.value = [{ editText: 'Some lyrics', lines: [], type: 'verse' }];
-    
-    SongsRepository.addSong.mockResolvedValue('new-id');
+    editor.paragraphs.value = [{ editText: 'Some lyrics', lines: [], type: 'verse' }] as never[];
+
+    (SongsRepository.addSong as Mock).mockResolvedValue('new-id');
 
     await editor.toggleEditMode();
 

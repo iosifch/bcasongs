@@ -1,5 +1,11 @@
+export interface ShareResult {
+  shared: boolean
+  copied: boolean
+  error?: unknown
+}
+
 export function useShare() {
-  const share = async (title, url) => {
+  const share = async (title: string, url: string): Promise<ShareResult> => {
     const shareData = {
       title: title,
       text: `Check out "${title}" on BCA Songs`,

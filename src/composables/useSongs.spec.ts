@@ -1,11 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { ref } from 'vue';
 import { useSongs } from './useSongs';
 import SongsRepository from '../services/SongsRepository';
 
 vi.mock('../services/SongsRepository', () => ({
   default: {
-    songs: { value: [] },
+    songs: { value: [] as { id: string; title: string | null; content?: string | null }[] },
     loading: { value: false }
   }
 }));
@@ -14,7 +13,7 @@ describe('useSongs', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     SongsRepository.songs.value = [];
-    SongsRepository.loading.value = false;
+    (SongsRepository.loading as { value: boolean }).value = false;
   });
 
   it('returns all songs when search is empty', () => {
@@ -115,7 +114,7 @@ describe('useSongs', () => {
   });
 
   it('exposes loading from repository', () => {
-    SongsRepository.loading.value = true;
+    (SongsRepository.loading as { value: boolean }).value = true;
 
     const { loading } = useSongs();
 

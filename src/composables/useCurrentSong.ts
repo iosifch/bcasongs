@@ -1,8 +1,9 @@
 import { ref, onMounted } from 'vue';
 import SongsRepository from '../services/SongsRepository';
+import type { Song } from '../services/SongsRepository';
 
-export function useCurrentSong(songId, onSongResolved) {
-  const song = ref(null);
+export function useCurrentSong(songId: string, onSongResolved?: (song: Song) => void) {
+  const song = ref<Song | null>(null);
   const loading = ref(true);
 
   onMounted(async () => {
@@ -11,7 +12,7 @@ export function useCurrentSong(songId, onSongResolved) {
         title: '',
         content: '',
         originalKey: null
-      };
+      } as Song;
       if (onSongResolved) onSongResolved(song.value);
       loading.value = false;
       return;

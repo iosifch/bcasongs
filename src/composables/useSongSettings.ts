@@ -7,7 +7,7 @@ export function useSongSettings() {
     const savedFontSize = localStorage.getItem(STORAGE_KEY_FONT_SIZE);
     const fontSizeLevel = ref(savedFontSize ? parseInt(savedFontSize, 10) : 0);
 
-    const fontSizes = ['lyrics-text-1', 'lyrics-text-2', 'lyrics-text-3'];
+    const fontSizes = ['lyrics-text-1', 'lyrics-text-2', 'lyrics-text-3'] as const;
 
     const fontSizeClass = computed(() => fontSizes[fontSizeLevel.value]);
 
@@ -16,7 +16,7 @@ export function useSongSettings() {
         localStorage.setItem(STORAGE_KEY_FONT_SIZE, newValue.toString());
     });
 
-    const cycleFontSize = () => {
+    const cycleFontSize = (): void => {
         fontSizeLevel.value = (fontSizeLevel.value + 1) % fontSizes.length;
     };
 

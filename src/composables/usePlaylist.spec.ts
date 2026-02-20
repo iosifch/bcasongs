@@ -1,13 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import type { Mock } from 'vitest';
 
-const mockSongIds = vi.hoisted(() => ({ value: [] }));
+const mockSongIds = vi.hoisted(() => ({ value: [] as string[] }));
 
 vi.mock('../services/PlaylistRepository', () => ({
   default: {
     songIds: mockSongIds,
     loading: { value: false },
     error: { value: null },
-    containsSong: (id) => mockSongIds.value.includes(id),
+    containsSong: (id: string) => mockSongIds.value.includes(id),
     addSongToPlaylist: vi.fn(),
     removeSongFromPlaylist: vi.fn(),
     reorderSongsInPlaylist: vi.fn(),
@@ -63,7 +64,7 @@ describe('usePlaylist', () => {
   });
 
   it('should propagate errors from addSongToPlaylist when toggling', async () => {
-    PlaylistRepository.addSongToPlaylist.mockRejectedValue(new Error('Firestore error'));
+    (PlaylistRepository.addSongToPlaylist as Mock).mockRejectedValue(new Error('Firestore error'));
 
     const { togglePlaylist } = usePlaylist();
 
@@ -72,7 +73,7 @@ describe('usePlaylist', () => {
 
   it('should propagate errors from removeSongFromPlaylist when toggling', async () => {
     mockSongIds.value = ['song1'];
-    PlaylistRepository.removeSongFromPlaylist.mockRejectedValue(new Error('Network error'));
+    (PlaylistRepository.removeSongFromPlaylist as Mock).mockRejectedValue(new Error('Network error'));
 
     const { togglePlaylist } = usePlaylist();
 

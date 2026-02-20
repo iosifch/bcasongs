@@ -2,12 +2,17 @@ import { ref, computed } from 'vue';
 import { auth, db } from '../firebaseConfig';
 import { onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
+import type { User } from 'firebase/auth';
 
-const user = ref(null);
+interface FirebaseError extends Error {
+    code?: string
+}
+
+const user = ref<User | null>(null);
 const isAuthenticating = ref(true);
 let _initialized = false;
-let _resolveAuthReady;
-const authReady = new Promise((resolve) => {
+let _resolveAuthReady: () => void;
+const authReady = new Promise<void>((resolve) => {
     _resolveAuthReady = resolve;
 });
 
@@ -15,7 +20,7 @@ const loginError = ref('');
 const isAuthenticated = computed(() => !!user.value);
 const googleProvider = new GoogleAuthProvider();
 
-function initializeAuth() {
+function initializeAuth(): void {
     if (_initialized) return;
     _initialized = true;
 
@@ -24,10 +29,10 @@ function initializeAuth() {
             try {
                 const settingsRef = doc(db, 'settings', 'auth');
                 const settingsSnap = await getDoc(settingsRef);
-                
+
                 if (settingsSnap.exists()) {
-                    const allowedEmails = settingsSnap.data().allowedEmails || [];
-                    if (!allowedEmails.includes(currentUser.email)) {
+                    const allowedEmails: string[] = settingsSnap.data().allowedEmails || [];
+                    if (!allowedEmails.includes(currentUser.email || '')) {
                         console.error('Access Denied: User not in whitelist');
                         await signOut(auth);
                         user.value = null;
@@ -35,7 +40,7 @@ function initializeAuth() {
                     }
                 }
             } catch (e) {
-                if (e.code === 'permission-denied') {
+                if ((e as FirebaseError).code === 'permission-denied') {
                     console.error('Access Denied: Permission error checking whitelist');
                 } else {
                     console.error('Error checking auth whitelist:', e);
@@ -48,25 +53,25 @@ function initializeAuth() {
                 return;
             }
         }
-        
+
         user.value = currentUser;
         isAuthenticating.value = false;
         _resolveAuthReady();
     });
 }
 
-async function signInWithGoogle() {
+async function signInWithGoogle(): Promise<void> {
     loginError.value = '';
     try {
         await signInWithPopup(auth, googleProvider);
     } catch (error) {
         console.error('Login Failed', error);
-        loginError.value = 'Login Failed: ' + error.message;
+        loginError.value = 'Login Failed: ' + (error as Error).message;
         throw error;
     }
 }
 
-async function logout() {
+async function logout(): Promise<void> {
     try {
         await signOut(auth);
     } catch (error) {

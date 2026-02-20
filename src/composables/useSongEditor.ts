@@ -1,18 +1,24 @@
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import SongsRepository from '../services/SongsRepository';
 import LyricsService from '../services/LyricsService';
+import type { Song } from '../services/SongsRepository';
+import type { Paragraph } from '../services/LyricsService';
 
-export function useSongEditor(songRef, snackbarText, snackbar) {
+interface FirebaseError extends Error {
+  code?: string
+}
+
+export function useSongEditor(songRef: Ref<Song | null>, snackbarText: Ref<string>, snackbar: Ref<boolean>) {
   const router = useRouter();
   const route = useRoute();
-  
+
   const isEditMode = ref(false);
   const isSaving = ref(false);
   const editTitle = ref('');
-  const paragraphs = ref([]);
+  const paragraphs = ref<Paragraph[]>([]);
 
-  const initializeEditor = (song) => {
+  const initializeEditor = (song: Song | null): void => {
     if (!song) return;
     if (route.params?.id === 'new') {
       isEditMode.value = true;
@@ -26,7 +32,7 @@ export function useSongEditor(songRef, snackbarText, snackbar) {
     }
   };
 
-  const addParagraph = (index, position) => {
+  const addParagraph = (index: number, position: 'above' | 'below'): string => {
     const newP = LyricsService.createParagraph('verse');
     newP.editText = '';
     const insertAt = position === 'above' ? index : index + 1;
@@ -34,13 +40,13 @@ export function useSongEditor(songRef, snackbarText, snackbar) {
     return newP.id;
   };
 
-  const removeParagraph = (index) => {
+  const removeParagraph = (index: number): void => {
     if (paragraphs.value.length > 1) {
       paragraphs.value.splice(index, 1);
     }
   };
 
-  const toggleEditMode = async () => {
+  const toggleEditMode = async (): Promise<void> => {
     if (isEditMode.value) {
       if (songRef.value && paragraphs.value.length > 0) {
         if (!editTitle.value || editTitle.value.trim().length < 3) {
@@ -70,9 +76,9 @@ export function useSongEditor(songRef, snackbarText, snackbar) {
           });
 
           const newContent = LyricsService.serialize(paragraphs.value);
-          
+
           if (route.params?.id === 'new') {
-            const newId = await SongsRepository.addSong(editTitle.value, newContent, songRef.value.originalKey);
+            const newId = await SongsRepository.addSong(editTitle.value, newContent, songRef.value.originalKey ?? null);
             snackbarText.value = 'Song created successfully';
             snackbar.value = true;
             router.replace(`/song/${newId}`);
@@ -86,7 +92,8 @@ export function useSongEditor(songRef, snackbarText, snackbar) {
           }
         } catch (error) {
           console.error('Save failed:', error);
-          snackbarText.value = 'Error saving: ' + (error.code === 'permission-denied' ? 'Permission Denied' : error.message);
+          const fbError = error as FirebaseError;
+          snackbarText.value = 'Error saving: ' + (fbError.code === 'permission-denied' ? 'Permission Denied' : fbError.message);
           snackbar.value = true;
         } finally {
           isSaving.value = false;
@@ -95,7 +102,9 @@ export function useSongEditor(songRef, snackbarText, snackbar) {
         isEditMode.value = false;
       }
     } else {
-      editTitle.value = songRef.value.title;
+      if (songRef.value) {
+        editTitle.value = songRef.value.title;
+      }
       paragraphs.value.forEach((p) => {
         p.editText = p.lines.map(l => l.text).join('\n');
       });

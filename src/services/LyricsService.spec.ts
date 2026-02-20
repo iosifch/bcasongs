@@ -68,7 +68,8 @@ describe('LyricsService', () => {
     it('should convert paragraphs back to text with tags', () => {
       const paragraphs = [
         {
-          type: 'chorus',
+          id: '1',
+          type: 'chorus' as const,
           lines: [
             { text: 'Gloria', isSpacer: false }
           ]
@@ -84,7 +85,8 @@ describe('LyricsService', () => {
     it('should handle verse type without tags', () => {
       const paragraphs = [
         {
-          type: 'verse',
+          id: '1',
+          type: 'verse' as const,
           lines: [
             { text: 'Verse line', isSpacer: false }
           ]
@@ -100,15 +102,18 @@ describe('LyricsService', () => {
     it('should handle multiple paragraphs with mixed types', () => {
       const paragraphs = [
         {
-          type: 'verse',
+          id: '1',
+          type: 'verse' as const,
           lines: [{ text: 'Verse 1', isSpacer: false }]
         },
         {
-          type: 'chorus',
+          id: '2',
+          type: 'chorus' as const,
           lines: [{ text: 'Chorus', isSpacer: false }]
         },
         {
-          type: 'coda',
+          id: '3',
+          type: 'coda' as const,
           lines: [{ text: 'Coda', isSpacer: false }]
         }
       ];
@@ -136,7 +141,7 @@ describe('LyricsService', () => {
 
   describe('syncParagraphLines', () => {
     it('should split text into lines and set isSpacer correctly', () => {
-      const p = { lines: [] };
+      const p = { lines: [] as { text: string; isSpacer: boolean }[] };
       const text = 'Line 1\n\nLine 2';
       LyricsService.syncParagraphLines(p, text);
 
@@ -150,10 +155,10 @@ describe('LyricsService', () => {
   describe('filterEmptyParagraphs', () => {
     it('should remove paragraphs that have no content', () => {
       const paragraphs = [
-        { editText: 'Content' },
-        { editText: '   ' }, // empty after trim
-        { editText: '\n\n' }, // only newlines
-        { editText: 'Valid' }
+        { id: '1', type: 'verse' as const, lines: [], editText: 'Content' },
+        { id: '2', type: 'verse' as const, lines: [], editText: '   ' },
+        { id: '3', type: 'verse' as const, lines: [], editText: '\n\n' },
+        { id: '4', type: 'verse' as const, lines: [], editText: 'Valid' }
       ];
 
       const filtered = LyricsService.filterEmptyParagraphs(paragraphs);
@@ -164,8 +169,8 @@ describe('LyricsService', () => {
 
     it('should use lines if editText is not present', () => {
       const paragraphs = [
-        { lines: [{ text: 'L1', isSpacer: false }] },
-        { lines: [{ text: '', isSpacer: true }] }
+        { id: '1', type: 'verse' as const, lines: [{ text: 'L1', isSpacer: false }] },
+        { id: '2', type: 'verse' as const, lines: [{ text: '', isSpacer: true }] }
       ];
 
       const filtered = LyricsService.filterEmptyParagraphs(paragraphs);

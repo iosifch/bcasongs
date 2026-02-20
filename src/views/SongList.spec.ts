@@ -5,6 +5,8 @@ import { ref } from 'vue';
 import SongList from './SongList.vue';
 import { vuetify } from '../vitest-setup';
 import { useSongs } from '../composables/useSongs';
+import type { Mock } from 'vitest';
+import type { Ref } from 'vue';
 
 // --- Mocks ---
 
@@ -34,9 +36,9 @@ vi.mock('../composables/useSongActions', () => ({
 
 // Mock useSongs
 vi.mock('../composables/useSongs', async () => {
-    const { ref } = await vi.importActual('vue');
+    const { ref } = await vi.importActual<typeof import('vue')>('vue');
 
-    const songs = ref([]);
+    const songs = ref<{ id: string; title: string; content: string }[]>([]);
     const search = ref('');
     const loading = ref(false);
 
@@ -44,7 +46,7 @@ vi.mock('../composables/useSongs', async () => {
         songs,
         search,
         loading
-    }));
+    })) as Mock & { mockState: { songs: Ref; search: Ref<string>; loading: Ref<boolean> } };
 
     fn.mockState = { songs, search, loading };
 
@@ -55,12 +57,14 @@ vi.mock('../composables/useSongs', async () => {
 
 
 describe('SongList.vue', () => {
+    const mockUseSongs = useSongs as Mock & { mockState: { songs: Ref; search: Ref<string>; loading: Ref<boolean> } };
+
     beforeEach(() => {
         vi.useFakeTimers();
         // Reset state
-        useSongs.mockState.search.value = '';
-        useSongs.mockState.songs.value = [];
-        useSongs.mockState.loading.value = false;
+        mockUseSongs.mockState.search.value = '';
+        mockUseSongs.mockState.songs.value = [];
+        mockUseSongs.mockState.loading.value = false;
     });
 
     afterEach(() => {
@@ -87,31 +91,31 @@ describe('SongList.vue', () => {
         await input.setValue('Amazing Grace');
 
         // Should not update immediately
-        expect(useSongs.mockState.search.value).toBe('');
+        expect(mockUseSongs.mockState.search.value).toBe('');
 
         // Advance time
         vi.advanceTimersByTime(300);
 
-        expect(useSongs.mockState.search.value).toBe('Amazing Grace');
+        expect(mockUseSongs.mockState.search.value).toBe('Amazing Grace');
     });
 
     it('displays loading spinner when loading and no songs', async () => {
-        useSongs.mockState.loading.value = true;
+        mockUseSongs.mockState.loading.value = true;
         const wrapper = mountComponent();
 
         expect(wrapper.findComponent({ name: 'VProgressCircular' }).exists()).toBe(true);
     });
 
     it('displays "No songs found" when songs is empty and not loading', async () => {
-        useSongs.mockState.loading.value = false;
-        useSongs.mockState.songs.value = [];
+        mockUseSongs.mockState.loading.value = false;
+        mockUseSongs.mockState.songs.value = [];
         const wrapper = mountComponent();
 
         expect(wrapper.text()).toContain('No songs found');
     });
 
     it('renders virtual scroll when songs are present', async () => {
-        useSongs.mockState.songs.value = [
+        mockUseSongs.mockState.songs.value = [
             { id: '1', title: 'Song 1', content: 'Lyrics 1' },
             { id: '2', title: 'Song 2', content: 'Lyrics 2' }
         ];

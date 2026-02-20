@@ -339,8 +339,8 @@
 
 </template>
 
-<script setup>
-import { ref, computed, onUnmounted, nextTick } from 'vue';
+<script setup lang="ts">
+import { computed, onUnmounted, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
 
 import { usePlaylist } from '../composables/usePlaylist';
@@ -351,23 +351,25 @@ import { useKeyManager } from '../composables/useKeyManager';
 import { useSongActions } from '../composables/useSongActions';
 import { useCurrentSong } from '../composables/useCurrentSong';
 import { useAppNavigation } from '../composables/useAppNavigation';
+import type { Song } from '../services/SongsRepository';
 
 const route = useRoute();
 const { isInPlaylist } = usePlaylist();
-const { isAuthenticated, isAuthenticating } = useAuth();
+const { isAuthenticated } = useAuth();
 const { fontSizeClass, cycleFontSize } = useSongSettings();
 const { goBack } = useAppNavigation();
 
 const { snackbar, snackbarText, handleTogglePlaylist, handleShare } = useSongActions();
-const songId = route.params.id;
-const { song, loading } = useCurrentSong(songId, (resolvedSong) => initializeEditor(resolvedSong));
+const songId = route.params.id as string;
+const { song, loading } = useCurrentSong(songId, (resolvedSong: Song) => initializeEditor(resolvedSong));
 const { isEditMode, isSaving, editTitle, paragraphs, initializeEditor, addParagraph, removeParagraph, toggleEditMode } = useSongEditor(song, snackbarText, snackbar);
 const { keyDialog, selectedRoot, selectedAccidental, selectedQuality, openKeyDialog, saveKeyChange } = useKeyManager(song, snackbarText, snackbar);
 
 const songInPlaylist = computed(() => (song.value && song.value.id) ? isInPlaylist(song.value.id) : false);
 
-const textareaRefs = new Map();
-const setTextareaRef = (el, id) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const textareaRefs = new Map<string, any>();
+const setTextareaRef = (el: unknown, id: string) => {
   if (el) {
     textareaRefs.set(id, el);
   } else {
@@ -375,7 +377,7 @@ const setTextareaRef = (el, id) => {
   }
 };
 
-const onAddParagraph = (index, position) => {
+const onAddParagraph = (index: number, position: 'above' | 'below') => {
   const newId = addParagraph(index, position);
   nextTick(() => {
     const component = textareaRefs.get(newId);

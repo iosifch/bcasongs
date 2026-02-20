@@ -89,7 +89,7 @@
   </v-container>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineOptions({ name: 'SongList' });
 
 import { ref, watch } from 'vue';
@@ -108,15 +108,15 @@ const { snackbar, snackbarText, handleTogglePlaylist, handleShare } = useSongAct
 // Debounced Search Implementation
 const localSearch = ref(search.value);
 
-const debounce = (fn, delay) => {
-  let timeoutId;
-  return (...args) => {
+const debounce = <T extends (...args: Parameters<T>) => void>(fn: T, delay: number) => {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => fn(...args), delay);
   };
 };
 
-const updateSearch = (value) => {
+const updateSearch = (value: string) => {
   search.value = value;
 };
 

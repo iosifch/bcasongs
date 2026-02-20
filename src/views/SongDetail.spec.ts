@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mount, flushPromises } from '@vue/test-utils';
-import { ref, computed, defineComponent, h } from 'vue';
+import { ref, defineComponent, h } from 'vue';
 import SongDetail from './SongDetail.vue';
 import { useAuth } from '../composables/useAuth';
 import { usePlaylist } from '../composables/usePlaylist';
@@ -10,6 +10,7 @@ import { useKeyManager } from '../composables/useKeyManager';
 import { useSongActions } from '../composables/useSongActions';
 import { VLayout } from 'vuetify/components';
 import { vuetify } from '../vitest-setup';
+import type { Mock } from 'vitest';
 
 // --- Mocks ---
 vi.mock('../composables/useAuth', () => ({
@@ -109,7 +110,7 @@ describe('SongDetail.vue (UI Integration)', () => {
 
   it('calls openKeyDialog when key button is clicked', async () => {
     const mockOpenDialog = vi.fn();
-    useKeyManager.mockReturnValue({
+    (useKeyManager as Mock).mockReturnValue({
       keyDialog: ref(false),
       openKeyDialog: mockOpenDialog,
       selectedRoot: ref('G')
@@ -122,7 +123,7 @@ describe('SongDetail.vue (UI Integration)', () => {
 
   it('shows textareas only when isEditMode is true', async () => {
     const isEditMode = ref(false);
-    useSongEditor.mockReturnValue({
+    (useSongEditor as Mock).mockReturnValue({
       isEditMode,
       paragraphs: ref([{ id: 'p1', lines: [] }]),
       initializeEditor: vi.fn()
@@ -138,7 +139,7 @@ describe('SongDetail.vue (UI Integration)', () => {
 
   it('calls toggleEditMode when edit button is clicked', async () => {
     const mockToggle = vi.fn();
-    useSongEditor.mockReturnValue({
+    (useSongEditor as Mock).mockReturnValue({
       isEditMode: ref(false),
       toggleEditMode: mockToggle,
       initializeEditor: vi.fn(),
@@ -153,7 +154,7 @@ describe('SongDetail.vue (UI Integration)', () => {
   it('displays snackbar message from useSongActions', async () => {
     const snackbar = ref(false);
     const snackbarText = ref('Test Message');
-    useSongActions.mockReturnValue({
+    (useSongActions as Mock).mockReturnValue({
       snackbar,
       snackbarText,
       handleShare: vi.fn()

@@ -60,7 +60,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useSongActions } from '../composables/useSongActions';
 import { usePlaylistSongs } from '../composables/usePlaylistSongs';
 import { useAppNavigation } from '../composables/useAppNavigation';

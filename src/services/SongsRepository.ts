@@ -9,6 +9,7 @@ export interface Song {
   title: string
   content: string
   originalKey?: string | null
+  bookNumber?: string | number | null
   createdAt?: unknown
   updatedAt?: unknown
 }

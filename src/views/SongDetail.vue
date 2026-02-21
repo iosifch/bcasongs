@@ -125,7 +125,7 @@
       v-if="isAuthenticated"
       variant="tonal"
       :color="songInPlaylist ? 'primary' : 'surface-variant'"
-      @click="handleTogglePlaylist(song?.id)"
+      @click="song?.id && handleTogglePlaylist(song.id)"
       class="ml-2"
       title="Toggle Playlist"
       density="comfortable"

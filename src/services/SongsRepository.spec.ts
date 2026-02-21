@@ -3,10 +3,10 @@ import SongsRepository from './SongsRepository';
 
 const mockGetDocs = vi.fn();
 const mockGetDoc = vi.fn();
-const mockQuery = vi.fn((...args: unknown[]) => ({ _type: 'mock-query', args }));
-const mockOrderBy = vi.fn((...args: unknown[]) => ({ _type: 'mock-orderBy', args }));
-const mockLimit = vi.fn((...args: unknown[]) => ({ _type: 'mock-limit', args }));
-const mockStartAfter = vi.fn((...args: unknown[]) => ({ _type: 'mock-startAfter', args }));
+const mockQuery = vi.fn((...args: any[]) => ({ _type: 'mock-query', args }));
+const mockOrderBy = vi.fn((...args: any[]) => ({ _type: 'mock-orderBy', args }));
+const mockLimit = vi.fn((...args: any[]) => ({ _type: 'mock-limit', args }));
+const mockStartAfter = vi.fn((...args: any[]) => ({ _type: 'mock-startAfter', args }));
 const mockAddDoc = vi.fn();
 const mockUpdateDoc = vi.fn();
 const mockDeleteDoc = vi.fn();
@@ -18,17 +18,17 @@ vi.mock('../firebaseConfig', () => ({
 }));
 
 vi.mock('firebase/firestore', () => ({
-  collection: (...args: unknown[]) => mockCollection(...args),
-  getDocs: (...args: unknown[]) => mockGetDocs(...args),
-  getDoc: (...args: unknown[]) => mockGetDoc(...args),
-  query: (...args: unknown[]) => mockQuery(...args),
-  orderBy: (...args: unknown[]) => mockOrderBy(...args),
-  limit: (...args: unknown[]) => mockLimit(...args),
-  startAfter: (...args: unknown[]) => mockStartAfter(...args),
-  addDoc: (...args: unknown[]) => mockAddDoc(...args),
-  updateDoc: (...args: unknown[]) => mockUpdateDoc(...args),
-  deleteDoc: (...args: unknown[]) => mockDeleteDoc(...args),
-  doc: (...args: unknown[]) => mockDoc(...args),
+  collection: (...args: unknown[]) => (mockCollection as any)(...args),
+  getDocs: (...args: unknown[]) => (mockGetDocs as any)(...args),
+  getDoc: (...args: unknown[]) => (mockGetDoc as any)(...args),
+  query: (...args: unknown[]) => (mockQuery as any)(...args),
+  orderBy: (...args: unknown[]) => (mockOrderBy as any)(...args),
+  limit: (...args: unknown[]) => (mockLimit as any)(...args),
+  startAfter: (...args: unknown[]) => (mockStartAfter as any)(...args),
+  addDoc: (...args: unknown[]) => (mockAddDoc as any)(...args),
+  updateDoc: (...args: unknown[]) => (mockUpdateDoc as any)(...args),
+  deleteDoc: (...args: unknown[]) => (mockDeleteDoc as any)(...args),
+  doc: (...args: unknown[]) => (mockDoc as any)(...args),
   serverTimestamp: () => 'timestamp'
 }));
 

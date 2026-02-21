@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ref } from 'vue';
+import type { Ref } from 'vue';
 import { useKeyManager } from './useKeyManager';
 import SongsRepository from '../services/SongsRepository';
 import type { Song } from '../services/SongsRepository';
@@ -15,9 +16,9 @@ vi.mock('../services/SongsRepository', () => ({
 }));
 
 describe('useKeyManager', () => {
-  let songRef: ReturnType<typeof ref<Song | null>>;
-  let snackbarText: ReturnType<typeof ref<string>>;
-  let snackbar: ReturnType<typeof ref<boolean>>;
+  let songRef: Ref<Song | null>;
+  let snackbarText: Ref<string>;
+  let snackbar: Ref<boolean>;
 
   beforeEach(() => {
     vi.clearAllMocks();

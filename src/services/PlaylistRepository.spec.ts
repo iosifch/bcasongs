@@ -13,12 +13,12 @@ vi.mock('../firebaseConfig', () => ({
 }));
 
 vi.mock('firebase/firestore', () => ({
-    doc: (...args: unknown[]) => mockDoc(...args),
-    onSnapshot: (...args: unknown[]) => mockOnSnapshot(...args),
-    updateDoc: (...args: unknown[]) => mockUpdateDoc(...args),
-    setDoc: (...args: unknown[]) => mockSetDoc(...args),
-    arrayUnion: (...args: unknown[]) => mockArrayUnion(...args),
-    arrayRemove: (...args: unknown[]) => mockArrayRemove(...args),
+    doc: (...args: unknown[]) => (mockDoc as any)(...args),
+    onSnapshot: (...args: unknown[]) => (mockOnSnapshot as any)(...args),
+    updateDoc: (...args: unknown[]) => (mockUpdateDoc as any)(...args),
+    setDoc: (...args: unknown[]) => (mockSetDoc as any)(...args),
+    arrayUnion: (...args: unknown[]) => (mockArrayUnion as any)(...args),
+    arrayRemove: (...args: unknown[]) => (mockArrayRemove as any)(...args),
     serverTimestamp: () => 'timestamp'
 }));
 

@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:run": "vitest run",
+    "type-check": "vue-tsc --noEmit",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "generate-icons": "node scripts/generate-icons.js",

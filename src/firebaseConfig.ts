@@ -3,12 +3,15 @@ import { getFirestore, initializeFirestore, persistentLocalCache, persistentMult
 import { getAuth } from 'firebase/auth';
 import type { Firestore } from 'firebase/firestore';
 
+// Node.js process type for scripts that run outside Vite
+declare const process: { env: Record<string, string | undefined> } | undefined;
+
 // Helper to safely access env vars in both Vite (browser) and Node (scripts)
 const getEnv = (key: string): string | undefined => {
   if (import.meta.env && import.meta.env[key]) {
     return import.meta.env[key] as string;
   }
-  if (typeof process !== 'undefined' && process.env && process.env[key]) {
+  if (typeof process !== 'undefined' && process?.env?.[key]) {
     return process.env[key];
   }
   return undefined;

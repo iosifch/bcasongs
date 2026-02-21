@@ -10,7 +10,7 @@
   </v-app>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted } from 'vue';
 import SongsRepository from './services/SongsRepository';
 import PlaylistRepository from './services/PlaylistRepository';

@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ref } from 'vue';
+import type { Ref } from 'vue';
 import { useSongEditor } from './useSongEditor';
 import SongsRepository from '../services/SongsRepository';
 import type { Song } from '../services/SongsRepository';
@@ -22,9 +23,9 @@ vi.mock('../services/SongsRepository', () => ({
 }));
 
 describe('useSongEditor', () => {
-  let snackbarText: ReturnType<typeof ref<string>>;
-  let snackbar: ReturnType<typeof ref<boolean>>;
-  let songRef: ReturnType<typeof ref<Song | null>>;
+  let snackbarText: Ref<string>;
+  let snackbar: Ref<boolean>;
+  let songRef: Ref<Song | null>;
 
   beforeEach(() => {
     vi.clearAllMocks();

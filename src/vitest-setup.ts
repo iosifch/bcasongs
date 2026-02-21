@@ -5,14 +5,14 @@ import * as directives from 'vuetify/directives'
 import { config } from '@vue/test-utils'
 
 // 1. Mock ResizeObserver (Standard solution for JSDOM/Happy-DOM)
-global.ResizeObserver = class ResizeObserver {
+globalThis.ResizeObserver = class ResizeObserver {
   observe() {}
   unobserve() {}
   disconnect() {}
 }
 
 // 2. Mock visualViewport (Required for Vuetify Overlays like Dialogs)
-global.visualViewport = {
+globalThis.visualViewport = {
   addEventListener: vi.fn(),
   removeEventListener: vi.fn(),
   width: 1024,

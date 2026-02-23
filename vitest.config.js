@@ -10,7 +10,7 @@ export default defineConfig({
   test: {
     environment: 'happy-dom',
     globals: true,
-    setupFiles: ['./src/vitest-setup.js'],
+    setupFiles: ['./src/vitest-setup.ts'],
     server: {
       deps: {
         inline: ['vuetify'],
@@ -19,8 +19,8 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html'],
-      include: ['src/**/*.{js,vue}'],
-      exclude: ['src/**/*.spec.js', 'src/test-utils.js', 'src/vitest-setup.js']
+      include: ['src/**/*.{js,ts,vue}'],
+      exclude: ['src/**/*.spec.{js,ts}', 'src/test-utils.ts', 'src/vitest-setup.ts']
     },
   },
   ssr: {

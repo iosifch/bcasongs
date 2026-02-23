@@ -1,16 +1,14 @@
 <template>
-  <v-app-bar flat color="background" scroll-behavior="hide" scroll-threshold="150" class="px-2">
+  <v-app-bar flat color="background" class="px-2">
       <v-btn
-        icon
+        icon="chevron_left"
         variant="tonal"
         color="surface-variant"
         @click="goBack"
         class="mr-2"
         density="comfortable"
         rounded="lg"
-        style="width: 40px; height: 40px; min-width: 40px;"
       >
-        <v-icon size="25" icon="chevron_left"></v-icon>
       </v-btn>
 
       <v-app-bar-title class="text-h7 font-weight-regular text-truncate ml-0 pl-0">
@@ -60,7 +58,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useSongActions } from '../composables/useSongActions';
 import { usePlaylistSongs } from '../composables/usePlaylistSongs';
 import { useAppNavigation } from '../composables/useAppNavigation';

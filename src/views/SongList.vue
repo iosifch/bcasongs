@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat color="background" :elevation="0" scroll-behavior="hide" scroll-threshold="150">
+  <v-app-bar flat color="background">
     <v-container class="pa-0 fill-height d-flex align-center px-3">
       <v-text-field
         v-model="localSearch"
@@ -23,9 +23,8 @@
         rounded="lg"
         to="/playlist"
         class="ml-2"
-        size="large"
+        
         density="comfortable"
-        style="width: 40px; height: 40px; min-width: 40px;"
       >
         <v-badge
           :content="playlistCount"
@@ -89,7 +88,7 @@
   </v-container>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineOptions({ name: 'SongList' });
 
 import { ref, watch } from 'vue';
@@ -108,15 +107,15 @@ const { snackbar, snackbarText, handleTogglePlaylist, handleShare } = useSongAct
 // Debounced Search Implementation
 const localSearch = ref(search.value);
 
-const debounce = (fn, delay) => {
-  let timeoutId;
-  return (...args) => {
+const debounce = <T extends (...args: Parameters<T>) => void>(fn: T, delay: number) => {
+  let timeoutId: ReturnType<typeof setTimeout>;
+  return (...args: Parameters<T>) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => fn(...args), delay);
   };
 };
 
-const updateSearch = (value) => {
+const updateSearch = (value: string) => {
   search.value = value;
 };
 

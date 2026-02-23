@@ -35,30 +35,26 @@
 
         <v-btn
           v-if="isAuthenticated"
-          icon
+          :icon="isInPlaylist ? 'playlist_remove' : 'playlist_add'"
           variant="tonal"
-          color="surface-variant"
+          :color="isInPlaylist ? 'primary' : 'inherit'"
           density="comfortable"
           rounded="lg"
-          style="width: 32px; height: 32px; min-width: 32px;"
+          size="small"
           class="mr-2"
           @click.prevent="emit('toggle-playlist', song.id)"
         >
-          <v-icon :color="isInPlaylist ? 'primary' : 'inherit'" size="20">
-            {{ isInPlaylist ? 'playlist_remove' : 'playlist_add' }}
-          </v-icon>
         </v-btn>
 
         <v-btn
-          icon
+          icon="share"
           variant="tonal"
           color="surface-variant"
           density="comfortable"
           rounded="lg"
-          style="width: 32px; height: 32px; min-width: 32px;"
+          size="small"
           @click.prevent="emit('share', song)"
         >
-          <v-icon size="20">share</v-icon>
         </v-btn>
       </div>
     </v-card-text>

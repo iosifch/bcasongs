@@ -9,7 +9,7 @@
             color="surface-variant"
             rounded="lg"
             density="comfortable"
-            style="width: 40px; height: 40px; min-width: 40px; padding: 0;"
+            icon
           >
             <v-avatar :size="28">
               <v-img v-if="user.photoURL" :src="user.photoURL" alt="Avatar"></v-img>

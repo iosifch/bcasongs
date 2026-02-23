@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat color="background" :elevation="0" scroll-behavior="hide" scroll-threshold="150">
+  <v-app-bar flat color="background">
     <v-container class="pa-0 fill-height d-flex align-center px-3">
       <v-text-field
         v-model="localSearch"
@@ -23,9 +23,8 @@
         rounded="lg"
         to="/playlist"
         class="ml-2"
-        size="large"
+        
         density="comfortable"
-        style="width: 40px; height: 40px; min-width: 40px;"
       >
         <v-badge
           :content="playlistCount"

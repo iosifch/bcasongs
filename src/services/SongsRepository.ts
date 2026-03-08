@@ -1,4 +1,4 @@
-import { ref, readonly } from 'vue';
+import { ref, readonly, computed } from 'vue';
 import { db } from '../firebaseConfig';
 import { collection, getDocs, getDoc, query, orderBy, limit, startAfter, addDoc, updateDoc, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
 
@@ -14,13 +14,31 @@ export interface Song {
   updatedAt?: unknown
 }
 
+export interface SongSearchIndex {
+  id: string
+  normalizedTitle: string
+  normalizedContent: string
+}
+
+export const removeDiacritics = (str: string): string =>
+  str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
 const _songs = ref<Song[]>([]);
 const _loading = ref(true);
 const _error = ref<string | null>(null);
 const _fullyLoaded = ref(false);
 
+const _searchIndex = computed<SongSearchIndex[]>(() =>
+  _songs.value.map(song => ({
+    id: song.id,
+    normalizedTitle: removeDiacritics((song.title || '').toLowerCase()),
+    normalizedContent: removeDiacritics((song.content || '').toLowerCase()),
+  }))
+);
+
 export default {
   songs: readonly(_songs),
+  searchIndex: readonly(_searchIndex),
   loading: readonly(_loading),
   error: readonly(_error),
   fullyLoaded: readonly(_fullyLoaded),

@@ -173,6 +173,22 @@ describe('SongsRepository', () => {
     });
   });
 
+  describe('searchIndex', () => {
+    it('should contain normalized and lowercased song data', async () => {
+      mockGetDocs.mockResolvedValueOnce({
+        docs: makeDocs([
+          { id: '1', title: 'Álmost Über', content: 'Cantaré' }
+        ])
+      });
+
+      await SongsRepository.initialize();
+
+      expect(SongsRepository.searchIndex.value).toEqual([
+        { id: '1', normalizedTitle: 'almost uber', normalizedContent: 'cantare' }
+      ]);
+    });
+  });
+
   describe('CRUD Operations', () => {
     it('addSong should call addDoc with correct payload and return new id', async () => {
       mockAddDoc.mockResolvedValue({ id: 'new-id-123' });

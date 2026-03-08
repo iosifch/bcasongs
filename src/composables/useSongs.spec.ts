@@ -2,26 +2,37 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { useSongs } from './useSongs';
 import SongsRepository from '../services/SongsRepository';
 
+const { mockSongsData, removeDiacritics } = vi.hoisted(() => ({
+  mockSongsData: { value: [] as { id: string; title: string | null; content?: string | null }[] },
+  removeDiacritics: (str: string): string => str.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+}));
+
 vi.mock('../services/SongsRepository', () => ({
+  removeDiacritics,
   default: {
-    songs: { value: [] as { id: string; title: string | null; content?: string | null }[] },
+    songs: mockSongsData,
+    searchIndex: {
+      get value() {
+        return mockSongsData.value.map(song => ({
+          id: song.id,
+          normalizedTitle: removeDiacritics((song.title || '').toLowerCase()),
+          normalizedContent: removeDiacritics((song.content || '').toLowerCase()),
+        }));
+      }
+    },
     loading: { value: false }
   }
 }));
 
-// The mock bypasses Vue's readonly(), so we need a mutable reference
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mockSongs = SongsRepository.songs as any;
-
 describe('useSongs', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockSongs.value = [];
+    mockSongsData.value = [];
     (SongsRepository.loading as { value: boolean }).value = false;
   });
 
   it('returns all songs when search is empty', () => {
-    mockSongs.value = [
+    mockSongsData.value = [
       { id: '1', title: 'Amazing Grace', content: 'How sweet the sound' },
       { id: '2', title: 'Holy Holy', content: 'Holy is the Lord' }
     ];
@@ -33,7 +44,7 @@ describe('useSongs', () => {
   });
 
   it('filters songs by title', () => {
-    mockSongs.value = [
+    mockSongsData.value = [
       { id: '1', title: 'Amazing Grace', content: 'How sweet the sound' },
       { id: '2', title: 'Holy Holy', content: 'Holy is the Lord' }
     ];
@@ -46,7 +57,7 @@ describe('useSongs', () => {
   });
 
   it('filters songs by content', () => {
-    mockSongs.value = [
+    mockSongsData.value = [
       { id: '1', title: 'Amazing Grace', content: 'How sweet the sound' },
       { id: '2', title: 'Holy Holy', content: 'Holy is the Lord' }
     ];
@@ -59,7 +70,7 @@ describe('useSongs', () => {
   });
 
   it('is case insensitive', () => {
-    mockSongs.value = [
+    mockSongsData.value = [
       { id: '1', title: 'Amazing Grace', content: 'lyrics' }
     ];
 
@@ -70,7 +81,7 @@ describe('useSongs', () => {
   });
 
   it('returns empty array when no songs match', () => {
-    mockSongs.value = [
+    mockSongsData.value = [
       { id: '1', title: 'Amazing Grace', content: 'lyrics' }
     ];
 
@@ -81,7 +92,7 @@ describe('useSongs', () => {
   });
 
   it('handles songs with null content gracefully', () => {
-    mockSongs.value = [
+    mockSongsData.value = [
       { id: '1', title: 'Amazing Grace', content: null },
       { id: '2', title: 'Holy Holy', content: 'Holy is the Lord' }
     ];
@@ -94,7 +105,7 @@ describe('useSongs', () => {
   });
 
   it('handles songs with undefined content gracefully', () => {
-    mockSongs.value = [
+    mockSongsData.value = [
       { id: '1', title: 'Amazing Grace' },
       { id: '2', title: 'Holy Holy', content: 'Holy is the Lord' }
     ];
@@ -107,7 +118,7 @@ describe('useSongs', () => {
   });
 
   it('handles songs with null title gracefully', () => {
-    mockSongs.value = [
+    mockSongsData.value = [
       { id: '1', title: null, content: 'Some lyrics here' }
     ];
 
@@ -115,6 +126,18 @@ describe('useSongs', () => {
     search.value = 'lyrics';
 
     expect(songs.value).toHaveLength(1);
+  });
+
+  it('matches songs ignoring diacritics', () => {
+    mockSongsData.value = [
+      { id: '1', title: 'Aleluia', content: 'Cantaré' }
+    ];
+
+    const { songs, search } = useSongs();
+    search.value = 'cantare';
+
+    expect(songs.value).toHaveLength(1);
+    expect(songs.value[0].title).toBe('Aleluia');
   });
 
   it('exposes loading from repository', () => {

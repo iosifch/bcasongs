@@ -10,9 +10,12 @@
         density="comfortable"
         rounded="xl"
         single-line
+        clearable
+        clear-icon="close"
         prepend-inner-icon="search"
         class="flex-grow-1"
         @update:model-value="debouncedUpdateSearch"
+        @click:clear="clearSearch"
       ></v-text-field>
 
       <v-btn
@@ -120,6 +123,11 @@ const updateSearch = (value: string) => {
 };
 
 const debouncedUpdateSearch = debounce(updateSearch, 300);
+
+const clearSearch = () => {
+  localSearch.value = '';
+  search.value = '';
+};
 
 // Sync localSearch if search changes externally (e.g. cleared)
 watch(search, (newValue) => {
